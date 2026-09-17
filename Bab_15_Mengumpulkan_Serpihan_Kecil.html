@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 15 — Mengumpulkan Serpihan Kecil (Integral)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 15 · Volume IV</div>
+  <h1 class="chapter-title">Mengumpulkan<br>Serpihan Kecil</h1>
+  <p class="chapter-subtitle">
+    Tentang integral — seni menjumlahkan potongan yang tak terhingga kecil<br>
+    untuk menemukan luas, volume, dan total akumulasi.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Di Bab 14, kita belajar memecah — mengukur perubahan di satu titik. Sekarang kita belajar menyatukan — menghitung total dari banyak potongan kecil. Jika turunan bertanya "seberapa cepat?", integral bertanya "berapa totalnya?"
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu ingin menghitung luas kolam berbentuk tidak beraturan. Kamu tidak bisa menggunakan rumus persegi panjang. Tapi kamu bisa menutup kolam dengan pita-pita vertikal yang sangat sempit — masing-masing hampir persegi panjang. Jumlahkan luas semua pita, semakin sempit pitanya, semakin tepat hasilnya. Pada batasnya: itulah integral.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita menghitung luas daerah<br>yang dibatasi oleh kurva melengkung?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Irisan ke Integral: Tradisi Banyak Peradaban</h2>
+
+  <div class="historical-note">
+    <strong>Eudoxus</strong> dan <strong>Archimedes</strong> (abad ke-4–3 SM) menggunakan "metode kelelahan" — mengapit bentuk melengkung di antara poligon yang semakin menyerupai bentuk aslinya. Archimedes menghitung luas parabola secara tepat menggunakan metode ini.
+  </div>
+
+  <div class="historical-note">
+    <strong>Ibn al-Haytham</strong> (965–1040 M) menghitung $\sum_{k=1}^{n} k^4$ — jumlah pangkat empat berurutan — dan menggunakannya untuk menghitung volume paraboloid putar. Metodenya mempartisi benda menjadi irisan tipis dan menjumlahkannya — esensi integral Riemann, tujuh abad lebih awal.
+  </div>
+
+  <div class="historical-note">
+    <strong>Cavalieri</strong> (1598–1647) di Italia merumuskan "prinsip Cavalieri": dua benda yang dipotong oleh setiap bidang horizontal menghasilkan irisan yang luasnya sama, maka volumenya sama. <strong>Leibniz</strong> memperkenalkan simbol $\int$ (dari huruf S, untuk <em>summa</em>) dan notasi $dx$ yang kita gunakan sampai sekarang.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ JUMLAH RIEMANN ═══════════════════════ -->
+
+  <h2>Jumlah Riemann: Pendekatan dengan Persegi Panjang</h2>
+
+  <p>
+    Untuk menghitung luas di bawah kurva $y = f(x)$ dari $x = a$ ke $x = b$:
+  </p>
+
+  <div class="key-insight">
+    <ol style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li>Bagi interval $[a, b]$ menjadi $n$ sub-interval dengan lebar $\Delta x = \frac{b-a}{n}$.</li>
+      <li>Pada setiap sub-interval, buat persegi panjang dengan tinggi $f(x_i)$.</li>
+      <li>Jumlahkan luas semua persegi panjang: $S_n = \sum_{i=1}^{n} f(x_i) \cdot \Delta x$.</li>
+      <li>Ambil limit: $\displaystyle\int_a^b f(x)\,dx = \lim_{n \to \infty} S_n$.</li>
+    </ol>
+  </div>
+
+  <!-- INTERACTIVE 1: Riemann Sum -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Jumlah Riemann — Semakin Banyak Persegi Panjang, Semakin Tepat</div>
+    <div class="interactive-desc">Tingkatkan jumlah persegi panjang dan lihat bagaimana jumlah luasnya mendekati integral.</div>
+
+    <div class="slider-container">
+      <label>Jumlah persegi panjang: <strong id="riemann-n-val">4</strong></label>
+      <input type="range" id="riemann-n" min="1" max="100" value="4" oninput="updateRiemann()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="riemann-svg" width="340" height="260" viewBox="0 0 340 260"></svg>
+    </div>
+
+    <div id="riemann-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INTEGRAL TAK TENTU ═══════════════════════ -->
+
+  <h2>Antiturunan (Integral Tak Tentu)</h2>
+
+  <p>
+    Integral tak tentu = "membalik turunan". Jika $F'(x) = f(x)$, maka $F$ adalah <strong>antiturunan</strong> dari $f$:
+  </p>
+
+  <div class="definition-box">
+    $$\int f(x)\,dx = F(x) + C$$
+    di mana $C$ adalah konstanta sembarang (karena turunan konstanta = 0, banyak fungsi berbeda yang turunannya sama).
+  </div>
+
+  <div class="key-insight">
+    <strong>Aturan integral dasar:</strong>
+    <table style="width: 100%; font-size: 0.95rem; border-collapse: collapse; margin: 0.5rem 0;">
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$\int x^n\,dx$</td><td style="padding: 6px;">$\frac{x^{n+1}}{n+1} + C$ (untuk $n \neq -1$)</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$\int \frac{1}{x}\,dx$</td><td style="padding: 6px;">$\ln|x| + C$</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$\int e^x\,dx$</td><td style="padding: 6px;">$e^x + C$</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$\int \sin x\,dx$</td><td style="padding: 6px;">$-\cos x + C$</td></tr>
+      <tr><td style="padding: 6px;">$\int \cos x\,dx$</td><td style="padding: 6px;">$\sin x + C$</td></tr>
+    </table>
+  </div>
+
+  <!-- INTERACTIVE 2: Antiderivative -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Antiturunan — Membalik Turunan</div>
+    <div class="interactive-desc">Pilih fungsi $f(x)$. Lihat antiturunannya $F(x)$ dan verifikasi bahwa $F'(x) = f(x)$.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setAnti('x2')" id="anti-x2" style="background: var(--accent-blue); color: white;">x²</button>
+        <button class="btn" onclick="setAnti('3x')" id="anti-3x">3x</button>
+        <button class="btn" onclick="setAnti('cos')" id="anti-cos">cos(x)</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="anti-svg" width="320" height="260" viewBox="0 0 320 260"></svg>
+    </div>
+
+    <div id="anti-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INTEGRAL TERTENTU ═══════════════════════ -->
+
+  <h2>Integral Tertentu: Luas di Bawah Kurva</h2>
+
+  <div class="key-insight">
+    $$\int_a^b f(x)\,dx = F(b) - F(a)$$
+    di mana $F$ adalah antiturunan dari $f$. Ini menghitung <strong>luas bersih</strong> (net area) antara kurva dan sumbu-$x$ dari $x = a$ ke $x = b$.
+  </div>
+
+  <p>
+    Contoh: $\displaystyle\int_0^3 x^2\,dx = \left[\frac{x^3}{3}\right]_0^3 = \frac{27}{3} - 0 = 9$.
+  </p>
+
+  <!-- INTERACTIVE 3: Definite Integral -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Integral Tertentu — Menghitung Luas</div>
+    <div class="interactive-desc">Atur batas integrasi dan lihat luas yang dihitung.</div>
+
+    <div class="slider-container">
+      <label>Batas bawah a: <strong id="def-a-val">0</strong></label>
+      <input type="range" id="def-a" min="-2" max="4" value="0" step="0.5" oninput="updateDefIntegral()">
+    </div>
+    <div class="slider-container">
+      <label>Batas atas b: <strong id="def-b-val">3</strong></label>
+      <input type="range" id="def-b" min="0" max="5" value="3" step="0.5" oninput="updateDefIntegral()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="def-int-svg" width="320" height="260" viewBox="0 0 320 260"></svg>
+    </div>
+
+    <div id="def-int-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Lupa konstanta $C$ pada integral tak tentu.</strong><br>
+    $\int 2x\,dx = x^2 + C$, bukan $x^2$. Tanpa $C$, kamu hanya menemukan <em>satu</em> antiturunan, padahal ada tak hingga banyak.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Mengira integral selalu positif.</strong><br>
+    Luas di bawah sumbu-$x$ dihitung negatif. $\int_0^{2\pi} \sin x\,dx = 0$ (area positif dan negatif saling meniadakan).
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Hitung: (a) $\int 4x^3\,dx$, (b) $\int (3x^2 + 2x - 1)\,dx$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$\int x^n\,dx = \frac{x^{n+1}}{n+1} + C$.</div>
+    <div class="answer-content" id="a1">(a) $x^4 + C$. (b) $x^3 + x^2 - x + C$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Definite</div>
+    <p>Hitung $\displaystyle\int_1^4 (2x + 1)\,dx$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Antiturunan: $x^2 + x$. Evaluasi di $x = 4$ dan $x = 1$.</div>
+    <div class="answer-content" id="a2">$[x^2 + x]_1^4 = (16 + 4) - (1 + 1) = 20 - 2 = 18$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Area</div>
+    <p>Hitung luas daerah antara kurva $y = x^2$ dan sumbu-$x$ dari $x = 0$ ke $x = 2$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$\int_0^2 x^2\,dx$.</div>
+    <div class="answer-content" id="a3">$[\frac{x^3}{3}]_0^2 = \frac{8}{3} - 0 = \frac{8}{3} \approx 2{,}667$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Conceptual</div>
+    <p>Jika $f(x) = 3x^2$ dan $\int_0^a f(x)\,dx = 8$, cari $a$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">$\int 3x^2\,dx = x^3$. Jadi $[x^3]_0^a = a^3 = 8$.</div>
+    <div class="answer-content" id="a4">$a^3 = 8$, jadi $a = 2$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application</div>
+    <p>Kecepatan mobil $v(t) = 3t^2$ m/s. Berapa jarak yang ditempuh dari $t = 0$ ke $t = 4$ detik?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Jarak = $\int_0^4 v(t)\,dt$.</div>
+    <div class="answer-content" id="a5">$\int_0^4 3t^2\,dt = [t^3]_0^4 = 64 - 0 = 64$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Connection (Recall Bab 8 & 14)</div>
+    <p>Di Bab 14, kita menemukan bahwa $A'(r) = 2\pi r$ (turunan luas lingkaran = keliling). Balikkan: $\int 2\pi r\,dr = ?$ Apa artinya?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">$\int 2\pi r\,dr = 2\pi \cdot \frac{r^2}{2} + C$.</div>
+    <div class="answer-content" id="a6">$\int 2\pi r\,dr = \pi r^2 + C$. Ini mengembalikan rumus luas lingkaran! Artinya: luas lingkaran = jumlah tak hingga banyak "cincin" tipis berkeliling $2\pi r$.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog: Jembatan Besar</h2>
+
+  <p>
+    Kita sekarang memiliki dua operasi kalkulus: turunan (Bab 14) dan integral (bab ini). Apakah keduanya benar-benar saling terkait? Apakah "memecah" dan "menyatukan" memang operasi yang berlawanan? Di bab berikutnya, kita akan melihat <strong>Teorema Fundamental Kalkulus</strong> — teorema yang menyatakan bahwa ya, turunan dan integral adalah dua sisi dari koin yang sama.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 16 — Jembatan Besar (Teorema Fundamental Kalkulus)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+var gu=30, gox=50, goy=220;
+
+// ═══════ Interactive 1: Riemann Sum ═══════
+function updateRiemann() {
+  var n = parseInt(document.getElementById('riemann-n').value);
+  document.getElementById('riemann-n-val').textContent = n;
+  var svg = document.getElementById('riemann-svg');
+  var a = 0, b = 3;
+  var f = function(x) { return x * x; };
+  var dx = (b - a) / n;
+  var xScale = 80, yScale = 18;
+  var s = '';
+  // axes
+  s += '<line x1="'+gox+'" y1="20" x2="'+gox+'" y2="'+goy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+gox+'" y1="'+goy+'" x2="320" y2="'+goy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+
+  var sum = 0;
+  for (var i = 0; i < n; i++) {
+    var xi = a + i * dx;
+    var h = f(xi + dx); // right endpoint
+    sum += h * dx;
+    var rx = gox + xi * xScale, rw = dx * xScale, rh = h * yScale;
+    s += '<rect x="'+rx+'" y="'+(goy - rh)+'" width="'+rw+'" height="'+rh+'" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="0.8"/>';
+  }
+
+  // curve
+  var pts = [];
+  for (var x = 0; x <= 3.2; x += 0.05) {
+    pts.push((gox + x * xScale) + ',' + (goy - f(x) * yScale));
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+  s += '<text x="280" y="40" font-family="Inter" font-size="10" fill="#c0392b">y = x²</text>';
+
+  svg.innerHTML = s;
+  var exact = 9;
+  document.getElementById('riemann-result').textContent =
+    n + ' persegi panjang: jumlah ≈ ' + sum.toFixed(4) +
+    '\nIntegral eksak: ∫₀³ x² dx = 9' +
+    '\nSelisih: ' + Math.abs(sum - exact).toFixed(6);
+}
+
+// ═══════ Interactive 2: Antiderivative ═══════
+var antiType = 'x2';
+function setAnti(t) {
+  antiType = t;
+  ['x2','3x','cos'].forEach(function(k) {
+    var b = document.getElementById('anti-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  drawAnti();
+}
+function drawAnti() {
+  var svg = document.getElementById('anti-svg');
+  var ox = 160, oy = 130, u = 30;
+  var s = '';
+  s += '<line x1="0" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="0" x2="'+ox+'" y2="260" stroke="#2c2c2c" stroke-width="1"/>';
+  var fPts = [], FPts = [], info = '';
+  for (var x = -4.5; x <= 4.5; x += 0.08) {
+    var y, Y;
+    if (antiType === 'x2') { y = x*x; Y = x*x*x/3; info = 'f(x)=x², F(x)=x³/3 + C'; }
+    else if (antiType === '3x') { y = 3*x; Y = 1.5*x*x; info = 'f(x)=3x, F(x)=3x²/2 + C'; }
+    else { y = Math.cos(x); Y = Math.sin(x); info = 'f(x)=cos(x), F(x)=sin(x) + C'; }
+    var sc = antiType === 'cos' ? 50 : (antiType === '3x' ? 8 : 12);
+    var fy = oy - y * sc, Fy = oy - Y * sc;
+    if (fy > -10 && fy < 270) fPts.push((ox+x*u)+','+fy);
+    if (Fy > -10 && Fy < 270) FPts.push((ox+x*u)+','+Fy);
+  }
+  s += '<polyline points="'+fPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>';
+  s += '<polyline points="'+FPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<text x="270" y="20" font-family="Inter" font-size="10" fill="#2471a3">F(x)</text>';
+  s += '<text x="270" y="34" font-family="Inter" font-size="10" fill="#c0392b">f(x)</text>';
+  svg.innerHTML = s;
+  document.getElementById('anti-result').textContent = info + "\nF'(x) = f(x) ✓";
+}
+
+// ═══════ Interactive 3: Definite Integral ═══════
+function updateDefIntegral() {
+  var a = parseFloat(document.getElementById('def-a').value);
+  var b = parseFloat(document.getElementById('def-b').value);
+  document.getElementById('def-a-val').textContent = a;
+  document.getElementById('def-b-val').textContent = b;
+  if (b <= a) { document.getElementById('def-int-result').textContent = 'b harus > a'; return; }
+
+  var svg = document.getElementById('def-int-svg');
+  var f = function(x) { return x * x; };
+  var ox = 80, oy = 220, xScale = 50, yScale = 8;
+  var s = '';
+  s += '<line x1="'+(ox-2*xScale)+'" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+
+  // shaded area
+  var areaPts = (ox+a*xScale)+','+oy+' ';
+  for (var x = a; x <= b; x += 0.05) {
+    areaPts += (ox+x*xScale)+','+(oy-f(x)*yScale)+' ';
+  }
+  areaPts += (ox+b*xScale)+','+oy;
+  s += '<polygon points="'+areaPts+'" fill="rgba(36,113,163,0.2)" stroke="none"/>';
+
+  // curve
+  var pts = [];
+  for (var x = -1; x <= 5; x += 0.05) {
+    var py = oy - f(x)*yScale;
+    if (py > 0) pts.push((ox+x*xScale)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+  // bounds
+  s += '<line x1="'+(ox+a*xScale)+'" y1="'+(oy-f(a)*yScale)+'" x2="'+(ox+a*xScale)+'" y2="'+oy+'" stroke="#2471a3" stroke-width="1.5" stroke-dasharray="3,3"/>';
+  s += '<line x1="'+(ox+b*xScale)+'" y1="'+(oy-f(b)*yScale)+'" x2="'+(ox+b*xScale)+'" y2="'+oy+'" stroke="#2471a3" stroke-width="1.5" stroke-dasharray="3,3"/>';
+  s += '<text x="'+(ox+a*xScale)+'" y="'+(oy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2471a3">'+a+'</text>';
+  s += '<text x="'+(ox+b*xScale)+'" y="'+(oy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2471a3">'+b+'</text>';
+
+  svg.innerHTML = s;
+  var val = (b*b*b/3) - (a*a*a/3);
+  document.getElementById('def-int-result').textContent =
+    '∫ x² dx dari '+a+' ke '+b+
+    '\n= [x³/3] dari '+a+' ke '+b+
+    '\n= '+b+'³/3 − '+a+'³/3 = '+(b*b*b/3).toFixed(3)+' − '+(a*a*a/3).toFixed(3)+' = '+val.toFixed(4);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateRiemann();
+  drawAnti();
+  updateDefIntegral();
+});
+</script>
+</body>
+</html>

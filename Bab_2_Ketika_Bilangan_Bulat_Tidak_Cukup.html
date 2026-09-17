@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 2 — Ketika Bilangan Bulat Tidak Cukup</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 2</div>
+  <h1 class="chapter-title">Ketika Bilangan Bulat<br>Tidak Cukup</h1>
+  <p class="chapter-subtitle">
+    Tentang memotong, membagi rata, dan menemukan bilangan<br>
+    yang bersembunyi di antara bilangan-bilangan lain.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di dua bab sebelumnya, kita membangun bilangan dan mengajarinya bekerja. Kita bisa menjumlahkan, mengurangkan, mengalikan, dan membagi. Kita bahkan menemukan bilangan negatif ketika pengurangan memaksa kita melewati nol. Sepertinya semesta bilangan kita sudah lengkap.
+  </p>
+
+  <p>
+    Tapi sekarang, bayangkan situasi ini.
+  </p>
+
+  <div class="narrator">
+    Tiga orang sahabat menemukan sebuah roti. Hanya satu roti. Mereka ingin membaginya dengan adil. Berapa yang didapat setiap orang?
+  </div>
+
+  <p>
+    Kita sudah belajar pembagian: $1 \div 3$. Tapi tunggu — hasilnya berapa? Bukan 0, karena mereka jelas mendapat <em>sesuatu</em>. Bukan 1, karena rotinya hanya satu. Tidak ada bilangan bulat yang menjadi jawabannya.
+  </p>
+
+  <p>
+    Pembagian ini tidak "rusak". Masalahnya ada pada bilangan kita yang belum cukup. Kita butuh bilangan baru — bilangan yang hidup di <em>antara</em> bilangan bulat.
+  </p>
+
+  <div class="key-insight">
+    <strong>Ide penting:</strong> Sama seperti pengurangan yang memaksa kita menemukan bilangan negatif (Bab 1), pembagian yang tidak habis memaksa kita menemukan jenis bilangan baru: <strong>pecahan</strong>.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN UTAMA ═══════════════════════ -->
+
+  <h2>Pertanyaan yang Mengubah Segalanya</h2>
+
+  <p>
+    Pertanyaan yang mendorong seluruh bab ini sederhana:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Apa yang terjadi kalau kita membagi sesuatu dan hasilnya bukan bilangan bulat?"
+  </p>
+
+  <p>
+    Di Bab 1 kita sudah melihat bahwa $7 \div 2 = 3$ sisa $1$. Kita menyelesaikannya dengan menulis sisa. Tapi "sisa" adalah cara menghindar. Kalau kamu benar-benar memotong roti menjadi dua bagian yang sama, kamu tidak mendapat "3 sisa 1" — kamu mendapat <em>tiga setengah</em>. Setengah. Separuh. Sesuatu yang bukan bilangan bulat, tapi jelas ada.
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: pembagian $a \div b$ bertanya "berapa kali $b$ muat di dalam $a$?" Ketika $b$ tidak muat habis, ada sisa. Sisa itu sebenarnya adalah benih pecahan — sesuatu yang "kurang dari satu bagian penuh" tapi lebih dari nol.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Ketika Bangsa Mesir Memotong Roti</h2>
+
+  <div class="historical-note">
+    Pecahan bukan penemuan modern. Bangsa Mesir Kuno sudah menggunakan pecahan setidaknya sejak 1800 SM, tercatat dalam <em>Papirus Rhind</em> — salah satu dokumen matematika tertua yang masih bertahan. Papirus ini ditulis oleh juru tulis bernama Ahmes, dan berisi 84 soal matematika, banyak di antaranya melibatkan pecahan.
+  </div>
+
+  <p>
+    Yang menarik: bangsa Mesir punya aturan ketat. Mereka <em>hanya</em> menggunakan pecahan dengan pembilang 1. Jadi mereka tidak menulis $\frac{2}{5}$ — melainkan menulisnya sebagai $\frac{1}{3} + \frac{1}{15}$, yaitu jumlah dari pecahan-pecahan satuan (<em>unit fractions</em>). Satu-satunya pengecualian adalah $\frac{2}{3}$, yang mereka anggap cukup penting untuk mendapat simbol sendiri.
+  </p>
+
+  <p>
+    Mengapa hanya pecahan satuan? Kita tidak sepenuhnya tahu. Tapi bayangkan kamu membagi 2 roti untuk 5 orang. Cara Mesir: potong roti pertama menjadi 3 bagian yang sama (setiap orang dapat $\frac{1}{3}$), lalu potong sisa $\frac{1}{3}$ roti dan roti kedua menjadi 15 bagian (setiap orang dapat $\frac{1}{15}$). Jadi setiap orang mendapat $\frac{1}{3} + \frac{1}{15}$.
+  </p>
+
+  <p>
+    Pendekatan ini rumit tapi berhasil — dan punya satu keuntungan praktis: jika kamu membagi sesuatu secara fisik, lebih mudah memotong menjadi bagian-bagian yang masing-masing "satu dari sekian" daripada memotong menjadi "beberapa dari sekian".
+  </p>
+
+  <div class="historical-note">
+    Bangsa Babilonia, dengan sistem basis 60 mereka, punya pendekatan berbeda. Mereka menulis pecahan sebagai "desimal basis 60" — misalnya, setengah ditulis sebagai 30 (karena $\frac{30}{60} = \frac{1}{2}$). Sistem ini efisien untuk beberapa pecahan tapi bermasalah untuk yang lain, seperti $\frac{1}{7}$, yang tidak bisa dinyatakan habis dalam basis 60.
+  </div>
+
+  <p>
+    Notasi pecahan yang kita gunakan sekarang — garis horizontal dengan pembilang di atas dan penyebut di bawah — berkembang secara bertahap. Matematikawan India seperti Brahmagupta (abad ke-7) menulis pembilang di atas penyebut tanpa garis. Matematikawan Arab, terutama al-Hassar (abad ke-12), menambahkan garis pemisah. Dan dari situlah notasi $\frac{a}{b}$ yang kita kenal sekarang.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ MEMBANGUN KONSEP ═══════════════════════ -->
+
+  <h2>Memotong Satu Menjadi Banyak</h2>
+
+  <p>
+    Mari kita bangun pecahan dari awal, perlahan-lahan.
+  </p>
+
+  <p>
+    Ambil sebuah batang cokelat. Batang ini utuh — nilainya <strong>1</strong>. Sekarang patahkan menjadi 2 bagian yang sama besar. Setiap bagian adalah... berapa?
+  </p>
+
+  <p>
+    Kita butuh nama untuk "satu bagian dari dua bagian yang sama". Kita menulisnya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.8rem;">$\frac{1}{2}$</p>
+
+  <p>
+    Mari bongkar simbol ini.
+  </p>
+
+  <p>
+    <strong>Garis horizontal</strong> — ini adalah garis pembagian. Harfiah: garis ini mewakili tindakan <em>membagi</em>. Ia memisahkan dua informasi penting.
+  </p>
+
+  <p>
+    <strong>Angka di bawah garis: 2</strong> — disebut <strong>penyebut</strong> (<em>denominator</em>, dari bahasa Latin <em>denominare</em> = "memberi nama"). Penyebut menjawab: "kamu membagi menjadi berapa bagian?" Penyebut memberi <em>nama</em> pada jenis potongannya. Kalau penyebutnya 2, potongannya disebut "per<em>dua</em>an" atau "setengah". Kalau 3, disebut "per<em>tiga</em>an" atau "sepertiga". Kalau 4, "per<em>empat</em>an" atau "seperempat".
+  </p>
+
+  <p>
+    <strong>Angka di atas garis: 1</strong> — disebut <strong>pembilang</strong> (<em>numerator</em>, dari bahasa Latin <em>numerare</em> = "menghitung"). Pembilang menjawab: "berapa banyak potongan yang kamu ambil?"
+  </p>
+
+  <div class="key-insight">
+    <strong>Ide penting:</strong> Pecahan $\frac{a}{b}$ terdiri dari dua informasi:<br>
+    — <strong>Penyebut $b$</strong>: "Potong jadi berapa bagian?" (jenis potongan)<br>
+    — <strong>Pembilang $a$</strong>: "Ambil berapa potong?" (jumlah yang diambil)<br>
+    Jadi $\frac{3}{4}$ artinya: potong menjadi 4 bagian yang sama, ambil 3 di antaranya.
+  </div>
+
+  <!-- INTERACTIVE 1: Fraction visualizer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melihat Pecahan sebagai Potongan</div>
+    <div class="interactive-desc">Geser slider untuk mengubah pembilang dan penyebut. Perhatikan bagaimana potongan-potongan yang terisi berubah.</div>
+
+    <div class="slider-container">
+      <label>Penyebut (potong menjadi berapa): <strong id="denom-val">4</strong></label>
+      <input type="range" id="denom-slider" min="1" max="12" value="4" oninput="updateFractionViz()">
+    </div>
+    <div class="slider-container">
+      <label>Pembilang (ambil berapa potong): <strong id="numer-val">3</strong></label>
+      <input type="range" id="numer-slider" min="0" max="12" value="3" oninput="updateFractionViz()">
+    </div>
+
+    <div id="frac-bar-container" style="margin: 1rem 0;"></div>
+
+    <svg id="frac-pie" class="pie-chart" width="180" height="180" viewBox="0 0 180 180"></svg>
+
+    <div id="frac-result" class="result-display"></div>
+  </div>
+
+  <h3>Pecahan sebagai Pembagian</h3>
+
+  <p>
+    Ada cara lain yang sama pentingnya untuk memikirkan pecahan: <strong>pecahan adalah pembagian yang belum selesai</strong>.
+  </p>
+
+  <p>
+    Ketika kita menulis $\frac{1}{2}$, kita sebenarnya menulis $1 \div 2$. Kita bertanya: "jika 1 dibagi menjadi 2 bagian yang sama, berapa setiap bagian?" Jawabannya adalah setengah.
+  </p>
+
+  <p>
+    Ini bukan kebetulan. Ini adalah <em>definisi</em>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem; margin: 1.5rem 0;">
+    $\frac{a}{b} = a \div b$
+  </p>
+
+  <p>
+    Jadi garis pecahan dan simbol pembagian $\div$ pada dasarnya menyatakan hal yang sama. Bahkan, perhatikan simbol $\div$ — ada garis horizontal dengan satu titik di atas dan satu di bawah. Bukankah itu terlihat seperti pecahan $\frac{\cdot}{\cdot}$?
+  </p>
+
+  <div class="narrator">
+    Tiga orang, satu roti. Berapa yang didapat masing-masing? Sekarang kita bisa menjawab: $1 \div 3 = \frac{1}{3}$. Setiap orang mendapat sepertiga roti. Pertanyaan yang tadi tidak punya jawaban di bilangan bulat, sekarang punya jawaban sempurna.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ GARIS BILANGAN ═══════════════════════ -->
+
+  <h2>Pecahan di Garis Bilangan</h2>
+
+  <p>
+    Di Bab 1, kita memperkenalkan garis bilangan — garis lurus dengan titik-titik bilangan bulat berjarak sama. Bilangan negatif memperluas garis ke kiri. Sekarang pecahan mengisi <em>celah-celah di antara</em> bilangan bulat.
+  </p>
+
+  <p>
+    Di mana letak $\frac{1}{2}$ di garis bilangan? Tepat di tengah antara 0 dan 1. Di mana $\frac{3}{4}$? Tiga perempat jalan dari 0 ke 1. Di mana $\frac{5}{4}$? Melewati 1 — tepatnya, seperempat jalan dari 1 ke 2.
+  </p>
+
+  <div class="key-insight">
+    <strong>Ide penting:</strong> Pecahan bukan "jenis bilangan yang berbeda" yang tinggal di dunia terpisah. Mereka adalah bilangan yang tinggal di <em>garis bilangan yang sama</em> dengan bilangan bulat — hanya saja di antara titik-titik bilangan bulat.
+  </div>
+
+  <!-- INTERACTIVE 2: Fraction number line -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menempatkan Pecahan di Garis Bilangan</div>
+    <div class="interactive-desc">Atur pembilang dan penyebut. Perhatikan di mana pecahan itu jatuh di garis bilangan — di antara bilangan-bilangan bulat mana.</div>
+
+    <div class="slider-container">
+      <label>Pembilang: <strong id="nl-numer-val">3</strong></label>
+      <input type="range" id="nl-numer" min="0" max="15" value="3" oninput="updateFracNumberLine()">
+    </div>
+    <div class="slider-container">
+      <label>Penyebut: <strong id="nl-denom-val">4</strong></label>
+      <input type="range" id="nl-denom" min="1" max="8" value="4" oninput="updateFracNumberLine()">
+    </div>
+
+    <div class="numberline-wrap">
+      <svg id="frac-nl" class="numberline-svg" width="620" height="100" viewBox="0 0 620 100"></svg>
+    </div>
+
+    <div id="frac-nl-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PECAHAN SENILAI ═══════════════════════ -->
+
+  <h2>Pecahan yang Berbeda Rupa, Sama Rasa</h2>
+
+  <p>
+    Sekarang kita sampai pada salah satu ide terpenting tentang pecahan — dan juga salah satu yang paling sering membingungkan.
+  </p>
+
+  <p>
+    Ambil selembar kertas. Lipat menjadi 2 bagian sama besar, arsir 1 bagian. Kamu mendapat $\frac{1}{2}$.
+  </p>
+
+  <p>
+    Sekarang lipat kertas itu lagi menjadi 4 bagian. Bagian yang tadinya diarsir sekarang mencakup 2 dari 4 kotak. Jadi $\frac{2}{4}$.
+  </p>
+
+  <p>
+    Lipat lagi: 4 dari 8. $\frac{4}{8}$.
+  </p>
+
+  <p>
+    Kertasnya sama. Bagian yang diarsir sama. Yang berubah hanya cara kita memotongnya. Tapi jumlah sebenarnya tidak berubah:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $\frac{1}{2} = \frac{2}{4} = \frac{4}{8} = \frac{50}{100}$
+  </p>
+
+  <p>
+    Ini disebut <strong>pecahan senilai</strong> (<em>equivalent fractions</em>). Dua pecahan senilai jika mereka menunjuk titik yang sama di garis bilangan — walaupun ditulis dengan angka berbeda.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan pecahan senilai:</strong> Jika kamu mengalikan (atau membagi) pembilang dan penyebut dengan bilangan yang sama (bukan nol), nilainya tidak berubah:
+    $$\frac{a}{b} = \frac{a \times k}{b \times k} \quad \text{untuk } k \neq 0$$
+    Mengapa? Karena mengalikan pembilang dan penyebut dengan $k$ sama dengan mengalikan pecahan dengan $\frac{k}{k} = 1$. Dan mengalikan apapun dengan 1 tidak mengubah nilainya.
+  </div>
+
+  <!-- INTERACTIVE 3: Equivalent fractions -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melihat Pecahan Senilai</div>
+    <div class="interactive-desc">Geser pengali $k$ dan lihat bagaimana pecahan berubah bentuk tapi nilai yang diarsir tetap sama.</div>
+
+    <div class="slider-container">
+      <label>Pecahan awal: <strong id="equiv-frac-display">1/2</strong></label>
+    </div>
+    <div class="slider-container">
+      <label>Pembilang awal: <strong id="equiv-num-val">1</strong></label>
+      <input type="range" id="equiv-num" min="1" max="6" value="1" oninput="updateEquiv()">
+    </div>
+    <div class="slider-container">
+      <label>Penyebut awal: <strong id="equiv-den-val">2</strong></label>
+      <input type="range" id="equiv-den" min="2" max="8" value="2" oninput="updateEquiv()">
+    </div>
+    <div class="slider-container">
+      <label>Pengali $k$: <strong id="equiv-k-val">1</strong></label>
+      <input type="range" id="equiv-k" min="1" max="6" value="1" oninput="updateEquiv()">
+    </div>
+
+    <div id="equiv-bars" style="margin: 1rem 0;"></div>
+    <div id="equiv-result" class="result-display"></div>
+  </div>
+
+  <h3>Menyederhanakan Pecahan</h3>
+
+  <p>
+    Jika kita bisa membuat pecahan menjadi lebih "rumit" dengan mengalikan pembilang dan penyebut, kita juga bisa melakukan sebaliknya: <strong>menyederhanakan</strong> pecahan dengan membagi keduanya dengan faktor yang sama.
+  </p>
+
+  <p>
+    Ambil $\frac{6}{8}$. Baik 6 maupun 8 bisa dibagi 2:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{6}{8} = \frac{6 \div 2}{8 \div 2} = \frac{3}{4}$
+  </p>
+
+  <p>
+    Pecahan $\frac{3}{4}$ disebut <strong>bentuk paling sederhana</strong> karena pembilang dan penyebut tidak punya faktor persekutuan lagi selain 1. Cara menyederhanakannya: bagi keduanya dengan <strong>FPB</strong> (Faktor Persekutuan terBesar) dari pembilang dan penyebut.
+  </p>
+
+  <p>
+    Tapi tunggu — bagaimana kita <em>menemukan</em> FPB itu?
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ FPB DAN KPK ═══════════════════════ -->
+
+  <h2>Menemukan FPB dan KPK</h2>
+
+  <p>
+    Dua alat ini — <strong>FPB</strong> (Faktor Persekutuan terBesar) dan <strong>KPK</strong> (Kelipatan Persekutuan terKecil) — akan kita gunakan berulang kali di bab ini. Jadi mari kita benar-benar memahaminya sebelum melangkah lebih jauh.
+  </p>
+
+  <h3>Faktor: Bilangan yang Membagi Habis</h3>
+
+  <p>
+    <strong>Faktor</strong> dari suatu bilangan adalah bilangan-bilangan yang membaginya habis (tanpa sisa).
+  </p>
+
+  <p>
+    Faktor dari 12: 1, 2, 3, 4, 6, 12 — karena $12 \div 1 = 12$, $12 \div 2 = 6$, $12 \div 3 = 4$, dan seterusnya. Semuanya habis.
+  </p>
+
+  <p>
+    Faktor dari 18: 1, 2, 3, 6, 9, 18.
+  </p>
+
+  <p>
+    <strong>Faktor persekutuan</strong> dari 12 dan 18 adalah faktor yang mereka <em>berdua</em> miliki: 1, 2, 3, 6. Yang terbesar? <strong>6</strong>. Inilah FPB(12, 18) = 6.
+  </p>
+
+  <div class="definition-box">
+    <strong>FPB (Faktor Persekutuan terBesar)</strong> dari dua bilangan $a$ dan $b$ adalah bilangan terbesar yang membagi habis <em>keduanya</em>.
+  </div>
+
+  <h3>Cara Mencari FPB: Faktorisasi Prima</h3>
+
+  <p>
+    Setiap bilangan bisa dipecah menjadi perkalian <strong>bilangan prima</strong> — bilangan yang hanya bisa dibagi 1 dan dirinya sendiri (2, 3, 5, 7, 11, 13, ...). Ini disebut <strong>faktorisasi prima</strong>.
+  </p>
+
+  <p>
+    Caranya: terus bagi dengan bilangan prima terkecil sampai habis.
+  </p>
+
+  <p style="text-align: center; font-family: 'JetBrains Mono'; font-size: 0.95rem; line-height: 1.8;">
+    $12 = 2 \times 6 = 2 \times 2 \times 3 = 2^2 \times 3$<br>
+    $18 = 2 \times 9 = 2 \times 3 \times 3 = 2 \times 3^2$
+  </p>
+
+  <p>
+    FPB = ambil setiap faktor prima yang <em>muncul di keduanya</em>, dengan pangkat <em>terkecil</em>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    FPB(12, 18) = $2^1 \times 3^1$ = <strong>6</strong>
+  </p>
+
+  <div class="narrator">
+    Bayangkan faktorisasi prima seperti resep masakan. 12 butuh "2 sendok faktor-2 dan 1 sendok faktor-3". 18 butuh "1 sendok faktor-2 dan 2 sendok faktor-3". FPB adalah bahan yang mereka <em>berdua</em> punya — ambil jumlah minimum dari tiap bahan.
+  </div>
+
+  <h3>Kelipatan dan KPK</h3>
+
+  <p>
+    <strong>Kelipatan</strong> dari suatu bilangan adalah hasil kali bilangan itu dengan 1, 2, 3, ...
+  </p>
+
+  <p>
+    Kelipatan dari 4: 4, 8, 12, 16, 20, 24, 28, ...<br>
+    Kelipatan dari 6: 6, 12, 18, 24, 30, ...
+  </p>
+
+  <p>
+    <strong>Kelipatan persekutuan</strong> yang paling kecil? <strong>12</strong>. Ini adalah KPK(4, 6) = 12.
+  </p>
+
+  <div class="definition-box">
+    <strong>KPK (Kelipatan Persekutuan terKecil)</strong> dari dua bilangan $a$ dan $b$ adalah bilangan terkecil yang bisa dibagi habis oleh <em>keduanya</em>.
+  </div>
+
+  <h3>Cara Mencari KPK: Faktorisasi Prima</h3>
+
+  <p>
+    KPK = ambil setiap faktor prima yang <em>muncul di salah satu atau keduanya</em>, dengan pangkat <em>terbesar</em>:
+  </p>
+
+  <p style="text-align: center; font-family: 'JetBrains Mono'; font-size: 0.95rem; line-height: 1.8;">
+    $4 = 2^2$<br>
+    $6 = 2 \times 3$
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    KPK(4, 6) = $2^2 \times 3$ = <strong>12</strong>
+  </p>
+
+  <div class="key-insight">
+    <strong>Hubungan FPB dan KPK:</strong> Untuk dua bilangan $a$ dan $b$:
+    $$\text{FPB}(a, b) \times \text{KPK}(a, b) = a \times b$$
+    Ini bisa jadi cara cepat: kalau sudah tahu FPB, KPK bisa dihitung langsung!<br>
+    Contoh: FPB(4, 6) = 2, maka KPK(4, 6) = $\frac{4 \times 6}{2}$ = 12. ✓
+  </div>
+
+  <h3>Mengapa Kita Butuh Ini untuk Pecahan?</h3>
+
+  <p>
+    Sekarang koneksinya jelas:
+  </p>
+
+  <p>
+    <strong>FPB</strong> → untuk <em>menyederhanakan</em> pecahan. Bagi pembilang dan penyebut dengan FPB-nya.<br>
+    Contoh: $\frac{12}{18}$. FPB(12, 18) = 6. Jadi $\frac{12}{18} = \frac{12 \div 6}{18 \div 6} = \frac{2}{3}$.
+  </p>
+
+  <p>
+    <strong>KPK</strong> → untuk <em>menyamakan penyebut</em> saat menjumlahkan, mengurangkan, atau membandingkan pecahan.<br>
+    Contoh: $\frac{1}{4} + \frac{1}{6}$. KPK(4, 6) = 12. Jadi ubah ke per-dua-belas-an: $\frac{3}{12} + \frac{2}{12} = \frac{5}{12}$.
+  </p>
+
+  <!-- INTERACTIVE: FPB & KPK Finder -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mesin Pencari FPB dan KPK</div>
+    <div class="interactive-desc">Masukkan dua bilangan dan lihat langkah-langkah menemukan FPB dan KPK mereka.</div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Bilangan 1:</label>
+        <input type="number" id="fpb-a" value="12" min="2" max="200" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; margin-top: 4px;" oninput="updateFpbKpk()">
+      </div>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Bilangan 2:</label>
+        <input type="number" id="fpb-b" value="18" min="2" max="200" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; margin-top: 4px;" oninput="updateFpbKpk()">
+      </div>
+    </div>
+
+    <div id="fpb-kpk-output" class="result-display" style="text-align: left; font-size: 0.9rem; line-height: 1.7;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ MEMBANDINGKAN PECAHAN ═══════════════════════ -->
+
+  <h2>Mana yang Lebih Besar?</h2>
+
+  <p>
+    Membandingkan bilangan bulat mudah: 5 lebih besar dari 3, selesai. Tapi bagaimana membandingkan $\frac{3}{5}$ dengan $\frac{2}{3}$? Mana yang lebih besar?
+  </p>
+
+  <p>
+    Kalau penyebutnya sama, tinggal bandingkan pembilang: $\frac{3}{7} < \frac{5}{7}$ — tiga potong tentu lebih sedikit dari lima potong, jika potongannya sama besar.
+  </p>
+
+  <p>
+    Kalau pembilangnya sama, bandingkan terbalik: $\frac{1}{3} > \frac{1}{5}$ — semakin banyak potongan, semakin kecil setiap potongan. Ini sering membingungkan: penyebut yang lebih besar membuat pecahan lebih <em>kecil</em>.
+  </p>
+
+  <p>
+    Kalau keduanya berbeda? Kita harus menyamakan penyebut — membuat kedua pecahan menjadi "jenis potongan yang sama" — lalu bandingkan pembilangnya.
+  </p>
+
+  <p>
+    Untuk $\frac{3}{5}$ dan $\frac{2}{3}$: penyebut persekutuan terkecil dari 5 dan 3 adalah 15.
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $\frac{3}{5} = \frac{3 \times 3}{5 \times 3} = \frac{9}{15} \qquad \frac{2}{3} = \frac{2 \times 5}{3 \times 5} = \frac{10}{15}$
+  </p>
+
+  <p>
+    Sekarang jelas: $\frac{9}{15} < \frac{10}{15}$, jadi $\frac{3}{5} < \frac{2}{3}$.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ OPERASI PECAHAN ═══════════════════════ -->
+
+  <h2>Mengoperasikan Pecahan</h2>
+
+  <p>
+    Sekarang kita tiba di bagian yang sering dianggap "sulit" tentang pecahan. Tapi kalau kita membangunnya dari pengertian, bukan dari hafalan, semuanya akan masuk akal.
+  </p>
+
+  <h3>Penjumlahan dan Pengurangan: Menyamakan Potongan Dulu</h3>
+
+  <p>
+    Bayangkan kamu punya $\frac{1}{4}$ cokelat dan temanmu memberimu $\frac{2}{4}$ cokelat. Berapa yang kamu punya sekarang?
+  </p>
+
+  <p>
+    Satu potong plus dua potong = tiga potong: $\frac{1}{4} + \frac{2}{4} = \frac{3}{4}$. Mudah — karena "potongannya" (penyebutnya) sama.
+  </p>
+
+  <p>
+    Tapi bagaimana $\frac{1}{2} + \frac{1}{3}$?
+  </p>
+
+  <p>
+    Ini seperti mencampur "setengah" dengan "sepertiga". Kamu tidak bisa langsung menjumlahkan pembilangnya karena <em>jenis potongannya berbeda</em>. Itu seperti menambahkan 2 meter dengan 3 kilogram — satuannya tidak cocok.
+  </p>
+
+  <div class="common-mistake">
+    <p>Banyak orang menulis: $\frac{1}{2} + \frac{1}{3} = \frac{2}{5}$</p>
+    <p>Ini <strong>salah</strong>. Kamu tidak bisa menjumlahkan pembilang dengan pembilang dan penyebut dengan penyebut. Pikirkan: setengah roti plus sepertiga roti pasti lebih dari setengah roti. Tapi $\frac{2}{5}$ kurang dari $\frac{1}{2}$! Jadi jawaban itu tidak mungkin benar.</p>
+  </div>
+
+  <p>
+    Solusinya: samakan penyebut dulu. Ubah kedua pecahan menjadi potongan yang sama jenisnya.
+  </p>
+
+  <p>
+    KPK dari 2 dan 3 adalah 6. Jadi:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $\frac{1}{2} = \frac{3}{6} \qquad \frac{1}{3} = \frac{2}{6}$
+  </p>
+
+  <p>
+    Sekarang keduanya dalam "per-enam-an":
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$
+  </p>
+
+  <p>
+    Masuk akal! Lima per enam — hampir satu, tapi sedikit kurang. Satu per enam masih tersisa.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan penjumlahan pecahan:</strong>
+    $$\frac{a}{b} + \frac{c}{d} = \frac{a \times d + c \times b}{b \times d}$$
+    Ini hanya cara cepat untuk "samakan penyebut, lalu jumlahkan pembilang." Pengurangannya sama, hanya ganti + dengan −.
+  </div>
+
+  <!-- INTERACTIVE 4: Adding fractions -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menjumlahkan Pecahan secara Visual</div>
+    <div class="interactive-desc">Lihat bagaimana dua pecahan "diubah" ke penyebut yang sama sebelum dijumlahkan.</div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 0.5rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Pecahan 1:</label>
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          <select id="add-n1" onchange="updateAddFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+          </select>
+          <span style="font-size: 1.3rem;">/</span>
+          <select id="add-d1" onchange="updateAddFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+          </select>
+        </div>
+      </div>
+      <span style="font-size: 1.5rem; color: var(--accent-blue); margin-top: 12px;">+</span>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Pecahan 2:</label>
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          <select id="add-n2" onchange="updateAddFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+          </select>
+          <span style="font-size: 1.3rem;">/</span>
+          <select id="add-d2" onchange="updateAddFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="add-frac-bars" style="margin: 1rem 0;"></div>
+    <div id="add-frac-result" class="result-display"></div>
+  </div>
+
+  <h3>Perkalian: Mengambil Bagian dari Bagian</h3>
+
+  <p>
+    Perkalian pecahan ternyata lebih <em>mudah</em> secara teknis daripada penjumlahan. Tapi konsepnya perlu dipikirkan lebih dalam.
+  </p>
+
+  <p>
+    Apa artinya $\frac{1}{2} \times \frac{3}{4}$?
+  </p>
+
+  <p>
+    Ingat dari Bab 1: perkalian bisa berarti "mengulang" atau "menskalakan". Di sini, $\frac{1}{2} \times \frac{3}{4}$ berarti "setengah dari tiga perempat." Kamu mengambil $\frac{3}{4}$ sesuatu, lalu mengambil setengahnya lagi.
+  </p>
+
+  <p>
+    Bayangkan sebuah persegi panjang. Arsir $\frac{3}{4}$ secara horizontal. Lalu arsir $\frac{1}{2}$ secara vertikal. Bagian yang diarsir dua kali — bagian yang terkena kedua arsiran — adalah hasilnya.
+  </p>
+
+  <p>
+    Persegi panjang aslinya terbagi menjadi $4 \times 2 = 8$ kotak kecil. Yang diarsir dua kali ada $3 \times 1 = 3$ kotak. Jadi hasilnya $\frac{3}{8}$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{1}{2} \times \frac{3}{4} = \frac{1 \times 3}{2 \times 4} = \frac{3}{8}$
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan perkalian pecahan:</strong>
+    $$\frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}$$
+    Pembilang kali pembilang, penyebut kali penyebut. Sesederhana itu. Mengapa? Karena kamu memotong setiap dimensi — jumlah potongan total berlipat ganda, dan yang kamu ambil dari masing-masing dimensi dikalikan.
+  </div>
+
+  <p>
+    Perhatikan sesuatu yang penting: perkalian pecahan (yang kurang dari 1) menghasilkan bilangan yang <em>lebih kecil</em>. Ini kebalikan dari intuisi kita tentang "perkalian membuat lebih besar" yang kita bangun di Bab 1 dengan bilangan bulat. Setengah dari sepertiga tentu lebih kecil dari sepertiga.
+  </p>
+
+  <!-- INTERACTIVE 5: Multiplication as area -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Perkalian Pecahan sebagai Luas</div>
+    <div class="interactive-desc">Atur dua pecahan dan lihat bagaimana perkalian pecahan bekerja sebagai "bagian dari bagian".</div>
+
+    <div class="slider-container">
+      <label>Pecahan pertama (horizontal): <strong id="mult-frac1-display">1/2</strong></label>
+      <div style="display: flex; gap: 8px; margin-top: 4px;">
+        <input type="range" id="mult-n1" min="1" max="6" value="1" oninput="updateMultFrac()" style="flex:1;">
+        <span style="font-family: 'JetBrains Mono'; font-size: 0.9rem; margin-top: 4px;">/</span>
+        <input type="range" id="mult-d1" min="1" max="6" value="2" oninput="updateMultFrac()" style="flex:1;">
+      </div>
+    </div>
+    <div class="slider-container">
+      <label>Pecahan kedua (vertikal): <strong id="mult-frac2-display">3/4</strong></label>
+      <div style="display: flex; gap: 8px; margin-top: 4px;">
+        <input type="range" id="mult-n2" min="1" max="6" value="3" oninput="updateMultFrac()" style="flex:1;">
+        <span style="font-family: 'JetBrains Mono'; font-size: 0.9rem; margin-top: 4px;">/</span>
+        <input type="range" id="mult-d2" min="1" max="6" value="4" oninput="updateMultFrac()" style="flex:1;">
+      </div>
+    </div>
+
+    <div id="mult-grid-area" style="margin: 1rem 0; text-align: center;"></div>
+    <div id="mult-frac-result" class="result-display"></div>
+  </div>
+
+  <h3>Pembagian: Membalik dan Mengalikan</h3>
+
+  <p>
+    Inilah operasi pecahan yang paling sering membuat orang bingung. Kita sering diajarkan aturan: "untuk membagi pecahan, balik pecahan kedua lalu kalikan." Tapi <em>mengapa</em> aturan ini bekerja? Untuk memahaminya, kita perlu mengenal konsep <strong>kebalikan</strong> terlebih dahulu.
+  </p>
+
+  <h4>Kebalikan (Reciprocal): Pasangan yang Saling Melengkapi</h4>
+
+  <p>
+    <strong>Kebalikan</strong> dari suatu bilangan adalah bilangan yang jika dikalikan dengannya menghasilkan <strong>1</strong>.
+  </p>
+
+  <p>
+    Kebalikan dari 5 adalah $\frac{1}{5}$, karena $5 \times \frac{1}{5} = 1$.<br>
+    Kebalikan dari $\frac{3}{4}$ adalah $\frac{4}{3}$, karena $\frac{3}{4} \times \frac{4}{3} = \frac{12}{12} = 1$.
+  </p>
+
+  <div class="definition-box">
+    <strong>Kebalikan (reciprocal)</strong> dari pecahan $\frac{a}{b}$ adalah $\frac{b}{a}$ — kita membalik pembilang dan penyebut.<br>
+    Sifat utama: $\frac{a}{b} \times \frac{b}{a} = 1$ (selalu, selama $a \neq 0$ dan $b \neq 0$).
+  </div>
+
+  <p>
+    Mengapa kebalikan penting? Karena <strong>membagi dengan suatu bilangan sama dengan mengalikan dengan kebalikannya</strong>. Ini bukan aturan ajaib — ini konsekuensi langsung dari apa artinya "membagi".
+  </p>
+
+  <p>
+    Pikirkan: $10 \div 2 = 5$. Tapi $10 \times \frac{1}{2} = 5$ juga! Membagi 10 oleh 2 sama dengan mengambil setengah dari 10. Ini selalu benar, untuk bilangan apapun.
+  </p>
+
+  <div class="common-mistake">
+    <p><strong>Perhatian:</strong> Bilangan 0 tidak punya kebalikan. Mengapa? Karena $0 \times \text{apapun} = 0$, tidak pernah bisa menghasilkan 1. Ini juga alasan lain mengapa pembagian dengan 0 tidak terdefinisi.</p>
+  </div>
+
+  <h4>Pembagian Pecahan Langkah demi Langkah</h4>
+
+  <p>
+    Sekarang kita siap memahami pembagian pecahan. Mari kita mulai dengan pertanyaan sederhana: apa artinya $6 \div \frac{1}{2}$?
+  </p>
+
+  <p>
+    Ini bertanya: "berapa kali $\frac{1}{2}$ muat di dalam 6?" Bayangkan 6 batang cokelat. Setiap setengah batang adalah satu porsi. Berapa porsi? Tentu 12.
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $6 \div \frac{1}{2} = 12$
+  </p>
+
+  <p>
+    Membagi dengan setengah sama dengan <em>mengalikan dua</em>. Membagi dengan sepertiga sama dengan mengalikan tiga. Secara umum:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $a \div \frac{1}{n} = a \times n$
+  </p>
+
+  <p>
+    Ini masuk akal: semakin kecil potongannya, semakin banyak potongan yang muat.
+  </p>
+
+  <p>
+    Sekarang, bagaimana $\frac{3}{4} \div \frac{2}{5}$? Ini bertanya: "berapa kali $\frac{2}{5}$ muat di dalam $\frac{3}{4}$?"
+  </p>
+
+  <p>
+    Caranya: setiap pembagian bisa ditulis sebagai perkalian dengan <strong>kebalikan</strong> (<em>reciprocal</em>). Kebalikan dari $\frac{2}{5}$ adalah $\frac{5}{2}$ — kita membalik pembilang dan penyebut.
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{3}{4} \div \frac{2}{5} = \frac{3}{4} \times \frac{5}{2} = \frac{15}{8}$
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa "balik dan kalikan" bekerja?</strong><br>
+    Kita ingin menghitung $\frac{a}{b} \div \frac{c}{d}$. Ini sama dengan bertanya: bilangan apa yang jika dikalikan $\frac{c}{d}$ menghasilkan $\frac{a}{b}$?<br><br>
+
+    Kalikan kedua sisi dengan $\frac{d}{c}$ (kebalikan dari $\frac{c}{d}$):<br>
+    — Sisi kiri: $\frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc}$<br>
+    — Sisi kanan: $? \times \frac{c}{d} \times \frac{d}{c} = ? \times 1 = ?$<br><br>
+    Jadi $? = \frac{ad}{bc} = \frac{a}{b} \times \frac{d}{c}$. Inilah mengapa kita "membalik dan mengalikan".
+  </div>
+
+  <!-- INTERACTIVE 6: Division visualizer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melihat Pembagian Pecahan</div>
+    <div class="interactive-desc">Lihat berapa kali pecahan pembagi "muat" di dalam pecahan yang dibagi. Geser untuk mengubah pecahan.</div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 0.5rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Dibagi:</label>
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          <select id="div-n1" onchange="updateDivFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
+          </select>
+          <span style="font-size: 1.3rem;">/</span>
+          <select id="div-d1" onchange="updateDivFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option>
+          </select>
+        </div>
+      </div>
+      <span style="font-size: 1.5rem; color: var(--accent-blue); margin-top: 12px;">÷</span>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Pembagi:</label>
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          <select id="div-n2" onchange="updateDivFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+          </select>
+          <span style="font-size: 1.3rem;">/</span>
+          <select id="div-d2" onchange="updateDivFrac()" style="width: 50px; font-family: 'JetBrains Mono'; padding: 4px;">
+            <option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6" selected>6</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="div-frac-vis" style="margin: 1rem 0;"></div>
+    <div id="div-frac-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PECAHAN NEGATIF ═══════════════════════ -->
+
+  <h2>Pecahan Negatif: Di Mana Tanda Minusnya?</h2>
+
+  <p>
+    Di Bab 1 kita menemukan bilangan negatif. Sekarang kita menggabungkan dua penemuan itu: bilangan negatif + pecahan = <strong>pecahan negatif</strong>.
+  </p>
+
+  <p>
+    Tapi di mana tanda negatif ditulis? Pecahan punya tiga tempat: sebelum seluruh pecahan, di pembilang, atau di penyebut. Ketiga penulisan ini <em>sama nilainya</em>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $-\frac{3}{4} = \frac{-3}{4} = \frac{3}{-4}$
+  </p>
+
+  <p>
+    Mengapa? Karena pecahan adalah pembagian, dan aturan tanda dari Bab 1 berlaku:
+  </p>
+
+  <p style="text-align: center; font-size: 1rem; line-height: 2;">
+    positif $\div$ positif = positif → $\frac{3}{4} > 0$ ✓<br>
+    negatif $\div$ positif = negatif → $\frac{-3}{4} < 0$ ✓<br>
+    positif $\div$ negatif = negatif → $\frac{3}{-4} < 0$ ✓<br>
+    negatif $\div$ negatif = positif → $\frac{-3}{-4} = \frac{3}{4} > 0$ ✓
+  </p>
+
+  <div class="key-insight">
+    <strong>Konvensi:</strong> Biasanya kita menulis tanda minus di depan seluruh pecahan: $-\frac{3}{4}$, bukan di penyebut. Dan jika pembilang <em>dan</em> penyebut sama-sama negatif, mereka "saling meniadakan" dan pecahannya positif.
+  </div>
+
+  <p>
+    Pecahan negatif tinggal di <em>sebelah kiri nol</em> di garis bilangan, persis seperti bilangan bulat negatif. $-\frac{1}{2}$ ada di tengah antara $-1$ dan $0$.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PECAHAN CAMPURAN ═══════════════════════ -->
+
+  <h2>Pecahan Campuran dan Pecahan Tak Wajar</h2>
+
+  <p>
+    Ketika pembilang lebih besar dari penyebut — misalnya $\frac{7}{4}$ — kita punya <strong>pecahan tak wajar</strong> (<em>improper fraction</em>). Ini berarti nilainya lebih dari 1.
+  </p>
+
+  <p>
+    $\frac{7}{4}$ artinya: potong menjadi 4 bagian yang sama, ambil 7 potong. Tapi satu "keseluruhan" hanya punya 4 potong! Jadi kita butuh lebih dari satu keseluruhan — tepatnya 1 utuh (4 potong) + 3 potong sisanya.
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $\frac{7}{4} = 1\frac{3}{4}$
+  </p>
+
+  <p>
+    Bentuk $1\frac{3}{4}$ disebut <strong>pecahan campuran</strong> (<em>mixed number</em>) — gabungan bilangan bulat dan pecahan.
+  </p>
+
+  <h3>Mengubah Pecahan Tak Wajar → Campuran</h3>
+
+  <p>
+    Bagi pembilang dengan penyebut. Hasil bagi = bagian bilangan bulat. Sisa = pembilang baru.
+  </p>
+
+  <p style="text-align: center; font-size: 1rem;">
+    $\frac{17}{5}$: $17 \div 5 = 3$ sisa $2$ → $3\frac{2}{5}$
+  </p>
+
+  <h3>Mengubah Campuran → Pecahan Tak Wajar</h3>
+
+  <p>
+    Kalikan bilangan bulat dengan penyebut, tambahkan pembilang.
+  </p>
+
+  <p style="text-align: center; font-size: 1rem;">
+    $3\frac{2}{5}$: $3 \times 5 + 2 = 17$ → $\frac{17}{5}$ ✓
+  </p>
+
+  <div class="key-insight">
+    <strong>Kapan pakai yang mana?</strong><br>
+    — <strong>Pecahan campuran</strong> lebih mudah dibayangkan ("satu tiga perempat kue")<br>
+    — <strong>Pecahan tak wajar</strong> lebih mudah dihitung (operasi aritmetika lebih simpel)<br>
+    Tips: ubah ke pecahan tak wajar untuk menghitung, ubah kembali ke campuran untuk menyajikan jawaban.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ RASIO DAN PROPORSI ═══════════════════════ -->
+
+  <h2>Pecahan sebagai Rasio</h2>
+
+  <p>
+    Sejauh ini kita memikirkan pecahan sebagai "bagian dari keseluruhan" atau "pembagian yang belum selesai". Tapi pecahan punya wajah ketiga: <strong>rasio</strong>.
+  </p>
+
+  <p>
+    Bayangkan dalam sebuah kelas ada 12 perempuan dan 8 laki-laki. Rasio perempuan terhadap laki-laki adalah $12 : 8$, yang bisa disederhanakan menjadi $3 : 2$. Ini berarti untuk setiap 3 perempuan, ada 2 laki-laki.
+  </p>
+
+  <p>
+    Rasio ini bisa ditulis sebagai pecahan: $\frac{3}{2}$. Artinya: jumlah perempuan adalah $\frac{3}{2}$ kali jumlah laki-laki.
+  </p>
+
+  <p>
+    <strong>Proporsi</strong> adalah persamaan antara dua rasio: $\frac{a}{b} = \frac{c}{d}$. Jika kita tahu tiga dari empat nilainya, kita bisa menemukan yang keempat — ide yang sangat berguna dalam kehidupan nyata.
+  </p>
+
+  <div class="narrator">
+    Resep kue menyebut 2 telur untuk 3 cangkir tepung. Kamu ingin menggunakan 9 cangkir tepung. Berapa telur yang dibutuhkan?<br><br>
+    $\frac{2}{3} = \frac{?}{9}$<br><br>
+    Karena $3 \times 3 = 9$, maka $? = 2 \times 3 = 6$. Kamu butuh 6 telur. Ini adalah proporsionalitas dalam aksi.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DESIMAL ═══════════════════════ -->
+
+  <h2>Desimal: Pecahan dalam Penyamaran</h2>
+
+  <p>
+    Ada cara lain menulis pecahan yang mungkin lebih familiar: <strong>desimal</strong>.
+  </p>
+
+  <p>
+    $\frac{1}{2} = 0{,}5 \qquad \frac{3}{4} = 0{,}75 \qquad \frac{1}{5} = 0{,}2$
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: sistem bilangan Hindu-Arab menggunakan <em>nilai tempat</em> dengan basis 10. Setiap posisi ke kiri bernilai 10 kali lebih besar. Desimal melanjutkan pola ini ke <em>kanan</em> — setiap posisi setelah koma bernilai $\frac{1}{10}$, $\frac{1}{100}$, $\frac{1}{1000}$, dan seterusnya.
+  </div>
+
+  <p>
+    Jadi $0{,}5$ berarti $\frac{5}{10} = \frac{1}{2}$. Dan $0{,}75$ berarti $\frac{75}{100} = \frac{3}{4}$. Desimal hanyalah pecahan yang penyebutnya selalu pangkat 10.
+  </p>
+
+  <p>
+    Untuk mengubah pecahan menjadi desimal, lakukan pembagiannya. $\frac{3}{8}$? Bagi 3 dengan 8: $3 \div 8 = 0{,}375$.
+  </p>
+
+  <p>
+    Tapi ada yang menarik: tidak semua pecahan menghasilkan desimal yang "berhenti". Coba $\frac{1}{3}$:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{1}{3} = 0{,}333333...$
+  </p>
+
+  <p>
+    Angka 3 berulang tanpa henti. Kita menulis ini sebagai $0{,}\overline{3}$ — garis di atas 3 berarti "berulang selamanya". Pecahan $\frac{1}{7} = 0{,}\overline{142857}$ — enam angka yang berulang.
+  </p>
+
+  <p>
+    Ini menimbulkan pertanyaan menarik: apakah ada bilangan yang desimalnya tidak pernah berulang? Jawabannya ya — dan itu adalah topik Bab 3.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Jebakan-Jebakan yang Menunggu</h2>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 1:</strong> Menjumlahkan pembilang dan penyebut secara terpisah.</p>
+    <p><span class="wrong">$\frac{1}{2} + \frac{1}{3} = \frac{2}{5}$</span> &nbsp; <span class="correct">$\frac{1}{2} + \frac{1}{3} = \frac{5}{6}$</span></p>
+    <p>Ingat: kamu hanya bisa menjumlahkan pembilang kalau penyebutnya sudah sama.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 2:</strong> Mengira penyebut lebih besar = pecahan lebih besar.</p>
+    <p><span class="wrong">$\frac{1}{5} > \frac{1}{3}$</span> &nbsp; <span class="correct">$\frac{1}{5} < \frac{1}{3}$</span></p>
+    <p>Semakin banyak potongan, semakin <em>kecil</em> setiap potongan.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 3:</strong> Lupa menyederhanakan.</p>
+    <p>$\frac{2}{4}$ memang sama dengan $\frac{1}{2}$, tapi jawaban dalam bentuk paling sederhana lebih bersih dan lebih mudah digunakan untuk langkah selanjutnya.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 4:</strong> Penyebut nol.</p>
+    <p>$\frac{5}{0}$ bukan pecahan yang valid. Dari Bab 1 kita tahu bahwa pembagian dengan nol tidak terdefinisi — aturan ini masih berlaku.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Tanpa menghitung, urutkan pecahan berikut dari terkecil ke terbesar: $\frac{1}{2}$, $\frac{1}{7}$, $\frac{1}{3}$, $\frac{1}{10}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Semua pembilangnya 1. Jadi penyebut yang lebih besar = pecahan yang lebih kecil. Pikirkan: 1 potong dari 10 bagian tentu lebih kecil dari 1 potong dari 2 bagian.</div>
+    <div class="answer-content" id="a1">$\frac{1}{10} < \frac{1}{7} < \frac{1}{3} < \frac{1}{2}$. Untuk pecahan dengan pembilang yang sama, semakin besar penyebut, semakin kecil pecahannya.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Hitung: $\frac{2}{3} + \frac{3}{4}$. Berikan jawaban dalam bentuk paling sederhana.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Samakan penyebut dulu. KPK dari 3 dan 4 adalah 12.</div>
+    <div class="answer-content" id="a2">$\frac{2}{3} + \frac{3}{4} = \frac{8}{12} + \frac{9}{12} = \frac{17}{12}$. Ini sudah dalam bentuk paling sederhana (17 adalah bilangan prima). Bisa juga ditulis sebagai $1\frac{5}{12}$ (satu dan lima per dua belas).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Conceptual</div>
+    <p>Jelaskan mengapa $\frac{1}{2} \times \frac{1}{3} = \frac{1}{6}$ dengan menggunakan gambaran "bagian dari bagian". Tidak perlu menggunakan rumus.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Bayangkan sebuah kue. Potong menjadi 3 bagian, ambil 1. Lalu potong bagian itu lagi menjadi 2. Berapa bagian dari kue utuh yang kamu pegang?</div>
+    <div class="answer-content" id="a3">Potong kue menjadi 3 bagian yang sama — setiap bagian adalah $\frac{1}{3}$ kue. Ambil satu bagian. Sekarang potong bagian itu menjadi 2. Kamu memegang satu potong kecil. Kue asli sekarang terbagi menjadi $3 \times 2 = 6$ potong kecil yang sama besar, dan kamu memegang 1 di antaranya. Jadi jawabannya $\frac{1}{6}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Error Analysis</div>
+    <p>Ali mengerjakan: $\frac{3}{5} \div \frac{2}{7} = \frac{3}{5} \times \frac{2}{7} = \frac{6}{35}$. Apa kesalahan Ali?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Apa yang harus dilakukan dengan pecahan kedua sebelum dikalikan?</div>
+    <div class="answer-content" id="a4">Ali lupa <strong>membalik</strong> pecahan kedua. Harusnya: $\frac{3}{5} \div \frac{2}{7} = \frac{3}{5} \times \frac{7}{2} = \frac{21}{10}$. Pembagian pecahan berarti "balik pecahan pembagi, lalu kalikan".</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Connection</div>
+    <p>Gunakan sifat distributif (dari Bab 1) untuk menghitung $\frac{1}{4} \times 12 + \frac{1}{4} \times 8$ dengan cara yang lebih cepat.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Sifat distributif: $a \times b + a \times c = a \times (b + c)$. Apa yang menjadi $a$ di sini?</div>
+    <div class="answer-content" id="a5">Dengan sifat distributif: $\frac{1}{4} \times 12 + \frac{1}{4} \times 8 = \frac{1}{4} \times (12 + 8) = \frac{1}{4} \times 20 = 5$. Sifat distributif dari Bab 1 bekerja juga untuk pecahan!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Challenge</div>
+    <p>Bangsa Mesir menuliskan $\frac{2}{5}$ sebagai jumlah dari dua pecahan satuan (pecahan dengan pembilang 1). Temukan: $\frac{2}{5} = \frac{1}{?} + \frac{1}{?}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Coba $\frac{1}{3}$ sebagai pecahan pertama. Berapa sisa dari $\frac{2}{5} - \frac{1}{3}$?</div>
+    <div class="answer-content" id="a6">$\frac{2}{5} - \frac{1}{3} = \frac{6}{15} - \frac{5}{15} = \frac{1}{15}$. Jadi $\frac{2}{5} = \frac{1}{3} + \frac{1}{15}$. Ini persis cara bangsa Mesir menuliskannya!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Recall dari Bab 1</div>
+    <p>Di Bab 1, kita belajar bahwa $(-1) \times (-1) = 1$. Gunakan ini untuk menjawab: berapa $\frac{-3}{-4}$? Apakah ini positif atau negatif?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$\frac{-3}{-4} = \frac{(-1) \times 3}{(-1) \times 4}$. Bisakah kamu "menyederhanakan" faktor $(-1)$?</div>
+    <div class="answer-content" id="a7">$\frac{-3}{-4} = \frac{(-1) \times 3}{(-1) \times 4} = \frac{3}{4}$ (positif). Negatif dibagi negatif menghasilkan positif — aturan yang sama dari Bab 1 tentang perkalian bilangan negatif berlaku juga di sini.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Prediction</div>
+    <p>Tanpa menghitung hasilnya, prediksi: apakah $\frac{5}{6} \times \frac{7}{8}$ lebih besar atau lebih kecil dari $\frac{5}{6}$? Jelaskan penalaranmu.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">$\frac{7}{8}$ kurang dari 1. Apa yang terjadi kalau kamu mengalikan sesuatu dengan bilangan yang kurang dari 1?</div>
+    <div class="answer-content" id="a8">Hasilnya pasti <strong>lebih kecil</strong> dari $\frac{5}{6}$. Mengapa? Karena $\frac{7}{8} < 1$, dan mengalikan bilangan positif dengan bilangan kurang dari 1 selalu memperkecilnya. Kamu mengambil $\frac{7}{8}$ (tujuh per delapan, atau hampir semua tapi tidak semua) dari $\frac{5}{6}$. Hasilnya: $\frac{35}{48}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — FPB & KPK</div>
+    <p>Cari FPB dan KPK dari 24 dan 36 menggunakan faktorisasi prima. Lalu gunakan hasilnya untuk: (a) menyederhanakan $\frac{24}{36}$, dan (b) menghitung $\frac{5}{24} + \frac{7}{36}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h9')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a9')">Lihat Jawaban</button>
+    <div class="hint-content" id="h9">$24 = 2^3 \times 3$ dan $36 = 2^2 \times 3^2$. FPB = pangkat terkecil dari faktor bersama. KPK = pangkat terbesar dari semua faktor.</div>
+    <div class="answer-content" id="a9">$24 = 2^3 \times 3$, $36 = 2^2 \times 3^2$.<br>
+    FPB = $2^2 \times 3^1 = 12$. KPK = $2^3 \times 3^2 = 72$.<br>
+    (a) $\frac{24}{36} = \frac{24 \div 12}{36 \div 12} = \frac{2}{3}$<br>
+    (b) $\frac{5}{24} + \frac{7}{36} = \frac{5 \times 3}{72} + \frac{7 \times 2}{72} = \frac{15}{72} + \frac{14}{72} = \frac{29}{72}$<br>
+    Cek: FPB × KPK = 12 × 72 = 864 = 24 × 36 ✓</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Pecahan Negatif</div>
+    <p>Sederhanakan masing-masing: (a) $\frac{-6}{8}$ &nbsp; (b) $\frac{4}{-12}$ &nbsp; (c) $\frac{-15}{-20}$</p>
+    <button class="hint-btn" onclick="toggleHint('h10')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a10')">Lihat Jawaban</button>
+    <div class="hint-content" id="h10">Tentukan dulu tandanya (positif/negatif), lalu sederhanakan bilangan-bilangannya.</div>
+    <div class="answer-content" id="a10">(a) $\frac{-6}{8} = -\frac{6}{8} = -\frac{3}{4}$ (negatif ÷ positif = negatif)<br>
+    (b) $\frac{4}{-12} = -\frac{4}{12} = -\frac{1}{3}$ (positif ÷ negatif = negatif)<br>
+    (c) $\frac{-15}{-20} = +\frac{15}{20} = \frac{3}{4}$ (negatif ÷ negatif = positif)</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Pecahan Campuran</div>
+    <p>Ubah $3\frac{2}{5}$ menjadi pecahan tak wajar, lalu hitung $3\frac{2}{5} - 1\frac{3}{4}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h11')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a11')">Lihat Jawaban</button>
+    <div class="hint-content" id="h11">Ubah kedua pecahan campuran menjadi pecahan tak wajar terlebih dahulu. $3\frac{2}{5} = \frac{3 \times 5 + 2}{5}$.</div>
+    <div class="answer-content" id="a11">$3\frac{2}{5} = \frac{17}{5}$ dan $1\frac{3}{4} = \frac{7}{4}$.<br>
+    KPK(5, 4) = 20.<br>
+    $\frac{17}{5} - \frac{7}{4} = \frac{68}{20} - \frac{35}{20} = \frac{33}{20} = 1\frac{13}{20}$</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Kebalikan</div>
+    <p>Tentukan kebalikan dari masing-masing, lalu verifikasi bahwa bilangan × kebalikannya = 1: (a) $\frac{5}{7}$ &nbsp; (b) $3$ &nbsp; (c) $-\frac{2}{9}$</p>
+    <button class="hint-btn" onclick="toggleHint('h12')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a12')">Lihat Jawaban</button>
+    <div class="hint-content" id="h12">Kebalikan = balik pembilang dan penyebut. Bilangan bulat $3$ bisa ditulis sebagai $\frac{3}{1}$.</div>
+    <div class="answer-content" id="a12">(a) Kebalikan $\frac{5}{7}$ = $\frac{7}{5}$. Cek: $\frac{5}{7} \times \frac{7}{5} = \frac{35}{35} = 1$ ✓<br>
+    (b) $3 = \frac{3}{1}$, kebalikannya $\frac{1}{3}$. Cek: $3 \times \frac{1}{3} = 1$ ✓<br>
+    (c) Kebalikan $-\frac{2}{9}$ = $-\frac{9}{2}$. Cek: $-\frac{2}{9} \times -\frac{9}{2} = \frac{18}{18} = 1$ ✓ (negatif × negatif = positif)</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Di Antara dan di Luar</h2>
+
+  <p>
+    Kita mulai bab ini dengan masalah yang sederhana tapi membingungkan: membagi roti untuk tiga orang. Dan dari masalah itu, kita menemukan sebuah dunia baru — dunia pecahan, bilangan yang hidup di celah-celah antara bilangan bulat.
+  </p>
+
+  <p>
+    Dengan pecahan, garis bilangan kita tidak lagi berlubang. Antara 0 dan 1, sekarang ada $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{4}$, ... dan antara dua pecahan manapun, selalu bisa ditemukan pecahan lain. Garis bilangan menjadi makin "padat".
+  </p>
+
+  <div class="narrator">
+    Tapi tunggu. Apakah benar-benar setiap titik di garis bilangan bisa ditulis sebagai pecahan $\frac{a}{b}$?
+  </div>
+
+  <p>
+    Sekitar 2.500 tahun yang lalu, murid-murid Pythagoras menemukan sesuatu yang mengguncang fondasi matematika mereka. Mereka menemukan bahwa panjang diagonal sebuah persegi — yang seharusnya bisa diukur — tidak bisa dinyatakan sebagai pecahan apapun. $\sqrt{2}$ bukan $\frac{a}{b}$ untuk bilangan bulat $a$ dan $b$ manapun.
+  </p>
+
+  <p>
+    Ada bilangan yang bersembunyi di garis bilangan, yang tidak bisa ditangkap oleh pecahan.
+  </p>
+
+  <p>
+    Bilangan-bilangan hantu ini menunggu kita di bab berikutnya.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 3 — Bilangan yang Tidak Bisa Ditulis sebagai Pecahan</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Fraction Bar + Pie ═══════
+function updateFractionViz() {
+  var d = parseInt(document.getElementById('denom-slider').value);
+  var n = parseInt(document.getElementById('numer-slider').value);
+  document.getElementById('denom-val').textContent = d;
+  document.getElementById('numer-val').textContent = n;
+  if (n > d * 2) { n = d * 2; document.getElementById('numer-slider').value = n; document.getElementById('numer-val').textContent = n; }
+  var barHtml = '<div class="fraction-bar" style="max-width:500px;">';
+  for (var i = 0; i < d; i++) {
+    barHtml += '<div class="piece ' + (i < n ? 'filled' : 'empty') + '" style="width:' + (100/d) + '%;"></div>';
+  }
+  barHtml += '</div>';
+  if (n > d) {
+    barHtml += '<div class="fraction-bar" style="max-width:500px; margin-top: 4px;">';
+    for (var i = 0; i < d; i++) {
+      barHtml += '<div class="piece ' + (i < (n - d) ? 'filled' : 'empty') + '" style="width:' + (100/d) + '%; opacity: 0.7;"></div>';
+    }
+    barHtml += '</div>';
+  }
+  document.getElementById('frac-bar-container').innerHTML = barHtml;
+  var svg = document.getElementById('frac-pie');
+  var paths = '';
+  var cx = 90, cy = 90, r = 75;
+  var showN = Math.min(n, d);
+  for (var i = 0; i < d; i++) {
+    var a1 = (i / d) * 2 * Math.PI - Math.PI / 2;
+    var a2 = ((i + 1) / d) * 2 * Math.PI - Math.PI / 2;
+    var x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    var x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+    var large = (a2 - a1) > Math.PI ? 1 : 0;
+    var fill = i < showN ? '#2471a3' : '#e0e0e0';
+    paths += '<path d="M' + cx + ',' + cy + ' L' + x1 + ',' + y1 + ' A' + r + ',' + r + ' 0 ' + large + ',1 ' + x2 + ',' + y2 + ' Z" fill="' + fill + '" stroke="white" stroke-width="2"/>';
+  }
+  svg.innerHTML = paths;
+  var g = gcd(n, d);
+  var sn = n / g, sd = d / g;
+  var txt = n + '/' + d;
+  if (g > 1) txt += ' = ' + sn + '/' + sd;
+  txt += ' = ' + (n / d).toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+  if (n > d) txt += ' (lebih dari 1!)';
+  document.getElementById('frac-result').innerHTML = txt;
+}
+
+// ═══════ Interactive 2: Fraction Number Line ═══════
+function updateFracNumberLine() {
+  var n = parseInt(document.getElementById('nl-numer').value);
+  var d = parseInt(document.getElementById('nl-denom').value);
+  document.getElementById('nl-numer-val').textContent = n;
+  document.getElementById('nl-denom-val').textContent = d;
+  var svg = document.getElementById('frac-nl');
+  var val = n / d;
+  var maxVal = Math.max(3, Math.ceil(val) + 1);
+  var padL = 30, padR = 30, w = 620 - padL - padR;
+  var unitW = w / maxVal;
+  var html = '';
+  html += '<line x1="' + padL + '" y1="50" x2="' + (620 - padR) + '" y2="50" stroke="#2c2c2c" stroke-width="2"/>';
+  for (var i = 0; i <= maxVal; i++) {
+    var x = padL + i * unitW;
+    html += '<line x1="' + x + '" y1="42" x2="' + x + '" y2="58" stroke="#2c2c2c" stroke-width="2"/>';
+    html += '<text x="' + x + '" y="75" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#2c2c2c">' + i + '</text>';
+  }
+  for (var i = 0; i <= maxVal * d; i++) {
+    var x = padL + (i / d) * unitW;
+    if (i % d !== 0) html += '<line x1="' + x + '" y1="46" x2="' + x + '" y2="54" stroke="#bbb" stroke-width="1"/>';
+  }
+  var fx = padL + val * unitW;
+  html += '<circle cx="' + fx + '" cy="50" r="7" fill="#c0392b"/>';
+  html += '<text x="' + fx + '" y="25" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="bold" fill="#c0392b">' + n + '/' + d + '</text>';
+  svg.innerHTML = html;
+  var g = gcd(n, d);
+  var resultText = n + '/' + d;
+  if (g > 1) resultText += ' = ' + (n/g) + '/' + (d/g);
+  resultText += ' ≈ ' + val.toFixed(3);
+  resultText += '  (antara ' + Math.floor(val) + ' dan ' + (Math.floor(val) + 1) + ')';
+  document.getElementById('frac-nl-result').textContent = resultText;
+}
+
+// ═══════ Interactive 3: Equivalent Fractions ═══════
+function updateEquiv() {
+  var n = parseInt(document.getElementById('equiv-num').value);
+  var d = parseInt(document.getElementById('equiv-den').value);
+  var k = parseInt(document.getElementById('equiv-k').value);
+  document.getElementById('equiv-num-val').textContent = n;
+  document.getElementById('equiv-den-val').textContent = d;
+  document.getElementById('equiv-k-val').textContent = k;
+  document.getElementById('equiv-frac-display').textContent = n + '/' + d;
+  if (n > d) { n = d; document.getElementById('equiv-num').value = n; document.getElementById('equiv-num-val').textContent = n; document.getElementById('equiv-frac-display').textContent = n + '/' + d; }
+  var nk = n * k, dk = d * k;
+  var html = '';
+  html += '<div style="margin-bottom:6px;"><span style="font-family:JetBrains Mono; font-size:0.85rem; color:var(--text-secondary);">' + n + '/' + d + '</span></div>';
+  html += '<div class="fraction-bar" style="max-width:500px;">';
+  for (var i = 0; i < d; i++) html += '<div class="piece ' + (i < n ? 'filled' : 'empty') + '" style="width:' + (100/d) + '%;"></div>';
+  html += '</div>';
+  html += '<div style="margin: 12px 0 6px;"><span style="font-family:JetBrains Mono; font-size:0.85rem; color:var(--text-secondary);">' + nk + '/' + dk + '</span></div>';
+  html += '<div class="fraction-bar" style="max-width:500px;">';
+  for (var i = 0; i < dk; i++) html += '<div class="piece ' + (i < nk ? 'filled' : 'empty') + '" style="width:' + (100/dk) + '%;"></div>';
+  html += '</div>';
+  document.getElementById('equiv-bars').innerHTML = html;
+  document.getElementById('equiv-result').textContent = n + '/' + d + ' × ' + k + '/' + k + ' = ' + nk + '/' + dk + '  →  Nilai sama: ' + (n/d).toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+}
+
+// ═══════ Interactive 4: Adding Fractions ═══════
+function updateAddFrac() {
+  var n1 = parseInt(document.getElementById('add-n1').value);
+  var d1 = parseInt(document.getElementById('add-d1').value);
+  var n2 = parseInt(document.getElementById('add-n2').value);
+  var d2 = parseInt(document.getElementById('add-d2').value);
+  var commonD = lcm(d1, d2);
+  var newN1 = n1 * (commonD / d1);
+  var newN2 = n2 * (commonD / d2);
+  var sumN = newN1 + newN2;
+  var g = gcd(sumN, commonD);
+  var html = '';
+  html += '<div style="font-family:Inter; font-size:0.78rem; color:var(--text-secondary); margin-bottom:4px;">Pecahan asli:</div>';
+  html += '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom: 12px;">';
+  html += buildBar(n1, d1, '#2471a3', 200) + '<span style="font-size:1.2rem;color:var(--accent-blue);">+</span>' + buildBar(n2, d2, '#1e8449', 200);
+  html += '</div>';
+  html += '<div style="font-family:Inter; font-size:0.78rem; color:var(--text-secondary); margin-bottom:4px;">Setelah penyebut disamakan (/' + commonD + '):</div>';
+  html += '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom: 12px;">';
+  html += buildBar(newN1, commonD, '#2471a3', 200) + '<span style="font-size:1.2rem;color:var(--accent-blue);">+</span>' + buildBar(newN2, commonD, '#1e8449', 200);
+  html += '</div>';
+  html += '<div style="font-family:Inter; font-size:0.78rem; color:var(--text-secondary); margin-bottom:4px;">Hasil:</div>';
+  html += buildBar(sumN, commonD, '#c0392b', 420);
+  document.getElementById('add-frac-bars').innerHTML = html;
+  var res = n1 + '/' + d1 + ' + ' + n2 + '/' + d2 + ' = ' + newN1 + '/' + commonD + ' + ' + newN2 + '/' + commonD + ' = ' + sumN + '/' + commonD;
+  if (g > 1) res += ' = ' + (sumN/g) + '/' + (commonD/g);
+  document.getElementById('add-frac-result').textContent = res;
+}
+
+function buildBar(n, d, color, maxW) {
+  var bars = Math.ceil(n / d);
+  if (bars === 0) bars = 1;
+  var html = '<div style="max-width:' + maxW + 'px; flex:1;">';
+  for (var b = 0; b < bars; b++) {
+    html += '<div class="fraction-bar" style="margin-bottom:2px;">';
+    for (var i = 0; i < d; i++) {
+      var filled = (b * d + i) < n;
+      html += '<div class="piece" style="width:' + (100/d) + '%; background:' + (filled ? color : '#e0e0e0') + ';"></div>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+// ═══════ Interactive 5: Multiplication as Area ═══════
+function updateMultFrac() {
+  var n1 = parseInt(document.getElementById('mult-n1').value);
+  var d1 = parseInt(document.getElementById('mult-d1').value);
+  var n2 = parseInt(document.getElementById('mult-n2').value);
+  var d2 = parseInt(document.getElementById('mult-d2').value);
+  if (n1 > d1) { n1 = d1; document.getElementById('mult-n1').value = n1; }
+  if (n2 > d2) { n2 = d2; document.getElementById('mult-n2').value = n2; }
+  document.getElementById('mult-frac1-display').textContent = n1 + '/' + d1;
+  document.getElementById('mult-frac2-display').textContent = n2 + '/' + d2;
+  var cellSize = Math.min(50, Math.floor(280 / Math.max(d1, d2)));
+  var html = '<div style="display:inline-grid; grid-template-columns: repeat(' + d1 + ', ' + cellSize + 'px); gap: 3px;">';
+  for (var r = 0; r < d2; r++) {
+    for (var c = 0; c < d1; c++) {
+      var h = c < n1, v = r < n2;
+      var color;
+      if (h && v) color = '#c0392b';
+      else if (h) color = 'rgba(36,113,163,0.3)';
+      else if (v) color = 'rgba(30,132,73,0.3)';
+      else color = '#e8e8e8';
+      html += '<div style="width:' + cellSize + 'px; height:' + cellSize + 'px; background:' + color + '; border-radius:4px;"></div>';
+    }
+  }
+  html += '</div>';
+  html += '<div style="margin-top:8px; font-family:Inter; font-size:0.78rem; color:var(--text-secondary);">';
+  html += '<span style="display:inline-block; width:12px; height:12px; background:#c0392b; border-radius:2px; vertical-align:middle;"></span> = kedua pecahan (hasil) &nbsp;';
+  html += '<span style="display:inline-block; width:12px; height:12px; background:rgba(36,113,163,0.3); border-radius:2px; vertical-align:middle;"></span> = hanya pecahan 1 &nbsp;';
+  html += '<span style="display:inline-block; width:12px; height:12px; background:rgba(30,132,73,0.3); border-radius:2px; vertical-align:middle;"></span> = hanya pecahan 2';
+  html += '</div>';
+  document.getElementById('mult-grid-area').innerHTML = html;
+  var rn = n1 * n2, rd = d1 * d2;
+  var g = gcd(rn, rd);
+  var txt = n1 + '/' + d1 + ' × ' + n2 + '/' + d2 + ' = ' + rn + '/' + rd;
+  if (g > 1) txt += ' = ' + (rn/g) + '/' + (rd/g);
+  document.getElementById('mult-frac-result').textContent = txt;
+}
+
+// ═══════ Interactive 6: Division Visualizer ═══════
+function updateDivFrac() {
+  var n1 = parseInt(document.getElementById('div-n1').value);
+  var d1 = parseInt(document.getElementById('div-d1').value);
+  var n2 = parseInt(document.getElementById('div-n2').value);
+  var d2 = parseInt(document.getElementById('div-d2').value);
+  var resultN = n1 * d2;
+  var resultD = d1 * n2;
+  var g = gcd(resultN, resultD);
+  var commonD = lcm(d1, d2);
+  var conv1 = n1 * (commonD / d1);
+  var conv2 = n2 * (commonD / d2);
+  var html = '';
+  html += '<div style="font-family:Inter; font-size:0.78rem; color:var(--text-secondary); margin-bottom:4px;">Yang dibagi: ' + n1 + '/' + d1 + ' (= ' + conv1 + '/' + commonD + ')</div>';
+  html += '<div class="fraction-bar" style="max-width:500px;">';
+  for (var i = 0; i < commonD; i++) {
+    html += '<div class="piece ' + (i < conv1 ? 'filled' : 'empty') + '" style="width:' + (100/commonD) + '%;"></div>';
+  }
+  html += '</div>';
+  html += '<div style="font-family:Inter; font-size:0.78rem; color:var(--text-secondary); margin: 8px 0 4px;">Pembagi: ' + n2 + '/' + d2 + ' (= ' + conv2 + '/' + commonD + ')</div>';
+  html += '<div class="fraction-bar" style="max-width:500px;">';
+  for (var i = 0; i < commonD; i++) {
+    html += '<div class="piece" style="width:' + (100/commonD) + '%; background:' + (i < conv2 ? '#1e8449' : '#e0e0e0') + ';"></div>';
+  }
+  html += '</div>';
+  var times = conv1 / conv2;
+  html += '<div style="font-family:Inter; font-size:0.85rem; margin-top:12px; color:var(--text-primary);">';
+  html += '→ Berapa kali <span style="color:#1e8449;font-weight:600;">' + n2 + '/' + d2 + '</span> muat di dalam <span style="color:#2471a3;font-weight:600;">' + n1 + '/' + d1 + '</span>? ';
+  html += '<strong>' + times.toFixed(2).replace(/\.?0+$/, '') + ' kali</strong>';
+  html += '</div>';
+  document.getElementById('div-frac-vis').innerHTML = html;
+  var txt = n1 + '/' + d1 + ' ÷ ' + n2 + '/' + d2 + ' = ' + n1 + '/' + d1 + ' × ' + d2 + '/' + n2 + ' = ' + resultN + '/' + resultD;
+  if (g > 1) txt += ' = ' + (resultN/g) + '/' + (resultD/g);
+  document.getElementById('div-frac-result').textContent = txt;
+}
+
+// ═══════ Interactive 7: FPB & KPK Finder ═══════
+function primeFactors(n) {
+  var factors = {};
+  var d = 2;
+  while (d * d <= n) {
+    while (n % d === 0) {
+      factors[d] = (factors[d] || 0) + 1;
+      n = Math.floor(n / d);
+    }
+    d++;
+  }
+  if (n > 1) factors[n] = (factors[n] || 0) + 1;
+  return factors;
+}
+
+function updateFpbKpk() {
+  var a = parseInt(document.getElementById('fpb-a').value) || 2;
+  var b = parseInt(document.getElementById('fpb-b').value) || 2;
+  if (a < 2) a = 2; if (b < 2) b = 2;
+  if (a > 200) a = 200; if (b > 200) b = 200;
+  var fa = primeFactors(a);
+  var fb = primeFactors(b);
+  var allPrimes = {};
+  for (var p in fa) allPrimes[p] = true;
+  for (var p in fb) allPrimes[p] = true;
+  var primeList = Object.keys(allPrimes).map(Number).sort(function(x,y){return x-y;});
+  var html = '';
+  html += '<div style="margin-bottom:8px;"><strong>Faktorisasi prima:</strong></div>';
+  var aStr = a + ' = ';
+  var aParts = [];
+  for (var i = 0; i < primeList.length; i++) {
+    var p = primeList[i];
+    if (fa[p]) aParts.push(fa[p] > 1 ? p + '<sup>' + fa[p] + '</sup>' : '' + p);
+  }
+  aStr += aParts.join(' × ');
+  var bStr = b + ' = ';
+  var bParts = [];
+  for (var i = 0; i < primeList.length; i++) {
+    var p = primeList[i];
+    if (fb[p]) bParts.push(fb[p] > 1 ? p + '<sup>' + fb[p] + '</sup>' : '' + p);
+  }
+  bStr += bParts.join(' × ');
+  html += '<div style="font-family:JetBrains Mono; font-size:0.85rem; margin:4px 0;">' + aStr + '</div>';
+  html += '<div style="font-family:JetBrains Mono; font-size:0.85rem; margin:4px 0;">' + bStr + '</div>';
+  var fpbVal = gcd(a, b);
+  var kpkVal = lcm(a, b);
+  html += '<div style="margin-top:12px;"><strong>FPB(' + a + ', ' + b + '):</strong> ambil pangkat <em>terkecil</em> dari faktor yang muncul di <em>keduanya</em></div>';
+  var fpbParts = [];
+  for (var i = 0; i < primeList.length; i++) {
+    var p = primeList[i];
+    if (fa[p] && fb[p]) {
+      var minPow = Math.min(fa[p], fb[p]);
+      fpbParts.push(minPow > 1 ? p + '<sup>' + minPow + '</sup>' : '' + p);
+    }
+  }
+  html += '<div style="font-family:JetBrains Mono; font-size:0.95rem; color:#c0392b; margin:4px 0;">FPB = ' + (fpbParts.length ? fpbParts.join(' × ') + ' = ' : '') + '<strong>' + fpbVal + '</strong></div>';
+  html += '<div style="margin-top:12px;"><strong>KPK(' + a + ', ' + b + '):</strong> ambil pangkat <em>terbesar</em> dari <em>semua</em> faktor yang muncul</div>';
+  var kpkParts = [];
+  for (var i = 0; i < primeList.length; i++) {
+    var p = primeList[i];
+    var maxPow = Math.max(fa[p] || 0, fb[p] || 0);
+    if (maxPow > 0) kpkParts.push(maxPow > 1 ? p + '<sup>' + maxPow + '</sup>' : '' + p);
+  }
+  html += '<div style="font-family:JetBrains Mono; font-size:0.95rem; color:#2471a3; margin:4px 0;">KPK = ' + kpkParts.join(' × ') + ' = <strong>' + kpkVal + '</strong></div>';
+  html += '<div style="margin-top:12px; font-size:0.85rem; color:var(--text-secondary);">Cek: FPB × KPK = ' + fpbVal + ' × ' + kpkVal + ' = ' + (fpbVal * kpkVal) + ' = ' + a + ' × ' + b + ' ✓</div>';
+  document.getElementById('fpb-kpk-output').innerHTML = html;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  updateFractionViz();
+  updateFracNumberLine();
+  updateEquiv();
+  updateAddFrac();
+  updateMultFrac();
+  updateDivFrac();
+  updateFpbKpk();
+});
+</script>
+</body>
+</html>

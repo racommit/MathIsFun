@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 11 — Ketika Segitiga Menjelaskan Gelombang</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 11 · Volume III</div>
+  <h1 class="chapter-title">Ketika Segitiga<br>Menjelaskan Gelombang</h1>
+  <p class="chapter-subtitle">
+    Tentang bagaimana rasio sisi segitiga melahirkan fungsi<br>
+    yang mendeskripsikan segalanya — dari suara hingga cahaya.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 7, kita belajar tentang kesebangungan: semua segitiga siku-siku dengan sudut yang sama "sama bentuk" — hanya skalanya yang berbeda. Ini berarti <em>rasio sisi-sisinya selalu tetap</em>, berapa pun ukuran segitiganya. Di Bab 10, kita belajar tentang fungsi — aturan yang memetakan masukan ke keluaran.
+  </p>
+
+  <p>
+    Sekarang, kedua ide itu bertemu: kita akan mendefinisikan fungsi berdasarkan rasio sisi segitiga. Fungsi-fungsi ini — sinus, kosinus, dan tangen — ternyata mendeskripsikan jauh lebih dari segitiga. Mereka mendeskripsikan <em>gelombang</em>, dan gelombang ada di mana-mana: suara, cahaya, arus listrik, pasang surut, bahkan detak jantung.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu duduk di tepi pantai, mengamati ombak yang datang dan pergi. Tinggi air naik, mencapai puncak, lalu turun, mencapai lembah, lalu naik lagi — pola yang berulang tanpa akhir. Pola ini bisa dideskripsikan secara tepat oleh fungsi sinus. Dan fungsi sinus lahir... dari segitiga.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN ═══════════════════════ -->
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana rasio sisi segitiga bisa mendeskripsikan gelombang?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Lima Belas Abad Mengukur Langit</h2>
+
+  <p>
+    Trigonometri tidak lahir dari rasa ingin tahu abstrak — ia lahir dari kebutuhan praktis: mengukur bintang, menghitung kalender, dan menavigasi lautan.
+  </p>
+
+  <h3>Yunani: Tali Busur dan Astronomi</h3>
+
+  <div class="historical-note">
+    <strong>Hipparchus dari Nicaea</strong> (sekitar 190–120 SM) sering disebut "bapak trigonometri". Ia menyusun tabel <em>chord</em> (tali busur) — panjang garis lurus yang menghubungkan dua titik pada lingkaran — untuk berbagai sudut pusat. Tabel ini memungkinkan perhitungan jarak astronomis. Tali busur bukan sinus, tapi terkait erat: $\text{chord}(\theta) = 2\sin(\theta/2)$.
+  </div>
+
+  <div class="historical-note">
+    <strong>Ptolemy</strong> (sekitar 100–170 M) di Alexandria mengembangkan tabel chord yang lebih lengkap dalam <em>Almagest</em>, dengan interval setengah derajat. Ia menggunakan rumus penjumlahan sudut (jauh sebelum sinus dan kosinus didefinisikan secara terpisah) dan mencapai akurasi yang menakjubkan.
+  </div>
+
+  <h3>India: Kelahiran Sinus</h3>
+
+  <div class="historical-note">
+    Revolusi terjadi di <strong>India</strong>. Matematikawan-astronom India mengganti tali busur (chord of full angle) dengan <strong>setengah tali busur</strong> (half-chord) — yang mereka sebut <em>jyā</em> (ज्या) atau <em>ardha-jyā</em>. Ini persis sinus modern! <strong>Aryabhata</strong> (476–550 M) menyusun tabel sinus untuk interval 3°45' dalam karyanya <em>Aryabhatiya</em>. Langkah ini tampak kecil tapi impaknya besar: semua rumus menjadi lebih bersih dengan sinus daripada chord.
+  </div>
+
+  <div class="historical-note">
+    <strong>Brahmagupta</strong> (598–668 M) memperluas trigonometri India dan merumuskan formula interpolasi untuk menghitung sinus sudut-sudut antara. <strong>Bhaskara II</strong> (1114–1185 M) kemudian menurunkan rumus-rumus yang mendekati turunan fungsi sinus — mendahului kalkulus berabad-abad.
+  </div>
+
+  <h3>Dunia Islam: Trigonometri Menjadi Dewasa</h3>
+
+  <div class="historical-note">
+    Kata "<strong>sinus</strong>" sendiri berasal dari perjalanan antar-budaya yang menakjubkan. Istilah Sanskerta <em>jyā</em> → disingkat <em>jīva</em> → diserap ke bahasa Arab sebagai <em>jība</em> (جيبا) → ditransliterasi tanpa titik vokal sebagai <em>jaib</em> (جيب, "lipatan/saku") → diterjemahkan ke Latin sebagai <em>sinus</em> ("lekukan") oleh penerjemah Eropa. Jadi kata "sinus" adalah hasil salah baca lintas tiga bahasa!
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Battani</strong> (858–929 M), yang kita sebut di Bab 10, memberikan kontribusi monumental. Ia menyusun tabel sinus yang sangat akurat dan, yang lebih penting, memperkenalkan penggunaan <strong>tangen</strong> dan <strong>kotangen</strong> sebagai rasio tersendiri — bukan hanya sinus dan kosinus. Ia juga merumuskan identitas trigonometri kunci dan menggunakannya untuk menghitung jarak bumi-matahari.
+  </div>
+
+  <div class="historical-note">
+    <strong>Abu al-Wafa al-Buzjani</strong> (940–998 M) mengembangkan semua enam fungsi trigonometri (sin, cos, tan, cot, sec, csc) secara sistematis. Ia menemukan <strong>rumus penjumlahan sudut</strong> untuk sinus:
+    $$\sin(A + B) = \sin A \cos B + \cos A \sin B$$
+    dan menyusun tabel sinus dengan akurasi hingga 8 digit desimal — menggunakan interval 15 menit busur. Presisi yang luar biasa untuk abad ke-10!
+  </div>
+
+  <div class="historical-note">
+    <strong>Nasir al-Din al-Tusi</strong> (1201–1274 M), yang kita sebut di Bab 7, menulis <em>Kitab Shakl al-Qatta</em> — buku pertama yang memperlakukan <strong>trigonometri sebagai disiplin mandiri</strong>, terpisah dari astronomi. Ia membuktikan <strong>Aturan Sinus</strong> untuk segitiga bola dan bidang datar, yang kita pelajari nanti di bab ini.
+  </div>
+
+  <div class="historical-note">
+    <strong>Jamshid al-Kashi</strong> (sekitar 1380–1429 M) menghitung $\sin 1°$ hingga 18 digit desimal — prestasi komputasi yang membutuhkan penyelesaian persamaan kubik melalui iterasi. Tabelnya digunakan oleh astronom selama lebih dari satu abad.
+  </div>
+
+  <p>
+    Perhatikan: trigonometri bukan "penemuan Eropa". Fondasinya diletakkan oleh matematikawan India (sinus), dikembangkan dan disistematiskan oleh matematikawan Islam (semua 6 fungsi, identitas, aturan sinus), dan baru kemudian diserap ke Eropa melalui terjemahan karya-karya Arab ke Latin.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DEFINISI ═══════════════════════ -->
+
+  <h2>Rasio Trigonometri dari Segitiga Siku-Siku</h2>
+
+  <p>
+    Mulai dari yang paling konkret: sebuah segitiga siku-siku. Kita fokus pada salah satu sudut lancip, sebut $\theta$. Relatif terhadap $\theta$, tiga sisi segitiga punya nama:
+  </p>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Sisi depan</strong> (opposite): sisi yang berhadapan dengan sudut $\theta$.</li>
+      <li><strong>Sisi samping</strong> (adjacent): sisi yang bersebelahan dengan sudut $\theta$ (yang bukan hipotenusa).</li>
+      <li><strong>Hipotenusa</strong>: sisi terpanjang (di depan sudut siku-siku).</li>
+    </ul>
+  </div>
+
+  <div class="definition-box">
+    <strong>Tiga rasio trigonometri dasar:</strong>
+    $$\sin\theta = \frac{\text{depan}}{\text{hipotenusa}} \qquad \cos\theta = \frac{\text{samping}}{\text{hipotenusa}} \qquad \tan\theta = \frac{\text{depan}}{\text{samping}}$$
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 7 (kesebangungan): semua segitiga siku-siku dengan sudut $\theta$ yang sama itu sebangun. Jadi rasio sisi-sisinya selalu tetap — tidak tergantung ukuran segitiga. Inilah mengapa $\sin\theta$, $\cos\theta$, $\tan\theta$ bergantung pada $\theta$ saja, bukan pada ukuran segitiga.
+  </div>
+
+  <h3>Sudut-Sudut Istimewa</h3>
+
+  <div class="key-insight">
+    <table style="width: 100%; font-family: 'JetBrains Mono'; font-size: 0.88rem; border-collapse: collapse; margin-top: 0.5rem;">
+      <tr style="border-bottom: 2px solid var(--border);">
+        <th style="padding: 6px; text-align: left;">$\theta$</th>
+        <th style="padding: 6px;">$\sin\theta$</th>
+        <th style="padding: 6px;">$\cos\theta$</th>
+        <th style="padding: 6px;">$\tan\theta$</th>
+      </tr>
+      <tr><td style="padding: 6px;">$30°$</td><td style="padding: 6px;">$\frac{1}{2}$</td><td style="padding: 6px;">$\frac{\sqrt{3}}{2}$</td><td style="padding: 6px;">$\frac{1}{\sqrt{3}}$</td></tr>
+      <tr><td style="padding: 6px;">$45°$</td><td style="padding: 6px;">$\frac{\sqrt{2}}{2}$</td><td style="padding: 6px;">$\frac{\sqrt{2}}{2}$</td><td style="padding: 6px;">$1$</td></tr>
+      <tr><td style="padding: 6px;">$60°$</td><td style="padding: 6px;">$\frac{\sqrt{3}}{2}$</td><td style="padding: 6px;">$\frac{1}{2}$</td><td style="padding: 6px;">$\sqrt{3}$</td></tr>
+    </table>
+  </div>
+
+  <p>
+    Perhatikan: $\sin 45° = \frac{\sqrt{2}}{2} = \frac{1}{\sqrt{2}}$ — bilangan $\sqrt{2}$ dari Bab 3 muncul lagi! Ini bukan kebetulan: segitiga siku-siku sama kaki dengan sudut $45°$ memiliki sisi $1, 1, \sqrt{2}$.
+  </p>
+
+  <!-- INTERACTIVE 1: Trig Ratio Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Rasio Trigonometri — Lihat Bagaimana Mereka Berubah</div>
+    <div class="interactive-desc">Geser sudut $\theta$ dan lihat bagaimana sin, cos, tan berubah. Perhatikan bahwa rasionya hanya bergantung pada sudut, bukan ukuran segitiga.</div>
+
+    <div class="slider-container">
+      <label>Sudut θ: <strong id="trig-angle-val">30</strong>°</label>
+      <input type="range" id="trig-angle" min="5" max="85" value="30" oninput="updateTrigRatio()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="trig-ratio-svg" width="320" height="240" viewBox="0 0 320 240"></svg>
+    </div>
+
+    <div id="trig-ratio-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LINGKARAN SATUAN ═══════════════════════ -->
+
+  <h2>Lingkaran Satuan: Trigonometri untuk Semua Sudut</h2>
+
+  <p>
+    Definisi segitiga siku-siku hanya bekerja untuk $0° < \theta < 90°$. Tapi kita ingin $\sin$ dan $\cos$ untuk <em>semua</em> sudut — $120°$, $-30°$, $720°$. Bagaimana?
+  </p>
+
+  <p>
+    Jawabnya: <strong>lingkaran satuan</strong> — lingkaran berjari-jari 1 berpusat di titik asal. Ambil sudut $\theta$ dari sumbu-$x$ positif (berlawanan jarum jam). Titik di mana jari-jari bertemu lingkaran punya koordinat $(x, y)$.
+  </p>
+
+  <div class="definition-box">
+    Pada lingkaran satuan ($r = 1$):
+    $$\cos\theta = x \qquad \sin\theta = y$$
+    Koordinat-$x$ = kosinus, koordinat-$y$ = sinus. Sesederhana itu.
+  </div>
+
+  <p>
+    Ini konsisten dengan definisi segitiga siku-siku: jika $\theta$ di kuadran I, maka $\cos\theta = \frac{x}{1} = x$ (samping/hipotenusa) dan $\sin\theta = \frac{y}{1} = y$ (depan/hipotenusa). Tapi sekarang kita bisa melampaui kuadran I!
+  </p>
+
+  <!-- INTERACTIVE 2: Unit Circle -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Lingkaran Satuan — sin θ dan cos θ untuk Semua Sudut</div>
+    <div class="interactive-desc">Geser sudut dan lihat bagaimana titik bergerak di lingkaran satuan. Koordinat-$x$ = cos, koordinat-$y$ = sin.</div>
+
+    <div class="slider-container">
+      <label>θ: <strong id="uc-angle-val">45</strong>° = <strong id="uc-rad-val">π/4</strong> rad</label>
+      <input type="range" id="uc-angle" min="0" max="360" value="45" oninput="updateUnitCircle()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="unit-circle-svg" width="300" height="300" viewBox="0 0 300 300"></svg>
+    </div>
+
+    <div id="unit-circle-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ GRAFIK ═══════════════════════ -->
+
+  <h2>Grafik Sinus dan Kosinus: Gelombang!</h2>
+
+  <p>
+    Sekarang sesuatu yang menakjubkan terjadi. Jika kita <em>membentangkan</em> lingkaran satuan — menggambar sudut $\theta$ di sumbu-$x$ dan $\sin\theta$ di sumbu-$y$ — kita mendapatkan <strong>gelombang</strong>:
+  </p>
+
+  <div class="key-insight">
+    <strong>Sifat gelombang sinus:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Periode:</strong> $2\pi$ (atau $360°$) — pola berulang setiap putaran penuh.</li>
+      <li><strong>Amplitudo:</strong> 1 — nilai maks/min adalah $\pm 1$.</li>
+      <li><strong>Nilai awal:</strong> $\sin 0 = 0$, $\cos 0 = 1$.</li>
+      <li><strong>Hubungan:</strong> $\cos\theta = \sin(\theta + 90°)$ — kosinus adalah sinus yang digeser $90°$ ke kiri.</li>
+    </ul>
+  </div>
+
+  <!-- INTERACTIVE 3: Sine Wave -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Grafik Sinus — Dari Lingkaran ke Gelombang</div>
+    <div class="interactive-desc">Ubah amplitudo $A$ dan frekuensi $\omega$ untuk melihat $y = A\sin(\omega x)$.</div>
+
+    <div class="slider-container">
+      <label>Amplitudo A: <strong id="wave-a-val">1</strong></label>
+      <input type="range" id="wave-a" min="0.5" max="3" value="1" step="0.25" oninput="updateWave()">
+    </div>
+    <div class="slider-container">
+      <label>Frekuensi ω: <strong id="wave-w-val">1</strong></label>
+      <input type="range" id="wave-w" min="0.5" max="4" value="1" step="0.5" oninput="updateWave()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="wave-svg" width="340" height="200" viewBox="0 0 340 200"></svg>
+    </div>
+
+    <div id="wave-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ IDENTITAS ═══════════════════════ -->
+
+  <h2>Identitas Trigonometri Dasar</h2>
+
+  <div class="key-insight">
+    <strong>Identitas Pythagoras:</strong>
+    $$\sin^2\theta + \cos^2\theta = 1$$
+    Ini mengikuti langsung dari Teorema Pythagoras pada lingkaran satuan: $x^2 + y^2 = 1$.
+  </div>
+
+  <div class="key-insight">
+    <strong>Hubungan tangen:</strong>
+    $$\tan\theta = \frac{\sin\theta}{\cos\theta}$$
+    (Tidak terdefinisi saat $\cos\theta = 0$, yaitu $\theta = 90°, 270°$, dst.)
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ ATURAN SINUS & KOSINUS ═══════════════════════ -->
+
+  <h2>Aturan Sinus dan Kosinus</h2>
+
+  <p>
+    Untuk segitiga <em>sembarang</em> (tidak harus siku-siku), kita memerlukan alat yang lebih umum.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan Sinus:</strong> Dalam segitiga dengan sisi $a, b, c$ berhadapan dengan sudut $A, B, C$:
+    $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$$
+  </div>
+
+  <div class="key-insight">
+    <strong>Aturan Kosinus:</strong> Generalisasi Teorema Pythagoras untuk segitiga sembarang:
+    $$c^2 = a^2 + b^2 - 2ab\cos C$$
+    Jika $C = 90°$, maka $\cos 90° = 0$ dan ini menjadi $c^2 = a^2 + b^2$ — Pythagoras!
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 7: kita menyebutkan bahwa Pythagoras hanya berlaku untuk segitiga siku-siku, dan untuk segitiga sembarang kita butuh "aturan kosinus". Sekarang janji itu ditepati.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mencampurkan sisi depan dan samping.</strong><br>
+    "Depan" dan "samping" bergantung pada sudut mana yang kita tinjau! Sisi yang "depan" untuk sudut $A$ bisa "samping" untuk sudut $B$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Menggunakan derajat saat kalkulator dalam mode radian (atau sebaliknya).</strong><br>
+    $\sin(90)$ dalam radian ≈ $0{,}894$ — bukan $1$! Pastikan mode sudah benar.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira $\sin(2\theta) = 2\sin\theta$.</strong><br>
+    <strong>Salah!</strong> $\sin(2\theta) = 2\sin\theta\cos\theta$. Fungsi trigonometri bukan linear — ini kesalahan serupa dengan $(a+b)^2 \neq a^2 + b^2$ dari Bab 4.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Sebuah segitiga siku-siku memiliki hipotenusa 10 dan sudut $30°$. Hitung panjang sisi depan dan sisi samping sudut $30°$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$\sin 30° = \frac{\text{depan}}{\text{hipotenusa}}$ dan $\cos 30° = \frac{\text{samping}}{\text{hipotenusa}}$.</div>
+    <div class="answer-content" id="a1">Depan = $10 \sin 30° = 10 \times \frac{1}{2} = 5$.<br>Samping = $10 \cos 30° = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \approx 8{,}66$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Unit Circle</div>
+    <p>Tentukan $\sin 150°$ dan $\cos 150°$ menggunakan lingkaran satuan.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$150° = 180° - 30°$. Di kuadran II, $\sin$ positif, $\cos$ negatif.</div>
+    <div class="answer-content" id="a2">$\sin 150° = \sin 30° = \frac{1}{2}$.<br>$\cos 150° = -\cos 30° = -\frac{\sqrt{3}}{2}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Identity</div>
+    <p>Jika $\sin\theta = \frac{3}{5}$ dan $\theta$ di kuadran I, hitung $\cos\theta$ dan $\tan\theta$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Gunakan $\sin^2\theta + \cos^2\theta = 1$. Di kuadran I, $\cos\theta > 0$.</div>
+    <div class="answer-content" id="a3">$\cos^2\theta = 1 - \frac{9}{25} = \frac{16}{25}$, jadi $\cos\theta = \frac{4}{5}$.<br>$\tan\theta = \frac{\sin\theta}{\cos\theta} = \frac{3/5}{4/5} = \frac{3}{4}$. Tripel Pythagoras $(3, 4, 5)$ dari Bab 7!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Application</div>
+    <p>Sebuah menara berdiri tegak. Dari titik yang berjarak 50 m dari kaki menara, sudut elevasi ke puncak menara adalah $60°$. Berapa tinggi menara?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">$\tan 60° = \frac{\text{tinggi}}{\text{jarak}} = \frac{h}{50}$.</div>
+    <div class="answer-content" id="a4">$\tan 60° = \sqrt{3} = \frac{h}{50}$. $h = 50\sqrt{3} \approx 86{,}6$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Law of Cosines</div>
+    <p>Segitiga memiliki sisi $a = 7$, $b = 8$, dan sudut di antara keduanya $C = 60°$. Hitung sisi $c$.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$c^2 = a^2 + b^2 - 2ab\cos C$. $\cos 60° = \frac{1}{2}$.</div>
+    <div class="answer-content" id="a5">$c^2 = 49 + 64 - 2(7)(8)\cos 60° = 113 - 112 \times \frac{1}{2} = 113 - 56 = 57$.<br>$c = \sqrt{57} \approx 7{,}55$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Conceptual</div>
+    <p>Mengapa $\sin\theta$ tidak pernah lebih dari 1 atau kurang dari $-1$?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Pikirkan dalam konteks lingkaran satuan: $\sin\theta = y$, koordinat dari titik di lingkaran jari-jari 1.</div>
+    <div class="answer-content" id="a6">Di lingkaran satuan (jari-jari 1), koordinat $y$ paling tinggi 1 (puncak lingkaran, $\theta = 90°$) dan paling rendah $-1$ ($\theta = 270°$). Karena $\sin\theta = y$, maka $-1 \leq \sin\theta \leq 1$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Error Analysis</div>
+    <p>Siswa menulis: "$\sin 60° + \sin 30° = \sin 90° = 1$." Cek apakah ini benar.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Hitung masing-masing: $\sin 60°$ dan $\sin 30°$, lalu jumlahkan.</div>
+    <div class="answer-content" id="a7">$\sin 60° + \sin 30° = \frac{\sqrt{3}}{2} + \frac{1}{2} = \frac{\sqrt{3} + 1}{2} \approx 1{,}366$. Tapi $\sin 90° = 1$. Jadi <strong>salah!</strong> $\sin(A + B) \neq \sin A + \sin B$. Rumus yang benar: $\sin(A+B) = \sin A\cos B + \cos A\sin B$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 3 & 8)</div>
+    <p>Buktikan: luas segitiga dengan sisi $a$, $b$ dan sudut di antara keduanya $C$ adalah $L = \frac{1}{2}ab\sin C$. Lalu gunakan ini untuk menghitung luas segitiga sama sisi dengan sisi 6.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Luas = $\frac{1}{2} \times$ alas $\times$ tinggi. Tinggi = $b\sin C$ (dari segitiga siku-siku).</div>
+    <div class="answer-content" id="a8">Tinggi $h = b\sin C$. Luas = $\frac{1}{2} \times a \times b\sin C = \frac{1}{2}ab\sin C$.<br>Segitiga sama sisi sisi 6: $a = b = 6$, $C = 60°$.<br>$L = \frac{1}{2}(6)(6)\sin 60° = 18 \times \frac{\sqrt{3}}{2} = 9\sqrt{3} \approx 15{,}59$.<br>Bilangan $\sqrt{3}$ dari Bab 3 muncul lagi — ia muncul di mana pun sudut $60°$ terlibat.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dari Gelombang ke Pertumbuhan</h2>
+
+  <p>
+    Trigonometri membawa kita ke dunia periodik — pola yang berulang. Sinus dan kosinus adalah fungsi pertama kita yang <em>bergelombang</em>, naik-turun tanpa pernah berhenti.
+  </p>
+
+  <p>
+    Tapi tidak semua fenomena berulang. Beberapa tumbuh tanpa batas — populasi bakteri, bunga majemuk, peluruhan radioaktif. Untuk mendeskripsikan pertumbuhan dan peluruhan, kita butuh fungsi yang berbeda: <strong>eksponensial</strong> dan pasangannya yang misterius, <strong>logaritma</strong>.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 12 — Pangkat, Akar, dan Bilangan yang Tumbuh (Eksponen & Logaritma)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Trig Ratio Explorer ═══════
+function updateTrigRatio() {
+  var deg = parseInt(document.getElementById('trig-angle').value);
+  document.getElementById('trig-angle-val').textContent = deg;
+  var rad = deg * Math.PI / 180;
+  var hyp = 150;
+  var opp = hyp * Math.sin(rad);
+  var adj = hyp * Math.cos(rad);
+
+  var svg = document.getElementById('trig-ratio-svg');
+  var ox = 30, oy = 210;
+  var ax = ox + adj, ay = oy;
+  var bx = ox + adj, by = oy - opp;
+
+  var s = '';
+  s += '<polygon points="'+ox+','+oy+' '+ax+','+ay+' '+bx+','+by+'" fill="rgba(36,113,163,0.1)" stroke="#2471a3" stroke-width="2"/>';
+  // right angle marker
+  s += '<rect x="'+(ax-8)+'" y="'+(ay-8)+'" width="8" height="8" fill="none" stroke="#2c2c2c" stroke-width="1"/>';
+  // labels
+  s += '<text x="'+((ox+ax)/2)+'" y="'+(oy+16)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#1e8449">samping</text>';
+  s += '<text x="'+(ax+10)+'" y="'+((ay+by)/2)+'" font-family="JetBrains Mono" font-size="10" fill="#c0392b">depan</text>';
+  s += '<text x="'+((ox+bx)/2-10)+'" y="'+((oy+by)/2-4)+'" font-family="JetBrains Mono" font-size="10" fill="#2471a3">hip</text>';
+  // angle arc
+  s += '<path d="M'+(ox+25)+','+oy+' A25,25 0 0,0 '+(ox+25*Math.cos(-rad))+','+(oy+25*Math.sin(-rad))+'" fill="none" stroke="#c0392b" stroke-width="1.5"/>';
+  s += '<text x="'+(ox+35)+'" y="'+(oy-8)+'" font-family="JetBrains Mono" font-size="11" fill="#c0392b">θ='+deg+'°</text>';
+  svg.innerHTML = s;
+
+  var sinV = Math.sin(rad), cosV = Math.cos(rad), tanV = Math.tan(rad);
+  document.getElementById('trig-ratio-result').textContent =
+    'sin '+deg+'° = '+sinV.toFixed(4)+'\ncos '+deg+'° = '+cosV.toFixed(4)+'\ntan '+deg+'° = '+tanV.toFixed(4)+
+    '\n\nsin²θ + cos²θ = '+(sinV*sinV+cosV*cosV).toFixed(6)+' ≈ 1 ✓';
+}
+
+// ═══════ Interactive 2: Unit Circle ═══════
+function updateUnitCircle() {
+  var deg = parseInt(document.getElementById('uc-angle').value);
+  document.getElementById('uc-angle-val').textContent = deg;
+  var rad = deg * Math.PI / 180;
+
+  var radStr;
+  var special = {0:'0',30:'π/6',45:'π/4',60:'π/3',90:'π/2',120:'2π/3',135:'3π/4',150:'5π/6',180:'π',210:'7π/6',225:'5π/4',240:'4π/3',270:'3π/2',300:'5π/3',315:'7π/4',330:'11π/6',360:'2π'};
+  radStr = special[deg] || rad.toFixed(3);
+  document.getElementById('uc-rad-val').textContent = radStr;
+
+  var svg = document.getElementById('unit-circle-svg');
+  var cx = 150, cy = 150, r = 110;
+  var px = cx + r * Math.cos(-rad), py = cy + r * Math.sin(-rad);
+
+  var s = '';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#ccc" stroke-width="1.5"/>';
+  s += '<line x1="'+(cx-r-10)+'" y1="'+cy+'" x2="'+(cx+r+10)+'" y2="'+cy+'" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<line x1="'+cx+'" y1="'+(cy-r-10)+'" x2="'+cx+'" y2="'+(cy+r+10)+'" stroke="#2c2c2c" stroke-width="1"/>';
+  // radius
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+px+'" y2="'+py+'" stroke="#2471a3" stroke-width="2"/>';
+  s += '<circle cx="'+px+'" cy="'+py+'" r="5" fill="#c0392b"/>';
+  // projections
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+px+'" y2="'+cy+'" stroke="#1e8449" stroke-width="1.5" stroke-dasharray="4,3"/>';
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+cx+'" y2="'+py+'" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>';
+  // cos label (x)
+  s += '<text x="'+((cx+px)/2)+'" y="'+(cy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2471a3">cos</text>';
+  // sin label (y)
+  s += '<text x="'+(px+10)+'" y="'+((cy+py)/2)+'" font-family="JetBrains Mono" font-size="10" fill="#1e8449">sin</text>';
+  svg.innerHTML = s;
+
+  var cosV = Math.cos(rad), sinV = Math.sin(rad);
+  document.getElementById('unit-circle-result').textContent =
+    'cos '+deg+'° = '+cosV.toFixed(4)+'\nsin '+deg+'° = '+sinV.toFixed(4)+
+    '\nTitik: ('+cosV.toFixed(3)+', '+sinV.toFixed(3)+')';
+}
+
+// ═══════ Interactive 3: Sine Wave ═══════
+function updateWave() {
+  var A = parseFloat(document.getElementById('wave-a').value);
+  var w = parseFloat(document.getElementById('wave-w').value);
+  document.getElementById('wave-a-val').textContent = A;
+  document.getElementById('wave-w-val').textContent = w;
+
+  var svg = document.getElementById('wave-svg');
+  var ox = 20, oy = 100, xScale = 40, yScale = 50;
+  var s = '';
+  // axis
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="330" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="190" stroke="#2c2c2c" stroke-width="1"/>';
+  // grid lines at y=A and y=-A
+  s += '<line x1="'+ox+'" y1="'+(oy-A*yScale)+'" x2="330" y2="'+(oy-A*yScale)+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  s += '<line x1="'+ox+'" y1="'+(oy+A*yScale)+'" x2="330" y2="'+(oy+A*yScale)+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  s += '<text x="'+(ox-4)+'" y="'+(oy-A*yScale+4)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">'+A+'</text>';
+  s += '<text x="'+(ox-4)+'" y="'+(oy+A*yScale+4)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">-'+A+'</text>';
+
+  var pts = [];
+  for (var x = 0; x <= 8; x += 0.05) {
+    var y = A * Math.sin(w * x);
+    pts.push((ox + x * xScale) + ',' + (oy - y * yScale));
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+
+  // also draw cos in lighter
+  var pts2 = [];
+  for (var x = 0; x <= 8; x += 0.05) {
+    var y = A * Math.cos(w * x);
+    pts2.push((ox + x * xScale) + ',' + (oy - y * yScale));
+  }
+  s += '<polyline points="'+pts2.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>';
+  s += '<text x="300" y="30" font-family="Inter" font-size="10" fill="#2471a3">sin</text>';
+  s += '<text x="300" y="44" font-family="Inter" font-size="10" fill="#c0392b">cos</text>';
+
+  svg.innerHTML = s;
+  var period = (2 * Math.PI / w);
+  document.getElementById('wave-result').textContent =
+    'y = '+A+'sin('+w+'x)\nAmplitudo: '+A+' | Periode: '+(period).toFixed(3)+' ≈ '+((360/w)).toFixed(0)+'°';
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  updateTrigRatio();
+  updateUnitCircle();
+  updateWave();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 16 — Jembatan Besar (Teorema Fundamental Kalkulus)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 16 · Volume IV</div>
+  <h1 class="chapter-title">Jembatan Besar</h1>
+  <p class="chapter-subtitle">
+    Tentang Teorema Fundamental Kalkulus — teorema yang menyatukan<br>
+    turunan dan integral menjadi satu kesatuan yang utuh.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Di Bab 14 kamu belajar memotong: turunan mengukur kecepatan perubahan sesaat. Di Bab 15 kamu belajar menyatukan: integral mengumpulkan potongan-potongan kecil menjadi total. Sekarang, kita akan menemukan bahwa keduanya bukan sekadar kebetulan saling terkait — mereka adalah <em>operasi kebalikan</em> satu sama lain, dihubungkan oleh satu teorema yang mengubah seluruh matematika.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu mencatat kecepatan mobilmu setiap detik selama perjalanan. Dari catatan itu, kamu bisa menghitung total jarak (integral kecepatan). Dan jika kamu tahu jarak setiap saat, kamu bisa menghitung kecepatan (turunan jarak). Kedua informasi ini setara — satu bisa diturunkan dari yang lain. Itulah esensi Teorema Fundamental Kalkulus.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Mengapa turunan dan integral<br>adalah operasi yang berlawanan?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Penemuan yang Mengubah Segalanya</h2>
+
+  <div class="historical-note">
+    <strong>Ibn al-Haytham</strong> (965–1040 M) menghitung volume paraboloid putar menggunakan jumlah pangkat: $\sum k^4$. Ia tidak menyebutnya "teorema fundamental," tetapi metodenya — menjumlah irisan untuk menghitung total, lalu menghubungkan hasilnya kembali ke bentuk geometris — mengandung benih gagasan bahwa akumulasi dan laju perubahan saling terkait.
+  </div>
+
+  <div class="historical-note">
+    <strong>James Gregory</strong> (1638–1675) di Skotlandia adalah salah satu orang pertama yang menuliskan hubungan antara turunan dan integral secara eksplisit, meskipun pembuktiannya belum ketat.
+  </div>
+
+  <div class="historical-note">
+    <strong>Isaac Newton</strong> (1643–1727) menyebutnya "metode fluxion" — ia menyadari bahwa luas di bawah kurva berubah dengan laju sama dengan tinggi kurva di titik itu. <strong>Gottfried Wilhelm Leibniz</strong> (1646–1716) secara independen menemukan hal yang sama dan memberi notasi $\int$ dan $\frac{d}{dx}$ yang kita pakai sekarang. Keduanya berdebat sengit tentang prioritas penemuan, tetapi sejarah mengakui keduanya.
+  </div>
+
+  <div class="historical-note">
+    <strong>Augustin-Louis Cauchy</strong> (1789–1857) dan <strong>Bernhard Riemann</strong> (1826–1866) kemudian memperketat pondasi — mendefinisikan integral dan limit secara formal, sehingga teorema ini benar-benar "terbukti" dalam arti modern. Karya <strong>Madhava</strong> dari Kerala (abad ke-14) juga menunjukkan pemahaman mendalam tentang deret tak hingga yang terkait erat dengan hubungan turunan-integral.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ FTC PART 1 ═══════════════════════ -->
+
+  <h2>Teorema Fundamental Kalkulus — Bagian 1</h2>
+
+  <p>Definisikan fungsi akumulasi:</p>
+
+  <div class="definition-box">
+    $$A(x) = \int_a^x f(t)\,dt$$
+    yaitu luas di bawah kurva $f$ dari titik tetap $a$ hingga titik bergerak $x$.
+  </div>
+
+  <div class="key-insight">
+    <strong>FTC Bagian 1:</strong> Jika $f$ kontinu pada $[a, b]$, maka:
+    $$\frac{d}{dx}\left[\int_a^x f(t)\,dt\right] = f(x)$$
+    <em>Turunan dari "luas yang terakumulasi" = tinggi kurva di titik itu.</em>
+  </div>
+
+  <p>
+    Ini mengatakan: laju bertambahnya luas = nilai fungsi. Jika kamu menghitung luas di bawah $y = x^2$ dari $0$ ke $x$, lajunya bertambah persis $x^2$ per satuan $x$.
+  </p>
+
+  <div class="proof-box">
+    <strong>Intuisi pembuktian.</strong> Saat $x$ bergeser sedikit ke $x + h$, luas bertambah kira-kira satu pita tipis selebar $h$ dan setinggi $f(x)$. Maka $A(x+h) - A(x) \approx f(x) \cdot h$, sehingga $\frac{A(x+h)-A(x)}{h} \approx f(x)$. Saat $h \to 0$, kita dapat $A'(x) = f(x)$.
+  </div>
+
+  <!-- INTERACTIVE 1: Accumulation Function -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Fungsi Akumulasi $A(x) = \int_0^x f(t)\,dt$</div>
+    <div class="interactive-desc">Geser $x$ dan lihat: luas terakumulasi (biru) bertambah dengan laju sama dengan $f(x)$ (merah).</div>
+
+    <div class="slider-container">
+      <label>x = <strong id="ftc1-x-val">2.0</strong></label>
+      <input type="range" id="ftc1-x" min="0" max="4" value="2" step="0.1" oninput="updateFTC1()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="ftc1-svg" width="340" height="260" viewBox="0 0 340 260"></svg>
+    </div>
+
+    <div id="ftc1-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ FTC PART 2 ═══════════════════════ -->
+
+  <h2>Teorema Fundamental Kalkulus — Bagian 2</h2>
+
+  <div class="key-insight">
+    <strong>FTC Bagian 2:</strong> Jika $F$ adalah antiturunan dari $f$ (artinya $F' = f$), maka:
+    $$\int_a^b f(x)\,dx = F(b) - F(a)$$
+  </div>
+
+  <p>
+    Ini adalah "mesin penghitung" integral — kamu tidak perlu menjumlahkan tak hingga banyak persegi panjang. Cukup temukan antiturunan, lalu evaluasi di kedua ujung.
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa kedua bagian terkait?</strong> Bagian 1 mengatakan: "turunan dari akumulasi = fungsi asal." Bagian 2 mengatakan: "untuk menghitung akumulasi, cari fungsi yang turunannya = fungsi asal." Keduanya menyatakan hal yang sama dari dua arah berbeda.
+  </div>
+
+  <!-- INTERACTIVE 2: FTC in action -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">FTC Bagian 2 — Mengevaluasi Integral dengan Antiturunan</div>
+    <div class="interactive-desc">Pilih fungsi, atur batas, dan lihat bahwa $\int_a^b f(x)\,dx = F(b) - F(a)$.</div>
+
+    <div style="margin-bottom: 0.8rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setFTC2('x2')" id="ftc2-x2" style="background: var(--accent-blue); color: white;">f = x²</button>
+        <button class="btn" onclick="setFTC2('2x')" id="ftc2-2x">f = 2x</button>
+        <button class="btn" onclick="setFTC2('sin')" id="ftc2-sin">f = sin(x)</button>
+      </div>
+    </div>
+
+    <div class="slider-container">
+      <label>a = <strong id="ftc2-a-val">0</strong></label>
+      <input type="range" id="ftc2-a" min="0" max="3" value="0" step="0.5" oninput="updateFTC2()">
+    </div>
+    <div class="slider-container">
+      <label>b = <strong id="ftc2-b-val">3</strong></label>
+      <input type="range" id="ftc2-b" min="0.5" max="5" value="3" step="0.5" oninput="updateFTC2()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="ftc2-svg" width="340" height="260" viewBox="0 0 340 260"></svg>
+    </div>
+
+    <div id="ftc2-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ VELOCITY-DISTANCE ═══════════════════════ -->
+
+  <h2>Contoh Nyata: Kecepatan dan Jarak</h2>
+
+  <p>
+    Recall dari Bab 14: jika $s(t)$ adalah posisi, maka $v(t) = s'(t)$ (kecepatan = turunan posisi). FTC membaliknya:
+  </p>
+
+  <div class="key-insight">
+    $$s(b) - s(a) = \int_a^b v(t)\,dt$$
+    <em>Perpindahan = integral kecepatan terhadap waktu.</em>
+  </div>
+
+  <!-- INTERACTIVE 3: Velocity-Distance -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Kecepatan → Jarak: FTC Beraksi</div>
+    <div class="interactive-desc">Atur kecepatan konstan. Integral kecepatan = luas persegi panjang = jarak tempuh.</div>
+
+    <div class="slider-container">
+      <label>Kecepatan v: <strong id="vel-val">3</strong> m/s</label>
+      <input type="range" id="vel-slider" min="1" max="8" value="3" step="0.5" oninput="updateVel()">
+    </div>
+    <div class="slider-container">
+      <label>Waktu t: <strong id="time-val">4</strong> detik</label>
+      <input type="range" id="time-slider" min="1" max="8" value="4" step="0.5" oninput="updateVel()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="vel-svg" width="320" height="200" viewBox="0 0 320 200"></svg>
+    </div>
+
+    <div id="vel-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Ringkasan: Dua Sisi Satu Koin</h2>
+
+  <div class="key-insight">
+    <table style="width: 100%; font-size: 0.95rem; border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 6px; font-weight: 600;">Turunan (Bab 14)</td>
+        <td style="padding: 6px;">Memecah → mengukur laju perubahan lokal</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 6px; font-weight: 600;">Integral (Bab 15)</td>
+        <td style="padding: 6px;">Menyatukan → menghitung akumulasi total</td>
+      </tr>
+      <tr>
+        <td style="padding: 6px; font-weight: 600;">FTC (Bab ini)</td>
+        <td style="padding: 6px;">Keduanya saling meniadakan: $\frac{d}{dx}\int_a^x f = f$ dan $\int_a^b F' = F(b)-F(a)$</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Lupa bahwa FTC memerlukan $f$ kontinu.</strong><br>
+    Jika $f$ punya diskontinuitas lompat di $[a, b]$, integral tertentu mungkin masih ada (Riemann), tetapi FTC tidak langsung berlaku di titik itu.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Bingung antara variabel batas dan variabel integrasi.</strong><br>
+    Dalam $\frac{d}{dx}\int_0^x f(t)\,dt$, $x$ adalah batas atas (variabel yang berubah), dan $t$ adalah variabel "boneka" (dummy) yang menghilang setelah integrasi. Hasilnya = $f(x)$, bukan $f(t)$.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — FTC Part 1</div>
+    <p>Tentukan $\frac{d}{dx}\int_1^x (3t^2 + 1)\,dt$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">FTC Bagian 1: turunan dari $\int_a^x f(t)\,dt$ langsung sama dengan $f(x)$.</div>
+    <div class="answer-content" id="a1">$3x^2 + 1$. (Langsung dari FTC Bagian 1.)</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — FTC Part 2</div>
+    <p>Hitung $\displaystyle\int_0^2 (6x^2 - 4x + 1)\,dx$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Antiturunan: $2x^3 - 2x^2 + x$.</div>
+    <div class="answer-content" id="a2">$[2x^3 - 2x^2 + x]_0^2 = (16 - 8 + 2) - 0 = 10$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Chain Rule + FTC</div>
+    <p>Tentukan $\frac{d}{dx}\int_0^{x^2} \sin(t)\,dt$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Batas atasnya $x^2$, bukan $x$. Gunakan aturan rantai: $\frac{d}{dx}\int_0^{g(x)} f(t)\,dt = f(g(x)) \cdot g'(x)$.</div>
+    <div class="answer-content" id="a3">$\sin(x^2) \cdot 2x = 2x\sin(x^2)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Conceptual</div>
+    <p>Jika $F(x) = \int_0^x e^{-t^2}\,dt$, apa yang bisa kamu katakan tentang $F'(x)$ dan $F(0)$?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">FTC Part 1 untuk $F'(x)$. Untuk $F(0)$, ingat $\int_0^0 ... = 0$.</div>
+    <div class="answer-content" id="a4">$F'(x) = e^{-x^2}$ (oleh FTC Part 1). $F(0) = \int_0^0 e^{-t^2}\,dt = 0$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application (Recall Bab 14)</div>
+    <p>Percepatan mobil $a(t) = 6t$ m/s². Kecepatan awal $v(0) = 2$ m/s. Cari $v(t)$ dan jarak tempuh dari $t = 0$ ke $t = 3$ s.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$v(t) = \int a(t)\,dt = 3t^2 + C$. Gunakan $v(0) = 2$ untuk cari $C$. Jarak = $\int_0^3 v(t)\,dt$.</div>
+    <div class="answer-content" id="a5">$v(t) = 3t^2 + 2$. Jarak $= \int_0^3 (3t^2+2)\,dt = [t^3 + 2t]_0^3 = 27 + 6 = 33$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Verification</div>
+    <p>Verifikasi FTC untuk $f(x) = \cos x$ pada $[0, \pi]$: hitung $\int_0^{\pi}\cos x\,dx$ secara langsung dan verifikasi bahwa $\frac{d}{dx}[\sin x] = \cos x$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Antiturunan $\cos x$ adalah $\sin x$.</div>
+    <div class="answer-content" id="a6">$\int_0^{\pi}\cos x\,dx = [\sin x]_0^{\pi} = \sin\pi - \sin 0 = 0 - 0 = 0$. Masuk akal: luas positif ($0$ ke $\pi/2$) dan negatif ($\pi/2$ ke $\pi$) saling meniadakan. Verifikasi: $(\sin x)' = \cos x$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Recall (Bab 11 & 15)</div>
+    <p>Hitung $\int_0^{\pi/2}\sin x\,dx$ dan hubungkan dengan unit circle dari Bab 11.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Antiturunan $\sin x$ adalah $-\cos x$.</div>
+    <div class="answer-content" id="a7">$[-\cos x]_0^{\pi/2} = -\cos(\pi/2) + \cos(0) = 0 + 1 = 1$. Di unit circle, $\sin$ menggambarkan koordinat-$y$. Integral $\sin$ dari $0$ ke $\pi/2$ = 1, menunjukkan "akumulasi" tinggi dari $0$ ke $1$ di kuadran pertama.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Thinking</div>
+    <p>Mengapa $\int_a^a f(x)\,dx = 0$ masuk akal secara geometris dan secara FTC?</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Geometris: lebar interval = 0. FTC: $F(a) - F(a) = ?$</div>
+    <div class="answer-content" id="a8">Geometris: lebar daerah = 0, jadi luasnya 0. FTC: $F(a) - F(a) = 0$. Keduanya konsisten.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog: Melampaui Kalkulus</h2>
+
+  <p>
+    Dengan FTC, volume kalkulus selesai. Kamu sekarang memiliki peralatan yang digunakan Newton untuk menghitung orbit planet, yang digunakan insinyur untuk mendesain jembatan, dan yang digunakan AI modern untuk mengoptimasi jaringan saraf. Tapi matematika tidak berhenti di sini. Di volume berikutnya, kita masuk ke dunia <em>struktur</em> — vektor yang menangkap arah, matriks yang mentransformasi dunia, logika yang mendasari komputer, dan probabilitas yang mengukur ketidakpastian.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 17 — Arah dan Besaran (Vektor)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Accumulation Function ═══════
+function updateFTC1() {
+  var xVal = parseFloat(document.getElementById('ftc1-x').value);
+  document.getElementById('ftc1-x-val').textContent = xVal.toFixed(1);
+  var svg = document.getElementById('ftc1-svg');
+  var f = function(t) { return t * t; };
+  var F = function(t) { return t * t * t / 3; };
+  var ox = 50, oy = 220, xSc = 65, ySc = 16;
+  var s = '';
+  s += '<line x1="'+ox+'" y1="20" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+
+  // shaded area
+  var areaPts = ox+','+oy+' ';
+  for (var t = 0; t <= xVal; t += 0.05) {
+    areaPts += (ox+t*xSc)+','+(oy-f(t)*ySc)+' ';
+  }
+  areaPts += (ox+xVal*xSc)+','+oy;
+  s += '<polygon points="'+areaPts+'" fill="rgba(36,113,163,0.2)"/>';
+
+  // curve f(t) = t^2
+  var pts = [];
+  for (var t = 0; t <= 4.1; t += 0.05) {
+    var py = oy - f(t) * ySc;
+    if (py > 10) pts.push((ox+t*xSc)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // vertical line at x
+  var fx = f(xVal);
+  s += '<line x1="'+(ox+xVal*xSc)+'" y1="'+(oy-fx*ySc)+'" x2="'+(ox+xVal*xSc)+'" y2="'+oy+'" stroke="#2471a3" stroke-width="1.5" stroke-dasharray="4,3"/>';
+  s += '<circle cx="'+(ox+xVal*xSc)+'" cy="'+(oy-fx*ySc)+'" r="4" fill="#c0392b"/>';
+
+  s += '<text x="290" y="30" font-family="Inter" font-size="10" fill="#c0392b">f(t) = t²</text>';
+
+  svg.innerHTML = s;
+  var areaVal = F(xVal);
+  document.getElementById('ftc1-result').textContent =
+    'A('+xVal.toFixed(1)+') = ∫₀^'+xVal.toFixed(1)+' t² dt = '+areaVal.toFixed(3)+
+    '\nf('+xVal.toFixed(1)+') = '+(xVal*xVal).toFixed(3)+
+    '\nA\'(x) = f(x) ✓  (FTC Part 1)';
+}
+
+// ═══════ Interactive 2: FTC Part 2 ═══════
+var ftc2Type = 'x2';
+function setFTC2(t) {
+  ftc2Type = t;
+  ['x2','2x','sin'].forEach(function(k) {
+    var b = document.getElementById('ftc2-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  updateFTC2();
+}
+function updateFTC2() {
+  var a = parseFloat(document.getElementById('ftc2-a').value);
+  var b = parseFloat(document.getElementById('ftc2-b').value);
+  document.getElementById('ftc2-a-val').textContent = a;
+  document.getElementById('ftc2-b-val').textContent = b;
+  if (b <= a) { document.getElementById('ftc2-result').textContent = 'b harus > a'; return; }
+
+  var f, F, fname, Fname;
+  if (ftc2Type === 'x2') { f = function(x){return x*x;}; F = function(x){return x*x*x/3;}; fname='x²'; Fname='x³/3'; }
+  else if (ftc2Type === '2x') { f = function(x){return 2*x;}; F = function(x){return x*x;}; fname='2x'; Fname='x²'; }
+  else { f = function(x){return Math.sin(x);}; F = function(x){return -Math.cos(x);}; fname='sin(x)'; Fname='-cos(x)'; }
+
+  var svg = document.getElementById('ftc2-svg');
+  var ox = 50, oy = 220, xSc = 50, ySc = (ftc2Type==='sin'?80:14);
+  var s = '';
+  s += '<line x1="'+ox+'" y1="20" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+
+  // shade
+  var areaPts = (ox+a*xSc)+','+oy+' ';
+  for (var x = a; x <= b; x += 0.03) {
+    var fy = oy - f(x)*ySc;
+    if (fy > 10 && fy < 250) areaPts += (ox+x*xSc)+','+fy+' ';
+  }
+  areaPts += (ox+b*xSc)+','+oy;
+  s += '<polygon points="'+areaPts+'" fill="rgba(36,113,163,0.2)"/>';
+
+  // curve
+  var pts = [];
+  for (var x = -0.5; x <= 5.5; x += 0.04) {
+    var py = oy - f(x)*ySc;
+    if (py > 5 && py < 255) pts.push((ox+x*xSc)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+  svg.innerHTML = s;
+
+  var val = F(b) - F(a);
+  document.getElementById('ftc2-result').textContent =
+    '∫ '+fname+' dx dari '+a+' ke '+b+
+    '\n= ['+Fname+'] dari '+a+' ke '+b+
+    '\n= F('+b+') − F('+a+') = '+F(b).toFixed(4)+' − '+F(a).toFixed(4)+' = '+val.toFixed(4);
+}
+
+// ═══════ Interactive 3: Velocity-Distance ═══════
+function updateVel() {
+  var v = parseFloat(document.getElementById('vel-slider').value);
+  var t = parseFloat(document.getElementById('time-slider').value);
+  document.getElementById('vel-val').textContent = v;
+  document.getElementById('time-val').textContent = t;
+  var svg = document.getElementById('vel-svg');
+  var ox = 50, oy = 170, xSc = 30, ySc = 15;
+  var s = '';
+  s += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="310" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  // rectangle
+  var rw = t * xSc, rh = v * ySc;
+  s += '<rect x="'+ox+'" y="'+(oy-rh)+'" width="'+rw+'" height="'+rh+'" fill="rgba(36,113,163,0.2)" stroke="#2471a3" stroke-width="1.5"/>';
+  // v line
+  s += '<line x1="'+ox+'" y1="'+(oy-rh)+'" x2="'+(ox+rw)+'" y2="'+(oy-rh)+'" stroke="#c0392b" stroke-width="2"/>';
+  s += '<text x="'+(ox+rw/2)+'" y="'+(oy-rh-6)+'" text-anchor="middle" font-family="Inter" font-size="11" fill="#c0392b">v = '+v+' m/s</text>';
+  s += '<text x="'+(ox+rw/2)+'" y="'+(oy+15)+'" text-anchor="middle" font-family="Inter" font-size="10">t = '+t+' s</text>';
+  s += '<text x="'+(ox+rw/2)+'" y="'+(oy-rh/2+4)+'" text-anchor="middle" font-family="Inter" font-size="12" fill="#2471a3" font-weight="600">'+v*t+' m</text>';
+  svg.innerHTML = s;
+  document.getElementById('vel-result').textContent =
+    'Jarak = ∫₀^'+t+' '+v+' dt = '+v+' × '+t+' = '+(v*t)+' m\nLuas persegi panjang = jarak tempuh';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateFTC1();
+  updateFTC2();
+  updateVel();
+});
+</script>
+</body>
+</html>

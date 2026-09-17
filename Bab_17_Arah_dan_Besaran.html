@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 17 — Arah dan Besaran (Vektor)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 17 · Volume V</div>
+  <h1 class="chapter-title">Arah dan Besaran</h1>
+  <p class="chapter-subtitle">
+    Tentang vektor — besaran yang membawa informasi arah,<br>
+    bukan hanya "berapa besar" tapi juga "ke mana."
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Selama ini kita bekerja dengan bilangan — skalar. Tapi banyak hal di dunia nyata yang tidak cukup dideskripsikan oleh satu angka. "Angin bertiup 30 km/jam" — ke mana? "Pesawat bergerak 500 km/jam" — ke arah mana? Vektor menjawab: besaran yang punya <em>besar</em> sekaligus <em>arah</em>.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu mendorong meja. Besar gaya saja tidak cukup — arah dorong menentukan segalanya. Mendorong ke kanan atau ke atas menghasilkan efek berbeda walaupun gayanya sama besar. Itulah mengapa kita membutuhkan vektor.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana matematika bisa menangkap<br>informasi 'ke mana', bukan hanya 'berapa banyak'?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Sejarah: Dari Gaya ke Ruang Abstrak</h2>
+
+  <div class="historical-note">
+    <strong>Simon Stevin</strong> (1548–1620) dan kemudian <strong>Isaac Newton</strong> menggambar gaya sebagai panah dan menemukan bahwa dua gaya bisa dijumlahkan menggunakan aturan <em>jajaran genjang</em> (parallelogram rule). Ini adalah gagasan vektor sebelum kata "vektor" ada.
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Biruni</strong> (973–1048 M) dalam karyanya tentang geodesi dan astronomi secara implisit menggunakan dekomposisi vektor saat menghitung jarak dan arah di permukaan bumi menggunakan komponen lintang dan bujur. <strong>Nasir al-Din al-Tusi</strong> (1201–1274 M) menguraikan gerak planet menjadi komponen melingkar — sebuah dekomposisi vektor geometris.
+  </div>
+
+  <div class="historical-note">
+    Istilah "vektor" (dari bahasa Latin <em>vehere</em>, "membawa") diperkenalkan oleh <strong>William Rowan Hamilton</strong> (1843) saat menciptakan <em>quaternion</em>. <strong>Josiah Willard Gibbs</strong> dan <strong>Oliver Heaviside</strong> kemudian menyederhanakan quaternion menjadi aljabar vektor yang kita pelajari hari ini.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DEFINISI ═══════════════════════ -->
+
+  <h2>Vektor: Definisi dan Notasi</h2>
+
+  <div class="definition-box">
+    <strong>Vektor</strong> adalah besaran yang memiliki <em>besar</em> (magnitude) dan <em>arah</em>. Ditulis $\vec{v}$ atau $\mathbf{v}$. Dalam koordinat 2D: $\vec{v} = \begin{pmatrix} v_x \\ v_y \end{pmatrix}$ atau $\vec{v} = (v_x, v_y)$.
+  </div>
+
+  <p>
+    <strong>Besar</strong> (panjang): $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$ — ingat rumus jarak dari Bab 9!
+  </p>
+
+  <div class="key-insight">
+    <strong>Skalar vs Vektor:</strong><br>
+    • Skalar: suhu ($30°\text{C}$), massa ($5$ kg) — hanya satu angka<br>
+    • Vektor: kecepatan ($60$ km/jam ke utara), gaya ($10$ N ke kanan) — angka + arah
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Operasi pada Vektor</h2>
+
+  <h3>Penjumlahan</h3>
+  <p>
+    $\vec{u} + \vec{v} = (u_x + v_x,\; u_y + v_y)$. Secara geometris: letakkan ekor $\vec{v}$ di ujung $\vec{u}$ — hasilnya dari ekor $\vec{u}$ ke ujung $\vec{v}$.
+  </p>
+
+  <h3>Perkalian Skalar</h3>
+  <p>
+    $k \cdot \vec{v} = (k \cdot v_x,\; k \cdot v_y)$. Mengubah panjang (dan membalik arah jika $k < 0$).
+  </p>
+
+  <h3>Dot Product (Perkalian Titik)</h3>
+  <div class="definition-box">
+    $$\vec{u} \cdot \vec{v} = u_x v_x + u_y v_y = |\vec{u}||\vec{v}|\cos\theta$$
+    di mana $\theta$ adalah sudut antara kedua vektor. Hasilnya <em>skalar</em>, bukan vektor.
+  </div>
+
+  <div class="key-insight">
+    <strong>Dot product mendeteksi arah relatif:</strong><br>
+    • $\vec{u} \cdot \vec{v} > 0$: sudut lancip (searah)<br>
+    • $\vec{u} \cdot \vec{v} = 0$: tegak lurus!<br>
+    • $\vec{u} \cdot \vec{v} < 0$: sudut tumpul (berlawanan arah)
+  </div>
+
+  <h3>Vektor Satuan</h3>
+  <p>
+    Vektor satuan = vektor dengan panjang 1: $\hat{v} = \frac{\vec{v}}{|\vec{v}|}$. "Arah murni tanpa besaran."
+  </p>
+
+  <!-- INTERACTIVE 1: Vector Addition -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjumlahan Vektor</div>
+    <div class="interactive-desc">Atur komponen dua vektor dan lihat hasil penjumlahannya.</div>
+
+    <div class="slider-container">
+      <label>u_x: <strong id="ux-val">2</strong></label>
+      <input type="range" id="ux" min="-4" max="4" value="2" step="0.5" oninput="updateVecAdd()">
+    </div>
+    <div class="slider-container">
+      <label>u_y: <strong id="uy-val">3</strong></label>
+      <input type="range" id="uy" min="-4" max="4" value="3" step="0.5" oninput="updateVecAdd()">
+    </div>
+    <div class="slider-container">
+      <label>v_x: <strong id="vx-val">3</strong></label>
+      <input type="range" id="vx" min="-4" max="4" value="3" step="0.5" oninput="updateVecAdd()">
+    </div>
+    <div class="slider-container">
+      <label>v_y: <strong id="vy-val">-1</strong></label>
+      <input type="range" id="vy" min="-4" max="4" value="-1" step="0.5" oninput="updateVecAdd()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="vecadd-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="vecadd-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 2: Dot Product -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Dot Product dan Sudut</div>
+    <div class="interactive-desc">Putar vektor kedua dan amati bagaimana dot product berubah tanda.</div>
+
+    <div class="slider-container">
+      <label>Sudut vektor v: <strong id="dot-angle-val">45</strong>°</label>
+      <input type="range" id="dot-angle" min="0" max="360" value="45" step="5" oninput="updateDot()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="dot-svg" width="300" height="300" viewBox="0 0 300 300"></svg>
+    </div>
+
+    <div id="dot-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 3: Unit Vector -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Vektor Satuan — Normalisasi</div>
+    <div class="interactive-desc">Ubah vektor dan lihat vektor satuannya (panjang = 1, arah sama).</div>
+
+    <div class="slider-container">
+      <label>x: <strong id="unit-x-val">3</strong></label>
+      <input type="range" id="unit-x" min="-5" max="5" value="3" step="0.5" oninput="updateUnit()">
+    </div>
+    <div class="slider-container">
+      <label>y: <strong id="unit-y-val">4</strong></label>
+      <input type="range" id="unit-y" min="-5" max="5" value="4" step="0.5" oninput="updateUnit()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="unit-svg" width="300" height="300" viewBox="0 0 300 300"></svg>
+    </div>
+
+    <div id="unit-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Menjumlahkan besar vektor, bukan komponennya.</strong><br>
+    $|\vec{u} + \vec{v}| \neq |\vec{u}| + |\vec{v}|$ (kecuali keduanya searah). Selalu jumlahkan komponen: $(u_x + v_x, u_y + v_y)$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Mengira dot product menghasilkan vektor.</strong><br>
+    $\vec{u} \cdot \vec{v}$ = skalar (satu angka), bukan vektor. Jangan bingung dengan cross product (yang menghasilkan vektor, dipelajari di kalkulus multivariabel).
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Basic</div>
+    <p>Jika $\vec{u} = (3, 4)$, hitung $|\vec{u}|$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$|\vec{u}| = \sqrt{u_x^2 + u_y^2}$.</div>
+    <div class="answer-content" id="a1">$\sqrt{9 + 16} = \sqrt{25} = 5$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Addition</div>
+    <p>$\vec{a} = (2, -1)$, $\vec{b} = (-3, 5)$. Hitung $\vec{a} + \vec{b}$ dan $|\vec{a} + \vec{b}|$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Jumlahkan komponen-per-komponen.</div>
+    <div class="answer-content" id="a2">$\vec{a}+\vec{b} = (-1, 4)$. $|\vec{a}+\vec{b}| = \sqrt{1+16} = \sqrt{17} \approx 4{,}12$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Dot Product</div>
+    <p>$\vec{u} = (1, 2)$, $\vec{v} = (4, -1)$. Hitung $\vec{u} \cdot \vec{v}$. Apakah mereka tegak lurus?</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$\vec{u}\cdot\vec{v} = u_xv_x + u_yv_y$. Tegak lurus jika = 0.</div>
+    <div class="answer-content" id="a3">$1(4) + 2(-1) = 4 - 2 = 2 \neq 0$. Tidak tegak lurus.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Perpendicular</div>
+    <p>Cari vektor yang tegak lurus terhadap $\vec{v} = (3, 2)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Jika $(a, b)$ tegak lurus $(3, 2)$, maka $3a + 2b = 0$.</div>
+    <div class="answer-content" id="a4">$(-2, 3)$ (atau kelipatannya). Cek: $3(-2) + 2(3) = 0$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Unit Vector</div>
+    <p>Cari vektor satuan dari $\vec{w} = (5, 12)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$|\vec{w}| = \sqrt{25+144}$. Bagi setiap komponen dengan $|\vec{w}|$.</div>
+    <div class="answer-content" id="a5">$|\vec{w}| = 13$. $\hat{w} = (\frac{5}{13}, \frac{12}{13})$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Angle</div>
+    <p>Hitung sudut antara $\vec{u} = (1, 0)$ dan $\vec{v} = (1, 1)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">$\cos\theta = \frac{\vec{u}\cdot\vec{v}}{|\vec{u}||\vec{v}|}$.</div>
+    <div class="answer-content" id="a6">$\cos\theta = \frac{1}{\sqrt{2}}$, jadi $\theta = 45°$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Recall Bab 9</div>
+    <p>Jarak dari $(1, 2)$ ke $(4, 6)$ bisa dihitung menggunakan vektor perpindahan. Tulis vektor perpindahannya dan hitung jaraknya.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Vektor perpindahan = titik akhir − titik awal.</div>
+    <div class="answer-content" id="a7">$\vec{d} = (4-1, 6-2) = (3, 4)$. $|\vec{d}| = 5$. Sama dengan rumus jarak dari Bab 9!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Application</div>
+    <p>Dua gaya: $\vec{F}_1 = (3, 4)$ N dan $\vec{F}_2 = (-1, 2)$ N. Cari resultan dan besarnya.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Resultan = $\vec{F}_1 + \vec{F}_2$.</div>
+    <div class="answer-content" id="a8">Resultan = $(2, 6)$ N. $|\vec{F}| = \sqrt{4+36} = \sqrt{40} = 2\sqrt{10} \approx 6{,}32$ N.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog</h2>
+  <p>
+    Vektor menangkap "ke mana" — dimensi baru yang tidak dimiliki bilangan biasa. Di bab berikutnya, kita akan melihat apa yang terjadi ketika banyak vektor perlu ditransformasi sekaligus. Jawabannya: <strong>matriks</strong>.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 18 — Transformasi Dunia (Matriks)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+function drawArrow(svg, x1,y1,x2,y2,color,w) {
+  w = w || 2;
+  var dx = x2-x1, dy = y2-y1, len = Math.sqrt(dx*dx+dy*dy);
+  if (len < 1) return '';
+  var ux = dx/len, uy = dy/len;
+  var ax = x2 - ux*8, ay = y2 - uy*8;
+  var px = -uy*4, py = ux*4;
+  return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+color+'" stroke-width="'+w+'"/>'+
+    '<polygon points="'+x2+','+y2+' '+(ax+px)+','+(ay+py)+' '+(ax-px)+','+(ay-py)+'" fill="'+color+'"/>';
+}
+
+// ═══════ Interactive 1: Vector Addition ═══════
+function updateVecAdd() {
+  var ux=parseFloat(document.getElementById('ux').value), uy=parseFloat(document.getElementById('uy').value);
+  var vx=parseFloat(document.getElementById('vx').value), vy=parseFloat(document.getElementById('vy').value);
+  document.getElementById('ux-val').textContent=ux; document.getElementById('uy-val').textContent=uy;
+  document.getElementById('vx-val').textContent=vx; document.getElementById('vy-val').textContent=vy;
+
+  var svg=document.getElementById('vecadd-svg');
+  var ox=160, oy=160, sc=30;
+  var s='';
+  // grid
+  for(var i=-5;i<=5;i++){
+    s+='<line x1="'+(ox+i*sc)+'" y1="10" x2="'+(ox+i*sc)+'" y2="310" stroke="#eee" stroke-width="0.5"/>';
+    s+='<line x1="10" y1="'+(oy+i*sc)+'" x2="310" y2="'+(oy+i*sc)+'" stroke="#eee" stroke-width="0.5"/>';
+  }
+  s+='<line x1="10" y1="'+oy+'" x2="310" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s+='<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="310" stroke="currentColor" stroke-width="1"/>';
+
+  // u (red)
+  s+=drawArrow(svg, ox,oy, ox+ux*sc,oy-uy*sc, '#c0392b', 2.5);
+  // v from tip of u (blue)
+  s+=drawArrow(svg, ox+ux*sc,oy-uy*sc, ox+(ux+vx)*sc,oy-(uy+vy)*sc, '#2471a3', 2.5);
+  // result (green)
+  s+=drawArrow(svg, ox,oy, ox+(ux+vx)*sc,oy-(uy+vy)*sc, '#27ae60', 2.5);
+
+  s+='<text x="'+(ox+ux*sc/2-10)+'" y="'+(oy-uy*sc/2-5)+'" font-family="Inter" font-size="11" fill="#c0392b" font-weight="600">u</text>';
+  s+='<text x="'+(ox+ux*sc+vx*sc/2+5)+'" y="'+(oy-uy*sc-vy*sc/2)+'" font-family="Inter" font-size="11" fill="#2471a3" font-weight="600">v</text>';
+  s+='<text x="'+(ox+(ux+vx)*sc/2+5)+'" y="'+(oy-(uy+vy)*sc/2+15)+'" font-family="Inter" font-size="11" fill="#27ae60" font-weight="600">u+v</text>';
+
+  svg.innerHTML=s;
+  var rx=ux+vx, ry=uy+vy;
+  document.getElementById('vecadd-result').textContent=
+    'u = ('+ux+', '+uy+'), v = ('+vx+', '+vy+')\nu + v = ('+rx+', '+ry+')\n|u+v| = '+Math.sqrt(rx*rx+ry*ry).toFixed(3);
+}
+
+// ═══════ Interactive 2: Dot Product ═══════
+function updateDot() {
+  var ang = parseInt(document.getElementById('dot-angle').value);
+  document.getElementById('dot-angle-val').textContent = ang;
+  var svg = document.getElementById('dot-svg');
+  var ox=150, oy=150, sc=60;
+  var ux=1, uy=0;
+  var rad = ang * Math.PI/180;
+  var vx=Math.cos(rad), vy=Math.sin(rad);
+  var dot = ux*vx + uy*vy;
+  var s='';
+  s+='<line x1="10" y1="'+oy+'" x2="290" y2="'+oy+'" stroke="currentColor" stroke-width="0.5"/>';
+  s+='<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="290" stroke="currentColor" stroke-width="0.5"/>';
+
+  s+=drawArrow(svg, ox,oy, ox+ux*sc*2,oy-uy*sc*2, '#c0392b', 2.5);
+  s+=drawArrow(svg, ox,oy, ox+vx*sc*2,oy-vy*sc*2, '#2471a3', 2.5);
+
+  // arc
+  var arcR = 30;
+  var endAng = -ang;
+  if (ang > 0 && ang <= 180) {
+    s += '<path d="M '+(ox+arcR)+' '+oy+' A '+arcR+' '+arcR+' 0 0 '+(ang>180?1:0)+' '+(ox+arcR*Math.cos(rad))+' '+(oy-arcR*Math.sin(rad))+'" fill="none" stroke="#888" stroke-width="1"/>';
+  }
+  s+='<text x="'+(ox+sc*2+5)+'" y="'+(oy-5)+'" font-family="Inter" font-size="11" fill="#c0392b">u</text>';
+  s+='<text x="'+(ox+vx*sc*2+5)+'" y="'+(oy-vy*sc*2-5)+'" font-family="Inter" font-size="11" fill="#2471a3">v</text>';
+
+  var bg = dot > 0.01 ? 'rgba(39,174,96,0.15)' : (dot < -0.01 ? 'rgba(192,57,43,0.15)' : 'rgba(36,113,163,0.15)');
+  s+='<rect x="70" y="260" width="160" height="28" rx="4" fill="'+bg+'"/>';
+  var label = dot > 0.01 ? 'Searah' : (dot < -0.01 ? 'Berlawanan' : 'Tegak Lurus!');
+  s+='<text x="150" y="279" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">'+label+'</text>';
+
+  svg.innerHTML=s;
+  document.getElementById('dot-result').textContent=
+    'u·v = cos('+ang+'°) = '+dot.toFixed(4)+
+    '\nSudut: '+ang+'° → '+label;
+}
+
+// ═══════ Interactive 3: Unit Vector ═══════
+function updateUnit() {
+  var x=parseFloat(document.getElementById('unit-x').value);
+  var y=parseFloat(document.getElementById('unit-y').value);
+  document.getElementById('unit-x-val').textContent=x;
+  document.getElementById('unit-y-val').textContent=y;
+  var svg=document.getElementById('unit-svg');
+  var ox=150,oy=150,sc=20;
+  var mag=Math.sqrt(x*x+y*y);
+  var s='';
+  s+='<line x1="10" y1="'+oy+'" x2="290" y2="'+oy+'" stroke="currentColor" stroke-width="0.5"/>';
+  s+='<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="290" stroke="currentColor" stroke-width="0.5"/>';
+  // circle of radius 1
+  s+='<circle cx="'+ox+'" cy="'+oy+'" r="'+sc+'" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>';
+
+  if(mag > 0.01) {
+    s+=drawArrow(svg, ox,oy, ox+x*sc,oy-y*sc, '#c0392b', 2);
+    var ux=x/mag, uy=y/mag;
+    s+=drawArrow(svg, ox,oy, ox+ux*sc,oy-uy*sc, '#2471a3', 2.5);
+    s+='<text x="'+(ox+x*sc+8)+'" y="'+(oy-y*sc)+'" font-family="Inter" font-size="10" fill="#c0392b">v</text>';
+    s+='<text x="'+(ox+ux*sc+8)+'" y="'+(oy-uy*sc)+'" font-family="Inter" font-size="10" fill="#2471a3">v&#x0302;</text>';
+    document.getElementById('unit-result').textContent=
+      'v = ('+x+', '+y+'), |v| = '+mag.toFixed(3)+
+      '\nv-hat = ('+ux.toFixed(3)+', '+uy.toFixed(3)+'), |v-hat| = 1';
+  } else {
+    document.getElementById('unit-result').textContent='Vektor nol tidak memiliki vektor satuan.';
+  }
+  svg.innerHTML=s;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateVecAdd(); updateDot(); updateUnit();
+});
+</script>
+</body>
+</html>

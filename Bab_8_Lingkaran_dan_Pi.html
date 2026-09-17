@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 8 — Lingkaran dan π: Kembali ke Bilangan Misterius</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 8 · Volume II</div>
+  <h1 class="chapter-title">Lingkaran dan π<br><span style="font-size: 0.6em; font-weight: 400;">Kembali ke Bilangan Misterius</span></h1>
+  <p class="chapter-subtitle">
+    Tentang bentuk yang paling sempurna, bilangan yang paling misterius,<br>
+    dan hubungan mendalam antara keduanya.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 3, kita bertemu $\pi$ untuk pertama kali — bilangan irasional yang muncul dari perbandingan keliling dan diameter lingkaran. Di Bab 6, kita menghitung luas dan keliling lingkaran menggunakan rumus $\pi r^2$ dan $2\pi r$. Tapi kita belum pernah bertanya: <em>mengapa</em> rumus itu berbentuk seperti itu? Dari mana $\pi$ muncul? Dan mengapa bentuk bulat ini begitu istimewa?
+  </p>
+
+  <p>
+    Bab ini adalah pertemuan kembali dengan teman lama — dan kali ini, kita akan mengenalnya lebih dalam.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu mengikat seutas tali ke sebuah paku, lalu merentangkannya kencang dan menggoreskan ujungnya di atas pasir. Goresan itu membentuk lingkaran. Setiap titik pada lingkaran berjarak <em>sama</em> dari paku. Itulah definisi lingkaran — dan dari definisi sederhana ini, muncul salah satu bilangan paling penting dalam seluruh matematika.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN ═══════════════════════ -->
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Mengapa keliling lingkaran selalu sekitar 3,14 kali diameternya?<br>Dari mana bilangan ini datang, dan mengapa ia tidak pernah berakhir?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Perburuan π: Empat Ribu Tahun Mengejar Bilangan</h2>
+
+  <p>
+    Manusia telah mengetahui bahwa perbandingan keliling dan diameter lingkaran itu konstan jauh sebelum mereka punya nama untuk bilangan itu. Tapi menentukan nilainya yang <em>tepat</em> — itu cerita lain. Perburuan presisi $\pi$ berlangsung ribuan tahun, melibatkan banyak peradaban, dan belum selesai sampai sekarang.
+  </p>
+
+  <h3>Mesir dan Babilonia: Perkiraan Pertama</h3>
+
+  <div class="historical-note">
+    <strong>Papirus Rhind</strong> (sekitar 1650 SM) dari Mesir mencatat sebuah metode menghitung luas lingkaran: "Kurangi $\frac{1}{9}$ dari diameter, lalu kuadratkan hasilnya." Dalam notasi modern: $L = \left(\frac{8}{9}d\right)^2 = \frac{64}{81}d^2$. Jika kita bandingkan dengan $L = \frac{\pi}{4}d^2$, ini berarti mereka menggunakan $\pi \approx \frac{256}{81} \approx 3{,}1605$ — hanya berbeda 0,6% dari nilai sebenarnya!
+  </div>
+
+  <div class="historical-note">
+    Bangsa <strong>Babilonia</strong> menggunakan pendekatan yang lebih sederhana: $\pi \approx 3$ untuk perhitungan sehari-hari, dan kadang $\pi \approx 3\frac{1}{8} = 3{,}125$ untuk perhitungan yang lebih teliti. Dalam Alkitab, 1 Raja-raja 7:23 mendeskripsikan sebuah bejana tembaga yang "sepuluh hasta dari tepi ke tepi ... dan tiga puluh hasta tali melingkarinya" — mengimplikasikan $\pi = 3$.
+  </div>
+
+  <h3>Archimedes: Metode yang Mengubah Segalanya</h3>
+
+  <div class="historical-note">
+    <strong>Archimedes dari Sirakusa</strong> (sekitar 287–212 SM) menemukan metode pertama yang <em>secara sistematis</em> mendekati $\pi$ dengan presisi sesuka hati. Alih-alih mengukur lingkaran, ia <em>mengapit</em> lingkaran di antara dua segi-banyak beraturan — satu di dalam, satu di luar. Keliling segi-banyak dalam lebih kecil dari keliling lingkaran, keliling segi-banyak luar lebih besar. Semakin banyak sisi, semakin ketat apitannya. Dengan segi-96 (!) ia mendapatkan:
+    $$3\tfrac{10}{71} < \pi < 3\tfrac{1}{7}$$
+    yaitu $3{,}14084... < \pi < 3{,}14285...$  Ini bukan hanya perkiraan — ini <em>jaminan</em> bahwa $\pi$ ada di situ.
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 3: kita sudah membangun eksperimen interaktif metode Archimedes — mendekati $\pi$ dengan segi-banyak. Sekarang kita memahami konteks sejarahnya.
+  </div>
+
+  <h3>Dunia Islam: Presisi yang Mencengangkan</h3>
+
+  <div class="historical-note">
+    <strong>Al-Khwarizmi</strong> (sekitar 780–850 M), yang sudah kita kenal dari Bab 4 dan 5, menggunakan $\pi \approx 3{,}1416$ dalam karyanya — pendekatan yang luar biasa akurat untuk zamannya. Ia menghitung keliling dan luas lingkaran dalam konteks praktis: pengukuran tanah, arsitektur, dan astronomi.
+  </div>
+
+  <div class="historical-note">
+    <strong>Jamshid al-Kashi</strong> (sekitar 1380–1429 M), yang sudah kita sebut di Bab 3, menghitung $\pi$ hingga <strong>16 digit desimal</strong> di observatorium Samarkand — menggunakan metode Archimedes dengan segi-banyak yang memiliki $3 \times 2^{28}$ sisi (lebih dari 800 juta sisi!). Rekor ini bertahan lebih dari satu abad. Al-Kashi menuliskan:
+    $$\pi \approx 3{,}14159265358979324...$$
+    Ia melakukannya dengan aritmetika tangan, tanpa kalkulator. Dedikasi dan ketelitian yang nyaris tak terbayangkan.
+  </div>
+
+  <div class="historical-note">
+    Sedikit lebih awal, <strong>Ghiyath al-Din Jamshid Kashani</strong> (nama lengkap al-Kashi) juga menghitung $\sin 1°$ hingga 18 digit — sebuah prestasi yang memerlukan penyelesaian persamaan kubik melalui iterasi. Perhitungannya menjadi fondasi tabel trigonometri yang digunakan oleh astronom selama berabad-abad.
+  </div>
+
+  <h3>India dan China: Pendekatan Alternatif</h3>
+
+  <div class="historical-note">
+    Di <strong>India</strong>, matematikawan-astronom <strong>Aryabhata</strong> (476–550 M) menulis bahwa keliling lingkaran dengan diameter 20.000 adalah 62.832 — mengimplikasikan $\pi \approx 3{,}1416$. Kemudian, <strong>Madhava dari Sangamagrama</strong> (sekitar 1350–1425 M) menemukan deret tak hingga:
+    $$\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots$$
+    Ini adalah terobosan luar biasa — menghubungkan $\pi$ dengan penjumlahan pecahan sederhana — lebih dari 200 tahun sebelum Leibniz menemukan deret yang sama di Eropa.
+  </div>
+
+  <div class="historical-note">
+    Di <strong>China</strong>, <strong>Zu Chongzhi</strong> (429–500 M) menghitung $\pi$ hingga 7 digit: $3{,}1415926 < \pi < 3{,}1415927$. Ia juga menemukan pendekatan pecahan yang menakjubkan: $\frac{355}{113} = 3{,}14159292...$, yang benar hingga 6 digit desimal. Pecahan ini tidak akan ditemukan kembali di Eropa selama lebih dari seribu tahun.
+  </div>
+
+  <p>
+    Perhatikan benang merahnya: setiap peradaban yang cukup maju pasti bertemu $\pi$, karena lingkaran ada di mana-mana — roda, bulan, orbit, lengkungan. Dan setiap peradaban mengejarnya lebih jauh, didorong oleh campuran kebutuhan praktis dan rasa ingin tahu murni.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DEFINISI ═══════════════════════ -->
+
+  <h2>Definisi Formal: Apa Itu Lingkaran?</h2>
+
+  <div class="definition-box">
+    <strong>Lingkaran</strong> adalah himpunan semua titik pada bidang datar yang berjarak sama dari satu titik tetap. Titik tetap itu disebut <strong>pusat</strong>, dan jarak tetap itu disebut <strong>jari-jari</strong> ($r$).
+  </div>
+
+  <p>
+    Perhatikan: lingkaran adalah <em>garis lengkung</em>, bukan daerah. Daerah di dalam lingkaran disebut <strong>cakram</strong> (disk). Tapi dalam bahasa sehari-hari, kita sering menggunakan "lingkaran" untuk keduanya.
+  </p>
+
+  <h3>Bagian-bagian Lingkaran</h3>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Jari-jari ($r$)</strong>: jarak dari pusat ke titik di lingkaran.</li>
+      <li><strong>Diameter ($d$)</strong>: garis lurus dari satu titik lingkaran, melewati pusat, ke titik di sisi lain. $d = 2r$.</li>
+      <li><strong>Keliling ($K$)</strong>: panjang total garis lingkaran. $K = 2\pi r = \pi d$.</li>
+      <li><strong>Luas ($L$)</strong>: daerah di dalam lingkaran. $L = \pi r^2$.</li>
+      <li><strong>Busur</strong>: sebagian dari keliling lingkaran.</li>
+      <li><strong>Tali busur</strong>: garis lurus yang menghubungkan dua titik di lingkaran.</li>
+      <li><strong>Juring (sektor)</strong>: daerah "potongan kue" antara dua jari-jari.</li>
+      <li><strong>Tembereng (segmen)</strong>: daerah antara tali busur dan busurnya.</li>
+    </ul>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KELILING ═══════════════════════ -->
+
+  <h2>Mengapa Keliling = $2\pi r$?</h2>
+
+  <p>
+    Definisi $\pi$ sendiri menjawab pertanyaan ini. $\pi$ <em>didefinisikan</em> sebagai rasio keliling terhadap diameter:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $\pi = \frac{K}{d} = \frac{K}{2r}$
+  </p>
+
+  <p>
+    Kalikan kedua sisi dengan $2r$:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $K = 2\pi r$
+  </p>
+
+  <p>
+    Jadi rumus keliling bukan sesuatu yang "ditemukan" — ia <em>mengikuti langsung</em> dari definisi $\pi$. Pertanyaan yang lebih menarik: mengapa rasio ini <em>konstan</em>? Mengapa tidak tergantung pada ukuran lingkaran?
+  </p>
+
+  <p>
+    Jawabannya: karena semua lingkaran <strong>sebangun</strong> (ingat dari Bab 7). Setiap lingkaran bisa diperbesar atau diperkecil menjadi lingkaran lain. Kesebangungan menjaga rasio — jadi rasio keliling terhadap diameter selalu sama untuk semua lingkaran.
+  </p>
+
+  <!-- INTERACTIVE 1: Measuring Pi -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mengukur π — Rasio yang Konstan</div>
+    <div class="interactive-desc">Ubah jari-jari lingkaran. Perhatikan bahwa rasio keliling/diameter selalu mendekati 3,14159...</div>
+
+    <div class="slider-container">
+      <label>Jari-jari: <strong id="pi-r-val">5</strong></label>
+      <input type="range" id="pi-r" min="1" max="12" value="5" oninput="updatePiMeasure()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="pi-measure-svg" width="280" height="280" viewBox="0 0 280 280"></svg>
+    </div>
+
+    <div id="pi-measure-result" class="result-display" style="font-size: 0.92rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LUAS ═══════════════════════ -->
+
+  <h2>Mengapa Luas = $\pi r^2$?</h2>
+
+  <p>
+    Rumus luas lingkaran lebih misterius dari rumus keliling. $\pi r^2$ — mengapa kuadrat? Dan bagaimana $\pi$ muncul lagi?
+  </p>
+
+  <p>
+    Ada beberapa cara untuk "membongkar" rumus ini. Yang paling intuitif menggunakan ide yang sudah kuno: <strong>potong lingkaran menjadi banyak juring tipis</strong>, lalu susun ulang.
+  </p>
+
+  <div class="key-insight">
+    <strong>Penurunan intuitif:</strong><br>
+    Potong lingkaran menjadi $n$ juring yang sama besar (seperti potongan pizza). Susun juring-juring itu berselang-seling — satu menghadap ke atas, satu ke bawah — membentuk sesuatu yang hampir menyerupai <strong>persegi panjang</strong>:
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>"Panjang" persegi panjang ≈ setengah keliling = $\pi r$</li>
+      <li>"Lebar" persegi panjang ≈ jari-jari = $r$</li>
+      <li>Luas ≈ panjang × lebar = $\pi r \times r = \pi r^2$</li>
+    </ul>
+    Semakin banyak juring (semakin tipis potongannya), semakin tepat bentuknya menyerupai persegi panjang. Pada batasnya (jumlah potongan → tak hingga), luasnya tepat $\pi r^2$.
+  </div>
+
+  <p>
+    Ide "memotong lalu menyusun ulang" ini sebenarnya cikal bakal integral — yang akan kita pelajari di Bab 15. Tapi untuk sekarang, intuisi visualnya sudah cukup meyakinkan.
+  </p>
+
+  <!-- INTERACTIVE 2: Pizza Proof -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Membongkar Lingkaran — Dari Pizza ke Persegi Panjang</div>
+    <div class="interactive-desc">Tingkatkan jumlah potongan dan lihat bagaimana lingkaran yang disusun ulang semakin menyerupai persegi panjang dengan luas $\pi r^2$.</div>
+
+    <div class="slider-container">
+      <label>Jumlah potongan: <strong id="pizza-n-val">4</strong></label>
+      <input type="range" id="pizza-n" min="2" max="48" value="4" step="2" oninput="updatePizzaProof()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="pizza-svg" width="340" height="260" viewBox="0 0 340 260"></svg>
+    </div>
+
+    <div id="pizza-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SUDUT PUSAT & BUSUR ═══════════════════════ -->
+
+  <h2>Sudut Pusat, Busur, dan Juring</h2>
+
+  <p>
+    Sebuah <strong>sudut pusat</strong> adalah sudut yang titik puncaknya berada di pusat lingkaran. Sudut ini "memotong" sebagian lingkaran — busur dan juring.
+  </p>
+
+  <div class="key-insight">
+    Jika sudut pusat adalah $\theta$ derajat (dari total $360°$):
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Panjang busur</strong> = $\frac{\theta}{360°} \times 2\pi r$</li>
+      <li><strong>Luas juring</strong> = $\frac{\theta}{360°} \times \pi r^2$</li>
+    </ul>
+    Logikanya sederhana: juring dengan sudut $\theta$ adalah $\frac{\theta}{360°}$ bagian dari seluruh lingkaran.
+  </div>
+
+  <p>
+    Contoh: juring dengan sudut $90°$ (seperempat lingkaran) memiliki luas $\frac{90}{360} \times \pi r^2 = \frac{1}{4}\pi r^2$. Masuk akal — seperempat dari total luas.
+  </p>
+
+  <!-- INTERACTIVE 3: Sector Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Juring — Sudut, Busur, dan Luas</div>
+    <div class="interactive-desc">Atur sudut pusat dan jari-jari. Lihat bagaimana panjang busur dan luas juring berubah.</div>
+
+    <div class="slider-container">
+      <label>Sudut pusat (θ): <strong id="sector-angle-val">90</strong>°</label>
+      <input type="range" id="sector-angle" min="10" max="350" value="90" oninput="updateSector()">
+    </div>
+    <div class="slider-container">
+      <label>Jari-jari (r): <strong id="sector-r-val">5</strong></label>
+      <input type="range" id="sector-r" min="1" max="10" value="5" oninput="updateSector()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="sector-svg" width="280" height="280" viewBox="0 0 280 280"></svg>
+    </div>
+
+    <div id="sector-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ TEOREMA ═══════════════════════ -->
+
+  <h2>Teorema Lingkaran yang Penting</h2>
+
+  <h3>Sudut Keliling dan Sudut Pusat</h3>
+
+  <p>
+    <strong>Sudut keliling</strong> (inscribed angle) adalah sudut yang titik puncaknya berada di lingkaran dan kedua kakinya berupa tali busur.
+  </p>
+
+  <div class="key-insight">
+    <strong>Teorema Sudut Keliling:</strong> Sudut keliling selalu setengah dari sudut pusat yang mengapit busur yang sama.
+    $$\text{Sudut keliling} = \frac{1}{2} \times \text{sudut pusat}$$
+  </div>
+
+  <p>
+    Konsekuensi penting: <strong>Teorema Thales</strong> (yang kita sebut di Bab 7). Jika sudut pusat adalah $180°$ (yaitu diameter), maka sudut keliling = $\frac{180°}{2} = 90°$. Artinya:
+  </p>
+
+  <div class="key-insight">
+    <strong>Teorema Thales:</strong> Setiap sudut keliling yang mengapit setengah lingkaran (diameternya) selalu $90°$.
+  </div>
+
+  <h3>Garis Singgung</h3>
+
+  <p>
+    <strong>Garis singgung</strong> (tangent line) adalah garis yang menyentuh lingkaran di tepat satu titik. Sifat pentingnya:
+  </p>
+
+  <div class="key-insight">
+    Garis singgung selalu <strong>tegak lurus</strong> terhadap jari-jari di titik singgung. Ini akan menjadi ide penting ketika kita mempelajari turunan (Bab 14) — garis singgung kurva di sebuah titik menunjukkan arah kurva di titik itu.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ RADIAN ═══════════════════════ -->
+
+  <h2>Radian: Satuan Sudut yang Lebih Natural</h2>
+
+  <p>
+    Kita sudah menggunakan derajat ($°$) untuk mengukur sudut. Tapi ada satuan lain yang, meski awalnya terasa aneh, sebenarnya jauh lebih <em>natural</em> secara matematis: <strong>radian</strong>.
+  </p>
+
+  <div class="definition-box">
+    <strong>Satu radian</strong> adalah sudut pusat yang mengapit busur sepanjang <em>satu jari-jari</em>. Karena keliling penuh = $2\pi r$, maka satu putaran penuh = $\frac{2\pi r}{r} = 2\pi$ radian.
+  </div>
+
+  <div class="key-insight">
+    <strong>Konversi:</strong>
+    $$360° = 2\pi \text{ rad} \qquad \Longleftrightarrow \qquad 180° = \pi \text{ rad}$$
+    Beberapa sudut penting:
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$90° = \frac{\pi}{2}$ rad</li>
+      <li>$60° = \frac{\pi}{3}$ rad</li>
+      <li>$45° = \frac{\pi}{4}$ rad</li>
+      <li>$30° = \frac{\pi}{6}$ rad</li>
+    </ul>
+  </div>
+
+  <p>
+    Mengapa radian lebih natural? Karena dalam radian, rumus-rumus menjadi lebih bersih:
+  </p>
+  <ul style="margin: 0.5rem 0 0.5rem 1.2rem; line-height: 2;">
+    <li>Panjang busur = $r\theta$ (tanpa faktor $\frac{\pi}{180}$!)</li>
+    <li>Luas juring = $\frac{1}{2}r^2\theta$</li>
+  </ul>
+
+  <p>
+    Kita akan menggunakan radian secara intensif mulai Bab 11 (trigonometri) dan seterusnya.
+  </p>
+
+  <!-- INTERACTIVE 4: Radian Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Radian — Mengukur Sudut dengan Jari-jari</div>
+    <div class="interactive-desc">Geser slider untuk melihat hubungan antara derajat dan radian. Perhatikan busur merah — panjangnya tepat $r \times \theta$.</div>
+
+    <div class="slider-container">
+      <label>Sudut: <strong id="rad-deg-val">90</strong>° = <strong id="rad-rad-val">π/2</strong> rad</label>
+      <input type="range" id="rad-slider" min="0" max="360" value="90" oninput="updateRadian()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="radian-svg" width="280" height="280" viewBox="0 0 280 280"></svg>
+    </div>
+
+    <div id="radian-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mencampurkan $2\pi r$ (keliling) dan $\pi r^2$ (luas).</strong><br>
+    Keliling adalah <em>panjang garis</em> (satuan: cm), luas adalah <em>daerah</em> (satuan: cm²). Rumus dengan $r$ (bukan $r^2$) untuk keliling, $r^2$ untuk luas.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Lupa bahwa $r$ adalah jari-jari, bukan diameter.</strong><br>
+    Jika soal memberikan diameter $d = 10$, maka $r = 5$. Luas = $\pi(5)^2 = 25\pi$, bukan $\pi(10)^2 = 100\pi$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira $\pi = \frac{22}{7}$ atau $\pi = 3{,}14$ secara tepat.</strong><br>
+    $\frac{22}{7}$ dan $3{,}14$ adalah <em>pendekatan</em>. $\pi$ irasional — desimalnya tidak pernah berakhir dan tidak berulang (Bab 3). Untuk perhitungan, tulis jawaban dalam bentuk $\pi$ ketika diminta jawaban eksak.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❹ Salah menggunakan derajat dalam rumus radian.</strong><br>
+    Panjang busur = $r\theta$ hanya benar jika $\theta$ dalam <em>radian</em>. Jika $\theta$ dalam derajat, gunakan $\frac{\theta}{360°} \times 2\pi r$.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Sebuah lingkaran memiliki jari-jari 7 cm. Hitung keliling dan luasnya (biarkan jawaban dalam bentuk $\pi$).</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$K = 2\pi r$ dan $L = \pi r^2$.</div>
+    <div class="answer-content" id="a1">$K = 2\pi(7) = 14\pi$ cm $\approx 43{,}98$ cm.<br>$L = \pi(7)^2 = 49\pi$ cm² $\approx 153{,}94$ cm².</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Sebuah juring lingkaran memiliki jari-jari 10 cm dan sudut pusat $72°$. Hitung panjang busur dan luas juring.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$72°$ adalah $\frac{72}{360} = \frac{1}{5}$ dari lingkaran penuh.</div>
+    <div class="answer-content" id="a2">Busur = $\frac{72}{360} \times 2\pi(10) = \frac{1}{5} \times 20\pi = 4\pi \approx 12{,}57$ cm.<br>Luas juring = $\frac{72}{360} \times \pi(10)^2 = \frac{1}{5} \times 100\pi = 20\pi \approx 62{,}83$ cm².</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Conversion</div>
+    <p>Konversikan sudut berikut: (a) $120°$ ke radian, (b) $\frac{5\pi}{6}$ rad ke derajat.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$180° = \pi$ rad. Jadi kalikan derajat dengan $\frac{\pi}{180}$, atau radian dengan $\frac{180}{\pi}$.</div>
+    <div class="answer-content" id="a3">(a) $120° \times \frac{\pi}{180°} = \frac{2\pi}{3}$ rad.<br>(b) $\frac{5\pi}{6} \times \frac{180°}{\pi} = \frac{5 \times 180}{6} = 150°$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Conceptual</div>
+    <p>Jika jari-jari lingkaran digandakan, apa yang terjadi pada keliling dan luasnya?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Substitusikan $2r$ ke dalam kedua rumus dan bandingkan.</div>
+    <div class="answer-content" id="a4">Keliling: $2\pi(2r) = 4\pi r$ → keliling <strong>dua kali lipat</strong>.<br>Luas: $\pi(2r)^2 = 4\pi r^2$ → luas <strong>empat kali lipat</strong>.<br>Ini masuk akal: keliling proporsional terhadap $r$, luas proporsional terhadap $r^2$. Inilah mengapa pizza berdiameter 30 cm mengandung jauh lebih banyak makanan daripada dua pizza berdiameter 15 cm!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application</div>
+    <p>Sebuah roda berjari-jari 35 cm berputar 100 kali. Berapa jarak yang ditempuh (dalam meter)?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Setiap putaran menempuh jarak = keliling lingkaran.</div>
+    <div class="answer-content" id="a5">Keliling = $2\pi(35) = 70\pi$ cm. Jarak = $100 \times 70\pi = 7000\pi \approx 21.991$ cm $\approx 219{,}9$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Radian</div>
+    <p>Sebuah busur lingkaran dengan jari-jari 8 cm panjangnya 12 cm. Berapa sudut pusat dalam radian dan derajat?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Panjang busur = $r\theta$ (radian). Jadi $\theta = \frac{\text{panjang busur}}{r}$.</div>
+    <div class="answer-content" id="a6">$\theta = \frac{12}{8} = 1{,}5$ rad. Dalam derajat: $1{,}5 \times \frac{180}{\pi} \approx 85{,}9°$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Connection (Recall Bab 3 & 7)</div>
+    <p>Menggunakan Teorema Pythagoras (Bab 7): sebuah tali busur panjangnya 24 cm, dan jarak dari pusat lingkaran ke tali busur (apotema) adalah 5 cm. Berapakah jari-jari lingkaran?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Apotema tegak lurus terhadap tali busur dan membaginya menjadi dua bagian sama panjang. Ini membentuk segitiga siku-siku.</div>
+    <div class="answer-content" id="a7">Setengah tali busur = 12 cm. Segitiga siku-siku: kaki = 12, kaki = 5, hipotenusa = jari-jari.<br>$r = \sqrt{12^2 + 5^2} = \sqrt{144 + 25} = \sqrt{169} = 13$ cm. Tripel Pythagoras $(5, 12, 13)$!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Challenge</div>
+    <p>Buktikan bahwa luas juring dengan sudut $\theta$ (radian) dan jari-jari $r$ adalah $\frac{1}{2}r^2\theta$, dengan memulai dari fakta bahwa luas lingkaran penuh adalah $\pi r^2$ dan lingkaran penuh memiliki sudut $2\pi$ radian.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Juring dengan sudut $\theta$ adalah $\frac{\theta}{2\pi}$ bagian dari lingkaran penuh.</div>
+    <div class="answer-content" id="a8">Luas juring = $\frac{\theta}{2\pi} \times \pi r^2 = \frac{\theta \cdot \pi r^2}{2\pi} = \frac{1}{2}r^2\theta$. $\square$<br><br>Keindahan radian: rumus ini jauh lebih bersih daripada versi derajat ($\frac{\theta°}{360°} \times \pi r^2$), karena $2\pi$ habis dibagi.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Ketika Lingkaran Bertemu Garis Lurus</h2>
+
+  <p>
+    Kita telah melihat lingkaran secara mendalam — definisinya, bilangan $\pi$ yang tersembunyi di dalamnya, bagian-bagiannya, dan hubungannya dengan segitiga dan sudut. Tapi sejauh ini, geometri kita masih "berdiri sendiri" — terpisah dari aljabar yang kita bangun di Bab 4 dan 5.
+  </p>
+
+  <p>
+    Di bab berikutnya, kedua dunia ini akan bertemu. Kita akan meletakkan geometri di atas <em>sistem koordinat</em> — sebuah ide revolusioner dari René Descartes yang memungkinkan kita mendeskripsikan setiap titik, garis, dan kurva dengan <em>persamaan</em>. Lingkaran akan menjadi $x^2 + y^2 = r^2$. Garis akan menjadi $y = mx + b$. Dan geometri serta aljabar akan menjadi satu bahasa.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 9 — Ketika Aljabar Bertemu Geometri (Koordinat Kartesius)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Measuring Pi ═══════
+function updatePiMeasure() {
+  var r = parseInt(document.getElementById('pi-r').value);
+  document.getElementById('pi-r-val').textContent = r;
+
+  var svg = document.getElementById('pi-measure-svg');
+  var cx = 140, cy = 140, pr = r * 10;
+  var s = '';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+pr+'" fill="rgba(36,113,163,0.08)" stroke="#2471a3" stroke-width="2"/>';
+  // diameter line
+  s += '<line x1="'+(cx-pr)+'" y1="'+cy+'" x2="'+(cx+pr)+'" y2="'+cy+'" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>';
+  s += '<text x="'+cx+'" y="'+(cy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c0392b">d='+2*r+'</text>';
+  // radius
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+pr)+'" y2="'+cy+'" stroke="#1e8449" stroke-width="2.5"/>';
+  s += '<text x="'+(cx+pr/2)+'" y="'+(cy-6)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#1e8449">r='+r+'</text>';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="#2c2c2c"/>';
+  svg.innerHTML = s;
+
+  var K = 2 * Math.PI * r;
+  var d = 2 * r;
+  document.getElementById('pi-measure-result').textContent =
+    'Keliling K = 2πr = 2π(' + r + ') = ' + K.toFixed(4) +
+    '\nDiameter d = ' + d +
+    '\nK / d = ' + (K / d).toFixed(10) + '...' +
+    '\nπ    = 3.1415926535...' +
+    '\nRasio selalu sama!';
+}
+
+// ═══════ Interactive 2: Pizza Proof ═══════
+function updatePizzaProof() {
+  var n = parseInt(document.getElementById('pizza-n').value);
+  if (n % 2 !== 0) n++;
+  document.getElementById('pizza-n-val').textContent = n;
+
+  var svg = document.getElementById('pizza-svg');
+  var r = 60;
+  var cx = 90, cy = 130;
+  var s = '';
+
+  // draw circle with sectors on left
+  for (var i = 0; i < n; i++) {
+    var a1 = (2 * Math.PI * i) / n - Math.PI / 2;
+    var a2 = (2 * Math.PI * (i + 1)) / n - Math.PI / 2;
+    var x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    var x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+    var color = i % 2 === 0 ? 'rgba(36,113,163,0.3)' : 'rgba(192,57,43,0.2)';
+    s += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+r+','+r+' 0 0,1 '+x2+','+y2+' Z" fill="'+color+'" stroke="#444" stroke-width="0.8"/>';
+  }
+
+  // draw rearranged on right
+  var rectX = 190, rectY = 80;
+  var rectW = Math.PI * r;
+  var rectH = r;
+  var sliceW = rectW / (n / 2);
+
+  for (var i = 0; i < n; i++) {
+    var xi = rectX + Math.floor(i / 2) * sliceW;
+    var color = i % 2 === 0 ? 'rgba(36,113,163,0.3)' : 'rgba(192,57,43,0.2)';
+    if (i % 2 === 0) {
+      // point up
+      s += '<polygon points="'+xi+','+(rectY+rectH)+' '+(xi+sliceW)+','+(rectY+rectH)+' '+(xi+sliceW/2)+','+rectY+'" fill="'+color+'" stroke="#444" stroke-width="0.5"/>';
+    } else {
+      // point down
+      s += '<polygon points="'+xi+','+rectY+' '+(xi+sliceW)+','+rectY+' '+(xi+sliceW/2)+','+(rectY+rectH)+'" fill="'+color+'" stroke="#444" stroke-width="0.5"/>';
+    }
+  }
+
+  // labels
+  s += '<text x="'+rectX+'" y="'+(rectY+rectH+16)+'" font-family="JetBrains Mono" font-size="10" fill="#2471a3">πr</text>';
+  s += '<text x="'+(rectX+rectW+4)+'" y="'+(rectY+rectH/2+4)+'" font-family="JetBrains Mono" font-size="10" fill="#1e8449">r</text>';
+  s += '<line x1="'+rectX+'" y1="'+(rectY+rectH+2)+'" x2="'+(rectX+rectW)+'" y2="'+(rectY+rectH+2)+'" stroke="#2471a3" stroke-width="1.5"/>';
+
+  svg.innerHTML = s;
+  document.getElementById('pizza-result').textContent = n + ' potongan → bentuk semakin mirip persegi panjang\nPanjang ≈ πr, Lebar ≈ r\nLuas ≈ πr × r = πr²';
+}
+
+// ═══════ Interactive 3: Sector Explorer ═══════
+function updateSector() {
+  var angle = parseInt(document.getElementById('sector-angle').value);
+  var r = parseInt(document.getElementById('sector-r').value);
+  document.getElementById('sector-angle-val').textContent = angle;
+  document.getElementById('sector-r-val').textContent = r;
+
+  var svg = document.getElementById('sector-svg');
+  var cx = 140, cy = 140, pr = r * 12;
+  var rad = angle * Math.PI / 180;
+  var x1 = cx + pr, y1 = cy;
+  var x2 = cx + pr * Math.cos(-rad), y2 = cy + pr * Math.sin(-rad);
+  var large = angle > 180 ? 1 : 0;
+
+  var s = '';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+pr+'" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>';
+  s += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+pr+','+pr+' 0 '+large+',0 '+x2+','+y2+' Z" fill="rgba(36,113,163,0.2)" stroke="#2471a3" stroke-width="2"/>';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="#2c2c2c"/>';
+  // radius label
+  s += '<text x="'+(cx+pr/2+4)+'" y="'+(cy-4)+'" font-family="JetBrains Mono" font-size="10" fill="#1e8449">r='+r+'</text>';
+  // angle arc
+  var ar = 20;
+  var ax = cx + ar * Math.cos(-rad/2), ay = cy + ar * Math.sin(-rad/2);
+  s += '<text x="'+ax+'" y="'+ay+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#c0392b">'+angle+'°</text>';
+  svg.innerHTML = s;
+
+  var arcLen = (angle / 360) * 2 * Math.PI * r;
+  var sectorArea = (angle / 360) * Math.PI * r * r;
+  var thetaRad = angle * Math.PI / 180;
+  document.getElementById('sector-result').textContent =
+    'Panjang busur = ' + arcLen.toFixed(2) + ' (= r·θ = ' + r + '×' + thetaRad.toFixed(3) + ' = ' + (r * thetaRad).toFixed(2) + ')' +
+    '\nLuas juring = ' + sectorArea.toFixed(2) + ' (= ½r²θ = ½×' + (r*r) + '×' + thetaRad.toFixed(3) + ' = ' + (0.5 * r * r * thetaRad).toFixed(2) + ')';
+}
+
+// ═══════ Interactive 4: Radian Explorer ═══════
+function updateRadian() {
+  var deg = parseInt(document.getElementById('rad-slider').value);
+  document.getElementById('rad-deg-val').textContent = deg;
+
+  var rad = deg * Math.PI / 180;
+  var radStr;
+  if (deg === 0) radStr = '0';
+  else if (deg === 30) radStr = 'π/6';
+  else if (deg === 45) radStr = 'π/4';
+  else if (deg === 60) radStr = 'π/3';
+  else if (deg === 90) radStr = 'π/2';
+  else if (deg === 120) radStr = '2π/3';
+  else if (deg === 135) radStr = '3π/4';
+  else if (deg === 150) radStr = '5π/6';
+  else if (deg === 180) radStr = 'π';
+  else if (deg === 270) radStr = '3π/2';
+  else if (deg === 360) radStr = '2π';
+  else radStr = rad.toFixed(3);
+  document.getElementById('rad-rad-val').textContent = radStr;
+
+  var svg = document.getElementById('radian-svg');
+  var cx = 140, cy = 140, r = 90;
+  var endX = cx + r * Math.cos(-rad), endY = cy + r * Math.sin(-rad);
+  var large = deg > 180 ? 1 : 0;
+
+  var s = '';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#ccc" stroke-width="1.5"/>';
+  if (deg > 0) {
+    s += '<path d="M'+(cx+r)+','+cy+' A'+r+','+r+' 0 '+large+',0 '+endX+','+endY+'" fill="none" stroke="#c0392b" stroke-width="3"/>';
+    s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+r)+'" y2="'+cy+'" stroke="#2471a3" stroke-width="1.5"/>';
+    s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+endX+'" y2="'+endY+'" stroke="#2471a3" stroke-width="1.5"/>';
+  }
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="#2c2c2c"/>';
+  // arc length tick marks for radians
+  for (var i = 1; i <= 6; i++) {
+    var tickAngle = i; // 1 radian each
+    if (tickAngle > 2 * Math.PI) break;
+    var tx = cx + (r+6) * Math.cos(-tickAngle), ty = cy + (r+6) * Math.sin(-tickAngle);
+    var tx2 = cx + (r-4) * Math.cos(-tickAngle), ty2 = cy + (r-4) * Math.sin(-tickAngle);
+    s += '<line x1="'+tx2+'" y1="'+ty2+'" x2="'+tx+'" y2="'+ty+'" stroke="#888" stroke-width="1"/>';
+    s += '<text x="'+(cx+(r+14)*Math.cos(-tickAngle))+'" y="'+(cy+(r+14)*Math.sin(-tickAngle)+3)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+  }
+  svg.innerHTML = s;
+
+  var arcLen = rad; // in terms of r (arc = r*theta, so arc/r = theta)
+  document.getElementById('radian-result').textContent =
+    deg + '° = ' + rad.toFixed(4) + ' radian' +
+    '\nPanjang busur = r × ' + rad.toFixed(4) + ' = ' + rad.toFixed(4) + 'r' +
+    '\n(Busur merah = ' + rad.toFixed(2) + ' jari-jari)';
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  updatePiMeasure();
+  updatePizzaProof();
+  updateSector();
+  updateRadian();
+});
+</script>
+</body>
+</html>

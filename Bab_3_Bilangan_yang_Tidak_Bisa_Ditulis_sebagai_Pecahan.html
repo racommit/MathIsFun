@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 3 — Bilangan yang Tidak Bisa Ditulis sebagai Pecahan</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 3</div>
+  <h1 class="chapter-title">Bilangan yang Tidak Bisa<br>Ditulis sebagai Pecahan</h1>
+  <p class="chapter-subtitle">
+    Tentang bilangan hantu yang bersembunyi di garis bilangan,<br>
+    menolak ditulis sebagai rasio, dan mengguncang fondasi matematika kuno.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di akhir Bab 2, kita menyebut sesuatu yang misterius. Kita bilang bahwa ada bilangan yang "bersembunyi" di garis bilangan — bilangan yang tidak bisa ditangkap oleh pecahan manapun. Kita menyebutnya di sana tanpa penjelasan, seperti rumor. Sekarang, saatnya menghadapinya.
+  </p>
+
+  <p>
+    Ceritanya dimulai di Yunani Kuno, sekitar 2.500 tahun yang lalu, di sebuah komunitas yang sangat mencintai bilangan.
+  </p>
+
+  <div class="narrator">
+    Bayangkan sebuah persegi sempurna. Setiap sisinya panjangnya 1. Kamu ingin mengetahui panjang diagonalnya — garis lurus dari satu sudut ke sudut yang berseberangan. Berapa panjangnya?
+  </div>
+
+  <p>
+    Dari Bab 1, kita tahu bahwa perkalian bisa berarti luas. Dan kita bisa menggunakan ide bahwa diagonal membagi persegi menjadi dua segitiga yang sama. Tapi untuk menemukan panjangnya secara pasti, kita butuh sebuah alat yang sangat tua dan sangat kuat: <strong>Teorema Pythagoras</strong>.
+  </p>
+
+  <p>
+    Kita belum membuktikan teorema ini secara lengkap (itu menunggu di Bab 7), tapi idenya cukup intuitif untuk digunakan sekarang: dalam sebuah segitiga siku-siku, kuadrat sisi terpanjang (hipotenusa) sama dengan jumlah kuadrat kedua sisi lainnya.
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $c^2 = a^2 + b^2$
+  </p>
+
+  <p>
+    Diagonal persegi satuan membentuk segitiga siku-siku dengan dua sisi pendek masing-masing 1. Jadi:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem;">
+    $d^2 = 1^2 + 1^2 = 2$
+  </p>
+
+  <p>
+    Panjang diagonal $d$ adalah bilangan yang jika dikalikan dengan dirinya sendiri menghasilkan 2. Kita menulis bilangan ini sebagai $\sqrt{2}$ — dibaca "akar kuadrat dari dua" atau "akar dua".
+  </p>
+
+  <p>
+    Pertanyaannya: bilangan apa ini? Apakah ia pecahan? Bisakah kita menulisnya sebagai $\frac{a}{b}$ untuk bilangan bulat $a$ dan $b$ tertentu?
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN UTAMA ═══════════════════════ -->
+
+  <h2>Pertanyaan yang Menghancurkan Sebuah Mazhab</h2>
+
+  <p>
+    Pertanyaan bab ini adalah:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Apakah setiap bilangan bisa ditulis sebagai pecahan?"
+  </p>
+
+  <p>
+    Di Bab 2, kita sudah memperluas dunia bilangan kita dari bilangan bulat ke pecahan. Pecahan mengisi celah-celah di garis bilangan. Di antara dua bilangan bulat, ada pecahan. Di antara dua pecahan, ada pecahan lagi. Sepertinya garis bilangan sudah "penuh" — tidak ada lubang tersisa.
+  </p>
+
+  <p>
+    Tapi benarkah?
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 2: setiap pecahan $\frac{a}{b}$ bisa ditulis sebagai desimal yang <em>berhenti</em> (seperti $0{,}25$) atau <em>berulang</em> (seperti $0{,}\overline{3}$). Jadi jika ada bilangan yang desimalnya tidak pernah berhenti <em>dan</em> tidak pernah berulang — ia bukan pecahan.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Mazhab Pythagoras dan Harmoni Bilangan</h2>
+
+  <div class="historical-note">
+    Pythagoras (sekitar 570–495 SM) dan pengikutnya membentuk komunitas semi-religius di Kroton, Italia Selatan. Motto mereka: "Segala sesuatu adalah bilangan." Bagi mereka, seluruh alam semesta bisa dijelaskan oleh bilangan bulat dan rasio-rasio di antaranya. Harmoni musik? Rasio panjang senar. Orbit planet? Rasio jarak. Keindahan? Proporsi.
+  </div>
+
+  <p>
+    Dunia Pythagorean indah dan teratur. Setiap besaran bisa dinyatakan sebagai rasio $\frac{a}{b}$ dari dua bilangan bulat. Mereka menyebutnya <em>commensurable</em> — "bisa diukur bersama" — karena selalu ada satuan kecil yang muat habis di kedua besaran.
+  </p>
+
+  <p>
+    Lalu seseorang — legenda menyebut Hippasus dari Metapontum — mencoba menghitung diagonal persegi satuan. Dia mendapat $\sqrt{2}$. Dia mencoba menulisnya sebagai pecahan. Dia tidak bisa. Dia mencoba lagi, dan lagi. Lalu dia mulai bertanya: <em>mungkinkah ini memang tidak bisa ditulis sebagai pecahan?</em>
+  </p>
+
+  <div class="historical-note">
+    Menurut legenda, ketika Hippasus membuktikan bahwa $\sqrt{2}$ bukan pecahan, pengikut Pythagoras lainnya sangat terguncang — penemuan ini menghancurkan fondasi filosofi mereka. Beberapa versi cerita mengatakan Hippasus dibuang ke laut. Apakah ini benar-benar terjadi? Kita tidak tahu pasti. Tapi yang pasti: penemuan ini adalah salah satu krisis pertama dalam sejarah matematika.
+    <div class="dramatization">Cerita pembuangan Hippasus mungkin legenda belaka. Yang terverifikasi secara historis: bangsa Yunani memang menemukan incommensurability, dan ini memaksa mereka memikirkan ulang hubungan antara geometri dan aritmetika.</div>
+  </div>
+
+  <p>
+    Mengapa penemuan ini begitu mengguncang? Karena jika ada panjang yang <em>nyata</em> — kamu bisa menggambar diagonal persegi, melihatnya, mengukurnya — tapi tidak bisa dinyatakan sebagai rasio bilangan bulat, maka motto "segala sesuatu adalah bilangan" runtuh. Alam semesta ternyata lebih kaya dari yang mereka kira.
+  </p>
+
+  <div class="historical-note">
+    Jauh sebelum Yunani, bangsa Babilonia sudah mengetahui nilai pendekatan $\sqrt{2}$. Tablet tanah liat YBC 7289 (sekitar 1800–1600 SM) menunjukkan persegi dengan diagonalnya, beserta angka yang setara dengan $1{,}41421296...$  — hanya berbeda di digit keenam dari nilai sebenarnya ($1{,}41421356...$). Mereka punya angkanya, tapi sejauh yang kita tahu, mereka tidak bertanya apakah angka itu bisa ditulis sebagai pecahan.
+  </div>
+
+  <h3>Dunia Islam dan Penerimaan Bilangan Irasional</h3>
+
+  <p>
+    Sementara matematikawan Yunani terguncang oleh penemuan bilangan irasional — bahkan berusaha menyembunyikannya — tradisi matematika Islam mengambil sikap yang jauh lebih pragmatis dan produktif.
+  </p>
+
+  <div class="historical-note">
+    <strong>Abu Kamil Shuja' ibn Aslam</strong> (sekitar 850–930 M), penerus al-Khwarizmi di Mesir, adalah salah satu matematikawan pertama yang secara terbuka menerima bilangan irasional sebagai solusi persamaan dan menggunakannya dalam perhitungan lebih lanjut — bukan sekadar pendekatan, tapi sebagai objek matematika yang sah. Ia bekerja dengan ekspresi seperti $\sqrt{2} + \sqrt{3}$ dan memanipulasinya secara aljabar.
+  </div>
+
+  <div class="historical-note">
+    <strong>Omar Khayyam</strong> (1048–1131 M), yang kita kenal juga sebagai penyair <em>Rubaiyat</em>, menulis risalah tentang bilangan di mana ia memperluas konsep bilangan melampaui batasan Yunani. Baginya, bilangan irasional adalah bilangan yang sah — mereka mewakili panjang geometris yang nyata, dan itu cukup. Ia mengklasifikasikan berbagai jenis bilangan irasional dan bekerja dengan mereka secara sistematis.
+  </div>
+
+  <div class="historical-note">
+    Puncak kehebatan komputasi datang dari <strong>Jamshid al-Kashi</strong> (sekitar 1380–1429 M) di Samarkand. Ia menghitung $\pi$ hingga 16 digit desimal — rekor dunia yang bertahan lebih dari satu abad! Ia juga menghitung $\sin 1°$ hingga 18 digit menggunakan metode iterasi yang brilian. Al-Kashi menunjukkan bahwa meskipun bilangan irasional tidak bisa ditulis tepat, kita bisa mendekatinya dengan presisi luar biasa.
+  </div>
+
+  <p>
+    Kontribusi dunia Islam sangat penting: mereka membebaskan bilangan irasional dari stigma "terlarang" dan menjadikannya bagian natural dari matematika. Tanpa sikap terbuka ini, perkembangan aljabar dan kalkulus di kemudian hari akan jauh lebih lambat.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ AKAR KUADRAT ═══════════════════════ -->
+
+  <h2>Apa Itu Akar Kuadrat?</h2>
+
+  <p>
+    Sebelum kita membuktikan bahwa $\sqrt{2}$ bukan pecahan, mari kita pahami dulu apa artinya.
+  </p>
+
+  <p>
+    Di Bab 1, kita belajar bahwa perkalian bisa diartikan sebagai luas. $3 \times 3 = 9$ berarti persegi dengan sisi 3 punya luas 9. Kita menulis $3^2 = 9$ — "tiga kuadrat sama dengan sembilan", atau "tiga pangkat dua sama dengan sembilan".
+  </p>
+
+  <p>
+    <strong>Akar kuadrat</strong> adalah operasi kebalikannya: jika kamu tahu luasnya, berapa panjang sisinya?
+  </p>
+
+  <div class="key-insight">
+    <strong>Definisi:</strong> $\sqrt{n}$ adalah bilangan yang jika dikuadratkan menghasilkan $n$. Dengan kata lain:
+    $$\sqrt{n} \times \sqrt{n} = n$$
+    Jadi $\sqrt{9} = 3$ karena $3 \times 3 = 9$. Dan $\sqrt{4} = 2$ karena $2 \times 2 = 4$.
+  </div>
+
+  <p>
+    Beberapa akar kuadrat "bagus" — hasilnya bilangan bulat:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $\sqrt{1} = 1 \quad \sqrt{4} = 2 \quad \sqrt{9} = 3 \quad \sqrt{16} = 4 \quad \sqrt{25} = 5$
+  </p>
+
+  <p>
+    Bilangan 1, 4, 9, 16, 25, ... disebut <strong>kuadrat sempurna</strong> — mereka adalah hasil kuadrat bilangan bulat.
+  </p>
+
+  <p>
+    Tapi bagaimana dengan $\sqrt{2}$? Bilangan 2 bukan kuadrat sempurna. Tidak ada bilangan bulat yang jika dikuadratkan menghasilkan 2. $1^2 = 1$ (kurang). $2^2 = 4$ (kebanyakan). Jadi $\sqrt{2}$ berada di antara 1 dan 2.
+  </p>
+
+  <p>
+    Mungkin pecahan? $\left(\frac{3}{2}\right)^2 = \frac{9}{4} = 2{,}25$ — terlalu besar. $\left(\frac{7}{5}\right)^2 = \frac{49}{25} = 1{,}96$ — hampir, tapi kurang. $\left(\frac{99}{70}\right)^2 = \frac{9801}{4900} = 2{,}000204...$ — sangat dekat, tapi masih bukan tepat 2.
+  </p>
+
+  <p>
+    Kita bisa mendekati $\sqrt{2}$ semakin dekat dengan pecahan, tapi tidak pernah tepat mencapainya. Ini bukan kebetulan — ini bisa <em>dibuktikan</em>.
+  </p>
+
+  <!-- INTERACTIVE 1: Exploring √2 -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mendekati √2 — Tapi Tidak Pernah Sampai</div>
+    <div class="interactive-desc">Masukkan pembilang dan penyebut untuk mencoba mencari pecahan yang jika dikuadratkan menghasilkan tepat 2. Perhatikan bahwa hasilnya selalu sedikit kurang atau sedikit lebih dari 2.</div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Pembilang:</label>
+        <input type="number" id="sqrt-num" value="7" min="1" max="9999" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <span style="font-size: 1.5rem; margin-top: 14px;">/</span>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">Penyebut:</label>
+        <input type="number" id="sqrt-den" value="5" min="1" max="9999" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="checkSqrt2()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 14px;">Kuadratkan!</button>
+    </div>
+
+    <div id="sqrt2-result" class="result-display"></div>
+
+    <div style="margin-top: 1rem;">
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 6px;">Pendekatan terkenal untuk √2:</div>
+      <div class="btn-group">
+        <button class="btn" onclick="trySqrt(1,1)">1/1</button>
+        <button class="btn" onclick="trySqrt(3,2)">3/2</button>
+        <button class="btn" onclick="trySqrt(7,5)">7/5</button>
+        <button class="btn" onclick="trySqrt(17,12)">17/12</button>
+        <button class="btn" onclick="trySqrt(99,70)">99/70</button>
+        <button class="btn" onclick="trySqrt(577,408)">577/408</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ BUKTI ═══════════════════════ -->
+
+  <h2>Bukti: √2 Bukan Pecahan</h2>
+
+  <p>
+    Ini adalah momen penting. Kita akan melakukan sesuatu yang belum pernah kita lakukan di buku ini: sebuah <strong>bukti matematika</strong> — argumen logis yang kedap air, tanpa celah, yang membuktikan sesuatu <em>pasti benar</em>, bukan hanya "sangat mungkin benar".
+  </p>
+
+  <p>
+    Teknik yang kita gunakan disebut <strong>bukti dengan kontradiksi</strong> (<em>proof by contradiction</em>, atau <em>reductio ad absurdum</em>). Idenya: kita <em>andaikan</em> yang sebaliknya dari apa yang ingin kita buktikan, lalu tunjukkan bahwa andaian itu mengarah ke sesuatu yang mustahil. Jika andaian mengarah ke kemustahilan, maka andaian itu salah, dan yang sebaliknya pasti benar.
+  </p>
+
+  <div class="narrator">
+    Analoginya begini. Kamu curiga temanmu tidak punya kucing. Untuk membuktikannya, kamu berkata: "Oke, anggap saja kamu punya kucing. Kalau punya, pasti ada bulu kucing di sofamu. Tapi sofamu bersih. Kontradiksi! Jadi andaian kita salah — kamu memang tidak punya kucing."
+  </div>
+
+  <p>
+    Siap? Mari kita mulai.
+  </p>
+
+  <div class="proof-box">
+    <p><strong>Klaim:</strong> $\sqrt{2}$ tidak bisa ditulis sebagai pecahan $\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat.</p>
+
+    <p><strong>Andaian (untuk kontradiksi):</strong> Misalkan $\sqrt{2}$ <em>bisa</em> ditulis sebagai $\frac{a}{b}$, di mana $a$ dan $b$ bilangan bulat positif, dan pecahannya sudah dalam bentuk paling sederhana (artinya $a$ dan $b$ tidak punya faktor persekutuan selain 1).</p>
+
+    <p><strong>Langkah 1:</strong> Dari andaian, $\sqrt{2} = \frac{a}{b}$. Kuadratkan kedua sisi:</p>
+    <p style="text-align: center;">$2 = \frac{a^2}{b^2}$</p>
+
+    <p><strong>Langkah 2:</strong> Kalikan kedua sisi dengan $b^2$:</p>
+    <p style="text-align: center;">$a^2 = 2b^2$</p>
+    <p>Ini berarti $a^2$ adalah bilangan genap (karena sama dengan $2 \times$ sesuatu).</p>
+
+    <p><strong>Langkah 3:</strong> Jika $a^2$ genap, maka $a$ sendiri harus genap. (Mengapa? Karena ganjil × ganjil = ganjil. Jadi kalau $a$ ganjil, $a^2$ juga ganjil. Tapi $a^2$ genap, jadi $a$ tidak mungkin ganjil — artinya $a$ genap.)</p>
+
+    <p><strong>Langkah 4:</strong> Karena $a$ genap, kita bisa menulis $a = 2k$ untuk bilangan bulat $k$ tertentu. Substitusikan ke $a^2 = 2b^2$:</p>
+    <p style="text-align: center;">$(2k)^2 = 2b^2$</p>
+    <p style="text-align: center;">$4k^2 = 2b^2$</p>
+    <p style="text-align: center;">$2k^2 = b^2$</p>
+
+    <p><strong>Langkah 5:</strong> Sekarang $b^2 = 2k^2$, jadi $b^2$ juga genap, yang berarti $b$ juga genap (logika yang sama seperti langkah 3).</p>
+
+    <p><strong>Kontradiksi!</strong> Kita menunjukkan bahwa $a$ genap DAN $b$ genap. Tapi di awal, kita mengandaikan bahwa $\frac{a}{b}$ sudah dalam bentuk paling sederhana — artinya $a$ dan $b$ <em>tidak</em> punya faktor persekutuan. Jika keduanya genap, mereka punya faktor persekutuan 2. Ini bertentangan dengan andaian kita.</p>
+
+    <p><strong>Kesimpulan:</strong> Andaian bahwa $\sqrt{2} = \frac{a}{b}$ mengarah ke kontradiksi. Jadi andaian itu salah. $\sqrt{2}$ <em>tidak bisa</em> ditulis sebagai pecahan. $\blacksquare$</p>
+  </div>
+
+  <p>
+    Berhenti sejenak dan renungkan apa yang baru saja terjadi. Kita tidak menemukan $\sqrt{2}$ dengan kalkulator. Kita tidak mencoba jutaan pecahan. Kita menggunakan <em>logika murni</em> — dan dengan itu, kita membuktikan sesuatu yang berlaku untuk <em>semua</em> pecahan yang mungkin ada. Tidak ada pecahan, dari yang paling sederhana sampai yang penyebutnya semilyar digit, yang bisa tepat sama dengan $\sqrt{2}$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Kekuatan bukti:</strong> Eksperimen dan pengamatan bisa menunjukkan sesuatu <em>sangat mungkin</em> benar. Tapi bukti matematika menunjukkan sesuatu <em>pasti</em> benar, tanpa pengecualian, selamanya. Inilah yang membuat matematika unik di antara semua bidang pengetahuan.
+  </div>
+
+  <!-- INTERACTIVE 2: Step-by-step proof visualization -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menelusuri Bukti Langkah demi Langkah</div>
+    <div class="interactive-desc">Masukkan bilangan bulat $a$ dan $b$. Lihat bagaimana setiap langkah bukti bekerja — dan mengapa selalu muncul kontradiksi.</div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">a =</label>
+        <input type="number" id="proof-a" value="7" min="1" max="999" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);">b =</label>
+        <input type="number" id="proof-b" value="5" min="1" max="999" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="runProofDemo()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 14px;">Uji</button>
+    </div>
+
+    <div id="proof-steps" style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 2;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ BILANGAN IRASIONAL ═══════════════════════ -->
+
+  <h2>Bilangan Rasional dan Irasional</h2>
+
+  <p>
+    Sekarang kita punya nama resmi untuk dua jenis bilangan:
+  </p>
+
+  <div class="definition-box">
+    <p><strong>Bilangan rasional</strong> adalah bilangan yang bisa ditulis sebagai $\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat dan $b \neq 0$. Kata "rasional" berasal dari <em>ratio</em> — rasio.</p>
+    <p>Contoh: $\frac{1}{2}$, $-\frac{3}{4}$, $7$ (= $\frac{7}{1}$), $0{,}25$ (= $\frac{1}{4}$), $0{,}\overline{3}$ (= $\frac{1}{3}$).</p>
+  </div>
+
+  <div class="definition-box">
+    <p><strong>Bilangan irasional</strong> adalah bilangan yang <em>tidak</em> bisa ditulis sebagai $\frac{a}{b}$. Kata "irasional" bukan berarti "gila" atau "tidak masuk akal" — ia berarti "bukan rasio."</p>
+    <p>Contoh: $\sqrt{2}$, $\sqrt{3}$, $\sqrt{5}$, $\pi$, $e$.</p>
+  </div>
+
+  <p>
+    Bagaimana cara membedakan keduanya? Kuncinya ada di representasi desimal:
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan desimal:</strong><br>
+    — Desimal yang <strong>berhenti</strong> (misalnya $0{,}25$) → rasional<br>
+    — Desimal yang <strong>berulang</strong> (misalnya $0{,}\overline{142857}$) → rasional<br>
+    — Desimal yang <strong>tidak pernah berhenti dan tidak pernah berulang</strong> → irasional
+  </div>
+
+  <p>
+    $\sqrt{2} = 1{,}41421356237309504880168872420969807856967...$
+  </p>
+
+  <p>
+    Digit-digit ini terus berlanjut tanpa berhenti dan tanpa pola berulang. Selamanya. Tidak peduli berapa digit yang kamu hitung — kamu tidak akan pernah menemukan titik di mana polanya mulai mengulang.
+  </p>
+
+  <h3>Bukan Hanya √2</h3>
+
+  <p>
+    Setelah $\sqrt{2}$ ditaklukkan, pertanyaan berikutnya natural: akar kuadrat mana lagi yang irasional?
+  </p>
+
+  <p>
+    Jawabannya elegan: <strong>$\sqrt{n}$ irasional jika dan hanya jika $n$ bukan kuadrat sempurna</strong>.
+  </p>
+
+  <p>
+    Jadi: $\sqrt{2}$, $\sqrt{3}$, $\sqrt{5}$, $\sqrt{6}$, $\sqrt{7}$, $\sqrt{8}$, $\sqrt{10}$, ... semuanya irasional. Sedangkan $\sqrt{1} = 1$, $\sqrt{4} = 2$, $\sqrt{9} = 3$, ... semuanya rasional (malah bilangan bulat).
+  </p>
+
+  <p>
+    Bukti untuk $\sqrt{3}$, $\sqrt{5}$, dan seterusnya mengikuti pola yang mirip dengan bukti $\sqrt{2}$, hanya dengan modifikasi kecil pada argumen genap-ganjil.
+  </p>
+
+  <!-- INTERACTIVE 3: Is √n rational? -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menjelajahi √n — Rasional atau Irasional?</div>
+    <div class="interactive-desc">Geser slider untuk memilih $n$. Lihat apakah $\sqrt{n}$ adalah bilangan bulat (rasional), dan jika bukan, lihat seberapa dekat pendekatan pecahan terbaik.</div>
+
+    <div class="slider-container">
+      <label>$n$ = <strong id="sqrtn-val">2</strong></label>
+      <input type="range" id="sqrtn-slider" min="1" max="50" value="2" oninput="updateSqrtN()">
+    </div>
+
+    <div id="sqrtn-result" class="result-display" style="font-size: 0.95rem;"></div>
+
+    <div class="numberline-wrap">
+      <svg id="sqrtn-nl" class="numberline-svg" width="620" height="90" viewBox="0 0 620 90"></svg>
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PI ═══════════════════════ -->
+
+  <h2>π — Bilangan Paling Terkenal di Dunia</h2>
+
+  <p>
+    Jika $\sqrt{2}$ adalah bilangan irasional pertama yang ditemukan, maka $\pi$ (pi) adalah yang paling terkenal.
+  </p>
+
+  <p>
+    Ambil lingkaran apapun. Ukur kelilingnya. Ukur diameternya (garis lurus yang melewati pusat, dari sisi ke sisi). Bagi keliling dengan diameter. Hasilnya selalu sama — tidak peduli seberapa besar atau kecil lingkarannya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">
+    $\pi = \frac{\text{keliling}}{\text{diameter}} \approx 3{,}14159265...$
+  </p>
+
+  <p>
+    Fakta bahwa rasio ini <em>konstan</em> untuk semua lingkaran adalah salah satu keajaiban geometri. Tapi bilangan ini sendiri... aneh. Digit-digitnya tidak pernah berhenti dan tidak pernah berulang.
+  </p>
+
+  <div class="historical-note">
+    Archimedes (sekitar 250 SM) menggunakan segi-banyak beraturan yang diapit di dalam dan di luar lingkaran untuk memperkirakan $\pi$. Dimulai dari segi-6 (heksagon), ia menggandakan sisi-sisinya: segi-12, segi-24, segi-48, segi-96. Semakin banyak sisi, semakin mirip segi-banyak itu dengan lingkaran. Ia mendapatkan:
+    $$3\frac{10}{71} < \pi < 3\frac{1}{7}$$
+    Yaitu $\pi$ berada antara $3{,}14084...$ dan $3{,}14285...$  Pendekatan yang luar biasa untuk 2.200 tahun yang lalu!
+  </div>
+
+  <p>
+    Bahwa $\pi$ irasional baru dibuktikan pada tahun 1761 oleh Johann Heinrich Lambert — lebih dari 2.000 tahun setelah Archimedes. Buktinya jauh lebih sulit daripada bukti $\sqrt{2}$, dan membutuhkan alat matematika yang belum kita bangun di buku ini. Untuk sekarang, cukup terima bahwa $\pi$ adalah irasional: desimalnya berlanjut selamanya tanpa pola berulang.
+  </p>
+
+  <!-- INTERACTIVE 4: Archimedes approximation -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Metode Archimedes — Mendekati π dengan Segi-banyak</div>
+    <div class="interactive-desc">Tingkatkan jumlah sisi segi-banyak dan lihat bagaimana kelilingnya mendekati keliling lingkaran (yaitu $\pi \times$ diameter).</div>
+
+    <div class="slider-container">
+      <label>Jumlah sisi: <strong id="poly-n-val">6</strong></label>
+      <input type="range" id="poly-n-slider" min="3" max="128" value="6" oninput="updateArchimedes()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="archimedes-svg" width="280" height="280" viewBox="0 0 280 280"></svg>
+    </div>
+
+    <div id="archimedes-result" class="result-display" style="font-size: 0.92rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ BILANGAN REAL ═══════════════════════ -->
+
+  <h2>Garis Bilangan yang (Akhirnya) Lengkap</h2>
+
+  <p>
+    Sekarang kita bisa melihat gambaran besar. Perjalanan kita dimulai dari:
+  </p>
+
+  <p>
+    <strong>Bilangan asli</strong> (Bab 0): $1, 2, 3, 4, ...$ — titik-titik terpisah di garis bilangan.<br>
+    <strong>Bilangan bulat</strong> (Bab 1): $..., -2, -1, 0, 1, 2, ...$ — garis meluas ke kiri.<br>
+    <strong>Bilangan rasional</strong> (Bab 2): semua pecahan $\frac{a}{b}$ — mengisi celah antara bilangan bulat.<br>
+    <strong>Bilangan irasional</strong> (Bab 3): $\sqrt{2}$, $\pi$, ... — mengisi celah yang <em>masih tersisa</em> setelah rasional.
+  </p>
+
+  <div class="key-insight">
+    <strong>Bilangan real</strong> = bilangan rasional + bilangan irasional. Himpunan bilangan real, dilambangkan $\mathbb{R}$, adalah <em>semua</em> titik di garis bilangan, tanpa kecuali. Garis bilangan sekarang benar-benar "penuh" — tidak ada lubang lagi. Setiap titik di garis bilangan adalah bilangan real, dan setiap bilangan real punya tempatnya di garis bilangan.
+  </div>
+
+  <p>
+    Ada hierarki yang rapi:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2;">
+    Bilangan Asli $\subset$ Bilangan Bulat $\subset$ Bilangan Rasional $\subset$ <strong>Bilangan Real</strong><br>
+    <span style="font-size: 0.85rem; color: var(--text-secondary);">($\subset$ berarti "bagian dari")</span>
+  </p>
+
+  <p>
+    Setiap perluasan didorong oleh kebutuhan: pengurangan memaksa kita ke bilangan negatif, pembagian memaksa kita ke pecahan, dan geometri (diagonal persegi, keliling lingkaran) memaksa kita mengakui bilangan irasional.
+  </p>
+
+  <!-- INTERACTIVE 5: Number set hierarchy -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Klasifikasi Bilangan</div>
+    <div class="interactive-desc">Masukkan sebuah bilangan dan lihat ke kelompok mana ia termasuk.</div>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 1rem;">
+      <input type="text" id="classify-input" value="3.14159" placeholder="Masukkan bilangan..." style="width: 160px; font-family: 'JetBrains Mono'; padding: 8px; font-size: 1rem; border: 1px solid var(--border); border-radius: 6px;">
+      <button onclick="classifyNumber()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer;">Klasifikasi</button>
+    </div>
+
+    <div class="btn-group" style="margin-bottom: 1rem;">
+      <button class="btn" onclick="setClassify('5')">5</button>
+      <button class="btn" onclick="setClassify('-3')">-3</button>
+      <button class="btn" onclick="setClassify('0.75')">0,75</button>
+      <button class="btn" onclick="setClassify('0.333...')">0,333...</button>
+      <button class="btn" onclick="setClassify('sqrt2')">√2</button>
+      <button class="btn" onclick="setClassify('pi')">π</button>
+    </div>
+
+    <div id="classify-result" class="result-display" style="text-align: left; font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ OPERASI IRASIONAL ═══════════════════════ -->
+
+  <h2>Berhitung dengan Bilangan Irasional</h2>
+
+  <p>
+    Bilangan irasional bisa dijumlahkan, dikurangkan, dikalikan, dan dibagi sama seperti bilangan lainnya. Tapi ada beberapa kejutan.
+  </p>
+
+  <p>
+    Yang bisa kita sederhanakan:
+  </p>
+
+  <p style="text-align: center;">
+    $\sqrt{2} + \sqrt{2} = 2\sqrt{2}$
+  </p>
+
+  <p>
+    Ini sama logikanya dengan "satu apel + satu apel = dua apel." Satu $\sqrt{2}$ ditambah satu $\sqrt{2}$ menghasilkan dua $\sqrt{2}$.
+  </p>
+
+  <p style="text-align: center;">
+    $\sqrt{2} \times \sqrt{2} = 2$
+  </p>
+
+  <p>
+    Ini langsung dari definisi: akar kuadrat dari 2, dikali dirinya sendiri, kembali ke 2. Menariknya, dua bilangan irasional dikalikan dan hasilnya bilangan bulat!
+  </p>
+
+  <p style="text-align: center;">
+    $\sqrt{2} \times \sqrt{3} = \sqrt{6}$
+  </p>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan:</strong> Menjumlahkan akar seperti mengalikan akar.</p>
+    <p><span class="wrong">$\sqrt{2} + \sqrt{3} = \sqrt{5}$</span></p>
+    <p>Ini <strong>salah</strong>! $\sqrt{2} \approx 1{,}414$ dan $\sqrt{3} \approx 1{,}732$, jadi $\sqrt{2} + \sqrt{3} \approx 3{,}146$. Sedangkan $\sqrt{5} \approx 2{,}236$. Jelas berbeda.</p>
+    <p>Aturan $\sqrt{a} \times \sqrt{b} = \sqrt{ab}$ hanya berlaku untuk <em>perkalian</em>, bukan penjumlahan.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan:</strong> Mengira semua desimal "aneh" itu irasional.</p>
+    <p>$0{,}101001000100001...$ — apakah ini irasional? <strong>Ya</strong>, karena polanya terus berubah (jumlah nol bertambah), jadi tidak <em>berulang</em> secara periodik.</p>
+    <p>$0{,}123456789101112...$ — semua bilangan asli disambung. Irasional juga? <strong>Ya</strong> (ini disebut <em>konstanta Champernowne</em>).</p>
+    <p>Tapi $0{,}999999... = 0{,}\overline{9}$? Ini ternyata tepat sama dengan 1. Rasional!</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Dari daftar berikut, tentukan mana yang rasional dan mana yang irasional: $\frac{22}{7}$, $\pi$, $\sqrt{9}$, $\sqrt{7}$, $0{,}\overline{6}$, $0{,}1010010001...$</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Ingat: rasional = bisa ditulis sebagai $\frac{a}{b}$. Desimal yang berhenti atau berulang → rasional. Desimal tak berulang → irasional. $\sqrt{n}$ rasional hanya jika $n$ kuadrat sempurna.</div>
+    <div class="answer-content" id="a1">
+      <strong>Rasional:</strong> $\frac{22}{7}$ (sudah dalam bentuk pecahan), $\sqrt{9} = 3$ (bilangan bulat), $0{,}\overline{6} = \frac{2}{3}$ (desimal berulang).<br>
+      <strong>Irasional:</strong> $\pi$ (desimal tak berulang), $\sqrt{7}$ (7 bukan kuadrat sempurna), $0{,}1010010001...$ (desimal tak berulang).<br>
+      Catatan: $\frac{22}{7} \neq \pi$! $\frac{22}{7} = 3{,}\overline{142857}$ sedangkan $\pi = 3{,}14159...$  Mereka dekat, tapi $\frac{22}{7}$ rasional dan $\pi$ tidak.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Conceptual</div>
+    <p>Jelaskan mengapa $\sqrt{2}$ pasti berada di antara 1 dan 2 di garis bilangan. (Gunakan definisi akar kuadrat dan fakta tentang kuadrat.)</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$\sqrt{2}$ adalah bilangan yang kuadratnya 2. Berapa kuadrat dari 1? Berapa kuadrat dari 2?</div>
+    <div class="answer-content" id="a2">$1^2 = 1 < 2$ dan $2^2 = 4 > 2$. Karena $\sqrt{2}$ adalah bilangan positif yang kuadratnya tepat 2, dan kuadrat adalah fungsi yang naik untuk bilangan positif, maka $\sqrt{2}$ pasti berada di antara 1 dan 2.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Computation</div>
+    <p>Sederhanakan: $\sqrt{50}$. (Petunjuk: cari kuadrat sempurna yang menjadi faktor dari 50.)</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$50 = 25 \times 2$. Dan $25 = 5^2$. Gunakan aturan $\sqrt{ab} = \sqrt{a} \times \sqrt{b}$.</div>
+    <div class="answer-content" id="a3">$\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt{2} = 5\sqrt{2}$. Kita "mengeluarkan" faktor kuadrat sempurna dari dalam akar.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Error Analysis</div>
+    <p>Budi menulis: $\sqrt{4 + 9} = \sqrt{4} + \sqrt{9} = 2 + 3 = 5$. Tapi $\sqrt{4 + 9} = \sqrt{13} \approx 3{,}606$. Di mana kesalahan Budi?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Apakah $\sqrt{a + b} = \sqrt{a} + \sqrt{b}$? Coba dengan angka sederhana.</div>
+    <div class="answer-content" id="a4">Budi mengira bahwa $\sqrt{a + b} = \sqrt{a} + \sqrt{b}$. Ini <strong>salah</strong>. Aturan $\sqrt{ab} = \sqrt{a} \cdot \sqrt{b}$ hanya berlaku untuk perkalian, bukan penjumlahan. Tidak ada cara menyederhanakan $\sqrt{a + b}$ menjadi akar-akar terpisah. Ini mirip jebakan dari operasi pecahan: $\frac{1}{2} + \frac{1}{3} \neq \frac{2}{5}$ (Bab 2).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Connection (Bab 1 & 2)</div>
+    <p>Gunakan sifat distributif untuk menyederhanakan: $\sqrt{2} \times (3 + \sqrt{2})$.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Sifat distributif dari Bab 1: $a \times (b + c) = a \times b + a \times c$. Terapkan dengan $a = \sqrt{2}$.</div>
+    <div class="answer-content" id="a5">$\sqrt{2} \times (3 + \sqrt{2}) = \sqrt{2} \times 3 + \sqrt{2} \times \sqrt{2} = 3\sqrt{2} + 2$. Perhatikan: $\sqrt{2} \times \sqrt{2} = 2$ (definisi akar kuadrat). Sifat distributif dari Bab 1 bekerja juga untuk bilangan irasional!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Prediction</div>
+    <p>Tanpa menggunakan kalkulator, tentukan: apakah $\sqrt{2} \times \sqrt{8}$ rasional atau irasional?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Gunakan aturan $\sqrt{a} \times \sqrt{b} = \sqrt{ab}$. Berapa $2 \times 8$?</div>
+    <div class="answer-content" id="a6">$\sqrt{2} \times \sqrt{8} = \sqrt{16} = 4$. <strong>Rasional</strong> (bahkan bilangan bulat)! Dua bilangan irasional bisa menghasilkan bilangan rasional ketika dikalikan. Ini terjadi karena $2 \times 8 = 16$ adalah kuadrat sempurna.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Challenge</div>
+    <p>Modifikasi bukti $\sqrt{2}$ untuk membuktikan bahwa $\sqrt{3}$ juga irasional. (Petunjuk: ganti argumen "genap-ganjil" dengan argumen "habis dibagi 3 atau tidak".)</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Mulai dengan mengandaikan $\sqrt{3} = \frac{a}{b}$ dalam bentuk paling sederhana. Kuadratkan: $a^2 = 3b^2$. Ini berarti $a^2$ habis dibagi 3. Bisakah kamu tunjukkan bahwa $a$ sendiri harus habis dibagi 3?</div>
+    <div class="answer-content" id="a7">
+      Andaikan $\sqrt{3} = \frac{a}{b}$ dalam bentuk paling sederhana. Maka $a^2 = 3b^2$, artinya $a^2$ habis dibagi 3.<br><br>
+      Fakta kunci: jika $a^2$ habis dibagi 3, maka $a$ juga habis dibagi 3. (Jika $a$ tidak habis dibagi 3, maka $a = 3k+1$ atau $a = 3k+2$. Kuadratkan: $(3k+1)^2 = 9k^2+6k+1 = 3(3k^2+2k)+1$, sisa 1. $(3k+2)^2 = 9k^2+12k+4 = 3(3k^2+4k+1)+1$, sisa 1. Jadi $a^2$ tidak habis dibagi 3. Kontradiksi.)<br><br>
+      Tulis $a = 3m$: $(3m)^2 = 3b^2 \Rightarrow 9m^2 = 3b^2 \Rightarrow b^2 = 3m^2$. Jadi $b$ juga habis dibagi 3. Kontradiksi dengan "bentuk paling sederhana". $\blacksquare$
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Recall dari Bab 2</div>
+    <p>Di Bab 2, kita belajar bahwa antara dua pecahan selalu bisa ditemukan pecahan lain. Apakah antara dua bilangan irasional juga selalu ada bilangan irasional? Berikan contoh.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Coba: antara $\sqrt{2}$ dan $\sqrt{3}$, apakah ada bilangan irasional? Bagaimana dengan rata-ratanya?</div>
+    <div class="answer-content" id="a8">Ya! Antara dua bilangan irasional selalu ada bilangan irasional lain. Contoh: $\sqrt{2} \approx 1{,}414$ dan $\sqrt{3} \approx 1{,}732$. Di antaranya ada $\sqrt{2{,}5} \approx 1{,}581$ (irasional, karena 2,5 bukan kuadrat sempurna). Rata-rata $\frac{\sqrt{2}+\sqrt{3}}{2}$ juga irasional dan berada di antara keduanya. Faktanya, antara dua bilangan real manapun, selalu ada bilangan rasional DAN bilangan irasional — garis bilangan benar-benar "padat" dengan keduanya.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dunia yang Lebih Kaya</h2>
+
+  <p>
+    Kita memulai bab ini dengan sebuah persegi dan pertanyaan sederhana tentang diagonalnya. Dari situ, kita menemukan bahwa alam semesta bilangan jauh lebih kaya dari yang dibayangkan Pythagoras. Ada bilangan yang nyata — kamu bisa menunjukkan panjangnya di penggaris — tapi tidak bisa dituliskan sebagai pecahan, tidak peduli seberapa rumit pecahannya.
+  </p>
+
+  <p>
+    Penemuan bilangan irasional mengajarkan kita sesuatu yang mendalam: dunia matematika tidak selalu sesuai harapan. Kadang kamu harus melepaskan ide yang indah (seperti "segala sesuatu adalah rasio") demi kebenaran yang lebih dalam.
+  </p>
+
+  <p>
+    Sekarang garis bilangan kita lengkap — bilangan real, gabungan rasional dan irasional, mengisi setiap titik tanpa celah. Kita punya bilangan yang cukup untuk mengukur apapun.
+  </p>
+
+  <div class="narrator">
+    Tapi di empat bab pertama ini, kita selalu bekerja dengan bilangan-bilangan <em>tertentu</em> — angka-angka spesifik seperti 3, $\frac{1}{2}$, atau $\sqrt{2}$. Bagaimana kalau kita ingin bicara tentang bilangan <em>secara umum</em>? Bagaimana kalau kita ingin menulis aturan yang berlaku untuk <em>semua</em> bilangan sekaligus?
+  </div>
+
+  <p>
+    Untuk itu, kita butuh sebuah bahasa baru. Bahasa singkat, efisien, dan sangat kuat, yang menggunakan huruf-huruf sebagai pengganti bilangan. Bahasa itu bernama <em>aljabar</em> — dan itu cerita bab berikutnya.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 4 — Bahasa Singkat untuk Pola</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Exploring √2 ═══════
+function checkSqrt2() {
+  var n = parseInt(document.getElementById('sqrt-num').value) || 1;
+  var d = parseInt(document.getElementById('sqrt-den').value) || 1;
+  showSqrt2Result(n, d);
+}
+
+function trySqrt(n, d) {
+  document.getElementById('sqrt-num').value = n;
+  document.getElementById('sqrt-den').value = d;
+  showSqrt2Result(n, d);
+}
+
+function showSqrt2Result(n, d) {
+  var frac = n / d;
+  var sq = frac * frac;
+  var diff = sq - 2;
+  var absDiff = Math.abs(diff);
+  var sign = diff > 0 ? '>' : diff < 0 ? '<' : '=';
+  var html = '(' + n + '/' + d + ')² = ' + n + '²/' + d + '² = ' + (n*n) + '/' + (d*d) + ' = ' + sq.toFixed(10) + '\n';
+  html += '\nTarget: 2.0000000000\n';
+  html += 'Selisih: ' + (diff > 0 ? '+' : '') + diff.toFixed(10);
+  if (absDiff < 0.0001 && absDiff > 0) html += '\n\nSangat dekat! Tapi tetap bukan tepat 2.';
+  else if (absDiff === 0) html += '\n\nTepat 2? Periksa lagi — di presisi lebih tinggi pasti ada selisih.';
+  else if (absDiff > 0.1) html += '\n\nMasih cukup jauh. Coba pecahan yang lebih mendekati √2 ≈ 1,41421...';
+  document.getElementById('sqrt2-result').innerText = html;
+}
+
+// ═══════ Interactive 2: Proof Demo ═══════
+function runProofDemo() {
+  var a = parseInt(document.getElementById('proof-a').value) || 1;
+  var b = parseInt(document.getElementById('proof-b').value) || 1;
+  var g = gcd(a, b);
+  var sa = a / g, sb = b / g;
+  var lines = [];
+  lines.push('Andaian: √2 = ' + sa + '/' + sb + (g > 1 ? '  (disederhanakan dari ' + a + '/' + b + ')' : ''));
+  lines.push('Syarat: ' + sa + ' dan ' + sb + ' tidak punya faktor persekutuan (FPB = 1) ✓');
+  lines.push('');
+  lines.push('Langkah 1: Kuadratkan → 2 = ' + sa + '²/' + sb + '² = ' + (sa*sa) + '/' + (sb*sb));
+  lines.push('Langkah 2: a² = 2b²  →  ' + (sa*sa) + ' = 2 × ' + (sb*sb) + ' = ' + (2*sb*sb));
+  var eq = (sa * sa === 2 * sb * sb);
+  if (!eq) {
+    lines.push('');
+    lines.push('⚡ ' + (sa*sa) + ' ≠ ' + (2*sb*sb) + '  →  ' + sa + '/' + sb + ' bukan √2!');
+    lines.push('   (Memang tidak mungkin — tidak ada pecahan yang kuadratnya tepat 2.)');
+  } else {
+    lines.push('   ' + (sa*sa) + ' = ' + (2*sb*sb) + '?  Ini tidak mungkin terjadi untuk a/b sederhana.');
+  }
+  lines.push('');
+  var aEven = sa % 2 === 0;
+  var a2Even = (sa * sa) % 2 === 0;
+  lines.push('Langkah 3: a² = ' + (sa*sa) + ' → ' + (a2Even ? 'GENAP' : 'GANJIL'));
+  lines.push('   Jika a² genap → a genap. a = ' + sa + ' → ' + (aEven ? 'GENAP ✓' : 'GANJIL (bukti gagal di sini karena ' + sa + '/' + sb + ' ≠ √2)'));
+
+  if (aEven) {
+    var k = sa / 2;
+    lines.push('');
+    lines.push('Langkah 4: a = 2k → k = ' + k);
+    lines.push('   (2×' + k + ')² = 2b²  →  ' + (4*k*k) + ' = 2×' + (sb*sb));
+    lines.push('   2k² = b²  →  ' + (2*k*k) + ' = ' + (sb*sb));
+    var bEven = sb % 2 === 0;
+    lines.push('');
+    lines.push('Langkah 5: b² = ' + (sb*sb) + ' → b = ' + sb + ' → ' + (bEven ? 'GENAP' : 'GANJIL'));
+    if (bEven) {
+      lines.push('');
+      lines.push('❌ KONTRADIKSI: a=' + sa + ' (genap) dan b=' + sb + ' (genap)');
+      lines.push('   Keduanya genap → FPB ≠ 1 → bukan bentuk sederhana!');
+    }
+  }
+
+  document.getElementById('proof-steps').innerText = lines.join('\n');
+}
+
+// ═══════ Interactive 3: √n explorer ═══════
+function updateSqrtN() {
+  var n = parseInt(document.getElementById('sqrtn-slider').value);
+  document.getElementById('sqrtn-val').textContent = n;
+  var sqrtN = Math.sqrt(n);
+  var isSquare = Math.round(sqrtN) * Math.round(sqrtN) === n;
+  var html = '';
+
+  if (isSquare) {
+    html += '√' + n + ' = ' + Math.round(sqrtN) + '  (bilangan bulat — RASIONAL)\n';
+    html += n + ' adalah kuadrat sempurna: ' + Math.round(sqrtN) + '² = ' + n;
+  } else {
+    html += '√' + n + ' ≈ ' + sqrtN.toFixed(10) + '  (IRASIONAL)\n';
+    html += n + ' bukan kuadrat sempurna.\n';
+    var bestN = 1, bestD = 1, bestErr = 999;
+    for (var d = 1; d <= 100; d++) {
+      var num = Math.round(sqrtN * d);
+      var err = Math.abs(num / d - sqrtN);
+      if (err < bestErr) { bestN = num; bestD = d; bestErr = err; }
+    }
+    html += 'Pendekatan pecahan terbaik (penyebut ≤ 100): ' + bestN + '/' + bestD + ' = ' + (bestN/bestD).toFixed(10) + '\n';
+    html += 'Selisih: ' + bestErr.toExponential(4);
+  }
+
+  document.getElementById('sqrtn-result').innerText = html;
+
+  var svg = document.getElementById('sqrtn-nl');
+  var maxVal = Math.ceil(sqrtN) + 1;
+  if (maxVal < 3) maxVal = 3;
+  var padL = 30, padR = 30, w = 620 - padL - padR;
+  var unitW = w / maxVal;
+  var s = '';
+  s += '<line x1="' + padL + '" y1="45" x2="' + (620 - padR) + '" y1="45" stroke="#2c2c2c" stroke-width="2"/>';
+  for (var i = 0; i <= maxVal; i++) {
+    var x = padL + i * unitW;
+    s += '<line x1="' + x + '" y1="37" x2="' + x + '" y2="53" stroke="#2c2c2c" stroke-width="2"/>';
+    s += '<text x="' + x + '" y="72" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#2c2c2c">' + i + '</text>';
+  }
+  var fx = padL + sqrtN * unitW;
+  s += '<circle cx="' + fx + '" cy="45" r="7" fill="' + (isSquare ? '#2471a3' : '#c0392b') + '"/>';
+  s += '<text x="' + fx + '" y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="bold" fill="' + (isSquare ? '#2471a3' : '#c0392b') + '">√' + n + '</text>';
+  svg.innerHTML = s;
+}
+
+// ═══════ Interactive 4: Archimedes π ═══════
+function updateArchimedes() {
+  var n = parseInt(document.getElementById('poly-n-slider').value);
+  document.getElementById('poly-n-val').textContent = n;
+  var svg = document.getElementById('archimedes-svg');
+  var cx = 140, cy = 140, r = 110;
+  var s = '';
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="#2471a3" stroke-width="2" stroke-dasharray="4,3"/>';
+  var pts = [];
+  for (var i = 0; i < n; i++) {
+    var angle = (2 * Math.PI * i / n) - Math.PI / 2;
+    pts.push([cx + r * Math.cos(angle), cy + r * Math.sin(angle)]);
+  }
+  var polyPts = pts.map(function(p) { return p[0] + ',' + p[1]; }).join(' ');
+  s += '<polygon points="' + polyPts + '" fill="rgba(36,113,163,0.1)" stroke="#c0392b" stroke-width="2"/>';
+  for (var i = 0; i < n; i++) {
+    s += '<circle cx="' + pts[i][0] + '" cy="' + pts[i][1] + '" r="3" fill="#c0392b"/>';
+  }
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="#2c2c2c"/>';
+  svg.innerHTML = s;
+
+  var sideLen = 2 * r * Math.sin(Math.PI / n);
+  var perimeter = n * sideLen;
+  var diameter = 2 * r;
+  var approxPi = perimeter / diameter;
+  var error = Math.abs(approxPi - Math.PI);
+
+  var res = 'Segi-' + n + ': keliling ≈ ' + perimeter.toFixed(4) + ', diameter = ' + diameter + '\n';
+  res += 'Rasio keliling/diameter ≈ ' + approxPi.toFixed(8) + '\n';
+  res += 'π sebenarnya                = ' + Math.PI.toFixed(8) + '\n';
+  res += 'Selisih: ' + error.toExponential(4);
+  if (n >= 96) res += '\n(Archimedes mencapai segi-96!)';
+  document.getElementById('archimedes-result').innerText = res;
+}
+
+// ═══════ Interactive 5: Number classification ═══════
+function setClassify(val) {
+  document.getElementById('classify-input').value = val;
+  classifyNumber();
+}
+
+function classifyNumber() {
+  var raw = document.getElementById('classify-input').value.trim().replace(',', '.');
+  var el = document.getElementById('classify-result');
+  var categories = [];
+  var explanation = '';
+
+  if (raw === 'sqrt2' || raw === '√2') {
+    categories = ['Bilangan Real', 'Bilangan Irasional'];
+    explanation = '√2 ≈ 1,41421356... — desimalnya tidak pernah berhenti dan tidak pernah berulang. Tidak bisa ditulis sebagai pecahan.';
+  } else if (raw === 'pi' || raw === 'π') {
+    categories = ['Bilangan Real', 'Bilangan Irasional'];
+    explanation = 'π ≈ 3,14159265... — desimalnya tidak pernah berhenti dan tidak pernah berulang. Terbukti irasional oleh Lambert (1761).';
+  } else if (raw === 'e') {
+    categories = ['Bilangan Real', 'Bilangan Irasional'];
+    explanation = 'e ≈ 2,71828... — basis logaritma natural. Terbukti irasional oleh Euler (1737).';
+  } else if (raw.includes('...')) {
+    var base = raw.replace('...', '');
+    var dotPos = base.indexOf('.');
+    if (dotPos >= 0) {
+      var afterDot = base.substring(dotPos + 1);
+      if (afterDot.length > 0 && afterDot.split('').every(function(c, i, a) { return c === a[0]; })) {
+        categories = ['Bilangan Real', 'Bilangan Rasional'];
+        explanation = raw + ' — desimal berulang. Bisa ditulis sebagai pecahan.';
+      } else {
+        categories = ['Bilangan Real', 'Bilangan Rasional (berulang)'];
+        explanation = raw + ' — diasumsikan desimal berulang, jadi rasional.';
+      }
+    }
+  } else {
+    var num = parseFloat(raw);
+    if (isNaN(num)) {
+      el.innerText = 'Masukkan bilangan yang valid, atau ketik sqrt2 / pi.';
+      return;
+    }
+    categories.push('Bilangan Real');
+    if (Number.isInteger(num)) {
+      categories.push('Bilangan Rasional');
+      categories.push('Bilangan Bulat');
+      if (num >= 0) categories.push(num > 0 ? 'Bilangan Asli' : 'Nol (termasuk bilangan cacah)');
+      explanation = num + ' = ' + num + '/1 — bilangan bulat, jadi otomatis rasional.';
+    } else {
+      categories.push('Bilangan Rasional');
+      var parts = raw.split('.');
+      var decimals = parts[1] || '';
+      var denom = Math.pow(10, decimals.length);
+      var numer = Math.round(num * denom);
+      var g = gcd(Math.abs(numer), denom);
+      explanation = num + ' = ' + (numer/g) + '/' + (denom/g) + ' — desimal berhenti, jadi rasional.';
+    }
+  }
+
+  var html = '';
+  for (var i = 0; i < categories.length; i++) {
+    var depth = i;
+    html += '<div style="margin-left: ' + (depth * 20) + 'px; padding: 4px 10px; margin-bottom: 4px; background: rgba(36,113,163,' + (0.05 + i * 0.05) + '); border-radius: 4px; font-family: Inter, sans-serif; font-size: 0.85rem;">';
+    html += (i === categories.length - 1 ? '→ ' : '  ') + '<strong>' + categories[i] + '</strong>';
+    html += '</div>';
+  }
+  html += '<div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-secondary);">' + explanation + '</div>';
+  el.innerHTML = html;
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  showSqrt2Result(7, 5);
+  runProofDemo();
+  updateSqrtN();
+  updateArchimedes();
+  classifyNumber();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 1.5 — Aturan Permainan yang Belum Lengkap</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 1.5</div>
+  <h1 class="chapter-title">Aturan Permainan<br>yang Belum Lengkap</h1>
+  <p class="chapter-subtitle">
+    Tentang bilangan negatif yang belum dijinakkan, perkalian dengan nol,<br>
+    dan mengapa urutan langkah menentukan segalanya.
+  </p>
+  <div class="divider"></div>
+
+  <!-- PROLOG -->
+  <p class="lead">
+    Di Bab 1, kita menemukan empat operasi dan bilangan negatif. Tapi kita meninggalkan beberapa pertanyaan besar belum terjawab. Pertanyaan-pertanyaan yang jika kamu lewati, akan menghantui setiap langkahmu di matematika ke depan.
+  </p>
+
+  <p>
+    Kita tahu bahwa $3 - 5 = -2$. Tapi apa artinya $(-3) + (-5)$? Kita tahu bahwa $4 \times 6 = 24$. Tapi apa artinya $(-2) \times (-3)$? Dan apakah hasilnya positif atau negatif?
+  </p>
+
+  <p>
+    Lebih fundamental lagi: ketika kamu melihat ekspresi $2 + 3 \times 4$, apakah jawabannya 20 atau 14? Ternyata bukan soal pendapat — ada aturan yang pasti, dan tanpa memahami aturan itu, setengah dari matematikamu akan salah.
+  </p>
+
+  <p>
+    Bab ini adalah bab jembatan. Kita akan menuntaskan semua aturan yang belum lengkap sebelum melanjutkan perjalanan ke pecahan dan seterusnya.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 1: MENGHITUNG DENGAN BILANGAN NEGATIF -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Menghitung dengan Bilangan Negatif</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: bilangan negatif lahir karena pengurangan kadang menghasilkan sesuatu yang "kurang dari nol." Brahmagupta menyebutnya sebagai "utang" — jika kamu punya 3 koin tapi berutang 5, kamu punya kekayaan $-2$. Kita sudah tahu bilangan negatif <em>ada</em>. Sekarang kita harus belajar <em>berhitung</em> dengan mereka.
+  </div>
+
+  <p>
+    Di Bab 1, kita hanya melihat kasus sederhana: bilangan positif dikurangi bilangan positif yang lebih besar, seperti $3 - 5 = -2$. Tapi bagaimana kalau kedua bilangannya sudah negatif dari awal?
+  </p>
+
+  <p>
+    Kita akan membangun ini perlahan, satu operasi pada satu waktu. Dan untuk setiap aturan, kita tidak akan hanya menyatakan — kita akan <em>membuktikan</em> bahwa aturan itu masuk akal.
+  </p>
+
+  <h3>Penjumlahan dengan Bilangan Negatif</h3>
+
+  <p>
+    Mari kita mulai dari yang paling intuitif. Bayangkan utang sebagai bilangan negatif, dan kekayaan sebagai bilangan positif.
+  </p>
+
+  <p>
+    <strong>Kasus 1: Positif + Positif</strong> — ini sudah kita tahu.
+  </p>
+
+  <div class="narrator">
+    Kamu punya Rp 5.000 dan mendapat Rp 3.000 lagi. Total kekayaanmu: Rp 8.000.<br>
+    $5 + 3 = 8$ — dua kekayaan digabung menjadi kekayaan lebih besar.
+  </div>
+
+  <p>
+    <strong>Kasus 2: Negatif + Negatif</strong> — dua utang digabungkan.
+  </p>
+
+  <div class="narrator">
+    Kamu berutang Rp 3.000 ke Ali, dan berutang Rp 5.000 ke Budi. Berapa total utangmu?<br>
+    Tentu saja Rp 8.000. Kamu punya dua utang, dan jika digabungkan, utangmu bertambah besar — bukan berkurang.
+  </div>
+
+  <p>
+    Dalam bilangan: $(-3) + (-5) = -8$.
+  </p>
+
+  <p>
+    Di garis bilangan: kamu sudah berada di $-3$ (di sebelah kiri nol). Menambah bilangan negatif berarti melangkah <em>lebih ke kiri lagi</em>. Dari $-3$, melangkah 5 ke kiri: $-3, -4, -5, -6, -7, -8$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan:</strong> Menjumlahkan dua bilangan negatif = jumlahkan nilainya, hasilnya tetap negatif.<br>
+    $(-a) + (-b) = -(a + b)$<br>
+    Dua utang digabung = utang yang lebih besar.
+  </div>
+
+  <p>
+    <strong>Kasus 3: Positif + Negatif</strong> (atau Negatif + Positif) — kekayaan bertemu utang.
+  </p>
+
+  <div class="narrator">
+    Kamu punya Rp 7.000 (kekayaan), tapi kamu berutang Rp 4.000. Berapa bersihnya?<br>
+    Kekayaan bersih: Rp 7.000 - Rp 4.000 = Rp 3.000.
+  </div>
+
+  <p>
+    Dalam bilangan: $7 + (-4) = 3$. Menambah bilangan negatif sama efeknya dengan mengurangi bilangan positif!
+  </p>
+
+  <p>
+    Bagaimana kalau utangnya lebih besar dari kekayaannya?
+  </p>
+
+  <div class="narrator">
+    Kamu punya Rp 3.000, tapi berutang Rp 7.000.<br>
+    Kekayaan bersih: Rp 3.000 - Rp 7.000 = $-$Rp 4.000. Kamu masih berutang Rp 4.000.
+  </div>
+
+  <p>
+    Dalam bilangan: $3 + (-7) = -4$. Dari garis bilangan: mulai di 3, langkah 7 ke kiri, mendarat di $-4$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan:</strong> Menjumlahkan bilangan positif dan negatif = cari selisihnya, lalu ambil tanda dari yang lebih besar nilainya.<br>
+    $7 + (-4) = +(7 - 4) = 3$ (positif menang karena $7 > 4$)<br>
+    $3 + (-7) = -(7 - 3) = -4$ (negatif menang karena $7 > 3$)<br>
+    Pikirkan sebagai "tanding kekuatan" antara positif dan negatif.
+  </div>
+
+  <!-- INTERACTIVE: Number line with negative addition -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjumlahan di Garis Bilangan (dengan Negatif)</div>
+    <div class="interactive-desc">
+      Geser kedua slider — perhatikan bahwa bilangan negatif membuat langkahmu ke kiri, dan bilangan positif ke kanan. Coba berbagai kombinasi: positif+positif, negatif+negatif, positif+negatif.
+    </div>
+    <div class="numberline-wrap">
+      <svg id="nl-negadd" class="numberline-svg" width="620" height="130" viewBox="0 0 620 130"></svg>
+    </div>
+    <div class="slider-container">
+      <label>$a$ = <strong id="negAddA-val">3</strong></label>
+      <input type="range" id="negAddA" min="-10" max="10" value="3" oninput="updateNegAdd()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="negAddB-val">-7</strong></label>
+      <input type="range" id="negAddB" min="-10" max="10" value="-7" oninput="updateNegAdd()">
+    </div>
+    <div id="negadd-result" class="result-display"></div>
+  </div>
+
+  <h3>Pengurangan dengan Bilangan Negatif</h3>
+
+  <p>
+    Sekarang kasus yang sering membingungkan: bagaimana kalau kita <em>mengurangi</em> bilangan negatif?
+  </p>
+
+  <p>
+    Apa artinya $5 - (-3)$?
+  </p>
+
+  <p>
+    Mari berpikir perlahan. Kita tahu bahwa $5 + (-3) = 2$ — menambah negatif sama dengan mengurangi. Jadi <em>mengurangi negatif</em> seharusnya kebalikannya: sama dengan <em>menambah positif</em>.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu punya Rp 5.000. Seseorang berkata: "Aku <em>menghapus</em> utangmu yang Rp 3.000."<br><br>
+    Menghapus utang = mengurangi sesuatu yang negatif. Efeknya? Kekayaanmu <em>bertambah</em>. Kamu sekarang punya kekayaan bersih Rp 8.000.
+  </div>
+
+  <p>
+    $5 - (-3) = 5 + 3 = 8$
+  </p>
+
+  <p>
+    Ini bisa juga dilihat di garis bilangan. Pengurangan normal berarti langkah ke kiri. Tapi mengurangi bilangan negatif membalik arah: langkah ke kanan.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan emas pengurangan:</strong> Mengurangi bilangan negatif = menambah bilangan positif.<br>
+    $a - (-b) = a + b$<br><br>
+    Cara mengingat: dua tanda negatif berturut-turut menjadi positif. "Negatif dari negatif = positif."<br>
+    Menghapus utang = menambah kekayaan.
+  </div>
+
+  <p>
+    Sekarang kita punya semua kemungkinan:
+  </p>
+
+  <div class="interactive-section" style="padding: 1.2rem;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; text-align: left; line-height: 2.2; padding: 0.5rem;">
+      <div>$5 + 3 = 8$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--text-secondary); font-size: 0.82rem; font-family: 'Crimson Pro', serif;">kekayaan + kekayaan</span></div>
+      <div>$5 + (-3) = 2$ &nbsp;&nbsp;&nbsp;<span style="color: var(--text-secondary); font-size: 0.82rem; font-family: 'Crimson Pro', serif;">kekayaan + utang = sama saja dengan $5 - 3$</span></div>
+      <div>$(-5) + (-3) = -8$ <span style="color: var(--text-secondary); font-size: 0.82rem; font-family: 'Crimson Pro', serif;">utang + utang = utang lebih besar</span></div>
+      <div>$5 - (-3) = 8$ &nbsp;&nbsp;&nbsp;<span style="color: var(--text-secondary); font-size: 0.82rem; font-family: 'Crimson Pro', serif;">hapus utang = sama saja dengan $5 + 3$</span></div>
+      <div>$(-5) - (-3) = -2$ <span style="color: var(--text-secondary); font-size: 0.82rem; font-family: 'Crimson Pro', serif;">hapus sebagian utang: utangnya berkurang</span></div>
+    </div>
+  </div>
+
+  <p>
+    Perhatikan pola yang konsisten: <strong>menambah negatif = bergerak ke kiri</strong>, <strong>mengurangi negatif = bergerak ke kanan</strong>. Tanda operasi dan tanda bilangan saling berinteraksi.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 2: PERKALIAN DENGAN BILANGAN NEGATIF -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Perkalian dengan Bilangan Negatif: Mengapa Negatif Kali Negatif = Positif?</h2>
+
+  <p>
+    Ini mungkin pertanyaan paling membingungkan dalam aritmetika dasar. Dan kebanyakan orang hanya diberitahu aturannya tanpa diberi tahu <em>mengapa</em>. Kita akan melakukannya berbeda.
+  </p>
+
+  <h3>Positif × Negatif</h3>
+
+  <p>
+    Kita tahu bahwa perkalian adalah penjumlahan berulang:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $3 \times (-2)$ = "jumlahkan $(-2)$ sebanyak 3 kali"
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $= (-2) + (-2) + (-2) = -6$
+  </p>
+
+  <p>
+    Ini masuk akal: jika kamu berutang Rp 2.000 kepada 3 orang berbeda, total utangmu Rp 6.000.
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan:</strong> Positif × Negatif = Negatif.<br>
+    $3 \times (-2) = -6$<br>
+    Karena sifat komutatif: $(-2) \times 3 = -6$ juga.
+  </div>
+
+  <h3>Negatif × Negatif — Pertanyaan Besar</h3>
+
+  <p>
+    Sekarang bagian yang sulit: apa hasil $(-2) \times (-3)$?
+  </p>
+
+  <p>
+    Kita <em>tidak bisa</em> menggunakan definisi "penjumlahan berulang" di sini, karena "menjumlahkan sesuatu negatif-dua kali" tidak punya makna fisik yang jelas. Jadi kita perlu pendekatan lain.
+  </p>
+
+  <p>
+    Ada beberapa cara untuk memahami ini. Mari kita coba tiga pendekatan, dari yang paling intuitif sampai yang paling ketat.
+  </p>
+
+  <h3>Pendekatan 1: Pola Bilangan</h3>
+
+  <p>
+    Perhatikan pola ini. Kita mulai dari yang sudah kita tahu, lalu ikuti polanya:
+  </p>
+
+  <div class="interactive-section" style="padding: 1.2rem;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; text-align: center; line-height: 2.4;">
+      <div>$(-3) \times 3 = -9$</div>
+      <div>$(-3) \times 2 = -6$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3 dari baris sebelumnya)</span></div>
+      <div>$(-3) \times 1 = -3$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3)</span></div>
+      <div>$(-3) \times 0 = \phantom{-}0$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3)</span></div>
+      <div style="color: var(--accent); font-weight: 600;">$(-3) \times (-1) = \phantom{-}3$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3) ← pola berlanjut!</span></div>
+      <div style="color: var(--accent); font-weight: 600;">$(-3) \times (-2) = \phantom{-}6$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3)</span></div>
+      <div style="color: var(--accent); font-weight: 600;">$(-3) \times (-3) = \phantom{-}9$ <span style="color: var(--accent-green); font-size: 0.8rem;">&nbsp; (+3)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Setiap kali pengali berkurang 1, hasilnya <em>bertambah</em> 3. Pola ini sudah bekerja sempurna di daerah positif. Jika kita menuntut pola yang sama tetap berlaku saat memasuki daerah negatif — dan konsistensi adalah harga mati dalam matematika — maka $(-3) \times (-1)$ <em>harus</em> sama dengan $+3$.
+  </p>
+
+  <h3>Pendekatan 2: Analogi Utang</h3>
+
+  <div class="narrator">
+    Bayangkan seseorang berutang Rp 3.000 per bulan kepada temannya (utang = negatif, jadi per bulan dia mendapat $-3.000$).<br><br>
+    Sekarang pertanyaannya: <strong>2 bulan yang lalu</strong> (waktu di masa lalu = negatif), berapa <em>lebih kaya</em> atau <em>lebih miskin</em> dia dibanding sekarang?<br><br>
+    2 bulan yang lalu, dia <em>belum</em> berutang dua kali pembayaran itu. Jadi relatif terhadap sekarang, dia lebih kaya Rp 6.000.<br><br>
+    $(-2) \times (-3.000) = +6.000$
+  </div>
+
+  <p>
+    "Menghapus utang masa lalu" = positif. Menghilangkan sesuatu negatif menghasilkan sesuatu positif.
+  </p>
+
+  <h3>Pendekatan 3: Bukti dari Sifat Distributif</h3>
+
+  <p>
+    Ini adalah pendekatan paling ketat. Kita akan <em>membuktikan</em> bahwa $(-2) \times (-3) = 6$ menggunakan sifat yang sudah kita terima: sifat distributif.
+  </p>
+
+  <div class="proof-box">
+    <p>Kita tahu bahwa $-3 + 3 = 0$ (definisi: $-3$ adalah "lawan" dari $3$).</p>
+    <p>Kalikan kedua ruas dengan $(-2)$:</p>
+    <p style="text-align: center;">$(-2) \times (-3 + 3) = (-2) \times 0$</p>
+    <p>Ruas kanan: $(-2) \times 0 = 0$ (apa pun dikali nol = nol; kita buktikan ini sebentar lagi).</p>
+    <p>Ruas kiri: gunakan sifat distributif:</p>
+    <p style="text-align: center;">$(-2) \times (-3) + (-2) \times 3 = 0$</p>
+    <p>Kita sudah tahu bahwa $(-2) \times 3 = -6$. Substitusi:</p>
+    <p style="text-align: center;">$(-2) \times (-3) + (-6) = 0$</p>
+    <p>Agar persamaan ini benar, $(-2) \times (-3)$ harus sama dengan $6$.</p>
+    <p style="text-align: center; font-weight: 600; color: var(--accent);">$(-2) \times (-3) = 6$ &nbsp; ∎</p>
+    <div class="qed"></div>
+  </div>
+
+  <p>
+    Ini bukan aturan yang "dipilih" secara sewenang-wenang. Ini adalah satu-satunya jawaban yang <em>konsisten</em> dengan sifat distributif. Jika kita memutuskan bahwa negatif kali negatif = negatif, maka sifat distributif — yang sudah bekerja sempurna untuk semua bilangan positif — akan rusak. Dan itu jauh lebih buruk.
+  </p>
+
+  <div class="key-insight">
+    <strong>Ringkasan aturan tanda perkalian:</strong><br>
+    $(+) \times (+) = (+)$ &nbsp;&nbsp; positif kali positif = positif<br>
+    $(+) \times (-) = (-)$ &nbsp;&nbsp; positif kali negatif = negatif<br>
+    $(-) \times (+) = (-)$ &nbsp;&nbsp; negatif kali positif = negatif<br>
+    $(-) \times (-) = (+)$ &nbsp;&nbsp; negatif kali negatif = positif<br><br>
+    Cara mudah mengingat: <strong>tanda yang sama → positif. Tanda berbeda → negatif.</strong>
+  </div>
+
+  <!-- INTERACTIVE: Multiplication sign rules -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Perkalian Bilangan Negatif</div>
+    <div class="interactive-desc">
+      Geser kedua slider ke daerah negatif dan positif. Perhatikan tanda hasilnya — dan cocokkan dengan aturan di atas.
+    </div>
+    <div class="slider-container">
+      <label>$a$ = <strong id="negMulA-val">-2</strong></label>
+      <input type="range" id="negMulA" min="-10" max="10" value="-2" oninput="updateNegMul()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="negMulB-val">-3</strong></label>
+      <input type="range" id="negMulB" min="-10" max="10" value="-3" oninput="updateNegMul()">
+    </div>
+    <div id="negmul-result" class="result-display"></div>
+    <div id="negmul-rule" style="text-align: center; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.5rem;"></div>
+  </div>
+
+  <h3>Pembagian dengan Bilangan Negatif</h3>
+
+  <p>
+    Karena pembagian adalah kebalikan dari perkalian, aturan tandanya <em>persis sama</em>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $(+) \div (+) = (+)$ &nbsp;&nbsp;&nbsp; $(+) \div (-) = (-)$<br>
+    $(-) \div (+) = (-)$ &nbsp;&nbsp;&nbsp; $(-) \div (-) = (+)$
+  </p>
+
+  <p>
+    Contoh: $(-12) \div (-3) = 4$, karena $4 \times (-3) = -12$. Cek: betul.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 3: PERKALIAN DENGAN NOL -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Mengapa Apapun Dikali Nol = Nol?</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: nol lahir sebagai "penanda tempat" dalam sistem posisional India. Ingat dari Bab 1: Brahmagupta menyatakan $a \times 0 = 0$ dan $a + 0 = a$. Tapi mengapa? Sekarang kita punya alat untuk membuktikannya.
+  </div>
+
+  <p>
+    Ini mungkin terasa "sudah jelas." Tapi coba katakan <em>mengapa</em> — bukan hanya bahwa itu benar, tapi mengapa itu <em>harus</em> benar. Ada dua cara:
+  </p>
+
+  <h3>Cara 1: Dari Definisi Perkalian</h3>
+
+  <p>
+    Perkalian adalah penjumlahan berulang. $5 \times 0$ berarti "jumlahkan 0 sebanyak 5 kali":
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $5 \times 0 = 0 + 0 + 0 + 0 + 0 = 0$
+  </p>
+
+  <p>
+    Menambahkan "tidak ada" berapa kali pun tetap "tidak ada."
+  </p>
+
+  <p>
+    Sebaliknya, $0 \times 5$ berarti "jumlahkan 5 sebanyak 0 kali" — yaitu jangan menjumlahkan sama sekali. Hasilnya nol.
+  </p>
+
+  <h3>Cara 2: Dari Sifat Distributif</h3>
+
+  <p>
+    Cara yang lebih elegan — dan yang bekerja bahkan untuk bilangan yang bukan bilangan asli:
+  </p>
+
+  <div class="proof-box">
+    <p>Kita tahu: $0 = a - a$ (untuk bilangan $a$ apa pun).</p>
+    <p>Maka:</p>
+    <p style="text-align: center;">$b \times 0 = b \times (a - a)$</p>
+    <p>Gunakan sifat distributif:</p>
+    <p style="text-align: center;">$= b \times a - b \times a = 0$</p>
+    <p style="text-align: center; font-weight: 600; color: var(--accent);">$b \times 0 = 0$ &nbsp; ∎</p>
+  </div>
+
+  <p>
+    Ini indah: kita tidak perlu "mendeklarasikan" bahwa apapun dikali nol = nol sebagai aksioma terpisah. Itu <em>mengikuti</em> secara otomatis dari sifat distributif dan definisi nol sebagai elemen identitas penjumlahan ($a + 0 = a$, atau equivalently, $a - a = 0$).
+  </p>
+
+  <div class="key-insight">
+    <strong>Pelajaran yang lebih dalam:</strong> Banyak "aturan" dalam matematika bukan aturan yang dipilih secara bebas — mereka adalah <em>konsekuensi tak terhindarkan</em> dari aturan-aturan yang lebih mendasar. Negatif × negatif = positif bukan pilihan; ia adalah konsekuensi dari sifat distributif. Apapun × nol = nol bukan deklarasi; ia adalah konsekuensi dari sifat distributif dan definisi nol. Matematika membangun dirinya sendiri.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 4: URUTAN OPERASI -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Urutan Operasi: Mengapa $2 + 3 \times 4 = 14$, Bukan $20$</h2>
+
+  <p>
+    Sekarang kita masuk ke masalah yang mungkin sudah kamu temui sejak SD, tapi mungkin tidak pernah benar-benar memahami <em>mengapa</em>-nya.
+  </p>
+
+  <p>
+    Lihat ekspresi ini:
+  </p>
+
+  <p style="text-align: center; font-size: 1.4rem;">$2 + 3 \times 4 = \text{?}$</p>
+
+  <p>
+    Dua orang bisa mendapat jawaban berbeda:
+  </p>
+
+  <p>
+    <strong>Orang A:</strong> "2 + 3 = 5, lalu 5 × 4 = 20. Jawabannya 20."<br>
+    <strong>Orang B:</strong> "3 × 4 = 12, lalu 2 + 12 = 14. Jawabannya 14."
+  </p>
+
+  <p>
+    Siapa yang benar? <strong>Orang B.</strong> Jawabannya 14.
+  </p>
+
+  <p>
+    Tapi mengapa? Apakah ini hanya "aturan sembarangan" yang dipilih oleh matematikawan?
+  </p>
+
+  <h3>Mengapa Perkalian Duluan: Bukan Keputusan Sembarangan</h3>
+
+  <p>
+    Ingat: perkalian adalah <em>penjumlahan berulang</em>. Jadi $3 \times 4$ sebenarnya kependekan dari $4 + 4 + 4$. Jika kita ekspansi ekspresi aslinya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $2 + 3 \times 4 = 2 + \underbrace{4 + 4 + 4}_{\text{3 kali}} = 2 + 12 = 14$
+  </p>
+
+  <p>
+    Jika kita melakukan penjumlahan duluan, kita akan mengubah makna ekspresi itu. $2 + 3 \times 4$ bukan $(2 + 3) \times 4$ — yang kedua berarti "jumlahkan dulu, lalu kalikan hasilnya," sedangkan yang pertama berarti "ada sesuatu ditambah tiga kelompok empat."
+  </p>
+
+  <p>
+    Ini mirip dengan bahasa: "Aku makan nasi dan ayam goreng" tidak sama dengan "(Aku makan nasi) dan (ayam goreng)" — dalam kalimat pertama, "goreng" melekat ke "ayam," bukan ke "nasi dan ayam."
+  </p>
+
+  <div class="key-insight">
+    <strong>Ide penting:</strong> Urutan operasi bukan aturan sembarangan. Perkalian dan pembagian "mengikat lebih kuat" daripada penjumlahan dan pengurangan, karena perkalian pada hakikatnya adalah penjumlahan yang disingkat. Mengerjakan perkalian duluan menjaga makna asli ekspresi.
+  </div>
+
+  <h3>Aturan Lengkap Urutan Operasi</h3>
+
+  <p>
+    Berikut urutan yang harus diikuti, dari yang paling "mengikat" sampai paling lemah:
+  </p>
+
+  <div class="interactive-section" style="padding: 1.5rem;">
+    <div style="font-family: 'Inter', sans-serif; font-size: 0.88rem; line-height: 2.5;">
+      <div style="display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem;">
+        <span style="background: var(--accent); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</span>
+        <div><strong>Tanda kurung</strong> <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent-blue);">( )</span> — kerjakan isi kurung paling dalam terlebih dahulu.</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem;">
+        <span style="background: var(--accent-warm); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</span>
+        <div><strong>Pangkat dan akar</strong> — $x^2$, $\sqrt{x}$ (kita akan pelajari di bab-bab mendatang).</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem;">
+        <span style="background: var(--accent-blue); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</span>
+        <div><strong>Perkalian dan pembagian</strong> <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent-blue);">×  ÷</span> — kerjakan dari kiri ke kanan.</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 0.8rem;">
+        <span style="background: var(--accent-green); color: white; border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">4</span>
+        <div><strong>Penjumlahan dan pengurangan</strong> <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent-blue);">+  −</span> — kerjakan dari kiri ke kanan.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    Tanda kurung adalah "override" — cara untuk memaksa urutan tertentu. Jika kamu <em>memang</em> ingin menjumlahkan dulu, tulis $(2 + 3) \times 4 = 20$.
+  </p>
+
+  <h3>Contoh Bertahap</h3>
+
+  <p>
+    Mari kita kerjakan beberapa contoh, langkah demi langkah:
+  </p>
+
+  <p>
+    <strong>Contoh 1:</strong> $6 + 2 \times 5 - 1$
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0;">
+    <div>Langkah 1: perkalian dulu → $2 \times 5 = 10$</div>
+    <div>Sekarang ekspresi menjadi: $6 + 10 - 1$</div>
+    <div>Langkah 2: dari kiri ke kanan → $6 + 10 = 16$</div>
+    <div>Langkah 3: → $16 - 1 = \mathbf{15}$</div>
+  </div>
+
+  <p>
+    <strong>Contoh 2:</strong> $3 \times (4 + 2) - 8 \div 2$
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0;">
+    <div>Langkah 1: kurung dulu → $(4 + 2) = 6$</div>
+    <div>Sekarang: $3 \times 6 - 8 \div 2$</div>
+    <div>Langkah 2: perkalian dan pembagian (kiri ke kanan):</div>
+    <div>&nbsp;&nbsp;$3 \times 6 = 18$ dan $8 \div 2 = 4$</div>
+    <div>Sekarang: $18 - 4$</div>
+    <div>Langkah 3: → $18 - 4 = \mathbf{14}$</div>
+  </div>
+
+  <p>
+    <strong>Contoh 3:</strong> $(-2) \times (3 + (-5))$
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0;">
+    <div>Langkah 1: kurung dulu → $3 + (-5) = -2$</div>
+    <div>Sekarang: $(-2) \times (-2)$</div>
+    <div>Langkah 2: negatif × negatif = positif → $(-2) \times (-2) = \mathbf{4}$</div>
+  </div>
+
+  <!-- INTERACTIVE: Order of Operations Practice -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Latihan Urutan Operasi</div>
+    <div class="interactive-desc">
+      Klik tombol untuk mendapat soal acak. Coba hitung sendiri, lalu klik "Lihat Langkah" untuk memeriksa jawabanmu.
+    </div>
+    <div id="order-problem" style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; text-align: center; padding: 1rem; color: var(--accent-blue);"></div>
+    <div class="btn-group" style="justify-content: center;">
+      <button class="btn btn-accent" onclick="generateOrderProblem()">Soal Baru</button>
+      <button class="btn" onclick="showOrderSteps()">Lihat Langkah</button>
+    </div>
+    <div id="order-steps" style="display: none; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 2; padding: 0.8rem; background: #e8f5e9; border-radius: 8px;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 5: PEMBAGIAN SEBAGAI PENGURANGAN BERULANG -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Pembagian sebagai Pengurangan Berulang</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: perkalian adalah penjumlahan berulang ($4 \times 3 = 3 + 3 + 3 + 3$). Penjumlahan dan perkalian saling terhubung. Pengurangan dan pembagian juga — tapi koneksi itu baru muncul di latihan Bab 1. Sekarang kita akan membangunnya dengan benar.
+  </div>
+
+  <p>
+    Sama seperti perkalian adalah "penjumlahan berulang," pembagian bisa dipahami sebagai <strong>pengurangan berulang</strong>.
+  </p>
+
+  <p>
+    Pertanyaan: $12 \div 3 = \text{?}$
+  </p>
+
+  <p>
+    Cara menjawabnya: mulai dari 12, kurangi 3 berulang kali sampai habis. Hitung berapa kali kamu bisa melakukannya.
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0; text-align: center;">
+    <div>$12 - 3 = 9$ <span style="color: var(--accent-warm);">&nbsp; (pengurangan ke-1)</span></div>
+    <div>$\phantom{1}9 - 3 = 6$ <span style="color: var(--accent-warm);">&nbsp; (pengurangan ke-2)</span></div>
+    <div>$\phantom{1}6 - 3 = 3$ <span style="color: var(--accent-warm);">&nbsp; (pengurangan ke-3)</span></div>
+    <div>$\phantom{1}3 - 3 = 0$ <span style="color: var(--accent-warm);">&nbsp; (pengurangan ke-4) ← habis!</span></div>
+  </div>
+
+  <p>
+    Kita bisa mengurangi 3 sebanyak <strong>4 kali</strong> dari 12 sampai habis. Maka $12 \div 3 = 4$.
+  </p>
+
+  <p>
+    Bagaimana jika tidak habis? $14 \div 3$:
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0; text-align: center;">
+    <div>$14 - 3 = 11$ <span style="color: var(--accent-warm);">&nbsp; (ke-1)</span></div>
+    <div>$11 - 3 = \phantom{1}8$ <span style="color: var(--accent-warm);">&nbsp; (ke-2)</span></div>
+    <div>$\phantom{1}8 - 3 = \phantom{1}5$ <span style="color: var(--accent-warm);">&nbsp; (ke-3)</span></div>
+    <div>$\phantom{1}5 - 3 = \phantom{1}2$ <span style="color: var(--accent-warm);">&nbsp; (ke-4) ← sisa 2, tidak bisa dikurangi 3 lagi!</span></div>
+  </div>
+
+  <p>
+    Jawaban: $14 \div 3 = 4$ sisa $2$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa ini penting:</strong> Pembagian sebagai pengurangan berulang adalah cara kerja komputer saat melakukan pembagian. Prosesor komputer pada dasarnya hanya bisa menjumlahkan — perkalian dilakukan sebagai penjumlahan berulang, dan pembagian sebagai pengurangan berulang. Ketika kamu mengambil mata kuliah <em>Algoritma dan Koding</em> nanti, kamu akan melihat ini muncul kembali dalam bentuk loop.
+  </div>
+
+  <!-- INTERACTIVE: Division as Repeated Subtraction -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Pembagian sebagai Pengurangan Berulang</div>
+    <div class="interactive-desc">
+      Pilih bilangan yang ingin dibagi. Klik "Kurangi!" berulang kali untuk melihat proses pembagian sebagai pengurangan berulang. Hitung berapa langkah yang dibutuhkan.
+    </div>
+    <div class="slider-container">
+      <label>Bilangan yang dibagi: <strong id="repDivN-val">15</strong></label>
+      <input type="range" id="repDivN" min="1" max="30" value="15" oninput="resetRepDiv()">
+    </div>
+    <div class="slider-container">
+      <label>Pembagi: <strong id="repDivD-val">4</strong></label>
+      <input type="range" id="repDivD" min="1" max="10" value="4" oninput="resetRepDiv()">
+    </div>
+    <div id="repDiv-display" style="font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; text-align: center; padding: 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0; line-height: 2; min-height: 60px;"></div>
+    <div class="btn-group" style="justify-content: center;">
+      <button class="btn btn-accent" id="repDivBtn" onclick="stepRepDiv()">Kurangi!</button>
+      <button class="btn" onclick="resetRepDiv()">Ulangi</button>
+    </div>
+    <div id="repDiv-result" class="result-display" style="display: none;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 6: KESALAHAN UMUM -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Kesalahan Umum</h2>
+
+  <p>
+    Berikut kesalahan yang paling sering dibuat — dan yang akan terus menghantui jika tidak diperbaiki sekarang.
+  </p>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Berpikir $-3^2 = 9$.</p>
+    <p><strong>Yang benar:</strong> $-3^2 = -(3^2) = -9$. Yang dikuadratkan hanya $3$, bukan $-3$. Jika kamu ingin mengkuadratkan $-3$ seluruhnya, tulis $(-3)^2 = 9$. Tanda kurung <em>penting</em>.</p>
+    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;">Ini akan muncul terus-menerus di Kalkulus dan Fisika. Biasakan membedakan $-x^2$ dan $(-x)^2$ sekarang.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Mengerjakan $6 - 2 + 3$ sebagai $6 - 5 = 1$.</p>
+    <p><strong>Yang benar:</strong> Penjumlahan dan pengurangan punya prioritas yang <em>sama</em> — kerjakan dari kiri ke kanan. $6 - 2 + 3 = 4 + 3 = 7$. Bukan $6 - (2 + 3)$.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Berpikir $(-5) \times (-3) = -15$ karena "ada tanda negatif."</p>
+    <p><strong>Yang benar:</strong> Negatif × negatif = <em>positif</em>. $(-5) \times (-3) = 15$. Kita sudah membuktikan ini dari sifat distributif. Dua negatif "membatalkan" satu sama lain.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Menulis $8 \div 2 \times 4 = 1$ (mengerjakan perkalian duluan karena "perkalian lebih penting").</p>
+    <p><strong>Yang benar:</strong> Perkalian dan pembagian punya prioritas <em>yang sama</em>. Kerjakan dari kiri ke kanan: $8 \div 2 \times 4 = 4 \times 4 = 16$. Bukan $8 \div 8$.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LATIHAN -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Latihan: Menguji Pemahamanmu</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Hitung: $(-8) + (-3) + 5 + (-2)$</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Kelompokkan negatif dan positif secara terpisah dulu: negatif total = $(-8) + (-3) + (-2) = -13$. Positif total = $5$.</div>
+    <div class="answer-content" id="a1">
+      Negatif: $(-8) + (-3) + (-2) = -13$.<br>
+      Positif: $5$.<br>
+      Total: $(-13) + 5 = -8$.<br>
+      <em>Atau secara berurutan: $(-8) + (-3) = -11$, lalu $(-11) + 5 = -6$, lalu $(-6) + (-2) = -8$.</em>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Conceptual</div>
+    <p>Tanpa menghitung, tentukan apakah hasilnya positif atau negatif: $(-7) \times (-3) \times (-2) \times 4$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Hitung berapa tanda negatif yang ada. Jika genap, hasilnya positif. Jika ganjil...</div>
+    <div class="answer-content" id="a2">
+      Ada <strong>3 tanda negatif</strong> (ganjil). Negatif × negatif = positif (2 negatif habis), tapi masih ada 1 negatif tersisa, jadi hasilnya <strong>negatif</strong>.<br>
+      Hitungannya: $(-7) \times (-3) = 21$, lalu $21 \times (-2) = -42$, lalu $(-42) \times 4 = -168$.<br>
+      <strong>Aturan cepat:</strong> jumlah tanda negatif genap → positif. Ganjil → negatif.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Order of Operations</div>
+    <p>Hitung: $10 - 2 \times 3 + 4 \div 2$</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Perkalian dan pembagian duluan (dari kiri ke kanan), baru penjumlahan dan pengurangan.</div>
+    <div class="answer-content" id="a3">
+      Langkah 1: $2 \times 3 = 6$ dan $4 \div 2 = 2$.<br>
+      Sekarang: $10 - 6 + 2$.<br>
+      Langkah 2: dari kiri ke kanan: $10 - 6 = 4$, lalu $4 + 2 = \mathbf{6}$.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Derivation (Recall Bab 1)</div>
+    <p>Gunakan sifat distributif untuk membuktikan bahwa $(-1) \times a = -a$ untuk semua bilangan $a$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Mulai dari fakta bahwa $1 + (-1) = 0$. Kalikan kedua ruas dengan $a$.</div>
+    <div class="answer-content" id="a4">
+      <p>Kita tahu: $1 + (-1) = 0$.</p>
+      <p>Kalikan kedua ruas dengan $a$: $a \times (1 + (-1)) = a \times 0 = 0$.</p>
+      <p>Distributif: $a \times 1 + a \times (-1) = 0$, yaitu $a + a \times (-1) = 0$.</p>
+      <p>Satu-satunya bilangan yang jika ditambahkan ke $a$ menghasilkan $0$ adalah $-a$.</p>
+      <p>Maka $(-1) \times a = -a$. &nbsp; ∎</p>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;"><em>Ini artinya: mengalikan dengan $-1$ sama dengan "membalik tanda." Dan ini bukan definisi — ini konsekuensi dari sifat distributif!</em></p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Error Analysis</div>
+    <p>Seorang siswa menulis: $5 + 3 \times (-2) = -16$. Apa kesalahannya? Berapa jawaban yang benar?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Cek: bagaimana siswa itu bisa mendapat $-16$? Kemungkinan dia menjumlahkan dulu...</div>
+    <div class="answer-content" id="a5">
+      <p>Siswa itu mengerjakan penjumlahan duluan: $5 + 3 = 8$, lalu $8 \times (-2) = -16$. Salah!</p>
+      <p>Yang benar: perkalian duluan: $3 \times (-2) = -6$, lalu $5 + (-6) = 5 - 6 = \mathbf{-1}$.</p>
+      <p>Dua kesalahan dalam satu: salah urutan operasi, dan akibatnya salah total.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Challenge</div>
+    <p>Tanpa kalkulator, hitung: $(−3) \times (−2) + 4 \times (−5) − (−6)$</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Kerjakan setiap perkalian dulu, lalu ingat: mengurangi bilangan negatif = menambah bilangan positif.</div>
+    <div class="answer-content" id="a6">
+      <p>Langkah 1 — perkalian dulu:</p>
+      <p>$(-3) \times (-2) = 6$ &nbsp; (negatif × negatif = positif)</p>
+      <p>$4 \times (-5) = -20$ &nbsp; (positif × negatif = negatif)</p>
+      <p>Langkah 2 — sekarang: $6 + (-20) - (-6)$</p>
+      <p>$= 6 - 20 + 6$ &nbsp; (mengurangi negatif = menambah positif)</p>
+      <p>$= -14 + 6 = \mathbf{-8}$</p>
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- EPILOG -->
+  <h2>Epilog: Sekarang Aturannya Lengkap</h2>
+
+  <p>
+    Di bab ini kita menuntaskan apa yang tertinggal dari Bab 1. Sekarang kamu punya peralatan lengkap untuk bekerja dengan bilangan bulat — positif, negatif, dan nol. Kamu tahu:
+  </p>
+
+  <p>
+    Bagaimana menjumlahkan dan mengurangi bilangan negatif — dengan analogi utang-kekayaan dan gerakan di garis bilangan.
+  </p>
+
+  <p>
+    Mengapa negatif kali negatif = positif — bukan aturan sembarangan, tapi konsekuensi dari sifat distributif.
+  </p>
+
+  <p>
+    Mengapa apapun dikali nol = nol — juga konsekuensi dari sifat distributif.
+  </p>
+
+  <p>
+    Urutan operasi — perkalian dan pembagian mengikat lebih kuat daripada penjumlahan dan pengurangan, dan ini <em>bukan</em> konvensi sewenang-wenang.
+  </p>
+
+  <p>
+    Pembagian sebagai pengurangan berulang — koneksi yang akan muncul kembali di komputer dan algoritma.
+  </p>
+
+  <p>
+    Dan yang paling penting: kita melihat bahwa banyak "aturan" dalam matematika bukan dipilih secara bebas — mereka adalah konsekuensi logis yang tak terhindarkan dari aturan-aturan yang lebih mendasar. Matematika bukan kumpulan aturan acak yang harus dihafal. Ia adalah <em>bangunan</em> di mana setiap lantai menopang lantai berikutnya.
+  </p>
+
+  <p>
+    Di Bab 2, kita akan menghadapi masalah yang ditinggalkan Bab 1: apa yang terjadi ketika pembagian tidak habis? Dari sanalah <em>pecahan</em> lahir — dan bersama mereka, semua kerumitan dan keindahannya.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 2 — Ketika Bilangan Bulat Tidak Cukup: Pecahan dan Rasio</div>
+  </div>
+
+  <div class="chapter-end">
+    <div class="ornament">· · ·</div>
+  </div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════════════════════════════════════════
+// NUMBER LINE WITH NEGATIVES — ADDITION
+// ═══════════════════════════════════════════
+function updateNegAdd() {
+  const a = parseInt(document.getElementById('negAddA').value);
+  const b = parseInt(document.getElementById('negAddB').value);
+  document.getElementById('negAddA-val').textContent = a;
+  document.getElementById('negAddB-val').textContent = b;
+  const result = a + b;
+
+  const svg = document.getElementById('nl-negadd');
+  const w = 620, h = 130;
+  svg.innerHTML = '';
+
+  const allVals = [a, result, 0];
+  const minVal = Math.min(...allVals) - 2;
+  const maxVal = Math.max(...allVals) + 2;
+  const rangeVal = maxVal - minVal || 1;
+  const margin = 35;
+  const lineW = w - 2 * margin;
+  const ns = (val) => margin + ((val - minVal) / rangeVal) * lineW;
+
+  // main line
+  svg.innerHTML += `<line x1="${margin-10}" y1="75" x2="${w-margin+10}" y2="75" stroke="#ccc" stroke-width="1.5"/>`;
+
+  // ticks and labels
+  for (let i = Math.ceil(minVal); i <= Math.floor(maxVal); i++) {
+    const x = ns(i);
+    const isZero = i === 0;
+    svg.innerHTML += `<line x1="${x}" y1="70" x2="${x}" y2="80" stroke="${isZero ? '#333' : '#bbb'}" stroke-width="${isZero ? 2 : 1}"/>`;
+    svg.innerHTML += `<text x="${x}" y="96" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="${i < 0 ? '#c0392b' : '#555'}">${i}</text>`;
+  }
+
+  // start dot
+  const startX = ns(a);
+  const endX = ns(result);
+  svg.innerHTML += `<circle cx="${startX}" cy="75" r="6" fill="#2471a3"/>`;
+  svg.innerHTML += `<text x="${startX}" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#2471a3" font-weight="600">mulai: ${a}</text>`;
+
+  if (b !== 0) {
+    const color = b > 0 ? '#27ae60' : '#c0392b';
+    const midX = (startX + endX) / 2;
+    const arcH = Math.min(30, Math.abs(endX - startX) * 0.25 + 12);
+    svg.innerHTML += `<path d="M${startX},73 Q${midX},${73 - arcH} ${endX},73" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="4,3"/>`;
+    const dir = b > 0 ? 1 : -1;
+    svg.innerHTML += `<polygon points="${endX},73 ${endX - dir * 7},67 ${endX - dir * 7},79" fill="${color}"/>`;
+    svg.innerHTML += `<text x="${midX}" y="${63 - arcH}" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="${color}">${b > 0 ? '+' : ''}${b}</text>`;
+    svg.innerHTML += `<circle cx="${endX}" cy="75" r="6" fill="${color}"/>`;
+    svg.innerHTML += `<text x="${endX}" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="${color}" font-weight="600">hasil: ${result}</text>`;
+  }
+
+  document.getElementById('negadd-result').innerHTML =
+    `$${a} + (${b}) = ${result}$`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('negadd-result')]);
+}
+updateNegAdd();
+
+// ═══════════════════════════════════════════
+// NEGATIVE MULTIPLICATION
+// ═══════════════════════════════════════════
+function updateNegMul() {
+  const a = parseInt(document.getElementById('negMulA').value);
+  const b = parseInt(document.getElementById('negMulB').value);
+  document.getElementById('negMulA-val').textContent = a;
+  document.getElementById('negMulB-val').textContent = b;
+  const result = a * b;
+
+  let signA = a >= 0 ? '+' : '−';
+  let signB = b >= 0 ? '+' : '−';
+  let signR = result >= 0 ? '+' : '−';
+  let ruleText = '';
+
+  if (a === 0 || b === 0) {
+    ruleText = 'Apapun dikali nol = nol.';
+  } else if (a > 0 && b > 0) {
+    ruleText = `(${signA}) × (${signB}) = (${signR}) — positif × positif = positif`;
+  } else if (a > 0 && b < 0) {
+    ruleText = `(${signA}) × (${signB}) = (${signR}) — positif × negatif = negatif`;
+  } else if (a < 0 && b > 0) {
+    ruleText = `(${signA}) × (${signB}) = (${signR}) — negatif × positif = negatif`;
+  } else {
+    ruleText = `(${signA}) × (${signB}) = (${signR}) — negatif × negatif = positif`;
+  }
+
+  document.getElementById('negmul-result').innerHTML =
+    `$(${a}) \\times (${b}) = ${result}$`;
+  document.getElementById('negmul-rule').textContent = ruleText;
+  if (window.MathJax) MathJax.typeset([document.getElementById('negmul-result')]);
+}
+updateNegMul();
+
+// ═══════════════════════════════════════════
+// ORDER OF OPERATIONS PRACTICE
+// ═══════════════════════════════════════════
+let currentOrderProblem = null;
+
+function generateOrderProblem() {
+  document.getElementById('order-steps').style.display = 'none';
+
+  const templates = [
+    () => {
+      const a = randInt(1,9), b = randInt(1,9), c = randInt(2,6);
+      return {
+        expr: `${a} + ${b} \\times ${c}`,
+        steps: [
+          `Perkalian dulu: $${b} \\times ${c} = ${b*c}$`,
+          `Sekarang: $${a} + ${b*c} = ${a + b*c}$`
+        ],
+        answer: a + b * c
+      };
+    },
+    () => {
+      const a = randInt(10,20), b = randInt(2,5), c = randInt(1,8);
+      return {
+        expr: `${a} - ${b} \\times ${c}`,
+        steps: [
+          `Perkalian dulu: $${b} \\times ${c} = ${b*c}$`,
+          `Sekarang: $${a} - ${b*c} = ${a - b*c}$`
+        ],
+        answer: a - b * c
+      };
+    },
+    () => {
+      const a = randInt(1,5), b = randInt(1,5), c = randInt(2,6);
+      return {
+        expr: `(${a} + ${b}) \\times ${c}`,
+        steps: [
+          `Kurung dulu: $(${a} + ${b}) = ${a+b}$`,
+          `Sekarang: $${a+b} \\times ${c} = ${(a+b)*c}$`
+        ],
+        answer: (a + b) * c
+      };
+    },
+    () => {
+      const a = randInt(2,6), b = randInt(2,5), c = randInt(2,10), d = randInt(2,4);
+      const cd = c * d;
+      return {
+        expr: `${a} \\times ${b} + ${cd} \\div ${d}`,
+        steps: [
+          `Perkalian: $${a} \\times ${b} = ${a*b}$`,
+          `Pembagian: $${cd} \\div ${d} = ${c}$`,
+          `Sekarang: $${a*b} + ${c} = ${a*b + c}$`
+        ],
+        answer: a * b + c
+      };
+    },
+    () => {
+      const a = randInt(-5,-1), b = randInt(-5,-1);
+      const ab = a*b;
+      const c = randInt(1,8);
+      return {
+        expr: `(${a}) \\times (${b}) + ${c}`,
+        steps: [
+          `Perkalian (negatif × negatif = positif): $(${a}) \\times (${b}) = ${ab}$`,
+          `Sekarang: $${ab} + ${c} = ${ab + c}$`
+        ],
+        answer: ab + c
+      };
+    }
+  ];
+
+  const template = templates[Math.floor(Math.random() * templates.length)];
+  currentOrderProblem = template();
+  document.getElementById('order-problem').innerHTML = `$${currentOrderProblem.expr} = \\text{?}$`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('order-problem')]);
+}
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function showOrderSteps() {
+  if (!currentOrderProblem) return;
+  const el = document.getElementById('order-steps');
+  el.style.display = 'block';
+  el.innerHTML = currentOrderProblem.steps.map((s, i) =>
+    `<div>Langkah ${i+1}: ${s}</div>`
+  ).join('') + `<div style="margin-top: 0.5rem; font-weight: 600; color: var(--accent);">Jawaban: $${currentOrderProblem.answer}$</div>`;
+  if (window.MathJax) MathJax.typeset([el]);
+}
+
+generateOrderProblem();
+
+// ═══════════════════════════════════════════
+// DIVISION AS REPEATED SUBTRACTION
+// ═══════════════════════════════════════════
+let repDivState = { current: 0, steps: 0, done: false };
+
+function resetRepDiv() {
+  const n = parseInt(document.getElementById('repDivN').value);
+  const d = parseInt(document.getElementById('repDivD').value);
+  document.getElementById('repDivN-val').textContent = n;
+  document.getElementById('repDivD-val').textContent = d;
+  repDivState = { current: n, steps: 0, done: false };
+  document.getElementById('repDiv-display').innerHTML =
+    `<div style="font-size: 1.2rem; color: var(--accent-blue);">Sisa: ${n}</div>`;
+  document.getElementById('repDiv-result').style.display = 'none';
+  document.getElementById('repDivBtn').disabled = false;
+  document.getElementById('repDivBtn').textContent = `Kurangi ${d}!`;
+}
+
+function stepRepDiv() {
+  if (repDivState.done) return;
+  const d = parseInt(document.getElementById('repDivD').value);
+  const display = document.getElementById('repDiv-display');
+
+  if (repDivState.current >= d) {
+    const prev = repDivState.current;
+    repDivState.current -= d;
+    repDivState.steps++;
+    display.innerHTML += `<div>${prev} − ${d} = ${repDivState.current} <span style="color: var(--accent-warm);">(pengurangan ke-${repDivState.steps})</span></div>`;
+  }
+
+  if (repDivState.current < d) {
+    repDivState.done = true;
+    const n = parseInt(document.getElementById('repDivN').value);
+    const resultEl = document.getElementById('repDiv-result');
+    resultEl.style.display = 'block';
+    let text = `$${n} \\div ${d} = ${repDivState.steps}$`;
+    if (repDivState.current > 0) {
+      text += ` <span style="color: var(--accent);">sisa ${repDivState.current}</span>`;
+    } else {
+      text += ` <span style="color: var(--accent-green);">habis!</span>`;
+    }
+    text += `<br><span style="font-size: 0.85rem; color: var(--text-secondary);">Dibutuhkan ${repDivState.steps} kali pengurangan.</span>`;
+    resultEl.innerHTML = text;
+    document.getElementById('repDivBtn').disabled = true;
+    if (window.MathJax) MathJax.typeset([resultEl]);
+  }
+}
+
+resetRepDiv();
+</script>
+</body>
+</html>

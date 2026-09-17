@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 0.5 — Cara Menghitung dan Bahasa Bilangan</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 0.5</div>
+  <h1 class="chapter-title">Cara Menghitung<br>dan Bahasa Bilangan</h1>
+  <p class="chapter-subtitle">
+    Tentang perbedaan "berapa banyak" dan "yang ke-berapa,"<br>
+    mengapa komputer hanya mengenal dua angka, dan bagaimana nol mengubah segalanya.
+  </p>
+  <div class="divider"></div>
+
+  <!-- PROLOG -->
+  <p class="lead">
+    Di Bab 0, kita menemukan bahwa manusia bisa membandingkan jumlah <em>tanpa</em> menghitung — hanya dengan mencocokkan satu-satu. Lalu kita melompat ke tally marks, lalu ke simbol, lalu ke sistem posisional.
+  </p>
+
+  <p>
+    Tapi ada satu langkah yang terlewat — langkah yang begitu mendasar sehingga kita lupa bahwa itu perlu dijelaskan: <strong>apa artinya "menghitung"?</strong>
+  </p>
+
+  <p>
+    Mencocokkan dan menghitung adalah dua hal yang berbeda. Mencocokkan hanya menjawab "apakah sama banyak?" Menghitung menjawab "<em>berapa</em> banyak?" — dan untuk itu, manusia membutuhkan penemuan lain yang luar biasa.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 1: APA ARTINYA MENGHITUNG -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Apa Artinya "Menghitung"?</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: korespondensi satu-satu memungkinkan penggembala mengetahui apakah dombanya lengkap <em>tanpa</em> menghitung. Setiap domba dipasangkan dengan satu batu — jika semua batu terpakai, jumlahnya sama. Tapi penggembala itu tetap tidak tahu ada <em>berapa</em> domba.
+  </div>
+
+  <p>
+    Menghitung membutuhkan sesuatu yang mencocokkan tidak butuhkan: <strong>urutan</strong>.
+  </p>
+
+  <p>
+    Ketika kamu menghitung benda di meja — "satu, dua, tiga, empat, lima" — kamu melakukan dua hal sekaligus:
+  </p>
+
+  <p>
+    <strong>Pertama:</strong> kamu menunjuk setiap benda satu per satu, memastikan tidak ada yang terulang atau terlewat. Ini adalah korespondensi satu-satu — setiap benda dipasangkan dengan tepat satu kata bilangan.
+  </p>
+
+  <p>
+    <strong>Kedua:</strong> kata-kata bilangan itu harus dalam <em>urutan tetap</em> — satu, dua, tiga, empat, lima. Bukan "dua, lima, satu, empat, tiga." Urutannya penting karena kata terakhir yang kamu ucapkan menjadi <em>jawabannya</em>.
+  </p>
+
+  <div class="key-insight">
+    <strong>Menghitung = korespondensi satu-satu + urutan.</strong> Setiap benda dipasangkan dengan satu bilangan berurutan, dan bilangan terakhir yang kamu ucapkan mewakili <em>jumlah total</em>. Ini disebut prinsip <strong>kardinalitas</strong> — kata bilangan terakhir bukan hanya label untuk benda terakhir, tapi menyatakan banyaknya <em>seluruh</em> kumpulan.
+  </div>
+
+  <p>
+    Ini terdengar sepele. Tapi bagi anak kecil, langkah ini tidak otomatis. Anak berusia 2-3 tahun bisa mengucapkan "satu, dua, tiga" sambil menunjuk benda, tapi jika kamu bertanya "jadi ada berapa?" mereka sering bingung. Mereka sudah bisa <em>melafalkan</em> urutan, tapi belum mengerti bahwa bilangan terakhir merangkum semuanya.
+  </p>
+
+  <h3>Ordinal vs Kardinal</h3>
+
+  <p>
+    Dari proses menghitung ini, muncul dua cara menggunakan bilangan yang sering tercampur:
+  </p>
+
+  <p>
+    <strong>Kardinal</strong> (dari bahasa Latin <em>cardinalis</em>, "hal yang utama"): menjawab "<em>berapa banyak?</em>"<br>
+    "Ada <em>lima</em> apel di meja." → lima menjelaskan jumlah.
+  </p>
+
+  <p>
+    <strong>Ordinal</strong> (dari <em>ordinalis</em>, "berurutan"): menjawab "<em>yang ke-berapa?</em>"<br>
+    "Ini apel yang ke-<em>lima</em>." → kelima menjelaskan posisi dalam urutan.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu antri di kasir. Ada 8 orang dalam antrian (kardinal — berapa banyak). Kamu berdiri di posisi ke-3 (ordinal — urutan ke-berapa). Kedua informasi itu berbeda, meskipun keduanya menggunakan bilangan.
+  </div>
+
+  <!-- INTERACTIVE: Counting vs Matching -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menghitung vs Mencocokkan</div>
+    <div class="interactive-desc">
+      Klik setiap bola untuk "menghitungnya." Bilangan akan muncul berurutan. Bilangan terakhir yang muncul = jumlah total (prinsip kardinalitas). Bandingkan: tanpa menghitung, kamu bisa mengetahui apakah bola merah dan bola biru sama banyak hanya dengan mencocokkan satu-satu.
+    </div>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+      <div>
+        <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-align: center;">Klik untuk menghitung:</div>
+        <div class="pasture" id="count-area" style="min-width: 250px; min-height: 70px; background: #e3f2fd;"></div>
+      </div>
+    </div>
+
+    <div class="counter-display" id="count-display">Klik bola untuk mulai menghitung</div>
+
+    <div class="btn-group" style="justify-content: center;">
+      <button class="btn btn-accent" onclick="initCountExperiment()">Acak Ulang</button>
+    </div>
+  </div>
+
+  <p>
+    Mengapa pembedaan ini penting? Karena nanti dalam matematika, kamu akan menemukan situasi di mana "berapa banyak" dan "urutan ke-berapa" berperilaku sangat berbeda. Misalnya, dalam teori himpunan, kardinalitas himpunan tak hingga $\{1, 2, 3, ...\}$ dan $\{2, 4, 6, ...\}$ ternyata <em>sama</em> (keduanya bisa dipasangkan satu-satu), meskipun yang kedua tampaknya "lebih sedikit."
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 2: SUBITIZING -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Melihat Tanpa Menghitung: Subitizing</h2>
+
+  <p>
+    Sebelum kita masuk ke basis bilangan, ada satu fenomena menarik yang layak disebut.
+  </p>
+
+  <p>
+    Perhatikan ini:
+  </p>
+
+  <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0;">
+    <div style="background: #f5f5f5; border-radius: 12px; padding: 1.2rem 2rem; text-align: center;">
+      <div style="font-size: 2rem; letter-spacing: 8px;">&#9679; &#9679; &#9679;</div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.5rem;">Berapa?</div>
+    </div>
+    <div style="background: #f5f5f5; border-radius: 12px; padding: 1.2rem 2rem; text-align: center;">
+      <div style="font-size: 2rem; letter-spacing: 8px;">&#9679; &#9679; &#9679; &#9679;</div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.5rem;">Berapa?</div>
+    </div>
+  </div>
+
+  <p>
+    Kamu langsung tahu: tiga dan empat. Kamu tidak menghitung satu per satu — kamu langsung <em>melihat</em> jumlahnya. Kemampuan ini disebut <strong>subitizing</strong> (dari bahasa Latin <em>subitus</em>, "tiba-tiba"). Otak manusia bisa langsung mengenali jumlah sampai sekitar 4 tanpa menghitung.
+  </p>
+
+  <p>
+    Sekarang coba ini:
+  </p>
+
+  <div style="background: #f5f5f5; border-radius: 12px; padding: 1.2rem 2rem; text-align: center; margin: 1.5rem auto; max-width: 350px;">
+    <div style="font-size: 2rem; letter-spacing: 6px;">&#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;</div>
+    <div style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.5rem;">Berapa? (Lebih sulit, kan?)</div>
+  </div>
+
+  <p>
+    Lebih dari 4-5, kamu harus menghitung — atau <em>mengelompokkan</em>. Dan pengelompokan itulah yang menjadi cikal bakal basis bilangan, yang sudah kita singgung di Bab 0 dengan tally marks. Sekarang kita akan mendalami ide pengelompokan ini jauh lebih dalam.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 3: BASIS BILANGAN — DEEP DIVE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Basis Bilangan: Bahasa yang Berbeda untuk Ide yang Sama</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: bilangan 347 dalam basis 10 berarti $3 \times 100 + 4 \times 10 + 7 \times 1$, atau $3 \times 10^2 + 4 \times 10^1 + 7 \times 10^0$. Setiap posisi ke kiri bernilai 10 kali lipat. Tapi tidak ada yang istimewa tentang angka 10 — kita menggunakannya kemungkinan besar karena kita punya 10 jari. Peradaban lain memilih basis yang berbeda.
+  </div>
+
+  <p>
+    Sebuah "basis" bilangan menentukan dua hal:
+  </p>
+
+  <p>
+    <strong>1. Berapa banyak simbol yang kamu gunakan.</strong> Basis 10 menggunakan 10 simbol: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Basis 2 hanya menggunakan 2 simbol: 0 dan 1. Basis 8 menggunakan 8: 0 sampai 7.
+  </p>
+
+  <p>
+    <strong>2. Berapa "kelipatan" setiap posisi.</strong> Di basis 10, setiap posisi ke kiri bernilai 10 kali lipat. Di basis 2, setiap posisi ke kiri bernilai <em>2 kali lipat</em>. Di basis 8, <em>8 kali lipat</em>.
+  </p>
+
+  <p>
+    Prinsipnya <em>persis sama</em>. Yang berubah hanya ukuran kelompoknya.
+  </p>
+
+  <h3>Basis 10: Yang Sudah Kita Kenal</h3>
+
+  <p>
+    Mari kita perjelas dulu bagaimana basis 10 bekerja, karena pemahaman ini menjadi fondasi untuk semua basis lain.
+  </p>
+
+  <p>
+    Ketika kamu menghitung: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 — kamu sudah menggunakan semua simbol yang tersedia. Apa yang terjadi selanjutnya?
+  </p>
+
+  <p>
+    Kamu <em>kehabisan simbol</em>. Tidak ada simbol tunggal untuk "sepuluh." Jadi kamu membuat <em>posisi baru</em> di sebelah kiri dan menulis <strong>10</strong> — yang berarti "1 kelompok sepuluh, dan 0 satuan."
+  </p>
+
+  <p>
+    Ini terus berlanjut: 10, 11, 12, ..., 19 (9 satuan penuh lagi), lalu 20 (2 kelompok sepuluh)... sampai 99 (9 kelompok sepuluh dan 9 satuan). Setelah itu? Kehabisan lagi. Buat posisi baru: 100 = 1 kelompok seratus.
+  </p>
+
+  <div class="key-insight">
+    <strong>Mekanisme "naik posisi":</strong> Dalam basis apa pun, ketika semua simbol di satu posisi sudah terpakai, kamu "naik" ke posisi berikutnya. Ini seperti odometer mobil — ketika digit satuan mencapai 9 dan bertambah lagi, dia kembali ke 0 dan digit puluhan naik 1. Prinsip ini <em>identik</em> di semua basis.
+  </div>
+
+  <h3>Basis 2: Bahasa Komputer</h3>
+
+  <p>
+    Sekarang bayangkan kamu hanya punya <strong>dua simbol</strong>: 0 dan 1. Ini bukan eksperimen pikiran semata — ini adalah cara komputer menyimpan dan mengolah semua data.
+  </p>
+
+  <p>
+    Mengapa basis 2? Karena komputer dibangun dari jutaan sakelar elektronik kecil yang masing-masing hanya punya dua keadaan: <strong>mati (0)</strong> atau <strong>nyala (1)</strong>. Tidak ada "setengah nyala." Dua keadaan saja. Jadi basis 2 — yang disebut <strong>biner</strong> (dari bahasa Latin <em>bi</em>, "dua") — adalah bahasa alami komputer.
+  </p>
+
+  <p>
+    Mari kita hitung dalam basis 2. Kita mulai dari 0:
+  </p>
+
+  <div class="interactive-section" style="padding: 1.2rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;">
+      <div style="background: var(--bg-alt); padding: 0.5rem; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.72rem; color: var(--text-secondary);">Desimal</div>
+      <div style="background: var(--bg-alt); padding: 0.5rem; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.72rem; color: var(--text-secondary);">Biner</div>
+      <div style="background: var(--bg-alt); padding: 0.5rem; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.72rem; color: var(--text-secondary);">Penjelasan</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">0</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">0</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">nol</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">1</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">satu — simbol terakhir!</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">2</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent); font-weight: 500;">10</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">kehabisan simbol → naik posisi! 1×2 + 0×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">3</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">11</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">1×2 + 1×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">4</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent); font-weight: 500;">100</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">naik lagi! 1×4 + 0×2 + 0×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">5</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">101</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">1×4 + 0×2 + 1×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">6</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">110</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">1×4 + 1×2 + 0×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">7</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent-blue); font-weight: 500;">111</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">1×4 + 1×2 + 1×1</div>
+      <div style="background: white; padding: 0.5rem; text-align: center;">8</div>
+      <div style="background: white; padding: 0.5rem; text-align: center; color: var(--accent); font-weight: 500;">1000</div>
+      <div style="background: white; padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">naik lagi! 1×8</div>
+    </div>
+  </div>
+
+  <p>
+    Perhatikan polanya: setiap posisi ke kiri bernilai 2 kali lipat: $1, 2, 4, 8, 16, 32, 64, 128, 256, ...$ Ini adalah pangkat-pangkat 2.
+  </p>
+
+  <p>
+    Jadi bilangan biner 1011 berarti:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $\underset{8}{1} \underset{4}{0} \underset{2}{1} \underset{1}{1} = 1 \times 8 + 0 \times 4 + 1 \times 2 + 1 \times 1 = 11$
+  </p>
+
+  <p>
+    Prinsipnya <em>identik</em> dengan basis 10. Yang berubah hanya kelipatan per posisi: bukan 1, 10, 100, 1000... tapi 1, 2, 4, 8, 16, 32...
+  </p>
+
+  <!-- INTERACTIVE: Binary-Decimal Converter -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mengubah Desimal ke Biner (dan Sebaliknya)</div>
+    <div class="interactive-desc">
+      Geser slider untuk memilih bilangan desimal. Lihat bagaimana bilangan itu ditulis dalam biner — setiap posisi adalah "nyala" (1) atau "mati" (0).
+    </div>
+
+    <div class="slider-container">
+      <label>Bilangan desimal: <strong id="binSlider-val">13</strong></label>
+      <input type="range" id="binSlider" min="0" max="255" value="13" oninput="updateBinary()">
+    </div>
+
+    <div id="binary-lights" style="display: flex; justify-content: center; gap: 4px; margin: 1rem 0; flex-wrap: wrap;"></div>
+
+    <div id="binary-breakdown" style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: center; padding: 0.8rem; background: #f5f5f5; border-radius: 8px; line-height: 1.8;"></div>
+  </div>
+
+  <div class="historical-note">
+    Setiap digit biner disebut <strong>bit</strong> (singkatan dari <em>binary digit</em>). 8 bit membentuk satu <strong>byte</strong>. Satu byte bisa merepresentasikan bilangan 0 sampai 255 ($2^8 - 1$). Ini mengapa banyak hal di komputer berputar di sekitar angka 256: 256 level warna, 256 karakter ASCII, dan sebagainya. Ketika kamu mengambil mata kuliah <em>Dasar Sistem Digital</em> di semester 1, seluruh mata kuliah itu dibangun di atas basis 2 ini.
+  </div>
+
+  <h3>Cara Mengonversi Desimal ke Biner</h3>
+
+  <p>
+    Bagaimana cara mengubah bilangan desimal menjadi biner? Ada metode sistematis yang indah: <strong>bagi berulang kali dengan 2, catat sisanya</strong>.
+  </p>
+
+  <p>
+    Contoh: mengubah 13 ke biner.
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; line-height: 2.2; padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0; text-align: center;">
+    <div>$13 \div 2 = 6$ sisa <span style="color: var(--accent); font-weight: 600;">1</span></div>
+    <div>$\phantom{1}6 \div 2 = 3$ sisa <span style="color: var(--accent); font-weight: 600;">0</span></div>
+    <div>$\phantom{1}3 \div 2 = 1$ sisa <span style="color: var(--accent); font-weight: 600;">1</span></div>
+    <div>$\phantom{1}1 \div 2 = 0$ sisa <span style="color: var(--accent); font-weight: 600;">1</span></div>
+  </div>
+
+  <p>
+    Baca sisa dari bawah ke atas: <strong>1101</strong>. Cek: $1 \times 8 + 1 \times 4 + 0 \times 2 + 1 \times 1 = 13$. Benar!
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa metode ini bekerja:</strong> Setiap kali kamu membagi dengan 2, sisanya (0 atau 1) memberi tahu apakah posisi terakhir "nyala" atau "mati." Membagi dengan 2 lagi menggeser ke posisi berikutnya. Ini seperti "mengupas" bilangan digit per digit dari kanan ke kiri. Metode yang sama bekerja untuk basis apa pun — bagi dengan basisnya, catat sisa.
+  </div>
+
+  <!-- INTERACTIVE: Step-by-step conversion -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Konversi Desimal ke Biner: Langkah demi Langkah</div>
+    <div class="interactive-desc">
+      Masukkan bilangan desimal. Klik "Langkah Berikutnya" untuk melihat proses pembagian berulang. Di akhir, baca sisa dari bawah ke atas untuk mendapatkan bilangan biner.
+    </div>
+
+    <div class="slider-container">
+      <label>Bilangan: <strong id="convN-val">25</strong></label>
+      <input type="range" id="convN" min="1" max="255" value="25" oninput="resetConversion()">
+    </div>
+
+    <div id="conv-display" style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: center; padding: 1rem; background: #f5f5f5; border-radius: 8px; min-height: 50px; line-height: 2;"></div>
+
+    <div class="btn-group" style="justify-content: center;">
+      <button class="btn btn-accent" id="convBtn" onclick="stepConversion()">Langkah Berikutnya</button>
+      <button class="btn" onclick="resetConversion()">Ulangi</button>
+    </div>
+
+    <div id="conv-result" class="result-display" style="display: none;"></div>
+  </div>
+
+  <h3>Basis 16: Jalan Pintas untuk Biner</h3>
+
+  <p>
+    Ada satu basis lagi yang sangat penting di dunia komputer: <strong>basis 16</strong>, yang disebut <strong>heksadesimal</strong> (hexa = enam, deci = sepuluh; 6 + 10 = 16).
+  </p>
+
+  <p>
+    Basis 16 membutuhkan 16 simbol. Tapi kita hanya punya 10 digit (0–9). Solusinya? Gunakan huruf: A = 10, B = 11, C = 12, D = 13, E = 14, F = 15.
+  </p>
+
+  <p>
+    Mengapa heksadesimal berguna? Karena bilangan biner sangat panjang — bilangan 255 dalam biner adalah 11111111 (8 digit). Dalam heksadesimal: <strong>FF</strong> (hanya 2 digit). Setiap digit heksadesimal mewakili tepat 4 bit biner, jadi konversi sangat mudah:
+  </p>
+
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: center; padding: 0.8rem; background: #f5f5f5; border-radius: 8px; margin: 0.8rem 0;">
+    <div style="color: var(--accent-blue); font-weight: 500;">1111 1111</div>
+    <div style="color: var(--text-secondary); font-size: 0.8rem;">↓ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓</div>
+    <div style="color: var(--accent); font-weight: 500; font-size: 1.1rem;">F &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F</div>
+    <div style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.3rem;">15×16 + 15×1 = 255</div>
+  </div>
+
+  <p>
+    Heksadesimal akan muncul di <em>Dasar Sistem Digital</em>, saat kamu bekerja dengan alamat memori, kode warna (#FF0000 = merah di layar komputermu), dan register prosesor.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 4: NOL LEBIH DALAM -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Nol: Lebih dari Sekadar "Tidak Ada"</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: nol diciptakan di India sebagai "penanda tempat" agar 23 dan 203 bisa dibedakan. Tapi nol ternyata jauh lebih dari itu.
+  </div>
+
+  <p>
+    Nol memainkan setidaknya tiga peran berbeda dalam matematika, dan mencampuradukkannya sering menyebabkan kebingungan:
+  </p>
+
+  <h3>Peran 1: Penanda Tempat</h3>
+
+  <p>
+    Ini yang sudah kita bahas di Bab 0. Dalam bilangan 305, nol memberi tahu bahwa posisi puluhan <em>kosong</em>. Tanpa nol, kita tidak bisa membedakan 35, 305, dan 3005.
+  </p>
+
+  <h3>Peran 2: Bilangan itu Sendiri</h3>
+
+  <p>
+    Nol bukan hanya simbol kosong — dia adalah <em>bilangan</em> dengan nilainya sendiri. Nol ada di garis bilangan, di antara $-1$ dan $1$. Kamu bisa menghitung jumlah gajah di kamarmu sekarang: jawabannya 0. Itu jawaban yang valid.
+  </p>
+
+  <p>
+    Ini mungkin terdengar jelas, tapi banyak peradaban kuno tidak menganggap "tidak ada" sebagai bilangan. Bagi bangsa Yunani, bilangan merepresentasikan ukuran atau jumlah — dan "tidak ada" bukan ukuran. Butuh keberanian intelektual dari matematikawan India untuk berkata: "Tidak ada" itu juga sesuatu yang bisa kita hitung.
+  </p>
+
+  <h3>Peran 3: Elemen Identitas Penjumlahan</h3>
+
+  <p>
+    Ini peran yang paling penting secara matematis. Nol adalah satu-satunya bilangan yang jika ditambahkan ke bilangan apa pun, tidak mengubahnya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $a + 0 = a$ &nbsp;&nbsp;&nbsp; untuk semua bilangan $a$
+  </p>
+
+  <p>
+    Sifat ini disebut <strong>elemen identitas</strong> — nol "tidak mengubah identitas" bilangan lain saat dijumlahkan. Di Bab 1 kita sudah melihat bahwa 1 adalah elemen identitas untuk perkalian ($a \times 1 = a$). Nol dan satu, dua bilangan paling kecil, ternyata punya peran struktural yang sangat istimewa.
+  </p>
+
+  <div class="key-insight">
+    <strong>Nol dan satu sebagai "bilangan spesial":</strong><br>
+    <strong>0</strong> adalah elemen identitas penjumlahan ($a + 0 = a$) dan "penghancur" perkalian ($a \times 0 = 0$).<br>
+    <strong>1</strong> adalah elemen identitas perkalian ($a \times 1 = a$).<br><br>
+    Kedua bilangan ini akan terus muncul sebagai "bilangan istimewa" di sepanjang perjalanan matematikamu — di aljabar, kalkulus, aljabar linier, dan seterusnya.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BAGIAN 5: KONVERSI ANTAR BASIS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Konversi Antar Basis: Satu Prinsip untuk Semua</h2>
+
+  <p>
+    Sekarang kita sudah melihat basis 10, basis 2, dan basis 16. Prinsipnya selalu sama:
+  </p>
+
+  <p>
+    <strong>Dari basis-$n$ ke desimal:</strong> kalikan setiap digit dengan nilai posisinya (pangkat basis), lalu jumlahkan.
+  </p>
+
+  <p>
+    <strong>Dari desimal ke basis-$n$:</strong> bagi berulang kali dengan $n$, catat sisa, baca dari bawah.
+  </p>
+
+  <!-- INTERACTIVE: Multi-base Converter -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Konverter Multi-Basis</div>
+    <div class="interactive-desc">
+      Masukkan bilangan desimal dan lihat representasinya dalam berbagai basis. Perhatikan: semakin kecil basisnya, semakin panjang penulisannya — karena setiap posisi hanya bisa menyimpan sedikit informasi.
+    </div>
+
+    <div class="slider-container">
+      <label>Bilangan desimal: <strong id="multiBase-val">42</strong></label>
+      <input type="range" id="multiBase" min="0" max="255" value="42" oninput="updateMultiBase()">
+    </div>
+
+    <div id="multibase-display" style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 2.2; padding: 0.8rem; background: #f5f5f5; border-radius: 8px;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- KESALAHAN UMUM -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Kesalahan Umum</h2>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Berpikir "10" dalam biner sama dengan "sepuluh."</p>
+    <p><strong>Yang benar:</strong> "10" dalam biner berarti $1 \times 2 + 0 \times 1 = 2$. Simbol "10" hanya berarti "satu kelompok penuh dan nol sisa" — artinya bergantung pada basis. Dalam basis 10, itu sepuluh. Dalam basis 2, itu dua. Dalam basis 8, itu delapan.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Berpikir bilangan biner yang lebih panjang selalu lebih besar.</p>
+    <p><strong>Yang benar:</strong> Dalam basis yang <em>sama</em>, ya, lebih panjang biasanya lebih besar. Tapi lintas basis: biner 1000 (=8) jauh lebih kecil dari desimal 1000. Selalu periksa basisnya.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Kesalahan:</strong> Menganggap nol "bukan bilangan" atau "tidak penting."</p>
+    <p><strong>Yang benar:</strong> Nol adalah bilangan dengan peran struktural yang sangat penting. Dia elemen identitas penjumlahan, penanda tempat dalam sistem posisional, dan batas antara positif dan negatif di garis bilangan. Tanpa nol, matematika modern runtuh.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LATIHAN -->
+  <!-- ═══════════════════════════════════════════ -->
+  <h2>Latihan: Menguji Pemahamanmu</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Conceptual</div>
+    <p>Apa perbedaan antara "mencocokkan" dan "menghitung"? Berikan satu contoh di mana kamu bisa mencocokkan tanpa menghitung.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Pikirkan kembali penggembala dengan batunya.</div>
+    <div class="answer-content" id="a1">
+      <p><strong>Mencocokkan</strong> menjawab "apakah sama banyak?" tanpa tahu angka pastinya. <strong>Menghitung</strong> menjawab "ada berapa?"</p>
+      <p>Contoh: Kamu punya satu kotak garpu dan satu kotak pisau. Tanpa menghitung, kamu bisa mencocokkan — ambil satu garpu dan satu pisau, letakkan bersama, ulangi. Jika habis bersamaan, jumlahnya sama — meski kamu tidak tahu apakah ada 20 atau 200.</p>
+      <p>Menghitung butuh <em>urutan</em> (satu, dua, tiga...) dan prinsip kardinalitas (bilangan terakhir = total). Mencocokkan hanya butuh korespondensi satu-satu.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Ubah bilangan biner 110101 menjadi desimal.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Posisi dari kanan: $1, 2, 4, 8, 16, 32$. Kalikan setiap digit dengan nilai posisinya.</div>
+    <div class="answer-content" id="a2">
+      <p>$110101_2 = 1 \times 32 + 1 \times 16 + 0 \times 8 + 1 \times 4 + 0 \times 2 + 1 \times 1$</p>
+      <p>$= 32 + 16 + 0 + 4 + 0 + 1 = \mathbf{53}$</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Computation</div>
+    <p>Ubah bilangan desimal 100 menjadi biner menggunakan metode pembagian berulang.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Bagi 100 dengan 2, catat sisa. Bagi hasilnya dengan 2 lagi, catat sisa. Ulangi sampai hasilnya 0. Baca sisa dari bawah ke atas.</div>
+    <div class="answer-content" id="a3">
+      <p>$100 \div 2 = 50$ sisa <strong>0</strong></p>
+      <p>$\phantom{1}50 \div 2 = 25$ sisa <strong>0</strong></p>
+      <p>$\phantom{1}25 \div 2 = 12$ sisa <strong>1</strong></p>
+      <p>$\phantom{1}12 \div 2 = \phantom{1}6$ sisa <strong>0</strong></p>
+      <p>$\phantom{10}6 \div 2 = \phantom{1}3$ sisa <strong>0</strong></p>
+      <p>$\phantom{10}3 \div 2 = \phantom{1}1$ sisa <strong>1</strong></p>
+      <p>$\phantom{10}1 \div 2 = \phantom{1}0$ sisa <strong>1</strong></p>
+      <p>Baca dari bawah: $100_{10} = \mathbf{1100100}_2$</p>
+      <p>Cek: $64 + 32 + 4 = 100$. Benar!</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Connection (Recall Bab 0)</div>
+    <p>Di Bab 0, kita tahu bahwa Babilonia menggunakan basis 60. Jika kamu ingin menulis "73" dalam basis 60 (misalnya kamu punya 60 simbol berbeda), bagaimana cara menulisnya? Berapa "digit" yang dibutuhkan?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">$73 \div 60 = \text{?}$ sisa berapa?</div>
+    <div class="answer-content" id="a4">
+      <p>$73 \div 60 = 1$ sisa $13$.</p>
+      <p>Jadi dalam basis 60: $73 = 1 \times 60 + 13 \times 1$, ditulis sebagai <strong>[1][13]</strong> (dua "digit").</p>
+      <p>Persis seperti ini Babilonia mencatat waktu! 1 menit 13 detik = 73 detik. Notasi jam:menit:detik yang kita pakai setiap hari adalah sisa-sisa basis 60 Babilonia.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Challenge</div>
+    <p>Bilangan biner 8-bit terbesar adalah 11111111. Berapa nilainya dalam desimal? Mengapa jawabannya $2^8 - 1$ dan bukan $2^8$?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Hitung: $128 + 64 + 32 + 16 + 8 + 4 + 2 + 1$. Untuk pertanyaan kedua: pikirkan berapa bilangan <em>total</em> yang bisa ditulis (mulai dari 0).</div>
+    <div class="answer-content" id="a5">
+      <p>$11111111_2 = 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = \mathbf{255}$</p>
+      <p>Ini sama dengan $2^8 - 1 = 256 - 1 = 255$.</p>
+      <p><strong>Mengapa $2^8 - 1$?</strong> Dengan 8 bit, ada $2^8 = 256$ kombinasi berbeda (dari 00000000 sampai 11111111). Tapi karena kita mulai dari 0 (bukan 1), bilangan terbesar adalah $256 - 1 = 255$. Bilangan 0 sampai 255 = 256 bilangan total.</p>
+      <p><em>Pola ini berlaku umum: $n$ bit bisa merepresentasikan bilangan 0 sampai $2^n - 1$.</em></p>
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- EPILOG -->
+  <h2>Epilog: Sekarang Kamu Berbicara Bahasa Bilangan</h2>
+
+  <p>
+    Di bab ini kita mengisi celah-celah yang ditinggalkan Bab 0. Sekarang kamu tahu bahwa <em>menghitung</em> bukan hanya mencocokkan — ia membutuhkan urutan dan prinsip kardinalitas. Kamu tahu perbedaan "ada berapa" dan "yang ke-berapa."
+  </p>
+
+  <p>
+    Kamu juga sekarang bisa "berbicara" dalam bahasa bilangan yang berbeda: basis 10 yang sudah kamu kenal, basis 2 yang dipakai komputer, dan basis 16 yang merupakan jalan pintas untuk biner. Dan yang terpenting: kamu mengerti bahwa semua basis ini <em>berbicara tentang bilangan yang sama</em> — 13 tetap 13, baik kamu menulisnya sebagai 13, 1101, atau D.
+  </p>
+
+  <p>
+    Dan kamu memahami nol bukan sekadar "kosong" — dia penanda tempat, dia bilangan dengan hak penuh, dan dia elemen identitas penjumlahan. Tiga peran berbeda, satu simbol kecil.
+  </p>
+
+  <p>
+    Dengan fondasi ini — menghitung, basis bilangan, dan nol — kita siap melanjutkan ke Bab 1 yang sudah membangun empat operasi aritmetika, dan kemudian ke Bab 1.5 yang menuntaskan aturan-aturan yang belum lengkap.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 1 — Ketika Bilangan Mulai Bekerja: Operasi dan Maknanya</div>
+  </div>
+
+  <div class="chapter-end">
+    <div class="ornament">· · ·</div>
+  </div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════════════════════════════════════════
+// COUNTING EXPERIMENT
+// ═══════════════════════════════════════════
+let countState = { total: 0, counted: 0 };
+
+function initCountExperiment() {
+  const area = document.getElementById('count-area');
+  area.innerHTML = '';
+  const count = Math.floor(Math.random() * 7) + 4;
+  countState = { total: count, counted: 0 };
+  const colors = ['#e74c3c', '#3498db', '#27ae60', '#f39c12', '#9b59b6', '#1abc9c', '#e67e22', '#2980b9', '#c0392b', '#16a085', '#8e44ad'];
+  for (let i = 0; i < count; i++) {
+    const ball = document.createElement('span');
+    ball.style.cssText = `display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: ${colors[i % colors.length]}; color: white; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s; user-select: none;`;
+    ball.dataset.index = i;
+    ball.addEventListener('click', function() {
+      if (this.dataset.counted) return;
+      this.dataset.counted = 'true';
+      countState.counted++;
+      this.textContent = countState.counted;
+      this.style.transform = 'scale(1.15)';
+      this.style.boxShadow = '0 0 0 3px white, 0 0 0 5px ' + this.style.background;
+      updateCountDisplay();
+    });
+    area.appendChild(ball);
+  }
+  updateCountDisplay();
+}
+
+function updateCountDisplay() {
+  const el = document.getElementById('count-display');
+  if (countState.counted === 0) {
+    el.textContent = 'Klik bola untuk mulai menghitung';
+  } else if (countState.counted < countState.total) {
+    el.innerHTML = `Sudah dihitung: ${countState.counted} <span style="color: var(--text-secondary); font-size: 0.85rem;">(belum selesai...)</span>`;
+  } else {
+    el.innerHTML = `Bilangan terakhir: <strong style="color: var(--accent-blue); font-size: 1.3rem;">${countState.counted}</strong> — itu adalah jumlah totalnya! (prinsip kardinalitas)`;
+  }
+}
+
+initCountExperiment();
+
+// ═══════════════════════════════════════════
+// BINARY CONVERTER WITH LIGHTS
+// ═══════════════════════════════════════════
+function updateBinary() {
+  const n = parseInt(document.getElementById('binSlider').value);
+  document.getElementById('binSlider-val').textContent = n;
+
+  const binary = n.toString(2).padStart(8, '0');
+  const lightsEl = document.getElementById('binary-lights');
+  lightsEl.innerHTML = '';
+
+  const positions = [128, 64, 32, 16, 8, 4, 2, 1];
+
+  for (let i = 0; i < 8; i++) {
+    const bit = binary[i];
+    const isOn = bit === '1';
+    const col = document.createElement('div');
+    col.style.cssText = 'text-align: center; width: 55px;';
+    col.innerHTML = `
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.65rem; color: var(--text-light); margin-bottom: 4px;">${positions[i]}</div>
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: ${isOn ? '#27ae60' : '#e0e0e0'}; margin: 0 auto 4px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 600; color: ${isOn ? 'white' : '#999'}; transition: all 0.3s; box-shadow: ${isOn ? '0 0 12px rgba(39,174,96,0.4)' : 'none'};">${bit}</div>
+    `;
+    lightsEl.appendChild(col);
+  }
+
+  const parts = [];
+  for (let i = 0; i < 8; i++) {
+    if (binary[i] === '1') {
+      parts.push(`<span style="color: var(--accent-green);">${positions[i]}</span>`);
+    }
+  }
+
+  const breakdownEl = document.getElementById('binary-breakdown');
+  if (n === 0) {
+    breakdownEl.innerHTML = `<div style="color: var(--accent-blue); font-size: 1.1rem;">00000000₂ = 0</div><div style="font-size: 0.85rem; color: var(--text-secondary);">Semua bit mati.</div>`;
+  } else {
+    breakdownEl.innerHTML = `<div style="color: var(--accent-blue); font-size: 1.1rem; margin-bottom: 0.3rem;">${binary}₂ = ${n}</div><div style="font-size: 0.85rem;">${parts.join(' + ')} = <strong>${n}</strong></div>`;
+  }
+}
+updateBinary();
+
+// ═══════════════════════════════════════════
+// STEP-BY-STEP CONVERSION
+// ═══════════════════════════════════════════
+let convState = { current: 0, remainders: [], done: false };
+
+function resetConversion() {
+  const n = parseInt(document.getElementById('convN').value);
+  document.getElementById('convN-val').textContent = n;
+  convState = { current: n, remainders: [], done: false };
+  document.getElementById('conv-display').innerHTML =
+    `<div style="font-size: 1.1rem; color: var(--accent-blue);">Bilangan: ${n}</div>`;
+  document.getElementById('conv-result').style.display = 'none';
+  document.getElementById('convBtn').disabled = false;
+}
+
+function stepConversion() {
+  if (convState.done) return;
+
+  const quotient = Math.floor(convState.current / 2);
+  const remainder = convState.current % 2;
+
+  const display = document.getElementById('conv-display');
+  display.innerHTML += `<div>${convState.current} ÷ 2 = ${quotient} sisa <span style="color: var(--accent); font-weight: 600;">${remainder}</span></div>`;
+
+  convState.remainders.push(remainder);
+  convState.current = quotient;
+
+  if (convState.current === 0) {
+    convState.done = true;
+    const binary = convState.remainders.slice().reverse().join('');
+    display.innerHTML += `<div style="margin-top: 0.5rem; color: var(--accent-green); font-weight: 600;">↑ Baca sisa dari bawah ke atas: ${binary}₂</div>`;
+    const resultEl = document.getElementById('conv-result');
+    resultEl.style.display = 'block';
+    const n = parseInt(document.getElementById('convN').value);
+    resultEl.innerHTML = `$${n}_{10} = ${binary}_2$`;
+    document.getElementById('convBtn').disabled = true;
+    if (window.MathJax) MathJax.typeset([resultEl]);
+  }
+}
+
+resetConversion();
+
+// ═══════════════════════════════════════════
+// MULTI-BASE CONVERTER
+// ═══════════════════════════════════════════
+function updateMultiBase() {
+  const n = parseInt(document.getElementById('multiBase').value);
+  document.getElementById('multiBase-val').textContent = n;
+
+  const bases = [
+    { base: 2, name: 'Biner (basis 2)', color: '#27ae60' },
+    { base: 8, name: 'Oktal (basis 8)', color: '#2471a3' },
+    { base: 10, name: 'Desimal (basis 10)', color: '#c0392b' },
+    { base: 16, name: 'Heksadesimal (basis 16)', color: '#8e24aa' }
+  ];
+
+  const display = document.getElementById('multibase-display');
+  display.innerHTML = bases.map(({ base, name, color }) => {
+    const repr = n.toString(base).toUpperCase();
+    const digits = repr.length;
+    return `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.5rem;">
+      <span style="color: var(--text-secondary); font-size: 0.82rem;">${name}:</span>
+      <span style="color: ${color}; font-weight: 500; font-size: 1.05rem;">${repr}<sub style="font-size: 0.65rem; color: var(--text-light);">${base}</sub></span>
+      <span style="font-size: 0.75rem; color: var(--text-light);">${digits} digit</span>
+    </div>`;
+  }).join('');
+}
+updateMultiBase();
+</script>
+</body>
+</html>

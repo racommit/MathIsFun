@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 5 — Mencari yang Belum Diketahui</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 5</div>
+  <h1 class="chapter-title">Mencari yang<br>Belum Diketahui</h1>
+  <p class="chapter-subtitle">
+    Tentang persamaan, keseimbangan, dan seni melepaskan $x$<br>
+    dari jeratan operasi yang menyelimutinya.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 4, kita belajar menggunakan huruf untuk mewakili bilangan. Kita menulis ekspresi seperti $2x + 3$ dan identitas seperti $(a+b)^2 = a^2 + 2ab + b^2$. Tapi kita belum menjawab pertanyaan paling mendasar dalam aljabar: jika kita tahu <em>hasilnya</em>, bagaimana menemukan bilangan yang menghasilkannya?
+  </p>
+
+  <div class="narrator">
+    Bayangkan ini: kamu membeli beberapa buku yang harganya sama. Kamu juga membayar ongkos kirim 15 ribu rupiah. Total yang kamu bayar 75 ribu rupiah. Berapa harga satu buku?<br><br>
+    Kamu tahu totalnya. Kamu tahu ongkos kirimnya. Yang tidak kamu tahu adalah harga per buku. Inilah inti dari persamaan.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Apa Itu Persamaan?</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Persamaan adalah kalimat yang menyatakan bahwa dua hal bernilai sama."
+  </p>
+
+  <p>
+    Tanda $=$ dalam persamaan seperti titik tumpu sebuah timbangan. Sisi kiri dan sisi kanan harus seimbang. $x + 3 = 7$ mengatakan: "ada suatu bilangan yang jika ditambah 3 menghasilkan 7."
+  </p>
+
+  <div class="key-insight">
+    <strong>Perbedaan penting:</strong><br>
+    — <strong>Ekspresi</strong> ($2x + 3$): bisa dievaluasi, tapi tidak bisa "diselesaikan" — tidak ada pertanyaan.<br>
+    — <strong>Persamaan</strong> ($2x + 3 = 11$): ada pertanyaan tersembunyi — "nilai $x$ berapa yang membuat ini benar?"<br>
+    — <strong>Identitas</strong> ($(a+b)^2 = a^2+2ab+b^2$): benar untuk <em>semua</em> nilai variabel.
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 4: al-Khwarizmi menyebut teknik aljabar sebagai <em>al-jabr</em> (pemulihan) dan <em>al-muqabala</em> (penyeimbangan). Menyelesaikan persamaan adalah persis itu: memindahkan suku-suku dan menyeimbangkan kedua sisi sampai $x$ berdiri sendiri.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Empat Ribu Tahun Mencari yang Tersembunyi</h2>
+
+  <p>
+    Persamaan bukan penemuan modern. Manusia sudah bertanya "berapa yang tidak diketahui?" sejak peradaban pertama — hanya saja mereka belum punya simbol $x$.
+  </p>
+
+  <div class="historical-note">
+    <strong>Bangsa Babilonia (sekitar 2000 SM)</strong> sudah menyelesaikan persamaan kuadrat! Tablet tanah liat BM 13901 berisi soal-soal seperti: "Saya menjumlahkan luas dan sisi persegi saya: hasilnya $\frac{3}{4}$. Berapa sisinya?" Dalam bahasa modern: $x^2 + x = \frac{3}{4}$. Mereka menyelesaikannya dengan teknik yang kita sekarang sebut "melengkapkan kuadrat sempurna" (<em>completing the square</em>) — metode yang tetap digunakan 4.000 tahun kemudian.
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Khwarizmi (sekitar 820 M)</strong> membuat lompatan besar: ia mengklasifikasi semua persamaan linear dan kuadrat menjadi enam jenis standar, lalu memberikan prosedur penyelesaian sistematis untuk <em>setiap</em> jenis. Inilah yang membuat karyanya revolusioner — bukan soal-soal individual, tapi <em>teori umum</em>.<br><br>
+    Yang menarik: al-Khwarizmi membuktikan setiap metode aljabarnya secara <em>geometris</em>. Untuk menyelesaikan $x^2 + 10x = 39$, ia menggambar persegi $x \times x$, menambahkan empat persegi panjang berukuran $\frac{10}{4} \times x$ di setiap sisi, lalu "melengkapkan" sudut-sudutnya menjadi persegi besar. Aljabar dan geometri berjalan beriringan.
+  </div>
+
+  <div class="historical-note">
+    <strong>Omar Khayyam (1048–1131 M)</strong>, matematikawan dan penyair Persia, menghadapi tantangan yang lebih besar: persamaan <em>kubik</em> (pangkat 3), seperti $x^3 + bx = c$. Ia tidak bisa menyelesaikannya dengan aljabar biasa, jadi ia menggunakan <em>irisan kerucut</em> — parabola dan hiperbola — yang perpotongannya memberikan solusi. Ini adalah salah satu pencapaian matematika terbesar di dunia Islam abad pertengahan.<br><br>
+    Khayyam juga menulis: "Mungkin seseorang yang datang setelah kami akan berhasil [menemukan solusi aljabar untuk kubik]." Ia benar — tapi butuh 400 tahun lagi.
+  </div>
+
+  <div class="historical-note">
+    <strong>Drama Kubik Italia (abad ke-16)</strong>: Pada 1535, Niccolò <strong>Tartaglia</strong> menemukan rumus untuk menyelesaikan persamaan kubik secara aljabar. Ia merahasiakan rumusnya, tapi Gerolamo <strong>Cardano</strong> berhasil mendapatkannya (dengan janji merahasiakan) dan menerbitkannya dalam <em>Ars Magna</em> (1545). Murid Cardano, Lodovico <strong>Ferrari</strong>, kemudian memecahkan persamaan kuartik (pangkat 4). Tartaglia dan Cardano bertengkar hebat — salah satu drama paling seru dalam sejarah matematika.<br><br>
+    Tapi cerita ini punya akhir filosofis: pada 1824, Niels Henrik <strong>Abel</strong> membuktikan bahwa persamaan pangkat 5 ke atas <em>tidak memiliki</em> rumus umum. Ada batas dari apa yang bisa "diselesaikan" secara aljabar.
+    <div class="dramatization">Kisah Tartaglia-Cardano didokumentasikan secara historis, termasuk surat-surat di antara mereka. Drama ini nyata, bukan legenda.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Prinsip Timbangan</h2>
+
+  <p>
+    Cara menyelesaikan persamaan didasarkan pada satu prinsip sederhana:
+  </p>
+
+  <div class="key-insight">
+    <strong>Prinsip keseimbangan:</strong> Apapun yang kamu lakukan pada satu sisi persamaan, lakukanlah juga pada sisi yang lain. Tambahkan bilangan yang sama, kurangkan bilangan yang sama, kalikan dengan bilangan yang sama, bagi dengan bilangan yang sama — asal dilakukan pada <em>kedua sisi</em>, keseimbangan terjaga.
+  </div>
+
+  <p>
+    Mari selesaikan $x + 3 = 7$ langkah demi langkah:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $x + 3 = 7$ &nbsp; (persamaan awal)<br>
+    $x + 3 - 3 = 7 - 3$ &nbsp; (kurangi 3 dari kedua sisi)<br>
+    $x = 4$ &nbsp; ✓
+  </p>
+
+  <p>
+    Sekarang yang lebih rumit: $3x + 5 = 20$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $3x + 5 = 20$<br>
+    $3x + 5 - 5 = 20 - 5$ &nbsp; (kurangi 5)<br>
+    $3x = 15$<br>
+    $\frac{3x}{3} = \frac{15}{3}$ &nbsp; (bagi 3)<br>
+    $x = 5$ &nbsp; ✓
+  </p>
+
+  <p>
+    Perhatikan strateginya: kita "mengupas" operasi-operasi yang membungkus $x$, satu per satu, dari luar ke dalam, menggunakan operasi kebalikan. Ditambah 5? Kurangi 5. Dikali 3? Bagi 3. Setiap langkah membuat $x$ semakin "terbuka".
+  </p>
+
+  <!-- INTERACTIVE 1: Balance scale -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Timbangan Persamaan</div>
+    <div class="interactive-desc">Selesaikan persamaan dengan menjaga keseimbangan timbangan. Pilih operasi dan terapkan pada kedua sisi.</div>
+
+    <div id="balance-equation" style="text-align:center; font-family:'JetBrains Mono'; font-size:1.3rem; margin:1rem 0; color:var(--accent-blue);"></div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="balance-svg" width="400" height="120" viewBox="0 0 400 120" style="max-width:100%;"></svg>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:1rem 0;">
+      <button class="btn" onclick="balanceOp('sub', promptVal())">− dari kedua sisi</button>
+      <button class="btn" onclick="balanceOp('add', promptVal())">+ ke kedua sisi</button>
+      <button class="btn" onclick="balanceOp('div', promptVal())">÷ kedua sisi</button>
+      <button class="btn" onclick="balanceOp('mul', promptVal())">× kedua sisi</button>
+      <button class="btn btn-accent" onclick="resetBalance()">Soal Baru</button>
+    </div>
+
+    <div id="balance-log" style="font-family:'JetBrains Mono'; font-size:0.82rem; line-height:1.8; margin-top:0.5rem; max-height:120px; overflow-y:auto;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Persamaan Linear</h2>
+
+  <p>
+    Persamaan yang variabelnya berpangkat 1 (tidak ada $x^2$, $x^3$, dll.) disebut <strong>persamaan linear</strong>. Bentuk umumnya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">$ax + b = c$</p>
+
+  <p>
+    Solusinya selalu: $x = \frac{c - b}{a}$ (asalkan $a \neq 0$). Ini bisa diturunkan dari prinsip timbangan: kurangi $b$, lalu bagi $a$.
+  </p>
+
+  <p>
+    Bagaimana jika $x$ muncul di kedua sisi? Misalnya: $5x - 2 = 3x + 6$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $5x - 2 = 3x + 6$<br>
+    $5x - 3x = 6 + 2$ &nbsp; (kumpulkan suku $x$ di kiri, konstanta di kanan)<br>
+    $2x = 8$<br>
+    $x = 4$ &nbsp; ✓
+  </p>
+
+  <p>
+    <strong>Verifikasi:</strong> Kiri: $5(4) - 2 = 18$. Kanan: $3(4) + 6 = 18$. ✓
+  </p>
+
+  <!-- INTERACTIVE 2: Solve linear equation step by step -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menyelesaikan Persamaan Linear</div>
+    <div class="interactive-desc">Atur koefisien dan konstanta. Lihat langkah-langkah penyelesaian dan verifikasi jawabannya.</div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-family:'JetBrains Mono'; font-size:1rem; margin-bottom:1rem;">
+      <input type="number" id="lin-a" value="3" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>x +</span>
+      <input type="number" id="lin-b" value="5" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>=</span>
+      <input type="number" id="lin-c" value="20" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <button onclick="solveLinear()" style="font-family:'Inter'; padding:6px 14px; background:var(--accent-blue); color:white; border:none; border-radius:6px; cursor:pointer;">Selesaikan</button>
+    </div>
+
+    <div id="linear-steps" style="font-family:'JetBrains Mono'; font-size:0.88rem; line-height:2;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Persamaan Kuadrat</h2>
+
+  <p>
+    Bagaimana jika variabelnya berpangkat 2? Misalnya: $x^2 = 9$.
+  </p>
+
+  <p>
+    Ini bertanya: bilangan apa yang jika dikuadratkan menghasilkan 9? Dari Bab 3, kita tahu jawabannya: $x = 3$ atau $x = -3$. Ada <em>dua</em> jawaban! Ini karena $3^2 = 9$ dan $(-3)^2 = 9$.
+  </p>
+
+  <p>
+    Bentuk umum persamaan kuadrat:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">$ax^2 + bx + c = 0$</p>
+
+  <p>
+    Cara paling langsung menyelesaikannya: <strong>memfaktorkan</strong>.
+  </p>
+
+  <p>
+    Contoh: $x^2 - 5x + 6 = 0$. Kita cari dua bilangan yang jika dikalikan hasilnya 6 dan jika dijumlahkan hasilnya $-5$. Bilangan itu: $-2$ dan $-3$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $x^2 - 5x + 6 = (x - 2)(x - 3) = 0$
+  </p>
+
+  <p>
+    Jika perkalian dua hal sama dengan nol, salah satunya <em>harus</em> nol (dari Bab 1: satu-satunya cara mendapat 0 dari perkalian adalah jika salah satu faktor 0). Jadi $x - 2 = 0$ atau $x - 3 = 0$, artinya $x = 2$ atau $x = 3$.
+  </p>
+
+  <h3>Rumus Kuadrat</h3>
+
+  <p>
+    Tidak semua persamaan kuadrat mudah difaktorkan. Untuk kasus umum, ada rumus yang selalu bekerja:
+  </p>
+
+  <div class="key-insight">
+    <strong>Rumus kuadrat (abc):</strong>
+    $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+    Simbol $\pm$ berarti ada dua kemungkinan: satu dengan $+$, satu dengan $-$. Ini menjelaskan mengapa persamaan kuadrat bisa punya dua solusi.
+  </div>
+
+  <p>
+    Ekspresi $b^2 - 4ac$ di bawah akar disebut <strong>diskriminan</strong> ($D$). Ia menentukan berapa banyak solusi:
+  </p>
+
+  <p>
+    — $D > 0$: dua solusi berbeda<br>
+    — $D = 0$: satu solusi (dua solusi yang sama)<br>
+    — $D < 0$: tidak ada solusi (di bilangan real) — karena $\sqrt{\text{negatif}}$ tidak ada di bilangan real
+  </p>
+
+  <!-- INTERACTIVE 3: Quadratic equation solver -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menyelesaikan Persamaan Kuadrat</div>
+    <div class="interactive-desc">Atur koefisien $a$, $b$, $c$ dan lihat solusi, diskriminan, serta grafik parabola.</div>
+
+    <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center; font-family:'JetBrains Mono'; font-size:0.95rem; margin-bottom:1rem;">
+      <input type="number" id="qa" value="1" style="width:45px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>x² +</span>
+      <input type="number" id="qb" value="-5" style="width:45px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>x +</span>
+      <input type="number" id="qc" value="6" style="width:45px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>= 0</span>
+      <button onclick="solveQuadratic()" style="font-family:'Inter'; padding:6px 14px; background:var(--accent-blue); color:white; border:none; border-radius:6px; cursor:pointer;">Selesaikan</button>
+    </div>
+
+    <div style="text-align:center;">
+      <svg id="parabola-svg" width="360" height="240" viewBox="0 0 360 240" style="max-width:100%; background:#fafafa; border-radius:8px;"></svg>
+    </div>
+
+    <div id="quad-result" class="result-display" style="font-size:0.9rem; text-align:left;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Persamaan dalam Kehidupan Nyata</h2>
+
+  <p>
+    Persamaan bukan abstraksi belaka — mereka muncul di mana-mana.
+  </p>
+
+  <div class="narrator">
+    Kembali ke soal buku: kamu membeli $n$ buku seharga $x$ ribu masing-masing, plus ongkos kirim 15 ribu. Total 75 ribu. Persamaannya: $nx + 15 = 75$. Jika kamu membeli 3 buku: $3x + 15 = 75 \to 3x = 60 \to x = 20$. Setiap buku seharga 20 ribu rupiah.
+  </div>
+
+  <p>
+    Langkah menerjemahkan masalah dunia nyata ke persamaan:
+  </p>
+
+  <p>
+    1. <strong>Identifikasi yang tidak diketahui</strong> — beri nama variabel ($x$).<br>
+    2. <strong>Tuliskan hubungan</strong> — apa yang kamu tahu tentang $x$?<br>
+    3. <strong>Bentuk persamaan</strong> — terjemahkan hubungan ke bahasa aljabar.<br>
+    4. <strong>Selesaikan</strong> — gunakan prinsip timbangan.<br>
+    5. <strong>Periksa</strong> — substitusikan jawaban ke soal asli.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertidaksamaan</h2>
+
+  <p>
+    Kadang pertanyaannya bukan "berapa <em>tepat</em>?" tapi "berapa <em>paling sedikit</em>?" atau "berapa <em>paling banyak</em>?" Di sinilah <strong>pertidaksamaan</strong> muncul.
+  </p>
+
+  <p>
+    Simbol: $<$ (kurang dari), $>$ (lebih dari), $\leq$ (kurang dari atau sama dengan), $\geq$ (lebih dari atau sama dengan).
+  </p>
+
+  <p>
+    Menyelesaikan pertidaksamaan mirip persamaan, dengan <em>satu peringatan penting</em>:
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan kritis:</strong> Jika kamu mengalikan atau membagi kedua sisi pertidaksamaan dengan bilangan <strong>negatif</strong>, arah tanda harus <strong>dibalik</strong>.<br><br>
+    Contoh: $-2x > 6 \to x < -3$ (tanda $>$ berubah jadi $<$)<br>
+    Mengapa? Karena mengalikan dengan negatif membalik urutan di garis bilangan: $2 > 1$, tapi $-2 < -1$.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN ═══════════════════════ -->
+
+  <h2>Jebakan-Jebakan yang Menunggu</h2>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 1:</strong> Lupa mengoperasikan kedua sisi.</p>
+    <p>$x + 5 = 12 \to$ <span class="wrong">$x = 12 - 5 + 5 = 12$</span>. Yang benar: kurangi 5 dari <em>kedua</em> sisi: $x = 7$.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 2:</strong> Lupa bahwa persamaan kuadrat bisa punya dua solusi.</p>
+    <p>$x^2 = 25 \to$ <span class="wrong">$x = 5$</span>. Jangan lupa: $x = -5$ juga solusi! Selalu tulis $x = \pm 5$.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 3:</strong> Membagi dengan ekspresi yang mungkin nol.</p>
+    <p>$x^2 = 3x \to$ <span class="wrong">$x = 3$</span> (membagi kedua sisi dengan $x$). Tapi bagaimana kalau $x = 0$? Memang $0^2 = 3(0)$! Solusi $x = 0$ hilang. Cara aman: $x^2 - 3x = 0 \to x(x-3) = 0 \to x = 0$ atau $x = 3$.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 4:</strong> Lupa membalik tanda pertidaksamaan saat dikali/dibagi negatif.</p>
+    <p>$-3x < 9 \to$ <span class="wrong">$x < -3$</span>. Yang benar: bagi dengan $-3$ dan balik tanda: $x > -3$.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Selesaikan: $4x - 7 = 13$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Tambahkan 7 ke kedua sisi, lalu bagi dengan 4.</div>
+    <div class="answer-content" id="a1">$4x - 7 = 13 \to 4x = 20 \to x = 5$. Periksa: $4(5) - 7 = 13$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Selesaikan: $\frac{x}{3} + 2 = 5$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Kurangi 2 dari kedua sisi, lalu kalikan dengan 3.</div>
+    <div class="answer-content" id="a2">$\frac{x}{3} = 3 \to x = 9$. Periksa: $\frac{9}{3} + 2 = 3 + 2 = 5$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Conceptual</div>
+    <p>Jelaskan mengapa $x^2 + 1 = 0$ tidak punya solusi di bilangan real.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$x^2 + 1 = 0$ berarti $x^2 = -1$. Apakah ada bilangan real yang kuadratnya negatif?</div>
+    <div class="answer-content" id="a3">$x^2 = -1$ membutuhkan bilangan yang kuadratnya $-1$. Tapi kuadrat bilangan positif selalu positif, kuadrat bilangan negatif juga positif (dari Bab 1: $(-a)^2 = a^2$), dan $0^2 = 0$. Jadi $x^2 \geq 0$ untuk semua bilangan real, dan $x^2 = -1$ mustahil. Diskriminan: $D = 0 - 4(1)(1) = -4 < 0$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Word Problem</div>
+    <p>Umur Andi 3 tahun lebih tua dari Budi. Jumlah umur mereka 29 tahun. Berapa umur masing-masing?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Misalkan umur Budi = $x$. Maka umur Andi = $x + 3$. Jumlah = 29.</div>
+    <div class="answer-content" id="a4">$x + (x + 3) = 29 \to 2x + 3 = 29 \to 2x = 26 \to x = 13$. Budi 13 tahun, Andi 16 tahun. Periksa: $13 + 16 = 29$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Computation</div>
+    <p>Faktorkan dan selesaikan: $x^2 + 2x - 15 = 0$.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Cari dua bilangan yang dikalikan $= -15$ dan dijumlahkan $= 2$.</div>
+    <div class="answer-content" id="a5">$5 \times (-3) = -15$ dan $5 + (-3) = 2$. Jadi: $(x + 5)(x - 3) = 0$. Solusi: $x = -5$ atau $x = 3$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Connection (Bab 2)</div>
+    <p>Selesaikan persamaan yang melibatkan pecahan: $\frac{2x+1}{3} = \frac{x-1}{2}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Kalikan kedua sisi dengan KPK dari 3 dan 2, yaitu 6, untuk menghilangkan pecahan.</div>
+    <div class="answer-content" id="a6">Kalikan dengan 6: $2(2x+1) = 3(x-1) \to 4x + 2 = 3x - 3 \to x = -5$. Periksa: kiri $= \frac{2(-5)+1}{3} = \frac{-9}{3} = -3$. Kanan $= \frac{-5-1}{2} = \frac{-6}{2} = -3$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Connection (Bab 3)</div>
+    <p>Selesaikan: $x^2 = 12$. Berikan jawaban dalam bentuk akar yang disederhanakan.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$x = \pm\sqrt{12}$. Dari Bab 3, sederhanakan $\sqrt{12}$ dengan mencari faktor kuadrat sempurna.</div>
+    <div class="answer-content" id="a7">$x = \pm\sqrt{12} = \pm\sqrt{4 \times 3} = \pm 2\sqrt{3}$. Dua solusi: $x = 2\sqrt{3} \approx 3{,}464$ dan $x = -2\sqrt{3} \approx -3{,}464$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Challenge</div>
+    <p>Gunakan rumus kuadrat untuk menyelesaikan $2x^2 + 3x - 2 = 0$. Periksa kedua solusi.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">$a = 2$, $b = 3$, $c = -2$. Hitung $D = b^2 - 4ac$ dulu.</div>
+    <div class="answer-content" id="a8">$D = 9 - 4(2)(-2) = 9 + 16 = 25$. $x = \frac{-3 \pm \sqrt{25}}{4} = \frac{-3 \pm 5}{4}$. Jadi $x = \frac{2}{4} = \frac{1}{2}$ atau $x = \frac{-8}{4} = -2$. Periksa: $2(\frac{1}{2})^2 + 3(\frac{1}{2}) - 2 = \frac{1}{2} + \frac{3}{2} - 2 = 0$ ✓. $2(-2)^2 + 3(-2) - 2 = 8 - 6 - 2 = 0$ ✓.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Alat yang Membuka Pintu</h2>
+
+  <p>
+    Persamaan adalah salah satu alat paling kuat di seluruh matematika. Dengan persamaan, kita bisa menemukan bilangan tersembunyi, membalikkan rumus, dan menerjemahkan masalah dunia nyata ke bahasa yang bisa diselesaikan secara sistematis.
+  </p>
+
+  <p>
+    Kita sudah menyelesaikan Volume I — <em>Fondasi: Bilangan dan Operasi</em>. Dari menghitung domba sampai menyelesaikan persamaan kuadrat, kita telah membangun alat-alat dasar matematika.
+  </p>
+
+  <div class="narrator">
+    Sekarang, saatnya pindah ke dunia baru: <em>ruang</em>. Bagaimana mengukur jarak? Luas? Volume? Apa hubungan antara bentuk-bentuk geometri dan bilangan-bilangan yang sudah kita kuasai? Dunia geometri menunggu.
+  </div>
+
+  <div class="next-chapter">
+    <div class="label">Volume II — Ruang: Geometri dan Koordinat</div>
+    <div class="title">Bab 6 — Bentuk, Jarak, dan Luas</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Balance scale ═══════
+var balState = {};
+function resetBalance() {
+  var coeffs = [2,3,4,5];
+  var a = coeffs[Math.floor(Math.random()*coeffs.length)];
+  var sol = Math.floor(Math.random()*10)+1;
+  var b = Math.floor(Math.random()*15)+1;
+  var c = a * sol + b;
+  balState = { a:a, b:b, c:c, curA:a, curB:b, curC:c, solved:false, log:[] };
+  renderBalance();
+}
+function promptVal() {
+  var v = prompt('Masukkan bilangan:');
+  return parseFloat(v) || 0;
+}
+function balanceOp(op, val) {
+  if (balState.solved || !val) return;
+  var s = balState;
+  var desc = '';
+  if (op === 'add') { s.curB += val; s.curC += val; desc = '+ ' + val; }
+  else if (op === 'sub') { s.curB -= val; s.curC -= val; desc = '− ' + val; }
+  else if (op === 'mul' && val !== 0) { s.curA *= val; s.curB *= val; s.curC *= val; desc = '× ' + val; }
+  else if (op === 'div' && val !== 0) { s.curA /= val; s.curB /= val; s.curC /= val; desc = '÷ ' + val; }
+  s.log.push(desc + '  →  ' + fmtEq(s));
+  if (Math.abs(s.curA - 1) < 0.001 && Math.abs(s.curB) < 0.001) {
+    s.solved = true;
+    s.log.push('✓ x = ' + s.curC.toFixed(2).replace(/\.?0+$/,''));
+  }
+  renderBalance();
+}
+function fmtEq(s) {
+  var left = '';
+  if (Math.abs(s.curA-1)<0.001) left = 'x';
+  else left = s.curA.toFixed(2).replace(/\.?0+$/,'') + 'x';
+  if (s.curB > 0.001) left += ' + ' + s.curB.toFixed(2).replace(/\.?0+$/,'');
+  else if (s.curB < -0.001) left += ' − ' + Math.abs(s.curB).toFixed(2).replace(/\.?0+$/,'');
+  return left + ' = ' + s.curC.toFixed(2).replace(/\.?0+$/,'');
+}
+function renderBalance() {
+  var s = balState;
+  document.getElementById('balance-equation').textContent = fmtEq(s);
+  var svg = document.getElementById('balance-svg');
+  var leftW = Math.min(180, Math.max(40, Math.abs(s.curA * 5 + s.curB) * 3));
+  var rightW = Math.min(180, Math.max(40, Math.abs(s.curC) * 3));
+  var bal = s.solved ? 0 : (leftW - rightW) * 0.05;
+  svg.innerHTML = '<line x1="200" y1="100" x2="200" y2="20" stroke="#2c2c2c" stroke-width="3"/>' +
+    '<line x1="60" y1="' + (60+bal) + '" x2="340" y2="' + (60-bal) + '" stroke="#2c2c2c" stroke-width="3"/>' +
+    '<polygon points="195,15 205,15 200,5" fill="#2c2c2c"/>' +
+    '<rect x="60" y="' + (60+bal) + '" width="120" height="30" rx="5" fill="' + (s.solved?'#27ae60':'#2471a3') + '" opacity="0.2"/>' +
+    '<text x="120" y="' + (80+bal) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="' + (s.solved?'#27ae60':'#2471a3') + '">Kiri</text>' +
+    '<rect x="220" y="' + (60-bal) + '" width="120" height="30" rx="5" fill="' + (s.solved?'#27ae60':'#c0392b') + '" opacity="0.2"/>' +
+    '<text x="280" y="' + (80-bal) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="' + (s.solved?'#27ae60':'#c0392b') + '">Kanan</text>';
+  document.getElementById('balance-log').innerHTML = s.log.map(function(l){return '<div>'+l+'</div>';}).join('');
+}
+
+// ═══════ Interactive 2: Linear solver ═══════
+function solveLinear() {
+  var a = parseFloat(document.getElementById('lin-a').value) || 1;
+  var b = parseFloat(document.getElementById('lin-b').value) || 0;
+  var c = parseFloat(document.getElementById('lin-c').value) || 0;
+  var lines = [];
+  lines.push(a + 'x + ' + b + ' = ' + c);
+  lines.push('');
+  lines.push('Langkah 1: Kurangi ' + b + ' dari kedua sisi');
+  lines.push(a + 'x = ' + (c-b));
+  if (a !== 1 && a !== 0) {
+    lines.push('');
+    lines.push('Langkah 2: Bagi kedua sisi dengan ' + a);
+    var sol = (c - b) / a;
+    lines.push('x = ' + (c-b) + '/' + a + ' = ' + sol);
+    lines.push('');
+    lines.push('Verifikasi: ' + a + '(' + sol + ') + ' + b + ' = ' + (a*sol+b) + (Math.abs(a*sol+b-c)<0.001 ? ' ✓' : ' ✗'));
+  } else if (a === 0) {
+    lines.push('');
+    lines.push(b === c ? 'Semua x adalah solusi (identitas)' : 'Tidak ada solusi (kontradiksi)');
+  } else {
+    lines.push('x = ' + (c-b));
+  }
+  document.getElementById('linear-steps').innerText = lines.join('\n');
+}
+
+// ═══════ Interactive 3: Quadratic solver ═══════
+function solveQuadratic() {
+  var a = parseFloat(document.getElementById('qa').value) || 1;
+  var b = parseFloat(document.getElementById('qb').value) || 0;
+  var c = parseFloat(document.getElementById('qc').value) || 0;
+  var D = b*b - 4*a*c;
+  var lines = [];
+  lines.push('a = ' + a + ', b = ' + b + ', c = ' + c);
+  lines.push('Diskriminan D = b² − 4ac = ' + (b*b) + ' − ' + (4*a*c) + ' = ' + D);
+  lines.push('');
+  if (D > 0) {
+    var x1 = (-b + Math.sqrt(D)) / (2*a);
+    var x2 = (-b - Math.sqrt(D)) / (2*a);
+    lines.push('D > 0 → dua solusi');
+    lines.push('x₁ = (−' + b + ' + √' + D + ') / ' + (2*a) + ' = ' + x1.toFixed(4));
+    lines.push('x₂ = (−' + b + ' − √' + D + ') / ' + (2*a) + ' = ' + x2.toFixed(4));
+  } else if (D === 0) {
+    var x1 = -b / (2*a);
+    lines.push('D = 0 → satu solusi (akar kembar)');
+    lines.push('x = −b / 2a = ' + x1.toFixed(4));
+  } else {
+    lines.push('D < 0 → tidak ada solusi di bilangan real');
+    lines.push('Parabola tidak memotong sumbu x.');
+  }
+  document.getElementById('quad-result').innerText = lines.join('\n');
+  drawParabola(a, b, c, D);
+}
+function drawParabola(a, b, c, D) {
+  var svg = document.getElementById('parabola-svg');
+  var w = 360, h = 240, mx = w/2, my = h/2;
+  var vertex_x = -b/(2*a);
+  var vertex_y = a*vertex_x*vertex_x + b*vertex_x + c;
+  var scale = Math.min(20, Math.max(5, h / (Math.abs(vertex_y) * 4 + 10)));
+  var s = '';
+  s += '<line x1="0" y1="' + my + '" x2="' + w + '" y2="' + my + '" stroke="#ccc" stroke-width="1"/>';
+  s += '<line x1="' + mx + '" y1="0" x2="' + mx + '" y2="' + h + '" stroke="#ccc" stroke-width="1"/>';
+  var pts = [];
+  for (var px = -10; px <= 10; px += 0.1) {
+    var py = a*px*px + b*px + c;
+    var sx = mx + px * scale;
+    var sy = my - py * scale;
+    if (sx >= -5 && sx <= w+5 && sy >= -50 && sy <= h+50) pts.push(sx.toFixed(1) + ',' + sy.toFixed(1));
+  }
+  if (pts.length > 1) s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  if (D >= 0) {
+    var x1 = (-b + Math.sqrt(Math.max(0,D))) / (2*a);
+    var x2 = (-b - Math.sqrt(Math.max(0,D))) / (2*a);
+    s += '<circle cx="' + (mx + x1*scale) + '" cy="' + my + '" r="5" fill="#c0392b"/>';
+    if (D > 0) s += '<circle cx="' + (mx + x2*scale) + '" cy="' + my + '" r="5" fill="#c0392b"/>';
+  }
+  s += '<text x="' + (w-5) + '" y="' + (my-5) + '" text-anchor="end" font-family="Inter" font-size="11" fill="#888">x</text>';
+  s += '<text x="' + (mx+5) + '" y="15" font-family="Inter" font-size="11" fill="#888">y</text>';
+  svg.innerHTML = s;
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  resetBalance();
+  solveLinear();
+  solveQuadratic();
+});
+</script>
+</body>
+</html>

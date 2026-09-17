@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 7 — Segitiga dan Rahasianya</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 7 · Volume II</div>
+  <h1 class="chapter-title">Segitiga dan<br>Rahasianya</h1>
+  <p class="chapter-subtitle">
+    Tentang bentuk paling sederhana yang menyimpan teorema paling terkenal,<br>
+    dan bagaimana segitiga menjadi kunci memahami seluruh geometri.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 6, kita memasuki dunia bentuk — sudut, garis, luas. Kita melihat persegi, persegi panjang, jajaran genjang, dan lingkaran. Tapi ada satu bentuk yang belum kita beri perhatian penuh: <strong>segitiga</strong>.
+  </p>
+
+  <p>
+    Ini aneh, karena segitiga justru adalah bentuk paling mendasar dari semuanya. Segitiga adalah poligon paling sederhana — bangun datar tertutup dengan jumlah sisi paling sedikit yang mungkin (dua sisi tidak bisa membentuk daerah tertutup). Dan karena setiap poligon bisa dipecah menjadi segitiga, memahami segitiga berarti memahami <em>semua</em> bangun datar.
+  </p>
+
+  <div class="narrator">
+    Ingat dari Bab 3: kita menggunakan diagonal persegi satuan untuk menemukan $\sqrt{2}$. Kita mengklaim bahwa $d^2 = 1^2 + 1^2 = 2$, berdasarkan "Teorema Pythagoras" yang kita terima tanpa bukti. Sekarang, akhirnya, kita akan membuktikannya.
+  </div>
+
+  <p>
+    Tapi bab ini bukan hanya soal satu teorema. Kita akan membangun pemahaman lengkap tentang segitiga: jenis-jenisnya, sifat-sifat sudutnya, lalu dua ide besar — <strong>kekongruenan</strong> (kapan dua segitiga <em>sama persis</em>?) dan <strong>kesebangungan</strong> (kapan mereka <em>sama bentuk</em> tapi beda ukuran?). Kesebangungan khususnya akan menjadi fondasi penting untuk trigonometri di Bab 11.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN UTAMA ═══════════════════════ -->
+
+  <h2>Pertanyaan Utama Bab Ini</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Mengapa segitiga begitu istimewa, dan apa rahasia yang tersembunyi<br>di dalam hubungan antara sisi-sisi dan sudut-sudutnya?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Empat Ribu Tahun Hidup dengan Segitiga</h2>
+
+  <p>
+    Segitiga bukan penemuan matematikawan — ia muncul dari kebutuhan. Setiap atap rumah, setiap tiang penyangga, setiap pembagian tanah melibatkan segitiga. Tapi perjalanan dari "menggunakan segitiga" ke "memahami segitiga" adalah salah satu cerita terpanjang dalam sejarah matematika.
+  </p>
+
+  <h3>Mesir dan Babilonia: Mengukur Tanpa Membuktikan</h3>
+
+  <div class="historical-note">
+    Papirus Rhind (sekitar 1650 SM) dari Mesir Kuno menunjukkan cara menghitung luas segitiga: $\frac{1}{2} \times$ alas $\times$ tinggi. Mereka menggunakannya untuk menghitung ulang batas tanah setelah banjir Sungai Nil setiap tahun. Bangsa Mesir juga mengenal segitiga 3-4-5 — segitiga dengan sisi 3, 4, dan 5 satuan yang selalu membentuk sudut siku-siku — dan menggunakannya untuk membangun piramida dengan sudut yang tepat.
+  </div>
+
+  <div class="historical-note">
+    Tablet Plimpton 322 (sekitar 1800 SM) dari Babilonia mencatat 15 baris angka yang, ketika ditafsirkan, menunjukkan pasangan-pasangan bilangan yang memenuhi $a^2 + b^2 = c^2$ — apa yang kita sebut "tripel Pythagoras". Angka-angkanya besar dan terorganisir (misalnya: 119, 120, 169), menunjukkan bahwa ini bukan kebetulan, tapi hasil perhitungan yang disengaja. Bangsa Babilonia mengetahui <em>hubungannya</em>, meski kita tidak tahu apakah mereka memiliki bukti umum.
+  </div>
+
+  <p>
+    Jadi jauh sebelum Pythagoras lahir, peradaban kuno sudah menggunakan sifat-sifat segitiga siku-siku. Tapi mereka bekerja dengan contoh-contoh spesifik — mereka tahu bahwa 3² + 4² = 5² dan 5² + 12² = 13², tanpa (sejauh yang kita ketahui) membuktikan bahwa hubungan ini berlaku untuk <em>semua</em> segitiga siku-siku.
+  </p>
+
+  <h3>Yunani: Kelahiran Bukti</h3>
+
+  <div class="historical-note">
+    <strong>Thales dari Miletus</strong> (sekitar 624–546 SM) sering disebut sebagai orang pertama yang <em>membuktikan</em> teorema geometri — bukan hanya mengamati polanya, tapi menunjukkan secara logis mengapa pola itu harus benar. Salah satu teoremanya: sudut di dalam setengah lingkaran selalu siku-siku. Menurut legenda, ia sangat bangga dengan penemuan ini hingga mengorbankan seekor banteng sebagai persembahan. Ia juga dikatakan menghitung tinggi piramida menggunakan panjang bayangannya — sebuah aplikasi brilian dari kesebangungan segitiga, yang akan kita pelajari nanti di bab ini.
+  </div>
+
+  <div class="historical-note">
+    <strong>Pythagoras dari Samos</strong> (sekitar 570–495 SM) — yang sudah kita kenal dari Bab 3 — dan murid-muridnya dikreditkan dengan bukti umum pertama bahwa $a^2 + b^2 = c^2$ berlaku untuk setiap segitiga siku-siku. Apakah Pythagoras sendiri yang menemukan bukti ini, atau salah satu pengikutnya, adalah pertanyaan yang tidak bisa dijawab dengan pasti.
+    <div class="dramatization">Atribusi "Teorema Pythagoras" kepada Pythagoras sendiri adalah tradisi, bukan fakta terverifikasi. Banyak sejarawan percaya bukti ini mungkin dikembangkan secara kolektif di dalam mazhab Pythagoras.</div>
+  </div>
+
+  <div class="historical-note">
+    <strong>Euclid</strong> (sekitar 300 SM) dalam <em>Elements</em> Buku I, Proposisi 47, memberikan bukti formal Teorema Pythagoras yang elegan — menggunakan luas persegi di setiap sisi segitiga. Ini adalah salah satu hasil paling terkenal dalam seluruh <em>Elements</em>. Euclid juga secara sistematis membuktikan sifat-sifat segitiga: jumlah sudut, kriteria kekongruenan (SAS, SSS, ASA), dan hubungan antara sisi dan sudut.
+  </div>
+
+  <h3>India, China, dan Dunia Islam: Bukti dari Banyak Peradaban</h3>
+
+  <div class="historical-note">
+    Di <strong>India</strong>, matematikawan Baudhayana menulis dalam <em>Sulba Sutras</em> (sekitar 800–600 SM) — mungkin lebih awal dari Pythagoras — bahwa diagonal persegi menghasilkan luas yang sama dengan jumlah luas dua persegi di sisi-sisinya. Konteksnya: membangun altar api dengan bentuk yang tepat untuk ritual Veda. Ini adalah pernyataan Teorema Pythagoras, lengkap dengan contoh numerik.
+  </div>
+
+  <div class="historical-note">
+    Di <strong>China</strong>, buku <em>Zhoubi Suanjing</em> (周髀算經, mungkin abad ke-3 SM) menggambarkan apa yang dikenal sebagai "bukti Gou-Gu" — sebuah bukti visual Teorema Pythagoras menggunakan penyusunan ulang persegi. Bukti ini sangat elegan: empat salinan segitiga siku-siku disusun membentuk persegi besar, dan luas yang tersisa tepat sama dengan $c^2$. Kita akan melihat bukti serupa nanti.
+  </div>
+
+  <div class="historical-note">
+    <strong>Thabit ibn Qurra</strong> (836–901 M) di Baghdad tidak hanya menerjemahkan karya Euclid ke bahasa Arab, tetapi juga memberikan <em>generalisasi</em> Teorema Pythagoras. Teorema Thabit menunjukkan bahwa hubungan serupa berlaku bahkan untuk segitiga yang <em>bukan</em> siku-siku, dengan mengganti persegi pada sisi-sisi dengan bangun lain yang dipilih secara tepat. Ini jauh melampaui apa yang Pythagoras atau Euclid capai.
+  </div>
+
+  <div class="historical-note">
+    <strong>Nasir al-Din al-Tusi</strong> (1201–1274 M) dari Tus, Persia, membuat kontribusi monumental untuk geometri segitiga. Dalam bukunya <em>Kitab Shakl al-Qatta</em> (Buku tentang Bangun Transversal), ia adalah orang pertama yang memperlakukan <strong>trigonometri</strong> sebagai disiplin matematika yang berdiri sendiri — terpisah dari astronomi. Ia menyusun tabel sinus yang sangat akurat dan membuktikan <strong>Aturan Sinus</strong> untuk segitiga bola, yang krusial untuk navigasi dan astronomi. Karyanya menjadi fondasi bagi trigonometri modern yang akan kita pelajari di Bab 11.
+  </div>
+
+  <div class="historical-note">
+    <strong>Abu al-Wafa al-Buzjani</strong> (940–998 M), yang sudah kita kenal dari Bab 6 sebagai ahli geometri praktis, juga memberikan kontribusi penting untuk geometri segitiga. Ia mengembangkan metode-metode untuk mengkonstruksi segitiga dengan penggaris dan jangka berdasarkan kondisi tertentu (misalnya: diberikan satu sisi, satu sudut, dan tinggi). Ini berkaitan langsung dengan kriteria kekongruenan yang akan kita pelajari.
+  </div>
+
+  <p>
+    Perhatikan: Teorema Pythagoras ditemukan secara independen oleh setidaknya empat peradaban. Ini bukan kebetulan — ini menunjukkan bahwa teorema ini bukan hanya konvensi manusia, melainkan <em>kebenaran tentang ruang itu sendiri</em> yang akan ditemukan oleh siapapun yang cukup teliti mengamati segitiga.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ JENIS SEGITIGA ═══════════════════════ -->
+
+  <h2>Mengenal Keluarga Segitiga</h2>
+
+  <p>
+    Sebelum masuk ke teorema besar, mari kita kenal segitiga lebih dekat. Segitiga bisa diklasifikasikan berdasarkan dua hal: <strong>sisi-sisinya</strong> dan <strong>sudut-sudutnya</strong>.
+  </p>
+
+  <h3>Berdasarkan Sisi</h3>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Segitiga sama sisi (equilateral):</strong> ketiga sisinya sama panjang. Ketiga sudutnya juga sama: masing-masing $60°$.</li>
+      <li><strong>Segitiga sama kaki (isosceles):</strong> tepat dua sisi sama panjang. Dua sudut yang berhadapan dengan sisi-sisi itu juga sama.</li>
+      <li><strong>Segitiga sembarang (scalene):</strong> ketiga sisinya berbeda panjang. Ketiga sudutnya juga berbeda.</li>
+    </ul>
+  </div>
+
+  <h3>Berdasarkan Sudut</h3>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Segitiga lancip (acute):</strong> ketiga sudutnya kurang dari $90°$.</li>
+      <li><strong>Segitiga siku-siku (right):</strong> satu sudutnya tepat $90°$. Sisi terpanjangnya (di depan sudut siku-siku) disebut <strong>hipotenusa</strong>.</li>
+      <li><strong>Segitiga tumpul (obtuse):</strong> satu sudutnya lebih dari $90°$.</li>
+    </ul>
+  </div>
+
+  <p>
+    Kedua klasifikasi ini bisa dikombinasikan. Sebuah segitiga bisa <em>sama kaki dan siku-siku</em> sekaligus — itulah segitiga yang menghasilkan $\sqrt{2}$ di Bab 3.
+  </p>
+
+  <!-- INTERACTIVE 1: Triangle Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Segitiga</div>
+    <div class="interactive-desc">Atur panjang tiga sisi untuk membentuk segitiga. Perhatikan jenis segitiga yang terbentuk dan bagaimana sudut-sudutnya berubah.</div>
+
+    <div class="slider-container">
+      <label>Sisi a: <strong id="side-a-val">5</strong></label>
+      <input type="range" id="side-a" min="2" max="12" value="5" step="0.5" oninput="updateTriExplorer()">
+    </div>
+    <div class="slider-container">
+      <label>Sisi b: <strong id="side-b-val">5</strong></label>
+      <input type="range" id="side-b" min="2" max="12" value="5" step="0.5" oninput="updateTriExplorer()">
+    </div>
+    <div class="slider-container">
+      <label>Sisi c: <strong id="side-c-val">5</strong></label>
+      <input type="range" id="side-c" min="2" max="12" value="5" step="0.5" oninput="updateTriExplorer()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="tri-explorer-svg" width="320" height="260" viewBox="0 0 320 260"></svg>
+    </div>
+
+    <div id="tri-explorer-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ JUMLAH SUDUT ═══════════════════════ -->
+
+  <h2>Jumlah Sudut Segitiga: Mengapa Selalu 180°?</h2>
+
+  <p>
+    Ini adalah fakta pertama yang hampir semua orang ingat tentang segitiga:
+  </p>
+
+  <div class="key-insight">
+    <strong>Teorema Jumlah Sudut:</strong> Jumlah ketiga sudut dalam setiap segitiga selalu tepat $180°$.
+    $$\alpha + \beta + \gamma = 180°$$
+  </div>
+
+  <p>
+    Tapi <em>mengapa</em>? Apakah ini hanya kebetulan, atau ada alasan mendalam?
+  </p>
+
+  <p>
+    Buktinya elegan dan menggunakan satu ide kunci dari Bab 6: <strong>sudut-sudut sehadap pada garis sejajar</strong>. Bayangkan segitiga $ABC$ dengan alas di bawah. Tarik garis sejajar alas yang melewati titik puncak $A$:
+  </p>
+
+  <div class="proof-box">
+    <p><strong>Bukti:</strong></p>
+    <ol style="margin: 0.5rem 0 0 1rem; line-height: 2.2;">
+      <li>Gambar segitiga $ABC$ dengan sudut $\alpha$ di $A$, sudut $\beta$ di $B$, sudut $\gamma$ di $C$.</li>
+      <li>Tarik garis $\ell$ sejajar $BC$ yang melewati $A$.</li>
+      <li>Karena $\ell \parallel BC$, sudut antara $\ell$ dan $AB$ di sisi kiri $A$ sama dengan $\beta$ (sudut dalam berseberangan).</li>
+      <li>Demikian pula, sudut antara $\ell$ dan $AC$ di sisi kanan $A$ sama dengan $\gamma$.</li>
+      <li>Ketiga sudut di titik $A$ — yaitu $\beta$, $\alpha$, dan $\gamma$ — bersama-sama membentuk sudut lurus = $180°$.</li>
+      <li>Maka $\alpha + \beta + \gamma = 180°$. $\square$</li>
+    </ol>
+  </div>
+
+  <p>
+    Bukti ini bergantung pada postulat kesejajaran Euclid. Di geometri non-Euclid (misalnya pada permukaan bola), jumlah sudut segitiga <em>tidak</em> selalu $180°$ — tapi itu cerita untuk hari lain.
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 6: sudut dalam berseberangan pada dua garis sejajar yang dipotong transversal selalu sama besar. Inilah sifat yang memungkinkan bukti di atas bekerja.
+  </div>
+
+  <!-- INTERACTIVE 2: Angle Sum -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Jumlah Sudut — Selalu 180°</div>
+    <div class="interactive-desc">Geser slider untuk mengubah sudut segitiga. Perhatikan bahwa ketika dua sudut membesar, sudut ketiga mengecil agar totalnya tetap $180°$.</div>
+
+    <div class="slider-container">
+      <label>Sudut A (α): <strong id="angle-a-val">60</strong>°</label>
+      <input type="range" id="angle-a-slider" min="15" max="135" value="60" oninput="updateAngleSum()">
+    </div>
+    <div class="slider-container">
+      <label>Sudut B (β): <strong id="angle-b-val">60</strong>°</label>
+      <input type="range" id="angle-b-slider" min="15" max="135" value="60" oninput="updateAngleSum()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="angle-sum-svg" width="320" height="220" viewBox="0 0 320 220"></svg>
+    </div>
+
+    <div id="angle-sum-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ TEOREMA PYTHAGORAS ═══════════════════════ -->
+
+  <h2>Teorema Pythagoras: Janji yang Ditepati</h2>
+
+  <p>
+    Inilah momen yang sudah kita janjikan sejak Bab 3. Kita telah menggunakan $c^2 = a^2 + b^2$ tanpa bukti untuk menunjukkan bahwa $\sqrt{2}$ itu ada. Sekarang, kita akan membuktikannya.
+  </p>
+
+  <div class="definition-box">
+    <strong>Teorema Pythagoras:</strong> Dalam segitiga siku-siku, kuadrat panjang hipotenusa sama dengan jumlah kuadrat panjang kedua sisi lainnya.
+    $$c^2 = a^2 + b^2$$
+    di mana $c$ adalah hipotenusa (sisi terpanjang, berhadapan dengan sudut siku-siku), dan $a$, $b$ adalah kedua sisi lainnya.
+  </div>
+
+  <p>
+    Ada ratusan bukti untuk teorema ini — lebih dari 400 yang tercatat! Kita akan melihat salah satu yang paling elegan: bukti melalui penyusunan ulang luas, mirip dengan bukti dari tradisi China kuno.
+  </p>
+
+  <h3>Bukti dengan Penyusunan Ulang</h3>
+
+  <p>
+    Ambil segitiga siku-siku dengan sisi $a$, $b$, dan hipotenusa $c$. Sekarang ambil empat salinan segitiga ini.
+  </p>
+
+  <div class="proof-box">
+    <p><strong>Bukti:</strong></p>
+    <ol style="margin: 0.5rem 0 0 1rem; line-height: 2.2;">
+      <li>Buat persegi besar dengan sisi $a + b$. Luas persegi ini = $(a+b)^2$.</li>
+      <li>Susun 4 salinan segitiga siku-siku di dalam persegi besar, dengan hipotenusa menghadap ke dalam.</li>
+      <li>Keempat hipotenusa membentuk persegi miring di tengah dengan sisi $c$. (Ini benar karena sudut di setiap sudut persegi miring = $180° - \alpha - \beta = 180° - 90° = 90°$.)</li>
+      <li>Luas persegi besar = luas 4 segitiga + luas persegi kecil tengah:
+        $$(a+b)^2 = 4 \cdot \tfrac{1}{2}ab + c^2$$</li>
+      <li>Uraikan sisi kiri: $a^2 + 2ab + b^2 = 2ab + c^2$.</li>
+      <li>Kurangi $2ab$ dari kedua sisi: $a^2 + b^2 = c^2$. $\square$</li>
+    </ol>
+  </div>
+
+  <p>
+    Keindahan bukti ini: tidak ada aljabar yang rumit, tidak ada trik tersembunyi. Hanya luas — sesuatu yang bisa kita <em>lihat</em>.
+  </p>
+
+  <!-- INTERACTIVE 3: Pythagoras Visual Proof -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Bukti Visual Teorema Pythagoras</div>
+    <div class="interactive-desc">Ubah ukuran segitiga siku-siku dan lihat bagaimana persegi pada setiap sisi mendemonstrasikan $a^2 + b^2 = c^2$.</div>
+
+    <div class="slider-container">
+      <label>Sisi a: <strong id="pyth-a-val">3</strong></label>
+      <input type="range" id="pyth-a" min="1" max="8" value="3" step="0.5" oninput="updatePythViz()">
+    </div>
+    <div class="slider-container">
+      <label>Sisi b: <strong id="pyth-b-val">4</strong></label>
+      <input type="range" id="pyth-b" min="1" max="8" value="4" step="0.5" oninput="updatePythViz()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="pyth-svg" width="340" height="300" viewBox="0 0 340 300"></svg>
+    </div>
+
+    <div id="pyth-result" class="result-display" style="font-size: 0.92rem;"></div>
+  </div>
+
+  <h3>Tripel Pythagoras</h3>
+
+  <p>
+    Beberapa segitiga siku-siku memiliki sisi-sisi yang semuanya bilangan bulat. Kombinasi $(a, b, c)$ yang memenuhi $a^2 + b^2 = c^2$ dengan $a$, $b$, $c$ bilangan bulat positif disebut <strong>tripel Pythagoras</strong>.
+  </p>
+
+  <div class="key-insight">
+    Tripel Pythagoras yang paling terkenal:
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$(3, 4, 5)$: karena $9 + 16 = 25$ ✓</li>
+      <li>$(5, 12, 13)$: karena $25 + 144 = 169$ ✓</li>
+      <li>$(8, 15, 17)$: karena $64 + 225 = 289$ ✓</li>
+      <li>$(7, 24, 25)$: karena $49 + 576 = 625$ ✓</li>
+    </ul>
+    Jika $(a, b, c)$ adalah tripel Pythagoras, maka kelipatannya $(ka, kb, kc)$ juga tripel Pythagoras. Jadi $(6, 8, 10)$, $(9, 12, 15)$, dst. semuanya bekerja.
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 3: kita membuktikan bahwa $\sqrt{2}$ bukan pecahan. Ini berarti segitiga siku-siku sama kaki dengan sisi 1, 1, $\sqrt{2}$ <em>tidak</em> bisa menjadi tripel Pythagoras — hipotenusanya selalu irasional.
+  </div>
+
+  <h3>Kebalikan Teorema Pythagoras</h3>
+
+  <p>
+    Teorema Pythagoras juga berlaku sebaliknya, dan ini sama pentingnya:
+  </p>
+
+  <div class="key-insight">
+    <strong>Kebalikan:</strong> Jika suatu segitiga memiliki sisi $a$, $b$, $c$ (dengan $c$ terbesar) dan $a^2 + b^2 = c^2$, maka segitiga itu <em>pasti</em> siku-siku — sudut di depan sisi $c$ tepat $90°$.
+  </div>
+
+  <p>
+    Inilah yang digunakan oleh para <em>harpedonaptai</em> Mesir (tukang tali dari Bab 6): mereka mengukur tali dengan panjang 3, 4, dan 5, lalu menariknya kencang. Karena $3^2 + 4^2 = 5^2$, sudut yang terbentuk pasti siku-siku. Tanpa busur derajat, tanpa kalkulator — hanya tali dan bilangan.
+  </p>
+
+  <p>
+    Lebih umum lagi, kita bisa menentukan jenis segitiga hanya dari panjang sisi-sisinya:
+  </p>
+
+  <div class="key-insight">
+    Untuk segitiga dengan sisi $a \leq b \leq c$:
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li>Jika $a^2 + b^2 = c^2$ → segitiga <strong>siku-siku</strong></li>
+      <li>Jika $a^2 + b^2 > c^2$ → segitiga <strong>lancip</strong> (semua sudut < 90°)</li>
+      <li>Jika $a^2 + b^2 < c^2$ → segitiga <strong>tumpul</strong> (sudut terbesar > 90°)</li>
+    </ul>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KEKONGRUENAN ═══════════════════════ -->
+
+  <h2>Kekongruenan: Kapan Dua Segitiga Sama Persis?</h2>
+
+  <p>
+    Dua segitiga disebut <strong>kongruen</strong> jika mereka memiliki bentuk <em>dan</em> ukuran yang sama — jika kamu bisa mengangkat salah satu dan meletakkannya tepat di atas yang lain (boleh dibalik atau diputar).
+  </p>
+
+  <p>
+    Secara formal: segitiga $ABC$ kongruen dengan segitiga $DEF$ (ditulis $\triangle ABC \cong \triangle DEF$) jika ketiga sisi dan ketiga sudut yang bersesuaian sama besar.
+  </p>
+
+  <p>
+    Tapi kita tidak perlu mengecek keenam ukuran itu. Salah satu penemuan brilian Euclid adalah bahwa <strong>cukup tiga informasi tertentu</strong> sudah menjamin kekongruenan:
+  </p>
+
+  <div class="key-insight">
+    <strong>Kriteria kekongruenan segitiga:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li><strong>SAS</strong> (Sisi-Sudut-Sisi): Dua sisi dan sudut di antara keduanya sama.</li>
+      <li><strong>SSS</strong> (Sisi-Sisi-Sisi): Ketiga sisinya sama.</li>
+      <li><strong>ASA</strong> (Sudut-Sisi-Sudut): Dua sudut dan sisi di antara keduanya sama.</li>
+      <li><strong>AAS</strong> (Sudut-Sudut-Sisi): Dua sudut dan satu sisi (tidak harus di antara) sama.</li>
+    </ul>
+  </div>
+
+  <p>
+    <strong>Peringatan penting:</strong> <em>SSA</em> (Sisi-Sisi-Sudut, di mana sudut bukan di antara kedua sisi) <strong>tidak</strong> menjamin kekongruenan! Dua segitiga bisa memiliki dua sisi sama dan satu sudut sama, tapi tetap berbeda bentuk. Ini disebut <em>kasus ambigu</em> — sesuatu yang akan muncul lagi di trigonometri.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESEBANGUNGAN ═══════════════════════ -->
+
+  <h2>Kesebangungan: Sama Bentuk, Beda Ukuran</h2>
+
+  <p>
+    Sekarang kita sampai pada ide yang mungkin <em>lebih</em> penting dari kekongruenan: <strong>kesebangungan</strong>.
+  </p>
+
+  <p>
+    Dua segitiga disebut <strong>sebangun</strong> (similar) jika mereka memiliki bentuk yang sama, tapi ukurannya boleh berbeda. Bayangkan foto yang diperbesar atau diperkecil — proporsinya sama, skalanya berbeda.
+  </p>
+
+  <div class="definition-box">
+    <strong>Definisi:</strong> Segitiga $ABC$ sebangun dengan segitiga $DEF$ (ditulis $\triangle ABC \sim \triangle DEF$) jika:
+    <ol style="margin: 0.5rem 0 0 1.2rem;">
+      <li>Sudut-sudut bersesuaiannya sama: $\angle A = \angle D$, $\angle B = \angle E$, $\angle C = \angle F$.</li>
+      <li>Sisi-sisi bersesuaiannya proporsional: $\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF} = k$ (konstanta perbandingan).</li>
+    </ol>
+    Kedua kondisi ini ekuivalen — jika satu terpenuhi, yang lain otomatis terpenuhi juga.
+  </div>
+
+  <p>
+    Kriteria kesebangungan lebih ringan daripada kekongruenan — kita bahkan hanya perlu mengecek <strong>dua sudut</strong>:
+  </p>
+
+  <div class="key-insight">
+    <strong>Kriteria kesebangungan segitiga:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li><strong>AA</strong> (Sudut-Sudut): Jika dua sudut segitiga pertama sama dengan dua sudut segitiga kedua, mereka sebangun. (Sudut ketiga otomatis sama, karena jumlahnya 180°.)</li>
+      <li><strong>SAS~</strong>: Dua sisi proporsional dan sudut di antara keduanya sama.</li>
+      <li><strong>SSS~</strong>: Ketiga sisi proporsional.</li>
+    </ul>
+  </div>
+
+  <p>
+    Mengapa kesebangungan begitu penting? Karena ia mengatakan: <strong>sudut menentukan bentuk, bukan ukuran</strong>. Semua segitiga siku-siku dengan sudut 30° itu "sama" — mereka semua sebangun. Rasio sisi-sisinya selalu $1 : \sqrt{3} : 2$, tidak peduli seberapa besar segitiganya. Inilah ide yang akan menjadi fondasi trigonometri di Bab 11.
+  </p>
+
+  <div class="historical-note">
+    Thales menggunakan kesebangungan segitiga untuk mengukur tinggi piramida. Ia menancapkan tongkat vertikal di tanah dan menunggu hingga panjang bayangan tongkat sama dengan tinggi tongkat (yaitu ketika matahari membuat sudut $45°$). Pada saat itu, bayangan piramida juga sama panjang dengan tinggi piramida. Ia hanya perlu mengukur bayangan piramida — jauh lebih mudah daripada memanjat!
+  </div>
+
+  <!-- INTERACTIVE 4: Similarity Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Segitiga Sebangun — Sama Bentuk, Beda Ukuran</div>
+    <div class="interactive-desc">Ubah faktor skala. Segitiga biru diperbesar/diperkecil, tapi sudutnya tetap sama dan rasio sisi-sisinya terjaga.</div>
+
+    <div class="slider-container">
+      <label>Faktor skala: <strong id="sim-scale-val">1.5</strong>×</label>
+      <input type="range" id="sim-scale" min="0.5" max="3" value="1.5" step="0.1" oninput="updateSimilarity()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="similarity-svg" width="340" height="260" viewBox="0 0 340 260"></svg>
+    </div>
+
+    <div id="similarity-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ APLIKASI ═══════════════════════ -->
+
+  <h2>Aplikasi: Teorema Pythagoras di Dunia Nyata</h2>
+
+  <p>
+    Teorema Pythagoras bukan hanya teorema abstrak — ia muncul di mana-mana:
+  </p>
+
+  <div class="key-insight">
+    <strong>Jarak di Bidang Koordinat</strong><br>
+    Jarak antara dua titik $(x_1, y_1)$ dan $(x_2, y_2)$ di bidang koordinat (yang akan kita bangun di Bab 9) adalah:
+    $$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+    Ini persis Teorema Pythagoras — selisih $x$ dan selisih $y$ adalah kedua kaki segitiga siku-siku, dan jarak $d$ adalah hipotenusanya.
+  </div>
+
+  <p>
+    Beberapa aplikasi lain:
+  </p>
+  <ul style="margin: 0.5rem 0 0.5rem 1.2rem; line-height: 2;">
+    <li><strong>Tangga bersandar di dinding:</strong> tangga 5 m yang basisnya 3 m dari dinding mencapai ketinggian $\sqrt{25 - 9} = 4$ m.</li>
+    <li><strong>Diagonal layar:</strong> layar 16:9 dengan lebar 80 cm memiliki tinggi 45 cm dan diagonal $\sqrt{80^2 + 45^2} \approx 91{,}8$ cm ≈ 36 inci.</li>
+    <li><strong>Navigasi:</strong> kapal berlayar 6 km ke timur lalu 8 km ke utara — jaraknya dari titik awal = $\sqrt{36 + 64} = 10$ km.</li>
+  </ul>
+
+  <!-- INTERACTIVE 5: Pythagoras Calculator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Kalkulator Pythagoras</div>
+    <div class="interactive-desc">Masukkan dua sisi segitiga siku-siku. Pilih apakah kamu memasukkan kedua kaki (cari hipotenusa) atau satu kaki dan hipotenusa (cari kaki lainnya).</div>
+
+    <div style="display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap;">
+      <button class="btn" id="pyth-mode-hyp" onclick="setPythMode('hyp')" style="background: var(--accent-blue); color: white;">Cari hipotenusa</button>
+      <button class="btn" id="pyth-mode-leg" onclick="setPythMode('leg')">Cari kaki</button>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);" id="pyth-label-1">Kaki a:</label>
+        <input type="number" id="pyth-input-1" value="3" min="0.1" max="999" step="0.1" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <div>
+        <label style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-secondary);" id="pyth-label-2">Kaki b:</label>
+        <input type="number" id="pyth-input-2" value="4" min="0.1" max="999" step="0.1" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="calcPyth()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 14px;">Hitung!</button>
+    </div>
+
+    <div id="pyth-calc-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Menerapkan Pythagoras pada segitiga yang bukan siku-siku.</strong><br>
+    $a^2 + b^2 = c^2$ hanya berlaku jika sudut di depan sisi $c$ tepat $90°$. Untuk segitiga sembarang, kita memerlukan "Aturan Kosinus" (Bab 11).
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Salah mengidentifikasi hipotenusa.</strong><br>
+    Hipotenusa selalu sisi <em>terpanjang</em> dan selalu <em>berhadapan dengan sudut siku-siku</em>. Bukan sisi yang terlihat "miring" di gambar — orientasi gambar bisa menipu.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira SSA menjamin kekongruenan.</strong><br>
+    Jika diberikan dua sisi dan sudut yang <em>bukan</em> di antara kedua sisi itu, dua segitiga berbeda bisa terbentuk. Selalu pastikan sudut berada di posisi yang benar (SAS, bukan SSA).
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❹ Lupa bahwa kesebangungan menjaga rasio, bukan panjang.</strong><br>
+    $\triangle ABC \sim \triangle DEF$ berarti $\frac{AB}{DE} = \frac{BC}{EF}$, bukan $AB = DE$. Skala berubah; proporsi tetap.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Sebuah segitiga memiliki sudut $40°$ dan $75°$. Berapa sudut ketiga? Apa jenis segitiga ini berdasarkan sudutnya?</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Jumlah sudut segitiga selalu $180°$. Kurangkan dua sudut yang diketahui.</div>
+    <div class="answer-content" id="a1">Sudut ketiga = $180° - 40° - 75° = 65°$. Karena ketiga sudut kurang dari $90°$, ini segitiga <strong>lancip</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Sebuah segitiga siku-siku memiliki kaki $a = 6$ cm dan $b = 8$ cm. Hitung panjang hipotenusa $c$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Gunakan $c^2 = a^2 + b^2$, lalu cari $c = \sqrt{c^2}$.</div>
+    <div class="answer-content" id="a2">$c^2 = 6^2 + 8^2 = 36 + 64 = 100$, jadi $c = \sqrt{100} = 10$ cm. Ini kelipatan dari tripel $(3, 4, 5)$ — dikalikan 2.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Computation</div>
+    <p>Sebuah segitiga siku-siku memiliki hipotenusa $c = 13$ dan kaki $a = 5$. Hitung panjang kaki $b$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Dari $a^2 + b^2 = c^2$, kita bisa tuliskan $b^2 = c^2 - a^2$.</div>
+    <div class="answer-content" id="a3">$b^2 = 13^2 - 5^2 = 169 - 25 = 144$, jadi $b = \sqrt{144} = 12$. Tripel $(5, 12, 13)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Conceptual</div>
+    <p>Segitiga memiliki sisi 7, 10, dan 12. Apakah segitiga ini siku-siku, lancip, atau tumpul?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Bandingkan $a^2 + b^2$ dengan $c^2$ di mana $c$ adalah sisi terpanjang.</div>
+    <div class="answer-content" id="a4">$a^2 + b^2 = 7^2 + 10^2 = 49 + 100 = 149$. $c^2 = 12^2 = 144$. Karena $149 > 144$, maka $a^2 + b^2 > c^2$, jadi segitiga ini <strong>lancip</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application</div>
+    <p>Sebuah tangga 10 meter bersandar di dinding. Kaki tangga berada 6 meter dari dasar dinding. Berapa tinggi dinding yang dicapai tangga?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Tangga adalah hipotenusa. Jarak dari dinding dan tinggi yang dicapai adalah kedua kaki.</div>
+    <div class="answer-content" id="a5">$h^2 = 10^2 - 6^2 = 100 - 36 = 64$, jadi $h = \sqrt{64} = 8$ meter.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Similarity</div>
+    <p>Segitiga $ABC$ memiliki sisi $AB = 6$, $BC = 8$, $AC = 10$. Segitiga $DEF$ memiliki sisi $DE = 9$ dan $EF = 12$. Jika $\triangle ABC \sim \triangle DEF$, berapa panjang $DF$?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Cari faktor skala dari sisi-sisi yang bersesuaian: $k = \frac{DE}{AB}$. Gunakan faktor yang sama untuk mencari $DF$.</div>
+    <div class="answer-content" id="a6">Faktor skala $k = \frac{DE}{AB} = \frac{9}{6} = 1{,}5$. Cek: $\frac{EF}{BC} = \frac{12}{8} = 1{,}5$ ✓. Maka $DF = AC \times k = 10 \times 1{,}5 = 15$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Error Analysis</div>
+    <p>Seorang siswa mengatakan: "Segitiga dengan sisi 5, 7, dan 9 adalah siku-siku karena $5 + 7 > 9$." Apa kesalahannya?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$a + b > c$ hanya mengatakan bahwa segitiga itu valid (ketaksamaan segitiga). Untuk menguji siku-siku, kita harus membandingkan $a^2 + b^2$ dengan $c^2$.</div>
+    <div class="answer-content" id="a7">Siswa mencampurkan <em>ketaksamaan segitiga</em> (yang menentukan apakah tiga sisi bisa membentuk segitiga) dengan <em>Teorema Pythagoras</em> (yang menentukan apakah segitiga itu siku-siku). Uji yang benar: $5^2 + 7^2 = 25 + 49 = 74$, sedangkan $9^2 = 81$. Karena $74 \neq 81$ (bahkan $74 < 81$), segitiga ini <strong>bukan</strong> siku-siku — ia tumpul.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 3 & 4)</div>
+    <p>Sebuah segitiga siku-siku sama kaki memiliki kedua kaki sepanjang $s$. Tunjukkan bahwa hipotenusanya adalah $s\sqrt{2}$ — konfirmasi langsung dari apa yang kita temukan di Bab 3. Lalu, gunakan aljabar dari Bab 4 untuk menyederhanakan $\frac{s\sqrt{2}}{s}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Gunakan Pythagoras: $c^2 = s^2 + s^2$. Untuk penyederhanaan, ingat bahwa $\frac{s \cdot k}{s} = k$ untuk semua $s \neq 0$.</div>
+    <div class="answer-content" id="a8">$c^2 = s^2 + s^2 = 2s^2$, jadi $c = \sqrt{2s^2} = s\sqrt{2}$. Ini mengkonfirmasi bahwa diagonal persegi satuan ($s = 1$) adalah $\sqrt{2}$, seperti di Bab 3.<br><br>Penyederhanaan: $\frac{s\sqrt{2}}{s} = \sqrt{2} \approx 1{,}4142...$  Rasio hipotenusa terhadap kaki selalu $\sqrt{2}$, tidak peduli besar $s$. Inilah esensi kesebangungan — semua segitiga siku-siku sama kaki "sama bentuk".</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dari Bentuk Datar ke Bentuk Sempurna</h2>
+
+  <p>
+    Kita telah membongkar rahasia segitiga — teorema paling terkenal telah dibuktikan, dan kita memiliki alat untuk membandingkan segitiga mana saja di dunia. Tapi ada satu bentuk yang kita lewati dengan terlalu cepat di Bab 6: <strong>lingkaran</strong>.
+  </p>
+
+  <p>
+    Lingkaran adalah batas dari poligon beraturan dengan jumlah sisi yang semakin banyak — kita sudah melihat ini di metode Archimedes (Bab 3) saat mendekati $\pi$. Di bab berikutnya, kita akan kembali ke $\pi$ dan memahaminya secara mendalam: mengapa rasio keliling terhadap diameter selalu konstan, apa hubungan lingkaran dengan segitiga, dan bagaimana lingkaran menyatukan ide-ide dari bab-bab sebelumnya.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 8 — Lingkaran dan π: Kembali ke Bilangan Misterius</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Triangle Explorer ═══════
+function updateTriExplorer() {
+  var a = parseFloat(document.getElementById('side-a').value);
+  var b = parseFloat(document.getElementById('side-b').value);
+  var c = parseFloat(document.getElementById('side-c').value);
+  document.getElementById('side-a-val').textContent = a;
+  document.getElementById('side-b-val').textContent = b;
+  document.getElementById('side-c-val').textContent = c;
+
+  var svg = document.getElementById('tri-explorer-svg');
+  var res = document.getElementById('tri-explorer-result');
+
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    svg.innerHTML = '<text x="160" y="130" text-anchor="middle" font-family="Inter" font-size="13" fill="#c0392b">Ketiga sisi ini tidak bisa membentuk segitiga!</text>';
+    res.textContent = 'Ketaksamaan segitiga dilanggar: setiap sisi harus lebih kecil dari jumlah dua sisi lainnya.';
+    return;
+  }
+
+  var cosA = (b*b + c*c - a*a) / (2*b*c);
+  var cosB = (a*a + c*c - b*b) / (2*a*c);
+  var cosC = (a*a + b*b - c*c) / (2*a*b);
+  var A = Math.acos(Math.max(-1, Math.min(1, cosA))) * 180 / Math.PI;
+  var B = Math.acos(Math.max(-1, Math.min(1, cosB))) * 180 / Math.PI;
+  var C = Math.acos(Math.max(-1, Math.min(1, cosC))) * 180 / Math.PI;
+
+  var scale = 18;
+  var Bx = 50, By = 210;
+  var Cx = Bx + a * scale, Cy = By;
+  var angB = Math.acos(Math.max(-1, Math.min(1, cosB)));
+  var Ax = Bx + c * scale * Math.cos(angB);
+  var Ay = By - c * scale * Math.sin(angB);
+
+  var s = '';
+  s += '<polygon points="' + Ax+','+Ay+' '+Bx+','+By+' '+Cx+','+Cy + '" fill="rgba(36,113,163,0.12)" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<text x="' + ((Bx+Cx)/2) + '" y="' + (By+18) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#2471a3">a=' + a + '</text>';
+  s += '<text x="' + ((Ax+Cx)/2+8) + '" y="' + ((Ay+Cy)/2-4) + '" text-anchor="start" font-family="JetBrains Mono" font-size="11" fill="#c0392b">b=' + b + '</text>';
+  s += '<text x="' + ((Ax+Bx)/2-8) + '" y="' + ((Ay+By)/2-4) + '" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#1e8449">c=' + c + '</text>';
+  svg.innerHTML = s;
+
+  var sideType = (a === b && b === c) ? 'Sama sisi' : (a === b || b === c || a === c) ? 'Sama kaki' : 'Sembarang';
+  var maxAngle = Math.max(A, B, C);
+  var angleType = (Math.abs(maxAngle - 90) < 0.5) ? 'Siku-siku' : (maxAngle > 90) ? 'Tumpul' : 'Lancip';
+  res.textContent = 'Sudut: A=' + A.toFixed(1) + '°  B=' + B.toFixed(1) + '°  C=' + C.toFixed(1) + '°  (total=' + (A+B+C).toFixed(1) + '°)\nJenis: ' + sideType + ', ' + angleType;
+}
+
+// ═══════ Interactive 2: Angle Sum ═══════
+function updateAngleSum() {
+  var alpha = parseInt(document.getElementById('angle-a-slider').value);
+  var beta = parseInt(document.getElementById('angle-b-slider').value);
+  var gamma = 180 - alpha - beta;
+
+  if (gamma <= 0) {
+    beta = 180 - alpha - 15;
+    gamma = 15;
+    document.getElementById('angle-b-slider').value = beta;
+  }
+
+  document.getElementById('angle-a-val').textContent = alpha;
+  document.getElementById('angle-b-val').textContent = beta;
+
+  var svg = document.getElementById('angle-sum-svg');
+  var res = document.getElementById('angle-sum-result');
+
+  var rad = Math.PI / 180;
+  var baseLen = 200;
+  var Bx = 60, By = 190;
+  var Cx = Bx + baseLen, Cy = By;
+  var angB = beta * rad;
+  var angC = gamma * rad;
+  var sideBC = baseLen;
+  var sideAB = sideBC * Math.sin(angC) / Math.sin(alpha * rad);
+  var Ax = Bx + sideAB * Math.cos(angB);
+  var Ay = By - sideAB * Math.sin(angB);
+
+  var s = '';
+  s += '<polygon points="' + Ax+','+Ay+' '+Bx+','+By+' '+Cx+','+Cy + '" fill="rgba(36,113,163,0.1)" stroke="#2471a3" stroke-width="2"/>';
+  s += '<text x="' + (Ax) + '" y="' + (Ay-8) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#c0392b">α=' + alpha + '°</text>';
+  s += '<text x="' + (Bx-4) + '" y="' + (By+16) + '" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#2471a3">β=' + beta + '°</text>';
+  s += '<text x="' + (Cx+4) + '" y="' + (Cy+16) + '" text-anchor="start" font-family="JetBrains Mono" font-size="12" fill="#1e8449">γ=' + gamma + '°</text>';
+  svg.innerHTML = s;
+
+  res.textContent = 'α + β + γ = ' + alpha + '° + ' + beta + '° + ' + gamma + '° = ' + (alpha + beta + gamma) + '°';
+}
+
+// ═══════ Interactive 3: Pythagoras Visual ═══════
+function updatePythViz() {
+  var a = parseFloat(document.getElementById('pyth-a').value);
+  var b = parseFloat(document.getElementById('pyth-b').value);
+  document.getElementById('pyth-a-val').textContent = a;
+  document.getElementById('pyth-b-val').textContent = b;
+
+  var c = Math.sqrt(a*a + b*b);
+  var svg = document.getElementById('pyth-svg');
+  var scale = 25;
+  var ox = 20, oy = 30;
+
+  var ax = ox, ay = oy + b * scale;
+  var bx = ox + a * scale, by = oy + b * scale;
+  var cx = ox, cy = oy;
+
+  var s = '';
+  // triangle
+  s += '<polygon points="' + ax+','+ay+' '+bx+','+by+' '+cx+','+cy + '" fill="rgba(36,113,163,0.15)" stroke="#2471a3" stroke-width="2"/>';
+  // square on a
+  s += '<rect x="'+ax+'" y="'+ay+'" width="'+(a*scale)+'" height="'+(a*scale)+'" fill="rgba(192,57,43,0.12)" stroke="#c0392b" stroke-width="1.5"/>';
+  s += '<text x="'+(ax + a*scale/2)+'" y="'+(ay + a*scale/2 + 5)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c0392b">a²='+(a*a)+'</text>';
+  // square on b (left)
+  s += '<rect x="'+(cx - b*scale)+'" y="'+cy+'" width="'+(b*scale)+'" height="'+(b*scale)+'" fill="rgba(30,132,73,0.12)" stroke="#1e8449" stroke-width="1.5"/>';
+  s += '<text x="'+(cx - b*scale/2)+'" y="'+(cy + b*scale/2 + 5)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#1e8449">b²='+(b*b)+'</text>';
+
+  // labels on sides
+  s += '<text x="'+((ax+bx)/2)+'" y="'+(ay+12)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c0392b">a='+a+'</text>';
+  s += '<text x="'+(cx-8)+'" y="'+((cy+ay)/2)+'" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#1e8449">b='+b+'</text>';
+  s += '<text x="'+((bx+cx)/2+8)+'" y="'+((by+cy)/2)+'" text-anchor="start" font-family="JetBrains Mono" font-size="11" fill="#2471a3">c='+c.toFixed(2)+'</text>';
+
+  // right angle marker
+  var ms = 8;
+  s += '<path d="M'+(ax+ms)+','+ay+' '+ax+ms+','+(ay-ms)+' '+ax+','+(ay-ms)+'" fill="none" stroke="#2c2c2c" stroke-width="1"/>';
+
+  svg.innerHTML = s;
+  document.getElementById('pyth-result').textContent = 'a² + b² = ' + (a*a) + ' + ' + (b*b) + ' = ' + (a*a+b*b) + '\nc² = ' + c.toFixed(4) + '² = ' + (a*a+b*b).toFixed(4) + '\na² + b² = c² ✓';
+}
+
+// ═══════ Interactive 4: Similarity ═══════
+function updateSimilarity() {
+  var k = parseFloat(document.getElementById('sim-scale').value);
+  document.getElementById('sim-scale-val').textContent = k.toFixed(1);
+
+  var svg = document.getElementById('similarity-svg');
+
+  // original triangle (red)
+  var oA = [30, 220], oB = [130, 220], oC = [60, 140];
+  var a0 = 100, b0 = 86, c0 = 83;
+
+  // scaled triangle (blue)
+  var sA = [180, 220];
+  var dx1 = (oB[0]-oA[0])*k, dy1 = (oB[1]-oA[1])*k;
+  var dx2 = (oC[0]-oA[0])*k, dy2 = (oC[1]-oA[1])*k;
+  var sB = [sA[0]+dx1, sA[1]+dy1];
+  var sC = [sA[0]+dx2, sA[1]+dy2];
+
+  var s = '';
+  s += '<polygon points="'+oA+' '+oB+' '+oC+'" fill="rgba(192,57,43,0.12)" stroke="#c0392b" stroke-width="2"/>';
+  s += '<text x="80" y="236" text-anchor="middle" font-family="Inter" font-size="10" fill="#c0392b">Asli</text>';
+
+  s += '<polygon points="'+sA+' '+sB+' '+sC+'" fill="rgba(36,113,163,0.12)" stroke="#2471a3" stroke-width="2"/>';
+  s += '<text x="'+(sA[0]+(sB[0]-sA[0])/2)+'" y="236" text-anchor="middle" font-family="Inter" font-size="10" fill="#2471a3">Skala '+k.toFixed(1)+'×</text>';
+
+  svg.innerHTML = s;
+
+  var sa = (a0*k/10).toFixed(1), sb = (b0*k/10).toFixed(1), sc = (c0*k/10).toFixed(1);
+  document.getElementById('similarity-result').textContent = 'Asli: sisi ≈ 10.0, 8.6, 8.3\nSkala ' + k.toFixed(1) + '×: sisi ≈ ' + (10*k).toFixed(1) + ', ' + (8.6*k).toFixed(1) + ', ' + (8.3*k).toFixed(1) + '\nRasio sisi = ' + k.toFixed(1) + ' (konstan) — Sudut tetap sama ✓';
+}
+
+// ═══════ Interactive 5: Pythagoras Calculator ═══════
+var pythMode = 'hyp';
+function setPythMode(mode) {
+  pythMode = mode;
+  document.getElementById('pyth-mode-hyp').style.background = mode === 'hyp' ? 'var(--accent-blue)' : '';
+  document.getElementById('pyth-mode-hyp').style.color = mode === 'hyp' ? 'white' : '';
+  document.getElementById('pyth-mode-leg').style.background = mode === 'leg' ? 'var(--accent-blue)' : '';
+  document.getElementById('pyth-mode-leg').style.color = mode === 'leg' ? 'white' : '';
+  document.getElementById('pyth-label-1').textContent = mode === 'hyp' ? 'Kaki a:' : 'Kaki a:';
+  document.getElementById('pyth-label-2').textContent = mode === 'hyp' ? 'Kaki b:' : 'Hipotenusa c:';
+}
+
+function calcPyth() {
+  var v1 = parseFloat(document.getElementById('pyth-input-1').value);
+  var v2 = parseFloat(document.getElementById('pyth-input-2').value);
+  var res = document.getElementById('pyth-calc-result');
+  if (isNaN(v1) || isNaN(v2) || v1 <= 0 || v2 <= 0) {
+    res.textContent = 'Masukkan bilangan positif.';
+    return;
+  }
+  if (pythMode === 'hyp') {
+    var c = Math.sqrt(v1*v1 + v2*v2);
+    res.textContent = 'c² = a² + b² = ' + v1 + '² + ' + v2 + '² = ' + (v1*v1) + ' + ' + (v2*v2) + ' = ' + (v1*v1+v2*v2) + '\nc = √' + (v1*v1+v2*v2) + ' = ' + c.toFixed(6);
+  } else {
+    if (v2 <= v1) {
+      res.textContent = 'Hipotenusa harus lebih panjang dari kaki!';
+      return;
+    }
+    var b = Math.sqrt(v2*v2 - v1*v1);
+    res.textContent = 'b² = c² - a² = ' + v2 + '² - ' + v1 + '² = ' + (v2*v2) + ' - ' + (v1*v1) + ' = ' + (v2*v2-v1*v1) + '\nb = √' + (v2*v2-v1*v1) + ' = ' + b.toFixed(6);
+  }
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  updateTriExplorer();
+  updateAngleSum();
+  updatePythViz();
+  updateSimilarity();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+/* ═══════════════════════════════════════════════
+   BUKU MATEMATIKA INTERAKTIF — Shared CSS
+   ═══════════════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #faf8f4;
+  --bg-alt: #f0ece4;
+  --text: #2c2c2c;
+  --text-secondary: #5a5a5a;
+  --text-light: #8a8a8a;
+  --accent: #c0392b;
+  --accent-warm: #d4731a;
+  --accent-blue: #2471a3;
+  --accent-green: #1e8449;
+  --border: #d5cfc4;
+  --shadow: rgba(44, 44, 44, 0.08);
+  --interactive-bg: #fdfcfa;
+  --interactive-border: #c9c2b5;
+  --code-bg: #2d2d2d;
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.book-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+/* ── Chapter Header ── */
+.chapter-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.chapter-subtitle {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 2.5rem 0;
+}
+
+.divider-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Typography ── */
+p { margin-bottom: 1.2rem; text-align: justify; hyphens: auto; }
+
+h2 {
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 2.8rem 0 1rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 2rem 0 0.8rem;
+  color: var(--accent-blue);
+}
+
+.lead {
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ── Narrator ── */
+.narrator {
+  font-style: italic;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent-warm);
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0;
+  background: rgba(212, 115, 26, 0.04);
+  border-radius: 0 6px 6px 0;
+}
+
+/* ── Key Insight ── */
+.key-insight {
+  background: rgba(36, 113, 163, 0.06);
+  border-left: 3px solid var(--accent-blue);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+.key-insight strong { color: var(--accent-blue); }
+
+/* ── Historical Note ── */
+.historical-note {
+  background: rgba(192, 57, 43, 0.04);
+  border: 1px solid rgba(192, 57, 43, 0.15);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+.historical-note::before {
+  content: "Catatan Sejarah";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.dramatization {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ── Recall Box ── */
+.recall-box {
+  background: #f3e5f5;
+  border-left: 3px solid #8e24aa;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.92rem;
+}
+.recall-box::before {
+  content: "Recall dari Bab Sebelumnya";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8e24aa;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Interactive Section ── */
+.interactive-section {
+  background: var(--interactive-bg);
+  border: 1px solid var(--interactive-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.interactive-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-green);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.interactive-label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+}
+
+.interactive-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.interactive-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* ── Buttons ── */
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover { background: var(--bg-alt); border-color: var(--text-light); }
+.btn-accent { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+.btn-accent:hover { background: #1a5276; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.8rem; }
+
+/* ── Slider ── */
+.slider-container { margin: 1rem 0; }
+.slider-container label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.slider-container input[type="range"] {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+  margin-top: 0.5rem;
+}
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-blue);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--accent-blue);
+  margin: 0.5rem 0;
+}
+
+.result-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 0.8rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin: 0.8rem 0;
+  line-height: 1.8;
+}
+
+/* ── Number Line ── */
+.numberline-wrap { overflow-x: auto; padding: 1rem 0; }
+.numberline-svg { display: block; margin: 0 auto; }
+
+/* ── SVG Container ── */
+.svg-container { margin: 1rem 0; text-align: center; }
+.svg-container svg { max-width: 100%; height: auto; }
+
+/* ── Visual Blocks (Bab 1) ── */
+.block-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin: 0.8rem 0;
+  justify-content: center;
+  align-items: center;
+}
+.block {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.block-blue { background: #3498db; }
+.block-red { background: #e74c3c; }
+.block-green { background: #27ae60; }
+.block-orange { background: #f39c12; }
+.block-gray { background: #bdc3c7; color: #7f8c8d; }
+.block-plus { background: transparent; color: var(--text); font-size: 1.3rem; font-weight: 300; width: 28px; }
+.block-eq { background: transparent; color: var(--text); font-size: 1.3rem; font-weight: 300; width: 28px; }
+
+/* ── Multiplication Grid (Bab 1) ── */
+.mult-grid-container { text-align: center; margin: 1rem 0; }
+.mult-grid { display: inline-grid; gap: 3px; margin: 0.5rem 0; }
+.mult-cell { width: 32px; height: 32px; border-radius: 4px; transition: all 0.3s; }
+
+/* ── Division Visual (Bab 1) ── */
+.division-visual {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin: 0.8rem 0;
+}
+.person-pile { text-align: center; min-width: 60px; }
+.person-pile .label { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--text-secondary); margin-bottom: 4px; }
+.person-pile .items { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; min-height: 30px; }
+.apple { font-size: 1.2rem; }
+.remainder-pile { border: 2px dashed var(--accent); padding: 0.5rem; border-radius: 8px; }
+
+/* ── Fraction Visuals (Bab 2) ── */
+.fraction-bar {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 40px;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+}
+.fraction-bar .piece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: white;
+  border-right: 1px solid rgba(255,255,255,0.4);
+  transition: all 0.4s;
+}
+.fraction-bar .piece:last-child { border-right: none; }
+.fraction-bar .piece.filled { background: var(--accent-blue); }
+.fraction-bar .piece.empty { background: #e0e0e0; }
+
+.pie-chart { margin: 0.5rem auto; display: block; }
+
+.common-mistake {
+  background: rgba(192,57,43,0.05);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.common-mistake::before {
+  content: "Kesalahan Umum";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.wrong { color: var(--accent); text-decoration: line-through; }
+.correct { color: var(--accent-green); }
+
+/* ── Sheep & Stones (Bab 0) ── */
+.pasture {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: #e8f5e9;
+  border-radius: 8px;
+  min-height: 60px;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+.pasture:hover { background: #c8e6c9; }
+.sheep { font-size: 1.8rem; transition: transform 0.2s; cursor: pointer; }
+.sheep:hover { transform: scale(1.2); }
+.sheep.counted { opacity: 0.4; transform: scale(0.85); }
+.stone-pile {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: #efebe9;
+  border-radius: 8px;
+  min-height: 60px;
+  margin-bottom: 0.8rem;
+  align-items: center;
+  justify-content: center;
+}
+.stone {
+  width: 22px;
+  height: 22px;
+  background: #795548;
+  border-radius: 50% 45% 50% 40%;
+  display: inline-block;
+  transition: all 0.3s;
+  animation: dropIn 0.3s ease-out;
+}
+@keyframes dropIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.counter-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--text);
+}
+
+/* ── Tally Marks (Bab 0) ── */
+.tally-area {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  background: #fff8e1;
+  border-radius: 8px;
+  min-height: 80px;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+  font-size: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+}
+.tally-group {
+  display: flex;
+  position: relative;
+  width: 52px;
+  height: 48px;
+}
+.tally-mark {
+  position: absolute;
+  width: 3px;
+  height: 40px;
+  background: #4a3728;
+  border-radius: 1px;
+  animation: tallyDraw 0.2s ease-out;
+}
+@keyframes tallyDraw {
+  from { height: 0; }
+  to { height: 40px; }
+}
+.tally-mark.diagonal {
+  width: 52px;
+  height: 3px;
+  transform: rotate(-30deg);
+  transform-origin: left center;
+  top: 18px;
+  left: -2px;
+  animation: tallySlash 0.2s ease-out;
+}
+@keyframes tallySlash {
+  from { width: 0; }
+  to { width: 52px; }
+}
+
+/* ── Number Systems Grid (Bab 0) ── */
+.number-systems-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+.ns-cell {
+  background: white;
+  padding: 0.6rem;
+  text-align: center;
+  font-size: 0.88rem;
+}
+.ns-cell.header {
+  background: var(--bg-alt);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+.ns-cell .big { font-size: 1.3rem; display: block; margin-bottom: 2px; }
+
+/* ── Exercise ── */
+.exercise {
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.exercise-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 0.6rem;
+}
+.exercise p { text-align: left; margin-bottom: 0.6rem; }
+.hint-btn, .answer-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-right: 8px;
+  margin-top: 0.5rem;
+  transition: all 0.2s;
+}
+.hint-btn:hover, .answer-btn:hover {
+  background: var(--bg-alt);
+  border-style: solid;
+}
+.hint-content, .answer-content {
+  display: none;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.hint-content { background: #fff8e1; }
+.answer-content { background: #e8f5e9; }
+.hint-content.visible, .answer-content.visible { display: block; }
+
+/* ── Chapter End ── */
+.chapter-end {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-light);
+}
+.chapter-end .ornament {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5em;
+}
+
+/* ── Next Chapter Bridge ── */
+.next-chapter {
+  background: var(--bg-alt);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+.next-chapter .label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+.next-chapter .title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+/* ── Proof Box (Bab 3) ── */
+.proof-box {
+  background: #f9f6ff;
+  border: 1px solid rgba(142, 36, 170, 0.2);
+  border-left: 3px solid #8e24aa;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+.proof-box::before {
+  content: "Bukti";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8e24aa;
+  margin-bottom: 0.5rem;
+}
+.proof-box .qed {
+  text-align: right;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #8e24aa;
+}
+
+/* ── Definition Box (Bab 3+) ── */
+.definition-box {
+  background: rgba(36, 113, 163, 0.04);
+  border: 1px solid rgba(36, 113, 163, 0.2);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.definition-box::before {
+  content: "Definisi";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .book-container { padding: 2rem 1rem 4rem; }
+  .chapter-title { font-size: 2rem; }
+  .number-systems-grid { grid-template-columns: 1fr 1fr; }
+  .pasture, .stone-pile { padding: 0.8rem; }
+  .block { width: 22px; height: 22px; font-size: 0.6rem; }
+  .mult-cell { width: 26px; height: 26px; }
+  .fraction-bar { height: 32px; }
+}
+
+/* ── MathJax override ── */
+mjx-container { margin: 0 !important; }

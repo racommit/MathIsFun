@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 6 — Bentuk, Jarak, dan Luas</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 6 · Volume II</div>
+  <h1 class="chapter-title">Bentuk, Jarak,<br>dan Luas</h1>
+  <p class="chapter-subtitle">
+    Tentang bagaimana manusia mulai mengukur tanah, membangun piramida,<br>
+    dan menemukan hubungan abadi antara bentuk dan bilangan.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Selama lima bab pertama, kita hidup di dunia bilangan — satu dimensi, garis bilangan. Sekarang kita melangkah ke dunia yang lebih kaya: <em>ruang</em>. Dunia tempat kita benar-benar tinggal — dengan panjang, lebar, bentuk, sudut, dan luas.
+  </p>
+
+  <div class="narrator">
+    Kata "geometri" berasal dari bahasa Yunani: <em>geo</em> (bumi) + <em>metron</em> (pengukuran). Secara harfiah: "mengukur bumi." Dan memang, geometri lahir dari kebutuhan praktis: mengukur tanah setelah banjir Sungai Nil menghapus batas-batas ladang setiap tahun.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Titik, Garis, dan Bidang</h2>
+
+  <p>
+    Geometri dimulai dari tiga konsep yang begitu mendasar sehingga tidak bisa didefinisikan — hanya bisa <em>dideskripsikan</em>:
+  </p>
+
+  <p>
+    <strong>Titik</strong> — posisi tanpa ukuran. Tidak punya panjang, lebar, atau tinggi. Hanya "di mana."<br>
+    <strong>Garis</strong> — kumpulan titik yang memanjang lurus tanpa batas ke kedua arah. Punya panjang tapi tidak punya lebar.<br>
+    <strong>Bidang</strong> — permukaan datar yang meluas tanpa batas. Punya panjang dan lebar tapi tidak punya tebal.
+  </p>
+
+  <div class="historical-note">
+    Geometri praktis dimulai jauh sebelum Yunani. <strong>Bangsa Mesir</strong> menggunakan tali berukuran 12 satuan (dengan simpul di 3, 4, dan 5 satuan) untuk membuat sudut siku-siku — memanfaatkan segitiga 3-4-5 yang memenuhi teorema Pythagoras. Para <em>harpedonaptai</em> ("peregang tali") ini adalah surveyor pertama di dunia, dan keahlian mereka sangat dibutuhkan setiap tahun ketika banjir Nil menghapus batas-batas ladang. Papirus Rhind (sekitar 1650 SM) berisi rumus luas lingkaran yang mendekati penggunaan $\pi \approx 3{,}16$.
+  </div>
+
+  <div class="historical-note">
+    <strong>Euclid dari Alexandria</strong> (sekitar 300 SM) menulis <em>Elements</em> — buku teks matematika paling berpengaruh sepanjang sejarah. Dimulai dari 5 postulat (aksioma) sederhana, Euclid membangun seluruh geometri secara logis: 465 proposisi yang masing-masing dibuktikan dari proposisi sebelumnya. <em>Elements</em> tetap digunakan sebagai buku teks selama lebih dari 2.000 tahun — hanya Alkitab yang dicetak dalam lebih banyak edisi.
+  </div>
+
+  <div class="historical-note">
+    Ketika Kekaisaran Romawi runtuh dan Eropa memasuki Abad Pertengahan, karya-karya Euclid dan Archimedes nyaris hilang. Yang menyelamatkannya: para sarjana di dunia Islam.<br><br>
+    <strong>Thabit ibn Qurra</strong> (826–901 M), bekerja di Baghdad, menerjemahkan <em>Elements</em> Euclid ke bahasa Arab dan tidak hanya melestarikan — ia <em>memperbaiki dan memperluas</em> karya aslinya. Ia menemukan bukti baru untuk teorema Pythagoras dan generalisasinya untuk segitiga yang bukan siku-siku.<br><br>
+    <strong>Abu al-Wafa al-Buzjani</strong> (940–998 M) menulis <em>Kitab fi ma Yahtaj ilayhi al-Sani' min A'mal al-Handasa</em> — "Buku tentang Apa yang Dibutuhkan Pengrajin dari Geometri." Ini bukan teks abstrak, tapi panduan praktis: bagaimana memotong, membagi, dan membangun bentuk-bentuk geometris untuk arsitektur dan desain. Ia menunjukkan bahwa geometri bukan hanya teori — ia hidup di setiap masjid, istana, dan pola dekoratif Islam.<br><br>
+    <strong>Ibn al-Haytham</strong> (Alhazen, 965–1040 M) menggunakan geometri untuk membangun teori optik pertama yang benar — menjelaskan bagaimana cahaya bergerak dan bagaimana mata melihat. Karyanya <em>Kitab al-Manazir</em> (Buku Optik) memengaruhi sains Eropa selama berabad-abad dan merupakan salah satu contoh paling awal dari metode ilmiah.
+  </div>
+
+  <p>
+    Jadi geometri yang kita pelajari sekarang bukan milik satu peradaban. Ia dibangun oleh bangsa Mesir, disistematisasi oleh bangsa Yunani, diselamatkan dan diperluas oleh para sarjana Arab dan Persia, lalu diserap kembali oleh Eropa melalui terjemahan di Toledo, Spanyol pada abad ke-12.
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: kita sudah menggunakan garis bilangan — garis lurus dengan titik-titik yang mewakili bilangan. Garis bilangan adalah jembatan antara dunia bilangan (aritmetika) dan dunia ruang (geometri). Di bab ini, kita memperluas dari satu garis ke seluruh bidang.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Sudut: Mengukur Putaran</h2>
+
+  <p>
+    Ketika dua garis bertemu di satu titik, mereka membentuk <strong>sudut</strong>. Sudut mengukur "seberapa besar putaran" dari satu garis ke garis lainnya.
+  </p>
+
+  <p>
+    Kita mengukur sudut dalam <strong>derajat</strong> (°). Satu putaran penuh = 360°. Setengah putaran = 180°. Seperempat putaran = 90° (sudut siku-siku).
+  </p>
+
+  <div class="historical-note">
+    Mengapa 360°? Kemungkinan besar dari bangsa Babilonia (Bab 0!) dengan sistem basis 60 mereka. $360 = 6 \times 60$, dan 360 punya sangat banyak faktor — bisa dibagi 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, ... Ini membuat pembagian lingkaran menjadi bagian-bagian yang sama sangat mudah.
+  </div>
+
+  <p>
+    Jenis-jenis sudut: <strong>lancip</strong> (< 90°), <strong>siku-siku</strong> (= 90°), <strong>tumpul</strong> (90° – 180°), <strong>lurus</strong> (= 180°).
+  </p>
+
+  <!-- INTERACTIVE 1: Angle explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menjelajahi Sudut</div>
+    <div class="interactive-desc">Geser slider untuk mengubah besar sudut. Perhatikan jenis sudut dan bagaimana ia terlihat.</div>
+
+    <div class="slider-container">
+      <label>Sudut: <strong id="angle-val">45</strong>°</label>
+      <input type="range" id="angle-slider" min="0" max="360" value="45" oninput="updateAngle()">
+    </div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="angle-svg" width="220" height="220" viewBox="0 0 220 220"></svg>
+    </div>
+    <div id="angle-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Bangun Datar: Bentuk di Bidang</h2>
+
+  <p>
+    <strong>Poligon</strong> (segi-banyak) adalah bentuk tertutup yang terdiri dari garis-garis lurus. Segitiga punya 3 sisi. Segiempat punya 4 sisi. Pentagon punya 5. Dan seterusnya.
+  </p>
+
+  <h3>Segitiga</h3>
+  <p>
+    Bentuk paling sederhana — dan paling penting. Jumlah sudut dalam segitiga selalu $180°$. Ini salah satu fakta pertama yang dibuktikan oleh geometri Euclid.
+  </p>
+
+  <h3>Segiempat</h3>
+  <p>
+    Empat jenis penting:<br>
+    — <strong>Persegi panjang:</strong> keempat sudutnya siku-siku (90°)<br>
+    — <strong>Persegi:</strong> persegi panjang dengan keempat sisi sama panjang<br>
+    — <strong>Jajar genjang:</strong> sisi-sisi yang berhadapan sejajar dan sama panjang<br>
+    — <strong>Trapesium:</strong> tepat satu pasang sisi yang sejajar
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Keliling dan Luas</h2>
+
+  <p>
+    Dua pertanyaan mendasar tentang bentuk apapun: seberapa <em>panjang</em> pinggirannya (keliling)? Dan seberapa <em>besar</em> permukaannya (luas)?
+  </p>
+
+  <p>
+    <strong>Keliling</strong> = jumlah panjang semua sisi. Untuk persegi panjang dengan panjang $p$ dan lebar $l$: $K = 2p + 2l = 2(p + l)$.
+  </p>
+
+  <h3>Luas Persegi Panjang</h3>
+
+  <p>
+    Ini fondasi dari semua rumus luas. Bayangkan lantai kamar yang ditutup ubin persegi berukuran 1×1. Jika kamar panjangnya 5 ubin dan lebarnya 3 ubin, berapa total ubin? $5 \times 3 = 15$. Inilah luas: jumlah persegi satuan yang muat di dalam bentuk.
+  </p>
+
+  <div class="key-insight">
+    <strong>Luas persegi panjang:</strong> $L = p \times l$ (panjang × lebar)
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: perkalian bisa diinterpretasikan sebagai luas! $3 \times 5 = 15$ berarti persegi panjang 3 × 5 memuat 15 persegi satuan. Geometri dan aritmetika terhubung secara mendalam.
+  </div>
+
+  <h3>Luas Segitiga</h3>
+
+  <p>
+    Sebuah segitiga adalah "setengah persegi panjang." Ambil persegi panjang, potong secara diagonal — kamu mendapat dua segitiga yang sama. Jadi luas segitiga adalah setengah luas persegi panjang yang memuatnya:
+  </p>
+
+  <div class="key-insight">
+    $$L_{\triangle} = \frac{1}{2} \times \text{alas} \times \text{tinggi}$$
+  </div>
+
+  <h3>Luas Jajar Genjang</h3>
+
+  <p>
+    "Potong" segitiga di satu ujung jajar genjang, "tempelkan" di ujung lainnya — kamu mendapat persegi panjang. Jadi luasnya: $L = \text{alas} \times \text{tinggi}$ (tinggi tegak lurus terhadap alas, bukan sisi miring!).
+  </p>
+
+  <!-- INTERACTIVE 2: Area explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menghitung Luas secara Visual</div>
+    <div class="interactive-desc">Pilih bentuk dan atur dimensinya. Lihat bagaimana luas dihitung dari grid satuan.</div>
+
+    <div style="margin-bottom:1rem;">
+      <select id="shape-select" onchange="updateAreaViz()" style="font-family:'Inter'; padding:6px; border:1px solid var(--border); border-radius:6px;">
+        <option value="rect">Persegi Panjang</option>
+        <option value="tri">Segitiga</option>
+        <option value="para">Jajar Genjang</option>
+      </select>
+    </div>
+
+    <div class="slider-container">
+      <label>Alas: <strong id="area-base-val">6</strong></label>
+      <input type="range" id="area-base" min="1" max="10" value="6" oninput="updateAreaViz()">
+    </div>
+    <div class="slider-container">
+      <label>Tinggi: <strong id="area-height-val">4</strong></label>
+      <input type="range" id="area-height" min="1" max="8" value="4" oninput="updateAreaViz()">
+    </div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="area-svg" width="400" height="300" viewBox="0 0 400 300" style="max-width:100%;"></svg>
+    </div>
+    <div id="area-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Keliling dan Luas Lingkaran</h2>
+
+  <p>
+    Lingkaran adalah bentuk istimewa — tidak ada sisi lurus, tidak ada sudut.
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 3: $\pi$ adalah rasio keliling lingkaran terhadap diameternya. Kita menunjukkan bahwa Archimedes mendekati $\pi$ dengan segi-banyak. Sekarang kita gunakan $\pi$ dalam rumus.
+  </div>
+
+  <div class="key-insight">
+    <strong>Lingkaran dengan jari-jari $r$:</strong><br>
+    Keliling: $K = 2\pi r$<br>
+    Luas: $L = \pi r^2$
+  </div>
+
+  <p>
+    Dari mana rumus luas $\pi r^2$? Bayangkan lingkaran dipotong menjadi banyak irisan tipis (seperti pizza). Atur irisan-irisan itu berselang-seling — ujung lancip ke atas dan ke bawah. Bentuknya mendekati persegi panjang dengan panjang $\pi r$ (setengah keliling) dan lebar $r$. Luasnya: $\pi r \times r = \pi r^2$.
+  </p>
+
+  <!-- INTERACTIVE 3: Circle measurements -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mengukur Lingkaran</div>
+    <div class="interactive-desc">Geser jari-jari dan lihat bagaimana keliling dan luas berubah.</div>
+
+    <div class="slider-container">
+      <label>Jari-jari $r$ = <strong id="circle-r-val">5</strong></label>
+      <input type="range" id="circle-r" min="1" max="10" value="5" oninput="updateCircle()">
+    </div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="circle-svg" width="260" height="260" viewBox="0 0 260 260"></svg>
+    </div>
+    <div id="circle-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Jebakan-Jebakan yang Menunggu</h2>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 1:</strong> Mencampurkan keliling dan luas.</p>
+    <p>Keliling diukur dalam satuan panjang (cm, m). Luas diukur dalam satuan <em>kuadrat</em> (cm², m²). Mereka mengukur hal yang berbeda!</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 2:</strong> Menggunakan sisi miring sebagai "tinggi" jajar genjang.</p>
+    <p>Tinggi harus tegak lurus terhadap alas. Sisi miring jajar genjang bukan tingginya (kecuali jika kebetulan tegak lurus).</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 3:</strong> Mencampurkan jari-jari dan diameter dalam rumus lingkaran.</p>
+    <p>$L = \pi r^2$, bukan $\pi d^2$. Jika diameter $= 10$, maka $r = 5$ dan $L = 25\pi$, bukan $100\pi$.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Hitung keliling dan luas persegi panjang dengan panjang 8 cm dan lebar 5 cm.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$K = 2(p + l)$ dan $L = p \times l$.</div>
+    <div class="answer-content" id="a1">$K = 2(8 + 5) = 26$ cm. $L = 8 \times 5 = 40$ cm².</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Luas segitiga dengan alas 12 cm dan tinggi 7 cm?</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$L = \frac{1}{2} \times \text{alas} \times \text{tinggi}$.</div>
+    <div class="answer-content" id="a2">$L = \frac{1}{2} \times 12 \times 7 = 42$ cm².</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Conceptual</div>
+    <p>Dua persegi panjang punya keliling sama: 20 cm. Yang pertama berukuran 6 × 4. Yang kedua 8 × 2. Apakah luasnya sama?</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Hitung luas masing-masing.</div>
+    <div class="answer-content" id="a3">$L_1 = 6 \times 4 = 24$ cm². $L_2 = 8 \times 2 = 16$ cm². <strong>Tidak!</strong> Keliling sama tidak berarti luas sama. Di antara semua persegi panjang dengan keliling yang sama, persegi (sisi $= 5$, luas $= 25$) memberikan luas terbesar.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Connection (Bab 4)</div>
+    <p>Luas persegi panjang adalah $x^2 + 5x + 6$ cm². Jika lebarnya $(x + 2)$ cm, berapa panjangnya? (Gunakan pemfaktoran dari Bab 4.)</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">$L = p \times l$. Faktorkan $x^2 + 5x + 6$.</div>
+    <div class="answer-content" id="a4">$x^2 + 5x + 6 = (x+2)(x+3)$. Karena $L = p \times l$ dan $l = (x+2)$, maka $p = (x+3)$ cm.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Connection (Bab 3 & 5)</div>
+    <p>Luas sebuah lingkaran adalah $50\pi$ cm². Berapa jari-jarinya? (Beri jawaban dalam bentuk akar.)</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$\pi r^2 = 50\pi$. Selesaikan untuk $r$.</div>
+    <div class="answer-content" id="a5">$r^2 = 50 \to r = \sqrt{50} = 5\sqrt{2}$ cm $\approx 7{,}07$ cm. (Dari Bab 3: $\sqrt{50} = \sqrt{25 \times 2} = 5\sqrt{2}$.)</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Challenge</div>
+    <p>Jumlah sudut dalam segi-$n$ (poligon beraturan dengan $n$ sisi) adalah $(n-2) \times 180°$. Berapa besar setiap sudut dalam segi-8 beraturan?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Total sudut = $(8-2) \times 180°$. Semua sudut sama besar karena "beraturan".</div>
+    <div class="answer-content" id="a6">Total = $6 \times 180° = 1080°$. Per sudut = $1080° \div 8 = 135°$.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog: Dari Bidang ke Segitiga</h2>
+
+  <p>
+    Kita sudah menjelajahi bentuk-bentuk dasar dan belajar mengukur mereka. Tapi ada satu bentuk yang pantas mendapat bab tersendiri: <em>segitiga</em>. Mengapa? Karena segitiga adalah bentuk poligon paling sederhana, dan setiap poligon lain bisa dibongkar menjadi segitiga-segitiga. Segitiga adalah "atom" geometri.
+  </p>
+
+  <div class="narrator">
+    Dan di dalam segitiga tersembunyi salah satu teorema paling terkenal sepanjang sejarah — teorema yang sudah kita gunakan tanpa bukti di Bab 3, tentang diagonal persegi. Saatnya kita membongkarnya secara penuh.
+  </div>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 7 — Segitiga dan Rahasianya</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Angle explorer ═══════
+function updateAngle() {
+  var deg = parseInt(document.getElementById('angle-slider').value);
+  document.getElementById('angle-val').textContent = deg;
+  var svg = document.getElementById('angle-svg');
+  var cx = 110, cy = 130, r = 80;
+  var rad = deg * Math.PI / 180;
+  var ex = cx + r * Math.cos(-rad), ey = cy - r * Math.sin(-rad);
+  var s = '';
+  if (deg > 0 && deg < 360) {
+    var arcR = 30;
+    var aex = cx + arcR * Math.cos(-rad), aey = cy - arcR * Math.sin(-rad);
+    var large = deg > 180 ? 1 : 0;
+    s += '<path d="M' + (cx+arcR) + ',' + cy + ' A' + arcR + ',' + arcR + ' 0 ' + large + ',0 ' + aex.toFixed(1) + ',' + aey.toFixed(1) + '" fill="rgba(36,113,163,0.15)" stroke="#2471a3" stroke-width="1.5"/>';
+    s += '<path d="M' + cx + ',' + cy + ' L' + (cx+arcR) + ',' + cy + ' A' + arcR + ',' + arcR + ' 0 ' + large + ',0 ' + aex.toFixed(1) + ',' + aey.toFixed(1) + ' Z" fill="rgba(36,113,163,0.1)"/>';
+  }
+  s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx+r) + '" y2="' + cy + '" stroke="#2c2c2c" stroke-width="2.5"/>';
+  s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '" stroke="#c0392b" stroke-width="2.5"/>';
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="#2c2c2c"/>';
+  s += '<text x="' + (cx + 40 * Math.cos(-rad/2)) + '" y="' + (cy - 40 * Math.sin(-rad/2) + 4) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#2471a3">' + deg + '°</text>';
+  svg.innerHTML = s;
+  var type = deg === 0 ? 'Nol' : deg < 90 ? 'Lancip' : deg === 90 ? 'Siku-siku' : deg < 180 ? 'Tumpul' : deg === 180 ? 'Lurus' : deg < 360 ? 'Refleks' : 'Penuh';
+  document.getElementById('angle-result').textContent = deg + '° — Sudut ' + type;
+}
+
+// ═══════ Interactive 2: Area visualizer ═══════
+function updateAreaViz() {
+  var shape = document.getElementById('shape-select').value;
+  var base = parseInt(document.getElementById('area-base').value);
+  var height = parseInt(document.getElementById('area-height').value);
+  document.getElementById('area-base-val').textContent = base;
+  document.getElementById('area-height-val').textContent = height;
+  var svg = document.getElementById('area-svg');
+  var cell = Math.min(35, Math.floor(350 / Math.max(base + 2, height + 2)));
+  var ox = 30, oy = 20;
+  var s = '';
+  for (var r = 0; r <= height; r++) {
+    for (var c = 0; c <= base; c++) {
+      if (r < height && c < base) {
+        s += '<rect x="' + (ox+c*cell) + '" y="' + (oy+r*cell) + '" width="' + cell + '" height="' + cell + '" fill="#f0f0f0" stroke="#ddd" stroke-width="0.5"/>';
+      }
+    }
+  }
+  var pts, area, label;
+  if (shape === 'rect') {
+    pts = [[ox,oy],[ox+base*cell,oy],[ox+base*cell,oy+height*cell],[ox,oy+height*cell]];
+    area = base * height;
+    label = 'L = p × l = ' + base + ' × ' + height + ' = ' + area;
+  } else if (shape === 'tri') {
+    pts = [[ox,oy+height*cell],[ox+base*cell,oy+height*cell],[ox+Math.floor(base/2)*cell,oy]];
+    area = base * height / 2;
+    label = 'L = ½ × a × t = ½ × ' + base + ' × ' + height + ' = ' + area;
+  } else {
+    var shear = Math.floor(height * 0.4);
+    pts = [[ox+shear*cell,oy],[ox+(base+shear)*cell,oy],[ox+base*cell,oy+height*cell],[ox,oy+height*cell]];
+    area = base * height;
+    label = 'L = a × t = ' + base + ' × ' + height + ' = ' + area;
+  }
+  var polyStr = pts.map(function(p){return p[0]+','+p[1];}).join(' ');
+  s += '<polygon points="' + polyStr + '" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="2.5"/>';
+  svg.innerHTML = s;
+  document.getElementById('area-result').textContent = label + ' satuan²';
+}
+
+// ═══════ Interactive 3: Circle ═══════
+function updateCircle() {
+  var r = parseInt(document.getElementById('circle-r').value);
+  document.getElementById('circle-r-val').textContent = r;
+  var svg = document.getElementById('circle-svg');
+  var cx = 130, cy = 130, pr = r * 12;
+  var s = '';
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + pr + '" fill="rgba(36,113,163,0.12)" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx+pr) + '" y2="' + cy + '" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>';
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="#2c2c2c"/>';
+  s += '<text x="' + (cx+pr/2) + '" y="' + (cy-8) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#c0392b">r=' + r + '</text>';
+  svg.innerHTML = s;
+  var K = 2 * Math.PI * r;
+  var L = Math.PI * r * r;
+  document.getElementById('circle-result').textContent = 'Keliling = 2πr = 2π(' + r + ') = ' + K.toFixed(2) + '\nLuas = πr² = π(' + r + ')² = ' + r*r + 'π ≈ ' + L.toFixed(2);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateAngle();
+  updateAreaViz();
+  updateCircle();
+});
+</script>
+</body>
+</html>

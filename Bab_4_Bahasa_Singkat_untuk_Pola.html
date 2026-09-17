@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 4 — Bahasa Singkat untuk Pola</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 4</div>
+  <h1 class="chapter-title">Bahasa Singkat<br>untuk Pola</h1>
+  <p class="chapter-subtitle">
+    Tentang huruf yang menggantikan bilangan, aturan yang berlaku untuk semua bilangan sekaligus,<br>
+    dan kelahiran bahasa paling efisien yang pernah diciptakan manusia.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di tiga bab sebelumnya, kita membangun bilangan — bilangan bulat, pecahan, dan bilangan irasional. Kita juga menemukan aturan-aturan yang mereka ikuti: sifat komutatif, asosiatif, distributif. Tapi setiap kali kita menuliskan aturan itu, kita harus menggunakan kata-kata panjang dan contoh spesifik.
+  </p>
+
+  <div class="narrator">
+    "Jika kamu menjumlahkan dua bilangan, urutannya tidak penting. Misalnya, tiga ditambah lima sama dengan lima ditambah tiga." Lalu kita harus menambahkan: "ini berlaku untuk semua bilangan, bukan hanya 3 dan 5."
+  </div>
+
+  <p>
+    Bukankah lebih baik kalau kita bisa menulis aturan itu sekali, singkat, dan langsung menyatakan bahwa ini berlaku untuk <em>semua</em> bilangan?
+  </p>
+
+  <p>
+    $a + b = b + a$
+  </p>
+
+  <p>
+    Selesai. Enam simbol. Berlaku untuk semua bilangan $a$ dan $b$ — entah itu 3 dan 5, atau $\frac{1}{2}$ dan $\sqrt{2}$, atau $-17$ dan $\pi$. Inilah kekuatan <strong>aljabar</strong>.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN UTAMA ═══════════════════════ -->
+
+  <h2>Pertanyaan yang Mengubah Segalanya</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana cara menulis aturan matematika yang berlaku untuk semua bilangan sekaligus?"
+  </p>
+
+  <p>
+    Selama ini kita bekerja dengan bilangan tertentu: "2 + 3 = 5", "$\frac{1}{2} \times \frac{3}{4} = \frac{3}{8}$". Tapi sifat komutatif bukan hanya tentang 2 + 3 — ia tentang <em>setiap</em> penjumlahan yang mungkin. Kita butuh cara untuk bicara tentang "bilangan apapun" tanpa harus menyebut bilangan spesifik.
+  </p>
+
+  <p>
+    Solusinya: gunakan <strong>huruf sebagai pengganti bilangan</strong>.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Kata-Kata ke Simbol</h2>
+
+  <div class="historical-note">
+    Aljabar tidak muncul sekaligus. Perkembangannya terbagi tiga era:<br><br>
+    <strong>Aljabar retorik</strong> (sebelum ~250 M): sepenuhnya menggunakan kata-kata. Bangsa Babilonia dan Mesir sudah menyelesaikan masalah-masalah yang sekarang kita sebut "aljabar", tapi semuanya ditulis sebagai paragraf prosa.<br><br>
+    <strong>Aljabar sinopsis</strong> (~250–1600 M): mulai menggunakan singkatan. Diophantus dari Alexandria (abad ke-3) menggunakan simbol-simbol singkat untuk bilangan yang tidak diketahui.<br><br>
+    <strong>Aljabar simbolik</strong> (1600 M–sekarang): menggunakan simbol murni. François Viète (1540–1603) adalah orang pertama yang secara sistematis menggunakan huruf untuk mewakili bilangan yang diketahui maupun yang tidak diketahui.
+  </div>
+
+  <p>
+    Nama "aljabar" sendiri berasal dari buku matematikawan Persia <strong>Muhammad ibn Musa al-Khwarizmi</strong> (sekitar 780–850 M), yang bekerja di Baitul Hikmah (<em>House of Wisdom</em>) di Baghdad — pusat intelektual terbesar di dunia saat itu. Bukunya berjudul <em>Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala</em> — "Buku Ringkas tentang Perhitungan dengan Penyempurnaan dan Penyeimbangan". Kata <em>al-jabr</em> (الجبر) berarti "penyempurnaan" atau "pemulihan" — merujuk pada teknik memindahkan suku dari satu sisi persamaan ke sisi lain.
+  </p>
+
+  <div class="historical-note">
+    Al-Khwarizmi menulis seluruh aljabarnya dalam kata-kata. Tidak ada $x$ atau $y$ — ia menulis "sesuatu" (<em>shay'</em>, الشيء) untuk bilangan yang tidak diketahui, dan "harta" (<em>mal</em>) untuk kuadratnya. Dari nama al-Khwarizmi sendiri, kita mendapat kata "algoritma." Bukunya bukan kumpulan soal seperti karya Babilonia — ia adalah <em>teori sistematis</em> pertama tentang bagaimana menyelesaikan persamaan, lengkap dengan bukti geometris untuk setiap metode.
+  </div>
+
+  <p>
+    Tapi al-Khwarizmi bukan titik akhir — ia adalah titik awal. Tradisi aljabar Arab terus berkembang selama berabad-abad setelahnya.
+  </p>
+
+  <div class="historical-note">
+    <strong>Abu Kamil</strong> (sekitar 850–930 M), dijuluki "ahli hitung Mesir," memperluas karya al-Khwarizmi dengan menyelesaikan sistem persamaan dan bekerja dengan pangkat yang lebih tinggi. Bukunya kemudian diterjemahkan ke bahasa Latin dan sangat memengaruhi matematikawan Eropa, termasuk Fibonacci.<br><br>
+    <strong>Al-Karaji</strong> (sekitar 953–1029 M), bekerja di Baghdad, membuat lompatan besar: ia membebaskan aljabar dari ketergantungan pada geometri. Sebelumnya, $x^2$ selalu dipikirkan sebagai "luas persegi." Al-Karaji menunjukkan bahwa aljabar bisa berdiri sendiri sebagai ilmu tentang manipulasi simbol — sebuah pangkat $x^3$, $x^4$, $x^5$ tidak perlu punya interpretasi geometris untuk valid.<br><br>
+    <strong>Omar Khayyam</strong> (1048–1131 M), lebih terkenal di Barat sebagai penyair (<em>Rubaiyat</em>), sebenarnya adalah matematikawan brilian. Ia mengklasifikasi semua jenis persamaan kubik (pangkat 3) dan menyelesaikannya secara geometris menggunakan irisan kerucut. Ia juga menulis salah satu pembahasan paling lengkap tentang postulat sejajar Euclid — yang berabad-abad kemudian mengarah pada geometri non-Euclid.
+  </div>
+
+  <h3>Dari <em>Shay'</em> ke $x$</h3>
+
+  <p>
+    Bagaimana huruf $x$ menjadi simbol universal untuk "yang tidak diketahui"? Ada teori menarik (meskipun diperdebatkan): ketika buku-buku aljabar Arab diterjemahkan ke bahasa Spanyol di abad ke-12 dan ke-13, kata Arab <em>shay'</em> (شيء, "sesuatu") ditransliterasikan menjadi <em>xay</em> dalam bahasa Spanyol Kuno, karena bunyi "sy" ditulis sebagai "x" dalam ortografi Spanyol saat itu. Dari <em>xay</em> kemudian disingkat menjadi huruf <em>x</em>.
+  </p>
+
+  <p>
+    Teori alternatif: René Descartes (1637) memilih $x$ karena itu huruf yang paling jarang digunakan dalam bahasa Prancis, sehingga tidak membingungkan. Apapun asalnya, Descartes yang mempopulerkan konvensi menggunakan huruf awal alfabet ($a, b, c$) untuk bilangan yang sudah diketahui dan huruf akhir ($x, y, z$) untuk yang belum diketahui.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ VARIABEL ═══════════════════════ -->
+
+  <h2>Variabel: Huruf yang Mewakili Bilangan</h2>
+
+  <p>
+    Ide sentral aljabar sederhana tapi revolusioner: <strong>sebuah huruf bisa mewakili sebuah bilangan</strong>.
+  </p>
+
+  <p>
+    Ketika kita menulis $x$, kita tidak membicarakan huruf ke-24 alfabet. Kita membicarakan sebuah bilangan — bilangan yang mungkin belum kita ketahui, atau bilangan yang sengaja kita biarkan "umum" agar aturannya berlaku untuk semua bilangan.
+  </p>
+
+  <p>
+    Huruf seperti ini disebut <strong>variabel</strong> — dari bahasa Latin <em>variabilis</em>, "yang bisa berubah." Variabel bisa "menampung" bilangan apapun, seperti sebuah kotak kosong yang menunggu diisi.
+  </p>
+
+  <div class="key-insight">
+    <strong>Tiga peran variabel:</strong><br>
+    1. <strong>Bilangan yang belum diketahui:</strong> "Ada bilangan yang jika ditambah 3 menghasilkan 7. Bilangan apa?" → $x + 3 = 7$<br>
+    2. <strong>Bilangan umum:</strong> "Untuk semua bilangan, urutan penjumlahan tidak penting." → $a + b = b + a$<br>
+    3. <strong>Bilangan yang berubah:</strong> "Luas persegi tergantung panjang sisinya." → $L = s^2$ (saat $s$ berubah, $L$ ikut berubah)
+  </div>
+
+  <h3>Notasi yang Perlu Diketahui</h3>
+
+  <p>
+    Aljabar memiliki beberapa konvensi penulisan yang berbeda dari aritmetika biasa. Mari kita perjelas satu per satu.
+  </p>
+
+  <p>
+    <strong>Perkalian ditulis tanpa tanda.</strong> Dalam aritmetika: $3 \times 5$. Dalam aljabar: $3 \cdot 5$ atau cukup $3x$ (artinya $3 \times x$). Mengapa? Karena tanda $\times$ mirip huruf $x$, dan itu membingungkan. Jadi $2ab$ berarti $2 \times a \times b$.
+  </p>
+
+  <p>
+    <strong>Angka selalu ditulis di depan huruf.</strong> Kita menulis $3x$, bukan $x3$. Angka di depan variabel ini disebut <strong>koefisien</strong>.
+  </p>
+
+  <p>
+    <strong>Pangkat menunjukkan perkalian berulang.</strong> $x^2 = x \times x$. $x^3 = x \times x \times x$. Dari Bab 1, kita sudah mengenal $3^2 = 9$. Sekarang kita memperluas ide ini ke variabel.
+  </p>
+
+  <p>
+    <strong>$1 \cdot x$ ditulis $x$ saja.</strong> Koefisien 1 tidak perlu ditulis.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EKSPRESI ═══════════════════════ -->
+
+  <h2>Ekspresi Aljabar: Kalimat Matematika</h2>
+
+  <p>
+    <strong>Ekspresi aljabar</strong> adalah kombinasi bilangan, variabel, dan operasi. Ia seperti "kalimat" dalam bahasa aljabar.
+  </p>
+
+  <p>
+    Contoh: $3x + 2$ adalah ekspresi. Ia mengatakan: "ambil suatu bilangan, kalikan 3, lalu tambah 2." Kita belum tahu berapa $x$, tapi kita sudah punya resep untuk menghitungnya begitu $x$ diketahui.
+  </p>
+
+  <div class="definition-box">
+    <p>Bagian-bagian ekspresi punya nama:</p>
+    <p>Dalam $3x^2 + 5x - 7$:</p>
+    <p>— <strong>Suku</strong> (<em>term</em>): bagian yang dipisahkan oleh + atau −. Di sini ada 3 suku: $3x^2$, $5x$, dan $-7$.</p>
+    <p>— <strong>Koefisien</strong>: angka di depan variabel. Koefisien $x^2$ adalah 3, koefisien $x$ adalah 5.</p>
+    <p>— <strong>Konstanta</strong>: suku tanpa variabel. Di sini: $-7$.</p>
+    <p>— <strong>Derajat</strong>: pangkat tertinggi dari variabel. Di sini: 2 (karena ada $x^2$).</p>
+  </div>
+
+  <!-- INTERACTIVE 1: Evaluate expression -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mengevaluasi Ekspresi Aljabar</div>
+    <div class="interactive-desc">Geser nilai $x$ dan lihat bagaimana nilai ekspresi berubah. Perhatikan bahwa ekspresi adalah "mesin" — masukkan bilangan, keluar bilangan lain.</div>
+
+    <div class="slider-container">
+      <label>$x$ = <strong id="eval-x-val">3</strong></label>
+      <input type="range" id="eval-x" min="-5" max="10" value="3" step="0.5" oninput="updateEvalExpr()">
+    </div>
+
+    <div id="eval-results" style="margin-top: 1rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SIFAT-SIFAT DALAM ALJABAR ═══════════════════════ -->
+
+  <h2>Aturan Lama, Bahasa Baru</h2>
+
+  <p>
+    Sekarang kita bisa menuliskan semua aturan yang sudah kita temukan di bab-bab sebelumnya dengan bahasa yang jauh lebih ringkas:
+  </p>
+
+  <div class="key-insight">
+    <strong>Sifat-sifat operasi (dari Bab 1, sekarang dalam aljabar):</strong><br><br>
+    Komutatif: $a + b = b + a$ dan $a \cdot b = b \cdot a$<br>
+    Asosiatif: $(a + b) + c = a + (b + c)$ dan $(a \cdot b) \cdot c = a \cdot (b \cdot c)$<br>
+    Distributif: $a(b + c) = ab + ac$<br>
+    Identitas: $a + 0 = a$ dan $a \cdot 1 = a$<br>
+    Invers: $a + (-a) = 0$ dan $a \cdot \frac{1}{a} = 1$ (untuk $a \neq 0$)
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: kita menemukan sifat-sifat ini satu per satu melalui contoh — "3 + 5 = 5 + 3", "$2 \times (3 + 4) = 2 \times 3 + 2 \times 4$". Sekarang, dalam aljabar, satu baris menggantikan semua contoh itu sekaligus.
+  </div>
+
+  <h3>Menyederhanakan Ekspresi</h3>
+
+  <p>
+    Sifat-sifat ini bukan hanya dekorasi — mereka adalah <em>alat</em> untuk menyederhanakan ekspresi.
+  </p>
+
+  <p>
+    <strong>Menggabungkan suku sejenis:</strong> $3x + 5x = (3 + 5)x = 8x$. Ini menggunakan sifat distributif "terbalik": kita "memfaktorkan" $x$ keluar. Tiga apel ditambah lima apel sama dengan delapan apel — tiga $x$ ditambah lima $x$ sama dengan delapan $x$.
+  </p>
+
+  <p>
+    Tapi $3x + 5y$ tidak bisa disederhanakan lebih lanjut. Ini seperti "tiga apel ditambah lima jeruk" — kamu tidak bisa menggabungkannya jadi satu jenis buah.
+  </p>
+
+  <p>
+    <strong>Mendistribusikan:</strong> $2(x + 3) = 2x + 6$. Kalikan setiap suku di dalam kurung dengan 2.
+  </p>
+
+  <p>
+    <strong>Memfaktorkan:</strong> $6x + 9 = 3(2x + 3)$. Ini kebalikan dari distribusi — kita "menarik keluar" faktor persekutuan.
+  </p>
+
+  <!-- INTERACTIVE 2: Simplifying expressions -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Memvisualisasikan Sifat Distributif</div>
+    <div class="interactive-desc">Lihat bagaimana $a(b + c) = ab + ac$ bekerja secara visual sebagai luas persegi panjang.</div>
+
+    <div class="slider-container">
+      <label>$a$ = <strong id="dist-a-val">3</strong></label>
+      <input type="range" id="dist-a" min="1" max="6" value="3" oninput="updateDistViz()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="dist-b-val">4</strong></label>
+      <input type="range" id="dist-b" min="1" max="6" value="4" oninput="updateDistViz()">
+    </div>
+    <div class="slider-container">
+      <label>$c$ = <strong id="dist-c-val">2</strong></label>
+      <input type="range" id="dist-c" min="1" max="6" value="2" oninput="updateDistViz()">
+    </div>
+
+    <div id="dist-viz" style="text-align: center; margin: 1rem 0;"></div>
+    <div id="dist-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ POLA ═══════════════════════ -->
+
+  <h2>Aljabar sebagai Pendeteksi Pola</h2>
+
+  <p>
+    Salah satu kekuatan terbesar aljabar adalah kemampuannya menangkap <strong>pola</strong>.
+  </p>
+
+  <p>
+    Perhatikan deret berikut:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $1, 4, 9, 16, 25, 36, ...$
+  </p>
+
+  <p>
+    Apa pola di baliknya? Ini adalah $1^2, 2^2, 3^2, 4^2, 5^2, 6^2, ...$ Bilangan ke-$n$ dalam deret ini adalah $n^2$. Dengan satu ekspresi — $n^2$ — kita menangkap seluruh pola.
+  </p>
+
+  <p>
+    Contoh lain:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $2, 5, 8, 11, 14, ...$
+  </p>
+
+  <p>
+    Setiap suku bertambah 3 dari suku sebelumnya. Suku pertama adalah 2. Suku ke-$n$? Kita mulai dari 2 dan menambah 3 sebanyak $(n-1)$ kali: suku ke-$n = 2 + 3(n-1) = 3n - 1$.
+  </p>
+
+  <p>
+    Periksa: $n = 1 \to 3(1) - 1 = 2$ ✓. $n = 2 \to 3(2) - 1 = 5$ ✓. $n = 5 \to 3(5) - 1 = 14$ ✓.
+  </p>
+
+  <!-- INTERACTIVE 3: Pattern finder -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menemukan Rumus Pola</div>
+    <div class="interactive-desc">Atur suku pertama dan beda (selisih antar suku). Lihat bagaimana rumus aljabar menangkap seluruh pola.</div>
+
+    <div class="slider-container">
+      <label>Suku pertama ($a$): <strong id="pat-a-val">2</strong></label>
+      <input type="range" id="pat-a" min="-5" max="10" value="2" oninput="updatePattern()">
+    </div>
+    <div class="slider-container">
+      <label>Beda ($d$): <strong id="pat-d-val">3</strong></label>
+      <input type="range" id="pat-d" min="-5" max="5" value="3" oninput="updatePattern()">
+    </div>
+
+    <div id="pattern-sequence" style="margin: 1rem 0; text-align: center;"></div>
+    <div id="pattern-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ IDENTITAS ALJABAR ═══════════════════════ -->
+
+  <h2>Identitas Aljabar: Rumus yang Selalu Benar</h2>
+
+  <p>
+    Ada ekspresi-ekspresi aljabar yang begitu sering muncul sehingga layak diingat. Ini bukan rumus yang harus dihafal tanpa pengertian — setiap satu bisa <em>diturunkan</em> dari sifat distributif.
+  </p>
+
+  <h3>Kuadrat dari Jumlah</h3>
+
+  <p>
+    Berapa $(a + b)^2$? Ini berarti $(a + b)(a + b)$. Mari kita uraikan:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $(a + b)(a + b) = a(a + b) + b(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$
+  </p>
+
+  <div class="key-insight">
+    <strong>Identitas kuadrat:</strong>
+    $$(a + b)^2 = a^2 + 2ab + b^2$$
+    $$(a - b)^2 = a^2 - 2ab + b^2$$
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan klasik:</strong> $(a + b)^2 \neq a^2 + b^2$</p>
+    <p>Banyak orang "mendistribusikan" pangkat dua ke setiap suku. Tapi pangkat bukan perkalian! Coba: $(3 + 4)^2 = 7^2 = 49$, sedangkan $3^2 + 4^2 = 9 + 16 = 25 \neq 49$.</p>
+    <p>Yang hilang adalah suku $2ab = 2 \times 3 \times 4 = 24$. Memang $25 + 24 = 49$.</p>
+  </div>
+
+  <h3>Selisih Kuadrat</h3>
+
+  <p>
+    Ada satu identitas lagi yang sangat berguna:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $(a + b)(a - b) = a^2 - b^2$
+  </p>
+
+  <p>
+    Mengapa? Distribusikan: $(a + b)(a - b) = a^2 - ab + ba - b^2 = a^2 - b^2$, karena $-ab + ba = 0$.
+  </p>
+
+  <p>
+    Ini berarti kita bisa <em>memfaktorkan</em> selisih dua kuadrat: $x^2 - 9 = (x + 3)(x - 3)$.
+  </p>
+
+  <!-- INTERACTIVE 4: Algebraic identity visualizer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melihat $(a+b)^2$ sebagai Luas</div>
+    <div class="interactive-desc">Atur $a$ dan $b$. Perhatikan bagaimana persegi $(a+b) \times (a+b)$ terbagi menjadi empat bagian: $a^2$, dua buah $ab$, dan $b^2$.</div>
+
+    <div class="slider-container">
+      <label>$a$ = <strong id="sq-a-val">3</strong></label>
+      <input type="range" id="sq-a" min="1" max="6" value="3" oninput="updateSquareIdentity()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="sq-b-val">2</strong></label>
+      <input type="range" id="sq-b" min="1" max="6" value="2" oninput="updateSquareIdentity()">
+    </div>
+
+    <div id="sq-identity-viz" style="text-align: center; margin: 1rem 0;"></div>
+    <div id="sq-identity-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SUBSTITUSI ═══════════════════════ -->
+
+  <h2>Substitusi: Memasukkan Bilangan ke dalam Huruf</h2>
+
+  <p>
+    Jika variabel adalah kotak kosong, maka <strong>substitusi</strong> adalah tindakan mengisi kotak itu dengan bilangan.
+  </p>
+
+  <p>
+    Contoh: jika $f = 2x + 3$ dan $x = 4$, maka $f = 2(4) + 3 = 11$.
+  </p>
+
+  <p>
+    Substitusi membuat aljabar bisa "diperiksa". Setelah kita menemukan bahwa $(a + b)^2 = a^2 + 2ab + b^2$, kita bisa memeriksanya dengan substitusi: biarkan $a = 3, b = 2$.
+  </p>
+
+  <p style="text-align: center; font-size: 1rem;">
+    Kiri: $(3 + 2)^2 = 25$ &nbsp;&nbsp; Kanan: $9 + 12 + 4 = 25$ ✓
+  </p>
+
+  <p>
+    Substitusi juga menghubungkan aljabar dengan dunia nyata. Rumus luas lingkaran: $L = \pi r^2$. Jika jari-jari $r = 5$ cm:
+  </p>
+
+  <p style="text-align: center;">
+    $L = \pi \times 5^2 = 25\pi \approx 78{,}54 \text{ cm}^2$
+  </p>
+
+  <div class="recall-box">
+    Ingat dari Bab 3: $\pi$ adalah bilangan irasional. Tapi dalam aljabar, kita bisa meninggalkan $\pi$ sebagai simbol dan bekerja dengannya tanpa menghitung desimalnya. Inilah salah satu kekuatan aljabar: kita bisa memanipulasi bilangan irasional secara tepat, tanpa kehilangan presisi akibat pembulatan.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ RUMUS ═══════════════════════ -->
+
+  <h2>Rumus: Aljabar dalam Aksi</h2>
+
+  <p>
+    Sebuah <strong>rumus</strong> adalah ekspresi aljabar yang menghubungkan beberapa besaran. Rumus adalah alat yang luar biasa karena ia menangkap hubungan universal dalam bentuk ringkas.
+  </p>
+
+  <p>
+    Beberapa rumus yang sudah kita temui (atau akan kita temui):
+  </p>
+
+  <p>
+    <strong>Dari geometri:</strong><br>
+    Luas persegi: $L = s^2$<br>
+    Keliling lingkaran: $K = 2\pi r$<br>
+    Diagonal persegi satuan: $d = \sqrt{2}$
+  </p>
+
+  <p>
+    <strong>Dari fisika:</strong><br>
+    Kecepatan: $v = \frac{d}{t}$ (jarak dibagi waktu)<br>
+    Energi kinetik: $E = \frac{1}{2}mv^2$
+  </p>
+
+  <p>
+    Setiap rumus ini menceritakan hubungan: jika kamu tahu nilai-nilai di sisi kanan, kamu bisa menghitung nilai di sisi kiri. Dan — inilah yang akan kita pelajari di Bab 5 — jika kamu tahu hasilnya dan sebagian input, kamu bisa "membalik" rumus untuk menemukan input yang tidak diketahui.
+  </p>
+
+  <!-- INTERACTIVE 5: Formula playground -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Bermain dengan Rumus</div>
+    <div class="interactive-desc">Pilih rumus dan atur variabelnya. Lihat bagaimana mengubah satu variabel memengaruhi hasilnya.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <select id="formula-select" onchange="updateFormula()" style="font-family: 'Inter'; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem;">
+        <option value="square">Luas persegi: L = s²</option>
+        <option value="circle">Luas lingkaran: L = πr²</option>
+        <option value="speed">Kecepatan: v = d/t</option>
+        <option value="kinetic">Energi kinetik: E = ½mv²</option>
+      </select>
+    </div>
+
+    <div id="formula-sliders"></div>
+    <div id="formula-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN ═══════════════════════ -->
+
+  <h2>Jebakan-Jebakan yang Menunggu</h2>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 1:</strong> Menggabungkan suku yang tidak sejenis.</p>
+    <p><span class="wrong">$3x + 2y = 5xy$</span></p>
+    <p>$3x$ dan $2y$ adalah suku <em>berbeda</em>. Mereka tidak bisa digabungkan, sama seperti 3 apel + 2 jeruk ≠ 5 "apeljeruk".</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 2:</strong> $(a + b)^2 = a^2 + b^2$</p>
+    <p>Kita sudah bahas di atas: yang benar $(a + b)^2 = a^2 + 2ab + b^2$. Jangan lupa suku tengah $2ab$!</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 3:</strong> Lupa bahwa koefisien 1 ada.</p>
+    <p>$x + 2x = ?$ Ingat: $x$ sebenarnya $1x$. Jadi $1x + 2x = 3x$.</p>
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan 4:</strong> Mencampurkan eksponen dan koefisien.</p>
+    <p><span class="wrong">$2x^3 = (2x)^3 = 8x^3$</span></p>
+    <p>$2x^3$ berarti $2 \times (x^3)$, bukan $(2x)^3$. Pangkat hanya mengenai $x$, bukan koefisiennya.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Tuliskan sifat distributif dalam bahasa aljabar, lalu periksa dengan $a = 4$, $b = 3$, $c = 5$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Sifat distributif: mengalikan sesuatu dengan jumlah = jumlah dari perkalian masing-masing.</div>
+    <div class="answer-content" id="a1">$a(b + c) = ab + ac$. Periksa: $4(3 + 5) = 4 \times 8 = 32$. Dan $4 \times 3 + 4 \times 5 = 12 + 20 = 32$. ✓</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Sederhanakan: $3x + 2y - x + 5y + 4$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Kelompokkan suku-suku sejenis: suku $x$, suku $y$, dan konstanta.</div>
+    <div class="answer-content" id="a2">$3x - x = 2x$, $2y + 5y = 7y$, konstanta $= 4$. Jadi: $2x + 7y + 4$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Computation</div>
+    <p>Uraikan $(x + 5)^2$ menggunakan identitas kuadrat.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$(a + b)^2 = a^2 + 2ab + b^2$. Di sini $a = x$ dan $b = 5$.</div>
+    <div class="answer-content" id="a3">$(x + 5)^2 = x^2 + 2(x)(5) + 5^2 = x^2 + 10x + 25$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Error Analysis</div>
+    <p>Sari menulis: $2(x + 3) = 2x + 3$. Apa kesalahannya?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Sifat distributif: kalikan 2 dengan <em>setiap</em> suku di dalam kurung.</div>
+    <div class="answer-content" id="a4">Sari hanya mengalikan $x$ dengan 2, tapi lupa mengalikan 3 dengan 2. Yang benar: $2(x + 3) = 2x + 6$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Conceptual</div>
+    <p>Faktorkan $x^2 - 16$ menggunakan identitas selisih kuadrat.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$a^2 - b^2 = (a + b)(a - b)$. Identifikasi: $x^2 = x^2$, $16 = 4^2$.</div>
+    <div class="answer-content" id="a5">$x^2 - 16 = x^2 - 4^2 = (x + 4)(x - 4)$. Periksa: $(x + 4)(x - 4) = x^2 - 4x + 4x - 16 = x^2 - 16$. ✓</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Connection (Bab 2)</div>
+    <p>Tuliskan rumus penjumlahan pecahan $\frac{a}{b} + \frac{c}{d}$ menggunakan aljabar, lalu periksa dengan $a=1, b=2, c=1, d=3$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Dari Bab 2: samakan penyebut menjadi $bd$, lalu jumlahkan pembilang.</div>
+    <div class="answer-content" id="a6">$\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$. Periksa: $\frac{1}{2} + \frac{1}{3} = \frac{1 \times 3 + 1 \times 2}{2 \times 3} = \frac{5}{6}$. ✓ (sesuai Bab 2!)</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Pattern</div>
+    <p>Temukan rumus suku ke-$n$ dari deret: $5, 9, 13, 17, 21, ...$</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Suku pertama = 5, beda = 4. Suku ke-$n = a + d(n-1)$.</div>
+    <div class="answer-content" id="a7">$a = 5$, $d = 4$. Suku ke-$n = 5 + 4(n-1) = 5 + 4n - 4 = 4n + 1$. Periksa: $n=1 \to 5$ ✓, $n=3 \to 13$ ✓, $n=5 \to 21$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Challenge</div>
+    <p>Tunjukkan bahwa $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac$ dengan menggunakan sifat distributif secara bertahap.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Tulis $(a + b + c)^2 = ((a + b) + c)^2$. Gunakan identitas $(p + q)^2 = p^2 + 2pq + q^2$ dengan $p = (a+b)$ dan $q = c$.</div>
+    <div class="answer-content" id="a8">
+      $((a+b)+c)^2 = (a+b)^2 + 2(a+b)c + c^2$<br>
+      $= a^2 + 2ab + b^2 + 2ac + 2bc + c^2$<br>
+      $= a^2 + b^2 + c^2 + 2ab + 2bc + 2ac$. ✓<br>
+      Perhatikan polanya: setiap pasangan variabel muncul tepat sekali dalam suku "campuran" $2ab$, $2bc$, $2ac$.
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dari Bahasa ke Alat</h2>
+
+  <p>
+    Aljabar memberi kita bahasa untuk menulis aturan umum, menangkap pola, dan memanipulasi bilangan tanpa harus mengetahui nilainya. Ini bukan sekadar notasi yang ringkas — ini adalah cara berpikir baru.
+  </p>
+
+  <p>
+    Tapi sejauh ini, kita hanya <em>menulis</em> ekspresi dan menyederhanakannya. Kita belum <em>memecahkan</em> apapun. Kita menulis $x + 3 = 7$ dan berkata "ini persamaan" — tapi kita belum secara formal membahas cara menemukan $x$ yang membuat persamaan itu benar.
+  </p>
+
+  <div class="narrator">
+    Bagaimana cara menemukan bilangan yang tersembunyi di balik huruf? Bagaimana cara "membuka" persamaan untuk mengeluarkan $x$ dari jeratan operasi-operasi yang menyelimutinya?
+  </div>
+
+  <p>
+    Itu adalah pertanyaan yang menunggu di bab berikutnya.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 5 — Mencari yang Belum Diketahui</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Evaluate expression ═══════
+function updateEvalExpr() {
+  var x = parseFloat(document.getElementById('eval-x').value);
+  document.getElementById('eval-x-val').textContent = x;
+  var exprs = [
+    { label: '2x + 3', fn: function(x){return 2*x+3;} },
+    { label: 'x²', fn: function(x){return x*x;} },
+    { label: 'x² - 4', fn: function(x){return x*x-4;} },
+    { label: '3x² + 2x - 1', fn: function(x){return 3*x*x+2*x-1;} }
+  ];
+  var html = '';
+  for (var i = 0; i < exprs.length; i++) {
+    var val = exprs[i].fn(x);
+    html += '<div style="display:flex; justify-content:space-between; padding:6px 12px; margin:4px 0; background:' + (i%2===0?'#f5f5f5':'#fafafa') + '; border-radius:6px; font-family:JetBrains Mono; font-size:0.9rem;">';
+    html += '<span>' + exprs[i].label + '</span>';
+    html += '<span style="color:var(--accent-blue); font-weight:500;">= ' + (Number.isInteger(val) ? val : val.toFixed(2)) + '</span>';
+    html += '</div>';
+  }
+  document.getElementById('eval-results').innerHTML = html;
+}
+
+// ═══════ Interactive 2: Distributive property ═══════
+function updateDistViz() {
+  var a = parseInt(document.getElementById('dist-a').value);
+  var b = parseInt(document.getElementById('dist-b').value);
+  var c = parseInt(document.getElementById('dist-c').value);
+  document.getElementById('dist-a-val').textContent = a;
+  document.getElementById('dist-b-val').textContent = b;
+  document.getElementById('dist-c-val').textContent = c;
+  var cell = Math.min(40, Math.floor(260 / Math.max(a, b + c)));
+  var html = '<svg width="' + ((b+c)*cell + 4) + '" height="' + (a*cell + 4) + '" viewBox="0 0 ' + ((b+c)*cell+4) + ' ' + (a*cell+4) + '" style="max-width:100%;">';
+  for (var r = 0; r < a; r++) {
+    for (var col = 0; col < b + c; col++) {
+      var color = col < b ? '#2471a3' : '#1e8449';
+      html += '<rect x="' + (col*cell+2) + '" y="' + (r*cell+2) + '" width="' + (cell-2) + '" height="' + (cell-2) + '" fill="' + color + '" rx="3" opacity="0.7"/>';
+    }
+  }
+  html += '<line x1="' + (b*cell+1) + '" y1="0" x2="' + (b*cell+1) + '" y2="' + (a*cell+4) + '" stroke="white" stroke-width="3" stroke-dasharray="4,3"/>';
+  html += '</svg>';
+  html += '<div style="margin-top:6px; font-size:0.8rem; font-family:Inter;">';
+  html += '<span style="color:#2471a3;">■</span> a×b = ' + a + '×' + b + ' = ' + (a*b) + ' &nbsp; ';
+  html += '<span style="color:#1e8449;">■</span> a×c = ' + a + '×' + c + ' = ' + (a*c);
+  html += '</div>';
+  document.getElementById('dist-viz').innerHTML = html;
+  document.getElementById('dist-result').textContent = a + '(' + b + ' + ' + c + ') = ' + a + ' × ' + (b+c) + ' = ' + (a*(b+c)) + '  =  ' + (a*b) + ' + ' + (a*c) + ' = ' + (a*b+a*c);
+}
+
+// ═══════ Interactive 3: Pattern finder ═══════
+function updatePattern() {
+  var a = parseInt(document.getElementById('pat-a').value);
+  var d = parseInt(document.getElementById('pat-d').value);
+  document.getElementById('pat-a-val').textContent = a;
+  document.getElementById('pat-d-val').textContent = d;
+  var terms = [];
+  var html = '<div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; align-items:center;">';
+  for (var i = 0; i < 8; i++) {
+    var val = a + d * i;
+    terms.push(val);
+    html += '<div style="width:48px; height:48px; border-radius:50%; background:' + (i < 7 ? 'var(--accent-blue)' : 'var(--accent)') + '; color:white; display:flex; align-items:center; justify-content:center; font-family:JetBrains Mono; font-size:0.85rem; font-weight:600;">' + val + '</div>';
+    if (i < 7) html += '<span style="color:var(--text-light); font-size:0.8rem;">→</span>';
+  }
+  html += '</div>';
+  document.getElementById('pattern-sequence').innerHTML = html;
+  var formula = '';
+  if (d >= 0) formula = d === 0 ? '' + a : (d === 1 ? 'n' : d + 'n') + (a - d >= 0 ? ' + ' + (a - d) : ' - ' + Math.abs(a - d));
+  else formula = d + 'n' + (a - d >= 0 ? ' + ' + (a - d) : ' - ' + Math.abs(a - d));
+  if (d === 0) formula = '' + a;
+  document.getElementById('pattern-result').textContent = 'Deret: ' + terms.join(', ') + ', ...\nRumus suku ke-n: ' + formula + '\nSuku ke-100: ' + (a + d * 99);
+}
+
+// ═══════ Interactive 4: Square identity ═══════
+function updateSquareIdentity() {
+  var a = parseInt(document.getElementById('sq-a').value);
+  var b = parseInt(document.getElementById('sq-b').value);
+  document.getElementById('sq-a-val').textContent = a;
+  document.getElementById('sq-b-val').textContent = b;
+  var total = a + b;
+  var cell = Math.min(40, Math.floor(280 / total));
+  var sz = total * cell;
+  var html = '<svg width="' + (sz+4) + '" height="' + (sz+4) + '" viewBox="0 0 ' + (sz+4) + ' ' + (sz+4) + '" style="max-width:100%;">';
+  html += '<rect x="2" y="2" width="' + (a*cell) + '" height="' + (a*cell) + '" fill="#2471a3" rx="3" opacity="0.8"/>';
+  html += '<text x="' + (2+a*cell/2) + '" y="' + (2+a*cell/2+5) + '" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="13" font-weight="bold">a²=' + (a*a) + '</text>';
+  html += '<rect x="' + (2+a*cell) + '" y="2" width="' + (b*cell) + '" height="' + (a*cell) + '" fill="#1e8449" rx="3" opacity="0.6"/>';
+  html += '<text x="' + (2+a*cell+b*cell/2) + '" y="' + (2+a*cell/2+5) + '" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="11">ab=' + (a*b) + '</text>';
+  html += '<rect x="2" y="' + (2+a*cell) + '" width="' + (a*cell) + '" height="' + (b*cell) + '" fill="#1e8449" rx="3" opacity="0.6"/>';
+  html += '<text x="' + (2+a*cell/2) + '" y="' + (2+a*cell+b*cell/2+5) + '" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="11">ab=' + (a*b) + '</text>';
+  html += '<rect x="' + (2+a*cell) + '" y="' + (2+a*cell) + '" width="' + (b*cell) + '" height="' + (b*cell) + '" fill="#c0392b" rx="3" opacity="0.7"/>';
+  html += '<text x="' + (2+a*cell+b*cell/2) + '" y="' + (2+a*cell+b*cell/2+5) + '" text-anchor="middle" fill="white" font-family="JetBrains Mono" font-size="11">b²=' + (b*b) + '</text>';
+  html += '</svg>';
+  document.getElementById('sq-identity-viz').innerHTML = html;
+  document.getElementById('sq-identity-result').textContent = '(' + a + ' + ' + b + ')² = ' + a + '² + 2(' + a + ')(' + b + ') + ' + b + '² = ' + (a*a) + ' + ' + (2*a*b) + ' + ' + (b*b) + ' = ' + (total*total);
+}
+
+// ═══════ Interactive 5: Formula playground ═══════
+function updateFormula() {
+  var sel = document.getElementById('formula-select').value;
+  var sliders = document.getElementById('formula-sliders');
+  var res = document.getElementById('formula-result');
+  if (sel === 'square') {
+    sliders.innerHTML = '<div class="slider-container"><label>Sisi $s$ = <strong id="f-s-val">5</strong></label><input type="range" id="f-s" min="1" max="20" value="5" oninput="calcFormula()"></div>';
+  } else if (sel === 'circle') {
+    sliders.innerHTML = '<div class="slider-container"><label>Jari-jari $r$ = <strong id="f-r-val">5</strong></label><input type="range" id="f-r" min="1" max="20" value="5" oninput="calcFormula()"></div>';
+  } else if (sel === 'speed') {
+    sliders.innerHTML = '<div class="slider-container"><label>Jarak $d$ = <strong id="f-d-val">100</strong> km</label><input type="range" id="f-d" min="10" max="500" value="100" step="10" oninput="calcFormula()"></div><div class="slider-container"><label>Waktu $t$ = <strong id="f-t-val">2</strong> jam</label><input type="range" id="f-t" min="1" max="10" value="2" step="0.5" oninput="calcFormula()"></div>';
+  } else {
+    sliders.innerHTML = '<div class="slider-container"><label>Massa $m$ = <strong id="f-m-val">10</strong> kg</label><input type="range" id="f-m" min="1" max="50" value="10" oninput="calcFormula()"></div><div class="slider-container"><label>Kecepatan $v$ = <strong id="f-v-val">5</strong> m/s</label><input type="range" id="f-v" min="1" max="30" value="5" oninput="calcFormula()"></div>';
+  }
+  calcFormula();
+}
+
+function calcFormula() {
+  var sel = document.getElementById('formula-select').value;
+  var res = document.getElementById('formula-result');
+  if (sel === 'square') {
+    var s = parseInt(document.getElementById('f-s').value); document.getElementById('f-s-val').textContent = s;
+    res.textContent = 'L = s² = ' + s + '² = ' + (s*s) + ' satuan²';
+  } else if (sel === 'circle') {
+    var r = parseInt(document.getElementById('f-r').value); document.getElementById('f-r-val').textContent = r;
+    res.textContent = 'L = πr² = π × ' + r + '² = ' + (r*r) + 'π ≈ ' + (Math.PI*r*r).toFixed(2) + ' satuan²';
+  } else if (sel === 'speed') {
+    var d = parseFloat(document.getElementById('f-d').value); document.getElementById('f-d-val').textContent = d;
+    var t = parseFloat(document.getElementById('f-t').value); document.getElementById('f-t-val').textContent = t;
+    res.textContent = 'v = d/t = ' + d + '/' + t + ' = ' + (d/t).toFixed(1) + ' km/jam';
+  } else {
+    var m = parseInt(document.getElementById('f-m').value); document.getElementById('f-m-val').textContent = m;
+    var v = parseInt(document.getElementById('f-v').value); document.getElementById('f-v-val').textContent = v;
+    res.textContent = 'E = ½mv² = ½ × ' + m + ' × ' + v + '² = ' + (0.5*m*v*v).toFixed(1) + ' Joule';
+  }
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  updateEvalExpr();
+  updateDistViz();
+  updatePattern();
+  updateSquareIdentity();
+  updateFormula();
+});
+</script>
+</body>
+</html>

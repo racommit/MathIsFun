@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 20 — Peluang dan Ketidakpastian (Probabilitas & Statistik)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 20 · Volume V — Bab Terakhir</div>
+  <h1 class="chapter-title">Peluang dan<br>Ketidakpastian</h1>
+  <p class="chapter-subtitle">
+    Tentang probabilitas dan statistik — matematika untuk<br>
+    mengukur hal yang belum pasti dan menemukan pola di balik keacakan.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Sepanjang buku ini, kita mencari kepastian: "2 + 3 pasti 5," "luas lingkaran pasti $\pi r^2$." Tapi dunia nyata jarang memberi kepastian. Akan turun hujan besok? Obat ini akan bekerja? AI ini akan memberi jawaban benar? Probabilitas memberi kita bahasa untuk berbicara tentang ketidakpastian — bukan menghilangkannya, tapi <em>mengukurnya</em>.
+  </p>
+
+  <div class="narrator">
+    Lempar koin. Kamu tidak tahu hasilnya — tapi kamu <em>tahu</em> bahwa dalam 1000 lemparan, sekitar setengahnya akan muncul kepala. Ketidaktahuan tentang satu lemparan berdampingan dengan pengetahuan tentang pola ribuan lemparan. Itulah paradoks indah probabilitas.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana matematika bisa mengukur<br>sesuatu yang belum terjadi?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Dadu ke Kecerdasan Buatan</h2>
+
+  <div class="historical-note">
+    <strong>Permainan dadu kuno</strong>: Mesir, Roma, dan India sudah bermain dadu ribuan tahun lalu. Tapi tidak ada yang mencoba menghitung peluang secara sistematis sampai Renaissance.
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Khalil ibn Ahmad</strong> (718–786 M), ahli bahasa Arab, menghitung jumlah permutasi dan kombinasi huruf Arab untuk menyusun kamus — ini adalah karya awal kombinatorika. <strong>Al-Kindi</strong> (801–873 M) menggunakan analisis frekuensi huruf untuk memecahkan sandi — aplikasi awal statistik. <strong>Ibn Adlan</strong> (1187–1268 M) memperluas teknik ini menjadi lebih canggih.
+  </div>
+
+  <div class="historical-note">
+    <strong>Blaise Pascal</strong> dan <strong>Pierre de Fermat</strong> (1654) berkorespondensi tentang masalah perjudian — "berapa peluang menang jika permainan dihentikan di tengah?" — dan dari surat-menyurat ini lahir teori probabilitas modern.
+  </div>
+
+  <div class="historical-note">
+    <strong>Thomas Bayes</strong> (1701–1761) merumuskan cara memperbarui keyakinan berdasarkan bukti baru — Teorema Bayes. Hari ini, AI dan machine learning sangat bergantung pada prinsip Bayesian. <strong>Carl Friedrich Gauss</strong> menemukan distribusi normal (kurva lonceng) yang menjadi fondasi statistik modern.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PROBABILITAS DASAR ═══════════════════════ -->
+
+  <h2>Probabilitas: Definisi Dasar</h2>
+
+  <div class="definition-box">
+    $$P(A) = \frac{\text{jumlah hasil yang menguntungkan}}{\text{jumlah semua hasil yang mungkin}}$$
+    $0 \leq P(A) \leq 1$. P = 0 berarti mustahil, P = 1 berarti pasti.
+  </div>
+
+  <div class="key-insight">
+    <strong>Aturan dasar:</strong><br>
+    • $P(\text{tidak } A) = 1 - P(A)$<br>
+    • $P(A \text{ atau } B) = P(A) + P(B) - P(A \text{ dan } B)$ (recall himpunan dari Bab 19!)<br>
+    • Jika $A$ dan $B$ independen: $P(A \text{ dan } B) = P(A) \times P(B)$
+  </div>
+
+  <!-- INTERACTIVE 1: Dice Simulator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Simulasi Pelemparan Dadu</div>
+    <div class="interactive-desc">Lempar dadu berkali-kali dan amati frekuensi mendekati $\frac{1}{6}$.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <button class="btn" onclick="rollDice(1)" style="background: var(--accent-blue); color: white;">Lempar 1×</button>
+      <button class="btn" onclick="rollDice(10)">Lempar 10×</button>
+      <button class="btn" onclick="rollDice(100)">Lempar 100×</button>
+      <button class="btn" onclick="resetDice()">Reset</button>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="dice-svg" width="320" height="200" viewBox="0 0 320 200"></svg>
+    </div>
+
+    <div id="dice-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ STATISTIK DESKRIPTIF ═══════════════════════ -->
+
+  <h2>Statistik Deskriptif: Meringkas Data</h2>
+
+  <div class="key-insight">
+    <strong>Ukuran pemusatan:</strong><br>
+    • <strong>Mean</strong> (rata-rata): $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$<br>
+    • <strong>Median</strong>: nilai tengah setelah diurutkan<br>
+    • <strong>Modus</strong>: nilai yang paling sering muncul
+  </div>
+
+  <div class="key-insight">
+    <strong>Ukuran penyebaran:</strong><br>
+    • <strong>Varians</strong>: $\sigma^2 = \frac{1}{n}\sum (x_i - \bar{x})^2$ — rata-rata kuadrat jarak dari mean<br>
+    • <strong>Simpangan baku</strong>: $\sigma = \sqrt{\sigma^2}$ — "rata-rata seberapa jauh data dari pusat"
+  </div>
+
+  <!-- INTERACTIVE 2: Mean & Std Dev -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mean dan Simpangan Baku</div>
+    <div class="interactive-desc">Klik pada garis bilangan untuk menambah data. Lihat mean dan simpangan baku berubah.</div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="stat-svg" width="320" height="140" viewBox="0 0 320 140" style="cursor: pointer;"></svg>
+    </div>
+
+    <div style="margin-bottom: 0.5rem; text-align: center;">
+      <button class="btn" onclick="resetStat()">Reset</button>
+    </div>
+
+    <div id="stat-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DISTRIBUSI NORMAL ═══════════════════════ -->
+
+  <h2>Distribusi Normal (Kurva Lonceng)</h2>
+
+  <p>
+    Banyak fenomena alam mengikuti distribusi normal: tinggi badan, skor ujian, error pengukuran. Kurva berbentuk lonceng, simetris di sekitar mean.
+  </p>
+
+  <div class="definition-box">
+    Aturan 68-95-99.7:<br>
+    • 68% data berada dalam $\mu \pm \sigma$<br>
+    • 95% data berada dalam $\mu \pm 2\sigma$<br>
+    • 99.7% data berada dalam $\mu \pm 3\sigma$
+  </div>
+
+  <!-- INTERACTIVE 3: Normal Distribution -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Distribusi Normal</div>
+    <div class="interactive-desc">Atur mean dan simpangan baku untuk melihat bagaimana kurva berubah.</div>
+
+    <div class="slider-container">
+      <label>Mean (μ): <strong id="norm-mu-val">0</strong></label>
+      <input type="range" id="norm-mu" min="-3" max="3" value="0" step="0.5" oninput="updateNormal()">
+    </div>
+    <div class="slider-container">
+      <label>Simpangan baku (σ): <strong id="norm-sigma-val">1</strong></label>
+      <input type="range" id="norm-sigma" min="0.3" max="3" value="1" step="0.1" oninput="updateNormal()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="norm-svg" width="340" height="220" viewBox="0 0 340 220"></svg>
+    </div>
+
+    <div id="norm-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Gambler's Fallacy.</strong><br>
+    "Sudah 5 kali kepala, berikutnya pasti ekor!" Salah. Setiap lemparan independen. Koin tidak "mengingat" lemparan sebelumnya.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Bingung antara mean dan median.</strong><br>
+    Jika data skewed (ada outlier ekstrem), median lebih mewakili "nilai tipikal" daripada mean. Gaji rata-rata bisa sangat berbeda dari gaji median.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Basic Probability</div>
+    <p>Satu dadu dilempar. Berapa peluang muncul angka genap?</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Angka genap: 2, 4, 6. Total kemungkinan: 6.</div>
+    <div class="answer-content" id="a1">$P = \frac{3}{6} = \frac{1}{2}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Complement</div>
+    <p>Peluang hujan besok 30%. Berapa peluang tidak hujan?</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$P(\text{tidak } A) = 1 - P(A)$.</div>
+    <div class="answer-content" id="a2">$1 - 0.3 = 0.7 = 70\%$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Independent Events</div>
+    <p>Dua koin dilempar. Berapa peluang keduanya kepala?</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Independen: $P(A \cap B) = P(A) \times P(B)$.</div>
+    <div class="answer-content" id="a3">$\frac{1}{2} \times \frac{1}{2} = \frac{1}{4} = 25\%$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Mean & Median</div>
+    <p>Data: 2, 3, 5, 7, 83. Hitung mean dan median. Mana yang lebih mewakili?</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Mean = jumlah/banyak data. Median = nilai tengah.</div>
+    <div class="answer-content" id="a4">Mean = $\frac{100}{5} = 20$. Median = 5. Median lebih mewakili karena 83 adalah outlier yang menarik mean ke atas.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Variance</div>
+    <p>Data: 4, 4, 4, 4. Berapa variansinya? Mengapa?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Semua data sama. Seberapa jauh masing-masing dari mean?</div>
+    <div class="answer-content" id="a5">Varians = 0. Semua data persis sama dengan mean (4), jadi tidak ada penyebaran sama sekali.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Recall Bab 19</div>
+    <p>Dari Bab 19: jika $|A| = 10$, $|B| = 8$, $|A \cap B| = 3$, berapa $|A \cup B|$? Bagaimana ini mirip aturan penjumlahan peluang?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">$|A \cup B| = |A| + |B| - |A \cap B|$.</div>
+    <div class="answer-content" id="a6">$|A \cup B| = 10 + 8 - 3 = 15$. Ini persis aturan penjumlahan: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Himpunan dan probabilitas menggunakan struktur yang sama!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Normal</div>
+    <p>Skor ujian berdistribusi normal dengan $\mu = 70$, $\sigma = 10$. Berapa persen siswa mendapat skor antara 60 dan 80?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">60 dan 80 adalah $\mu \pm \sigma$. Ingat aturan 68-95-99.7.</div>
+    <div class="answer-content" id="a7">60 = $\mu - \sigma$, 80 = $\mu + \sigma$. Menurut aturan 68-95-99.7, sekitar <strong>68%</strong> siswa.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Thinking</div>
+    <p>Mengapa "rata-rata" bisa menyesatkan? Berikan contoh di mana median lebih berguna daripada mean.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Pikirkan distribusi pendapatan.</div>
+    <div class="answer-content" id="a8">Contoh: dalam sebuah ruangan dengan 9 pekerja bergaji 5 juta dan 1 CEO bergaji 500 juta, rata-rata gaji = 54.5 juta — menyesatkan! Median = 5 juta — jauh lebih mewakili "gaji tipikal." Outlier mendistorsi mean.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog: Akhir Perjalanan, Awal Penerapan</h2>
+
+  <p>
+    Kamu telah menempuh perjalanan dari bilangan paling sederhana (Bab 0) hingga ketidakpastian yang diukur secara matematis (bab ini). Sepanjang jalan, kamu telah menemui:
+  </p>
+
+  <div class="key-insight">
+    • <strong>Bilangan</strong> — dari menghitung ke abstraksi (Bab 0–3)<br>
+    • <strong>Aljabar</strong> — bahasa pola dan kesetaraan (Bab 4–6)<br>
+    • <strong>Geometri</strong> — bentuk, ruang, koordinat (Bab 7–9)<br>
+    • <strong>Fungsi & Trigonometri</strong> — hubungan dan gelombang (Bab 10–12)<br>
+    • <strong>Kalkulus</strong> — perubahan dan akumulasi (Bab 13–16)<br>
+    • <strong>Struktur</strong> — vektor, matriks, logika, probabilitas (Bab 17–20)
+  </div>
+
+  <p>
+    Setiap bab menjawab pertanyaan yang tidak bisa dijawab bab sebelumnya. Setiap konsep lahir karena dibutuhkan. Matematika bukan kumpulan rumus yang harus dihafal — melainkan bahasa yang terus tumbuh untuk memahami dunia.
+  </p>
+
+  <p style="text-align: center; font-style: italic; color: var(--accent-blue); font-size: 1.1rem; margin: 2rem 0;">
+    "Matematika bukanlah tentang angka, persamaan, atau algoritma.<br>
+    Matematika adalah tentang memahami."<br>
+    <span style="font-size: 0.9rem; color: var(--text-muted);">— William Paul Thurston</span>
+  </p>
+
+  <div class="chapter-end"><div class="ornament">— Tamat —</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Dice Simulator ═══════
+var diceCounts = [0,0,0,0,0,0];
+var totalRolls = 0;
+
+function rollDice(n) {
+  for (var i = 0; i < n; i++) {
+    var r = Math.floor(Math.random() * 6);
+    diceCounts[r]++;
+    totalRolls++;
+  }
+  drawDice();
+}
+function resetDice() { diceCounts = [0,0,0,0,0,0]; totalRolls = 0; drawDice(); }
+
+function drawDice() {
+  var svg = document.getElementById('dice-svg');
+  var maxH = 140, barW = 36, gap = 12, ox = 25;
+  var maxCount = Math.max.apply(null, diceCounts) || 1;
+  var s = '';
+  for (var i = 0; i < 6; i++) {
+    var x = ox + i * (barW + gap);
+    var h = (diceCounts[i] / maxCount) * maxH;
+    s += '<rect x="'+x+'" y="'+(160-h)+'" width="'+barW+'" height="'+h+'" fill="rgba(36,113,163,0.5)" rx="3"/>';
+    s += '<text x="'+(x+barW/2)+'" y="180" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="600">'+(i+1)+'</text>';
+    if (diceCounts[i] > 0) {
+      s += '<text x="'+(x+barW/2)+'" y="'+(155-h)+'" text-anchor="middle" font-family="Inter" font-size="10">'+diceCounts[i]+'</text>';
+    }
+    // expected line
+    if (totalRolls > 0) {
+      var expected = totalRolls / 6;
+      var ey = 160 - (expected / maxCount) * maxH;
+      s += '<line x1="'+x+'" y1="'+ey+'" x2="'+(x+barW)+'" y2="'+ey+'" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>';
+    }
+  }
+  if (totalRolls > 0) {
+    s += '<text x="280" y="20" font-family="Inter" font-size="9" fill="#c0392b">— ekspektasi (1/6)</text>';
+  }
+  svg.innerHTML = s;
+
+  if (totalRolls === 0) {
+    document.getElementById('dice-result').textContent = 'Klik tombol untuk mulai melempar!';
+  } else {
+    var txt = 'Total: '+totalRolls+' lemparan\n';
+    for (var i = 0; i < 6; i++) {
+      txt += (i+1)+': '+(diceCounts[i]/totalRolls*100).toFixed(1)+'%  ';
+    }
+    txt += '\nEkspektasi: 16.67% masing-masing';
+    document.getElementById('dice-result').textContent = txt;
+  }
+}
+
+// ═══════ Interactive 2: Mean & Std Dev ═══════
+var statData = [];
+function resetStat() { statData = []; drawStat(); }
+
+function drawStat() {
+  var svg = document.getElementById('stat-svg');
+  var ox = 20, oy = 80, w = 280, scale = 28;
+  var s = '';
+  // number line
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="'+(ox+w)+'" y2="'+oy+'" stroke="currentColor" stroke-width="1.5"/>';
+  for (var i = 0; i <= 10; i++) {
+    var x = ox + i * scale;
+    s += '<line x1="'+x+'" y1="'+(oy-5)+'" x2="'+x+'" y2="'+(oy+5)+'" stroke="currentColor" stroke-width="1"/>';
+    s += '<text x="'+x+'" y="'+(oy+18)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9">'+i+'</text>';
+  }
+
+  // data points
+  statData.forEach(function(d) {
+    s += '<circle cx="'+(ox+d*scale)+'" cy="'+oy+'" r="5" fill="#2471a3" opacity="0.7"/>';
+  });
+
+  if (statData.length > 0) {
+    var sum = statData.reduce(function(a,b){return a+b;}, 0);
+    var mean = sum / statData.length;
+    var variance = statData.reduce(function(a,b){return a+(b-mean)*(b-mean);}, 0) / statData.length;
+    var sd = Math.sqrt(variance);
+    // mean line
+    s += '<line x1="'+(ox+mean*scale)+'" y1="30" x2="'+(ox+mean*scale)+'" y2="'+oy+'" stroke="#c0392b" stroke-width="2"/>';
+    s += '<text x="'+(ox+mean*scale)+'" y="25" text-anchor="middle" font-family="Inter" font-size="10" fill="#c0392b">μ='+mean.toFixed(2)+'</text>';
+    // sd range
+    s += '<line x1="'+(ox+(mean-sd)*scale)+'" y1="45" x2="'+(ox+(mean+sd)*scale)+'" y2="45" stroke="#27ae60" stroke-width="2"/>';
+    s += '<text x="'+(ox+(mean+sd)*scale+5)+'" y="48" font-family="Inter" font-size="9" fill="#27ae60">σ='+sd.toFixed(2)+'</text>';
+
+    document.getElementById('stat-result').textContent =
+      'Data (n='+statData.length+'): ['+statData.map(function(d){return d.toFixed(1);}).join(', ')+']\nMean = '+mean.toFixed(3)+', Varians = '+variance.toFixed(3)+', σ = '+sd.toFixed(3);
+  } else {
+    document.getElementById('stat-result').textContent = 'Klik pada garis bilangan untuk menambah data.';
+  }
+  svg.innerHTML = s;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  drawDice();
+  drawStat();
+  var statSvg = document.getElementById('stat-svg');
+  statSvg.addEventListener('click', function(e) {
+    var rect = statSvg.getBoundingClientRect();
+    var svgX = (e.clientX - rect.left) * (320 / rect.width);
+    var val = (svgX - 20) / 28;
+    if (val >= 0 && val <= 10) {
+      statData.push(Math.round(val * 10) / 10);
+      drawStat();
+    }
+  });
+  updateNormal();
+});
+
+// ═══════ Interactive 3: Normal Distribution ═══════
+function updateNormal() {
+  var mu = parseFloat(document.getElementById('norm-mu').value);
+  var sigma = parseFloat(document.getElementById('norm-sigma').value);
+  document.getElementById('norm-mu-val').textContent = mu;
+  document.getElementById('norm-sigma-val').textContent = sigma;
+
+  var svg = document.getElementById('norm-svg');
+  var ox = 170, oy = 190, xSc = 40, ySc = 400;
+  var s = '';
+  s += '<line x1="10" y1="'+oy+'" x2="330" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+
+  function gauss(x) {
+    return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mu) / sigma, 2));
+  }
+
+  // 1-sigma shading
+  var shadePts = '';
+  for (var x = mu - sigma; x <= mu + sigma; x += 0.02) {
+    shadePts += (ox + x * xSc) + ',' + (oy - gauss(x) * ySc) + ' ';
+  }
+  shadePts = (ox + (mu - sigma) * xSc) + ',' + oy + ' ' + shadePts + (ox + (mu + sigma) * xSc) + ',' + oy;
+  s += '<polygon points="' + shadePts + '" fill="rgba(36,113,163,0.2)"/>';
+
+  // curve
+  var pts = [];
+  for (var x = -4; x <= 4; x += 0.03) {
+    var py = oy - gauss(x) * ySc;
+    if (py > 5) pts.push((ox + x * xSc) + ',' + py);
+  }
+  s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // mean line
+  s += '<line x1="' + (ox + mu * xSc) + '" y1="' + (oy - gauss(mu) * ySc) + '" x2="' + (ox + mu * xSc) + '" y2="' + oy + '" stroke="#2471a3" stroke-width="1.5" stroke-dasharray="3,3"/>';
+  s += '<text x="' + (ox + mu * xSc) + '" y="' + (oy + 14) + '" text-anchor="middle" font-family="Inter" font-size="10" fill="#2471a3">μ=' + mu + '</text>';
+
+  svg.innerHTML = s;
+  document.getElementById('norm-result').textContent =
+    'μ = ' + mu + ', σ = ' + sigma +
+    '\n68% data dalam [' + (mu - sigma).toFixed(1) + ', ' + (mu + sigma).toFixed(1) + ']' +
+    '\n95% data dalam [' + (mu - 2 * sigma).toFixed(1) + ', ' + (mu + 2 * sigma).toFixed(1) + ']' +
+    '\nDaerah biru = 1σ (≈68%)';
+}
+</script>
+</body>
+</html>

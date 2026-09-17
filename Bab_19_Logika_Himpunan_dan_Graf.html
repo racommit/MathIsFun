@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 19 — Logika, Himpunan, dan Graf (Matematika Diskrit)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 19 · Volume V</div>
+  <h1 class="chapter-title">Logika, Himpunan,<br>dan Graf</h1>
+  <p class="chapter-subtitle">
+    Tentang matematika diskrit — fondasi di balik komputer, pembuktian,<br>
+    dan cara berpikir yang benar secara formal.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Sampai sekarang, kita bekerja dengan bilangan kontinu — bilangan yang mengalir mulus di garis bilangan. Tapi banyak hal di dunia ini <em>terpisah</em>: benar atau salah, anggota atau bukan, terhubung atau tidak. Matematika diskrit berurusan dengan objek yang bisa dihitung satu per satu, dan logika adalah bahasa untuk bernalar tentangnya tanpa salah.
+  </p>
+
+  <div class="narrator">
+    Setiap kali kamu menulis "jika… maka…" dalam percakapan, kamu menggunakan logika. Setiap kali komputer membuat keputusan ("jika password benar, maka buka akses"), itu adalah logika proposisional. Dan setiap kali GPS mencari rute terpendek, itu adalah teori graf. Matematika diskrit ada di mana-mana — hanya saja kita jarang menyadarinya.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita memastikan<br>bahwa sebuah argumen benar-benar valid?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Akar Logika di Banyak Peradaban</h2>
+
+  <div class="historical-note">
+    <strong>Aristoteles</strong> (384–322 SM) membangun silogisme — bentuk argumen formal pertama: "Semua manusia fana. Sokrates manusia. Maka Sokrates fana." Ini adalah cikal bakal logika formal.
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Farabi</strong> (872–950 M) menulis komentar mendalam atas logika Aristoteles dan menambahkan klasifikasi baru tentang jenis proposisi. <strong>Ibn Sina</strong> (Avicenna, 980–1037 M) mengembangkan logika modal — logika tentang kemungkinan dan keharusan — yang melampaui kerangka Aristoteles. <strong>Ibn Rushd</strong> (Averroes, 1126–1198 M) menulis komentar definitif atas seluruh korpus logika Aristoteles yang kemudian menjadi teks standar di universitas Eropa abad pertengahan.
+  </div>
+
+  <div class="historical-note">
+    <strong>George Boole</strong> (1815–1864) menerjemahkan logika menjadi aljabar: benar = 1, salah = 0, dengan operasi AND, OR, NOT. <strong>Leonhard Euler</strong> memperkenalkan diagram untuk himpunan (kemudian dipopulerkan oleh <strong>John Venn</strong>). <strong>Euler</strong> juga memecahkan masalah Jembatan Königsberg (1736) — titik awal teori graf.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LOGIKA ═══════════════════════ -->
+
+  <h2>Logika Proposisional</h2>
+
+  <div class="definition-box">
+    <strong>Proposisi</strong> = pernyataan yang bernilai <em>benar</em> (B) atau <em>salah</em> (S), tidak keduanya.<br>
+    Contoh: "2 + 3 = 5" (B). "Bumi itu datar" (S). "Apakah kamu lapar?" (bukan proposisi — pertanyaan).
+  </div>
+
+  <div class="key-insight">
+    <strong>Operator logika:</strong>
+    <table style="width: 100%; font-size: 0.92rem; border-collapse: collapse; margin: 0.5rem 0;">
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$\neg p$ (NOT)</td><td style="padding: 6px;">Negasi: membalik nilai kebenaran</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$p \land q$ (AND)</td><td style="padding: 6px;">Benar hanya jika <em>keduanya</em> benar</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$p \lor q$ (OR)</td><td style="padding: 6px;">Benar jika <em>salah satu</em> atau keduanya benar</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$p \Rightarrow q$ (IF…THEN)</td><td style="padding: 6px;">Salah hanya jika $p$ benar tapi $q$ salah</td></tr>
+      <tr><td style="padding: 6px;">$p \Leftrightarrow q$ (IFF)</td><td style="padding: 6px;">Benar jika keduanya sama (keduanya B atau keduanya S)</td></tr>
+    </table>
+  </div>
+
+  <!-- INTERACTIVE 1: Truth Table Generator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Tabel Kebenaran</div>
+    <div class="interactive-desc">Pilih operator dan lihat tabel kebenaran lengkapnya.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setOp('and')" id="op-and" style="background: var(--accent-blue); color: white;">AND</button>
+        <button class="btn" onclick="setOp('or')" id="op-or">OR</button>
+        <button class="btn" onclick="setOp('imp')" id="op-imp">→</button>
+        <button class="btn" onclick="setOp('iff')" id="op-iff">↔</button>
+      </div>
+    </div>
+
+    <div id="truth-table" style="max-width: 320px; margin: 0 auto;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ HIMPUNAN ═══════════════════════ -->
+
+  <h2>Himpunan</h2>
+
+  <div class="definition-box">
+    <strong>Himpunan</strong> = kumpulan objek yang terdefinisi jelas. Ditulis $A = \{1, 2, 3\}$.<br>
+    $x \in A$ berarti "$x$ adalah anggota $A$". $|A|$ = jumlah anggota (kardinalitas).
+  </div>
+
+  <div class="key-insight">
+    <strong>Operasi himpunan:</strong><br>
+    • $A \cup B$ (gabungan): semua elemen di $A$ atau $B$ atau keduanya<br>
+    • $A \cap B$ (irisan): elemen yang ada di <em>kedua</em> himpunan<br>
+    • $A \setminus B$ (selisih): elemen di $A$ tapi tidak di $B$<br>
+    • $A^c$ (komplemen): semua elemen di semesta yang tidak di $A$
+  </div>
+
+  <!-- INTERACTIVE 2: Venn Diagram -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Diagram Venn</div>
+    <div class="interactive-desc">Pilih operasi himpunan dan lihat daerah yang dihasilkan.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setVenn('union')" id="vn-union" style="background: var(--accent-blue); color: white;">A ∪ B</button>
+        <button class="btn" onclick="setVenn('inter')" id="vn-inter">A ∩ B</button>
+        <button class="btn" onclick="setVenn('diff')" id="vn-diff">A \ B</button>
+        <button class="btn" onclick="setVenn('symdiff')" id="vn-symdiff">A △ B</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="venn-svg" width="300" height="220" viewBox="0 0 300 220"></svg>
+    </div>
+
+    <div id="venn-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ GRAF ═══════════════════════ -->
+
+  <h2>Teori Graf</h2>
+
+  <div class="definition-box">
+    <strong>Graf</strong> = kumpulan titik (<em>vertex</em>) yang dihubungkan oleh garis (<em>edge</em>). Ditulis $G = (V, E)$.
+  </div>
+
+  <p>
+    Masalah klasik: <strong>Jembatan Königsberg</strong> (1736). Kota Königsberg memiliki 7 jembatan yang menghubungkan 4 daratan. Euler membuktikan bahwa mustahil melewati setiap jembatan tepat satu kali — dan dengan itu, teori graf lahir.
+  </p>
+
+  <div class="key-insight">
+    <strong>Konsep penting:</strong><br>
+    • <strong>Derajat</strong> vertex = jumlah edge yang terhubung ke vertex itu<br>
+    • <strong>Path</strong> = urutan vertex yang terhubung oleh edge<br>
+    • <strong>Cycle</strong> = path yang kembali ke titik awal<br>
+    • <strong>Connected</strong> = setiap dua vertex bisa dihubungkan oleh path<br>
+    • <strong>Tree</strong> = graf terhubung tanpa cycle
+  </div>
+
+  <!-- INTERACTIVE 3: Graph Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Eksplorasi Graf</div>
+    <div class="interactive-desc">Pilih jenis graf dan amati sifat-sifatnya.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setGraph('complete')" id="g-complete" style="background: var(--accent-blue); color: white;">K₅</button>
+        <button class="btn" onclick="setGraph('tree')" id="g-tree">Tree</button>
+        <button class="btn" onclick="setGraph('cycle')" id="g-cycle">Cycle</button>
+        <button class="btn" onclick="setGraph('bipartite')" id="g-bipartite">Bipartite</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="graph-svg" width="300" height="260" viewBox="0 0 300 260"></svg>
+    </div>
+
+    <div id="graph-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mengira "p → q" salah ketika p salah.</strong><br>
+    Implikasi $p \Rightarrow q$ selalu benar jika $p$ salah (vacuously true). "Jika babi bisa terbang, maka 2+2=5" bernilai BENAR secara logika.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Mengira "atau" berarti "salah satu saja".</strong><br>
+    Dalam logika, OR bersifat <em>inklusif</em>: $p \lor q$ benar meskipun keduanya benar. "Eksklusif atau" (XOR) adalah operator berbeda.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Proposisi</div>
+    <p>Tentukan mana yang proposisi: (a) "5 > 3", (b) "Tutup pintunya!", (c) "$x + 1 = 4$", (d) "Setiap bilangan genap > 2 adalah jumlah dua prima."</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Proposisi harus bisa dinilai benar/salah.</div>
+    <div class="answer-content" id="a1">(a) Ya (B). (b) Bukan (perintah). (c) Bukan (variabel bebas). (d) Ya (konjektur Goldbach, belum dibuktikan tapi tetap proposisi).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Truth Table</div>
+    <p>Buat tabel kebenaran untuk $\neg(p \land q)$ dan $(\neg p) \lor (\neg q)$. Apakah keduanya setara?</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Evaluasi untuk semua 4 kombinasi (B,B), (B,S), (S,B), (S,S). Ini adalah Hukum De Morgan.</div>
+    <div class="answer-content" id="a2">Keduanya menghasilkan tabel yang sama: B B→S, B S→B, S B→B, S S→B. Ya, setara! Ini adalah <strong>Hukum De Morgan</strong>: $\neg(p \land q) \equiv (\neg p) \lor (\neg q)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Himpunan</div>
+    <p>$A = \{1,2,3,4,5\}$, $B = \{3,4,5,6,7\}$. Hitung $A \cup B$, $A \cap B$, $A \setminus B$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Gabungan = semua, irisan = yang ada di keduanya, selisih = di A tapi tidak di B.</div>
+    <div class="answer-content" id="a3">$A \cup B = \{1,2,3,4,5,6,7\}$. $A \cap B = \{3,4,5\}$. $A \setminus B = \{1,2\}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Implication</div>
+    <p>Tentukan nilai kebenaran: "Jika $2+2=5$, maka bulan terbuat dari keju."</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Premis ($2+2=5$) bernilai salah.</div>
+    <div class="answer-content" id="a4">BENAR. $p \Rightarrow q$ selalu benar jika $p$ salah (vacuously true).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Graf</div>
+    <p>Graf $K_4$ (complete graph 4 titik). Berapa banyak edge-nya? Berapa derajat setiap vertex?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$K_n$ memiliki $\frac{n(n-1)}{2}$ edge.</div>
+    <div class="answer-content" id="a5">Edge = $\frac{4 \times 3}{2} = 6$. Setiap vertex terhubung ke 3 lainnya, jadi derajat = 3.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Tree</div>
+    <p>Sebuah tree dengan 7 vertex. Berapa jumlah edge-nya?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Tree dengan $n$ vertex selalu memiliki $n-1$ edge.</div>
+    <div class="answer-content" id="a6">$7 - 1 = 6$ edge.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Recall Bab 4</div>
+    <p>Di Bab 4 kita belajar aljabar. Tunjukkan bahwa himpunan operasi $\{+, \times\}$ pada bilangan real memenuhi hukum distributif: $a(b+c) = ab + ac$ mirip dengan $p \land (q \lor r) = (p \land q) \lor (p \land r)$ dalam logika.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Buat tabel kebenaran untuk kedua sisi.</div>
+    <div class="answer-content" id="a7">Tabel kebenaran menunjukkan keduanya selalu sama. Ini analogi yang menarik: AND berfungsi seperti perkalian, OR seperti penjumlahan, dan keduanya memenuhi hukum distributif!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Application</div>
+    <p>Lima kota dihubungkan oleh penerbangan langsung: A-B, A-C, B-C, B-D, C-D, D-E. Gambar grafnya. Apakah graf ini terhubung? Apakah ada cycle?</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Gambar 5 titik dan garis yang menghubungkan sesuai daftar.</div>
+    <div class="answer-content" id="a8">Ya, terhubung (setiap kota bisa dicapai dari kota lain). Ya, ada cycle: A-B-C-A dan B-C-D-B.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog</h2>
+  <p>
+    Logika memberi kita cara bernalar tanpa kekeliruan. Himpunan memberi kita bahasa untuk mengelompokkan objek. Graf memberi kita cara memodelkan hubungan. Ketiganya adalah fondasi ilmu komputer, kecerdasan buatan, dan banyak cabang matematika modern. Di bab terakhir, kita menghadapi hal yang paling manusiawi: <strong>ketidakpastian</strong>.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 20 — Peluang dan Ketidakpastian (Probabilitas & Statistik)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Truth Table ═══════
+var curOp = 'and';
+function setOp(op) {
+  curOp = op;
+  ['and','or','imp','iff'].forEach(function(k){
+    var b=document.getElementById('op-'+k);
+    b.style.background=k===op?'var(--accent-blue)':''; b.style.color=k===op?'white':'';
+  });
+  drawTruth();
+}
+function drawTruth() {
+  var syms = {and:'p ∧ q', or:'p ∨ q', imp:'p → q', iff:'p ↔ q'};
+  var fn = {
+    and: function(p,q){return p&&q;},
+    or: function(p,q){return p||q;},
+    imp: function(p,q){return !p||q;},
+    iff: function(p,q){return p===q;}
+  };
+  var rows = [[true,true],[true,false],[false,true],[false,false]];
+  var h = '<table style="width:100%;border-collapse:collapse;font-family:JetBrains Mono;font-size:0.9rem;">';
+  h += '<tr style="border-bottom:2px solid var(--border);"><th style="padding:6px;">p</th><th style="padding:6px;">q</th><th style="padding:6px;">'+syms[curOp]+'</th></tr>';
+  rows.forEach(function(r){
+    var res = fn[curOp](r[0],r[1]);
+    var bg = res ? 'rgba(39,174,96,0.1)' : 'rgba(192,57,43,0.1)';
+    h += '<tr style="border-bottom:1px solid var(--border);background:'+bg+'">';
+    h += '<td style="padding:6px;text-align:center;">'+(r[0]?'B':'S')+'</td>';
+    h += '<td style="padding:6px;text-align:center;">'+(r[1]?'B':'S')+'</td>';
+    h += '<td style="padding:6px;text-align:center;font-weight:600;">'+(res?'B':'S')+'</td>';
+    h += '</tr>';
+  });
+  h += '</table>';
+  document.getElementById('truth-table').innerHTML = h;
+}
+
+// ═══════ Interactive 2: Venn Diagram ═══════
+var vennType = 'union';
+function setVenn(t) {
+  vennType = t;
+  ['union','inter','diff','symdiff'].forEach(function(k){
+    var b=document.getElementById('vn-'+k);
+    b.style.background=k===t?'var(--accent-blue)':''; b.style.color=k===t?'white':'';
+  });
+  drawVenn();
+}
+function drawVenn() {
+  var svg = document.getElementById('venn-svg');
+  var cx1=120, cx2=180, cy=110, r=70;
+  var s = '<rect x="0" y="0" width="300" height="220" fill="var(--bg)" rx="8"/>';
+
+  // determine fill
+  if (vennType === 'union') {
+    s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="2"/>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="2"/>';
+  } else if (vennType === 'inter') {
+    s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#999" stroke-width="1.5"/>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#999" stroke-width="1.5"/>';
+    s += '<clipPath id="clipA"><circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'"/></clipPath>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="rgba(36,113,163,0.35)" clip-path="url(#clipA)"/>';
+  } else if (vennType === 'diff') {
+    s += '<clipPath id="clipB"><rect x="0" y="0" width="300" height="220"/><circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'"/></clipPath>';
+    s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="rgba(36,113,163,0.3)" clip-path="url(#clipB)" stroke="#2471a3" stroke-width="2"/>';
+    s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#2471a3" stroke-width="2"/>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#999" stroke-width="1.5"/>';
+  } else {
+    s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="2"/>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="rgba(192,57,43,0.2)" stroke="#c0392b" stroke-width="2"/>';
+    s += '<clipPath id="clipC"><circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'"/></clipPath>';
+    s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="var(--bg)" clip-path="url(#clipC)"/>';
+  }
+
+  s += '<text x="'+cx1+'" y="'+(cy-r-8)+'" text-anchor="middle" font-family="Inter" font-size="14" font-weight="600">A</text>';
+  s += '<text x="'+cx2+'" y="'+(cy-r-8)+'" text-anchor="middle" font-family="Inter" font-size="14" font-weight="600">B</text>';
+  svg.innerHTML = s;
+
+  var labels = {union:'A ∪ B (gabungan)', inter:'A ∩ B (irisan)', diff:'A \\ B (selisih)', symdiff:'A △ B (beda simetris)'};
+  document.getElementById('venn-result').textContent = labels[vennType];
+}
+
+// ═══════ Interactive 3: Graph Explorer ═══════
+var graphType = 'complete';
+function setGraph(t) {
+  graphType = t;
+  ['complete','tree','cycle','bipartite'].forEach(function(k){
+    var b=document.getElementById('g-'+k);
+    b.style.background=k===t?'var(--accent-blue)':''; b.style.color=k===t?'white':'';
+  });
+  drawGraph();
+}
+function drawGraph() {
+  var svg = document.getElementById('graph-svg');
+  var s = '', verts = [], edges = [], info = '';
+  var cx = 150, cy = 120, r = 80;
+
+  if (graphType === 'complete') {
+    for (var i = 0; i < 5; i++) {
+      var a = -Math.PI/2 + i * 2 * Math.PI / 5;
+      verts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    for (var i = 0; i < 5; i++) for (var j = i+1; j < 5; j++) edges.push([i, j]);
+    info = 'K₅: 5 vertex, 10 edge\nSetiap vertex derajat 4\nGraf lengkap';
+  } else if (graphType === 'tree') {
+    verts = [[150,30],[80,90],[220,90],[50,160],[110,160],[190,160],[250,160]];
+    edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]];
+    info = 'Tree: 7 vertex, 6 edge\nTidak ada cycle\nSelalu n-1 edge untuk n vertex';
+  } else if (graphType === 'cycle') {
+    for (var i = 0; i < 6; i++) {
+      var a = -Math.PI/2 + i * 2 * Math.PI / 6;
+      verts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    for (var i = 0; i < 6; i++) edges.push([i, (i+1)%6]);
+    info = 'Cycle C₆: 6 vertex, 6 edge\nSetiap vertex derajat 2\nSatu cycle besar';
+  } else {
+    verts = [[60,40],[60,100],[60,160],[240,40],[240,100],[240,160]];
+    edges = [[0,3],[0,4],[1,3],[1,5],[2,4],[2,5]];
+    info = 'Bipartite: 6 vertex, 6 edge\nVertex terbagi dua grup\nEdge hanya antara grup';
+  }
+
+  edges.forEach(function(e) {
+    s += '<line x1="'+verts[e[0]][0]+'" y1="'+verts[e[0]][1]+'" x2="'+verts[e[1]][0]+'" y2="'+verts[e[1]][1]+'" stroke="#2471a3" stroke-width="2"/>';
+  });
+  verts.forEach(function(v, i) {
+    s += '<circle cx="'+v[0]+'" cy="'+v[1]+'" r="12" fill="white" stroke="#c0392b" stroke-width="2.5"/>';
+    s += '<text x="'+v[0]+'" y="'+(v[1]+4)+'" text-anchor="middle" font-family="Inter" font-size="10" font-weight="600" fill="#c0392b">'+i+'</text>';
+  });
+
+  svg.innerHTML = s;
+  document.getElementById('graph-result').textContent = info;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  drawTruth(); drawVenn(); drawGraph();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 9 — Ketika Aljabar Bertemu Geometri</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 9 · Volume II</div>
+  <h1 class="chapter-title">Ketika Aljabar<br>Bertemu Geometri</h1>
+  <p class="chapter-subtitle">
+    Tentang ide revolusioner yang mengubah titik menjadi bilangan,<br>
+    kurva menjadi persamaan, dan menyatukan dua dunia matematika.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Selama delapan bab, kita telah membangun dua dunia yang terpisah. Di satu sisi: <em>aljabar</em> — bilangan, variabel, persamaan (Bab 1–5). Di sisi lain: <em>geometri</em> — bentuk, sudut, jarak, luas (Bab 6–8). Kedua dunia ini kuat, tapi mereka berbicara bahasa yang berbeda. Aljabar berbicara tentang $x$ dan $y$; geometri berbicara tentang titik dan garis.
+  </p>
+
+  <p>
+    Bab ini adalah momen penyatuan. Kita akan menempatkan geometri di atas <em>sistem koordinat</em> — sebuah peta yang mengubah setiap titik menjadi sepasang bilangan, dan setiap kurva menjadi persamaan. Setelah bab ini, kita tidak perlu lagi memilih antara aljabar dan geometri — keduanya menjadi satu bahasa.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu duduk di bangku bioskop. Seseorang bertanya, "Kamu di mana?" Kamu menjawab, "Baris 5, kursi 8." Dengan dua bilangan, kamu mendeskripsikan posisimu secara tepat. Inilah esensi koordinat — mengubah <em>tempat</em> menjadi <em>bilangan</em>.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN ═══════════════════════ -->
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bisakah kita mendeskripsikan setiap bentuk geometri<br>dengan persamaan aljabar — dan sebaliknya?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dua Sungai yang Bertemu: Sejarah Geometri Analitik</h2>
+
+  <p>
+    Ide bahwa geometri dan aljabar bisa disatukan tidak muncul tiba-tiba. Ia tumbuh perlahan, melalui kontribusi dari banyak peradaban.
+  </p>
+
+  <h3>Akar Kuno: Geometri Aljabar Sebelum Koordinat</h3>
+
+  <div class="historical-note">
+    Bangsa <strong>Babilonia</strong> (sekitar 2000 SM) sudah menyelesaikan masalah yang kita sebut "aljabar geometrik" — mereka menghitung panjang dan luas menggunakan manipulasi yang pada dasarnya aljabar, meskipun selalu dinyatakan dalam bahasa geometri. Tablet mereka memuat masalah seperti: "Luas persegi panjang 60, panjangnya 7 lebih dari lebarnya. Berapa panjang dan lebar?" — yang kita tulis sebagai sistem persamaan $xy = 60$, $x - y = 7$.
+  </div>
+
+  <div class="historical-note">
+    <strong>Apollonius dari Perga</strong> (sekitar 262–190 SM) menulis <em>Conics</em>, karya monumental tentang irisan kerucut — elips, parabola, dan hiperbola. Ia menggunakan sesuatu yang menyerupai sistem koordinat: satu sumbu utama (diameter) dan jarak tegak lurus dari sumbu itu. Tapi ia belum menggunakan pasangan bilangan secara eksplisit untuk menentukan titik.
+  </div>
+
+  <h3>Dunia Islam: Merintis Jalan</h3>
+
+  <div class="historical-note">
+    <strong>Omar Khayyam</strong> (1048–1131 M), yang sudah kita kenal dari Bab 4 dan 5, menyelesaikan persamaan kubik menggunakan <em>perpotongan kurva-kurva geometri</em>. Untuk menyelesaikan $x^3 + ax = b$, ia menemukan titik perpotongan antara lingkaran dan parabola. Ini adalah langkah penting menuju geometri analitik — menggunakan geometri untuk menyelesaikan aljabar, dan sebaliknya — meskipun ia belum memformalisasi sistem koordinat.
+  </div>
+
+  <div class="historical-note">
+    <strong>Sharaf al-Din al-Tusi</strong> (sekitar 1135–1213 M, berbeda dari Nasir al-Din al-Tusi) dari Iran melangkah lebih jauh. Ia menganalisis kapan persamaan kubik memiliki solusi dengan mempelajari <em>nilai maksimum dan minimum</em> ekspresi aljabar — sebuah ide yang mendahului kalkulus! Ia pada dasarnya menggunakan kurva aljabar untuk memahami perilaku persamaan, meski tanpa bidang koordinat formal.
+  </div>
+
+  <div class="historical-note">
+    <strong>Ibn al-Haytham</strong> (Alhazen, 965–1040 M), yang kita sebut di Bab 6, juga memberikan kontribusi penting. Dalam karyanya tentang optik, ia menghitung volume benda putar — menggunakan pendekatan yang memerlukan hubungan sistematis antara posisi geometris dan besaran numerik. Metodenya mendekati integrasi (Bab 15), dan secara implisit menggunakan ide koordinat.
+  </div>
+
+  <h3>Descartes dan Fermat: Formalisasi</h3>
+
+  <div class="historical-note">
+    <strong>René Descartes</strong> (1596–1650) mempublikasikan <em>La Géométrie</em> (1637) sebagai lampiran dari karya filsafatnya <em>Discours de la Méthode</em>. Di situ ia memperkenalkan ide kunci: setiap titik di bidang bisa dinyatakan oleh dua bilangan (koordinat), dan setiap kurva bisa dideskripsikan oleh persamaan yang menghubungkan koordinat-koordinat itu. Ia juga memperkenalkan notasi $x$, $y$, $z$ untuk variabel dan $a$, $b$, $c$ untuk konstanta — konvensi yang kita gunakan sampai hari ini.
+  </div>
+
+  <div class="historical-note">
+    <strong>Pierre de Fermat</strong> (1601–1665) secara independen mengembangkan ide yang sama — bahkan mungkin lebih awal dari Descartes, meski ia tidak mempublikasikannya secara formal. Fermat lebih langsung: ia menulis persamaan lalu menggambar kurvanya, sementara Descartes memulai dari kurva dan menurunkan persamaannya. Keduanya layak disebut pendiri geometri analitik.
+  </div>
+
+  <p>
+    Yang menarik: ide dasar koordinat sudah ada secara implisit dalam banyak tradisi — peta, papan catur, dan sistem alamat kota semuanya menggunakan "dua bilangan untuk menentukan posisi". Kontribusi Descartes dan Fermat bukan ide koordinat itu sendiri, melainkan <em>penyatuan sistematisnya dengan aljabar</em>.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ BIDANG KOORDINAT ═══════════════════════ -->
+
+  <h2>Bidang Koordinat Kartesius</h2>
+
+  <p>
+    Ambil dua garis bilangan. Letakkan satu mendatar (<strong>sumbu-$x$</strong>), satu tegak (<strong>sumbu-$y$</strong>). Mereka berpotongan di titik nol — disebut <strong>titik asal</strong> (origin), dilambangkan $O = (0, 0)$.
+  </p>
+
+  <div class="definition-box">
+    Setiap titik di bidang dinyatakan sebagai pasangan berurut $(x, y)$:
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$x$ = <strong>absis</strong> — jarak horizontal dari sumbu-$y$ (positif ke kanan, negatif ke kiri).</li>
+      <li>$y$ = <strong>ordinat</strong> — jarak vertikal dari sumbu-$x$ (positif ke atas, negatif ke bawah).</li>
+    </ul>
+  </div>
+
+  <div class="key-insight">
+    <strong>Empat Kuadran:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Kuadran I</strong> (kanan atas): $x > 0$, $y > 0$</li>
+      <li><strong>Kuadran II</strong> (kiri atas): $x < 0$, $y > 0$</li>
+      <li><strong>Kuadran III</strong> (kiri bawah): $x < 0$, $y < 0$</li>
+      <li><strong>Kuadran IV</strong> (kanan bawah): $x > 0$, $y < 0$</li>
+    </ul>
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: bilangan negatif lahir dari kebutuhan mengukur "arah berlawanan" — utang vs. kekayaan, mundur vs. maju. Di bidang koordinat, bilangan negatif akhirnya menemukan rumah geometrisnya yang sempurna: kiri dan bawah.
+  </div>
+
+  <!-- INTERACTIVE 1: Coordinate Plane -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Bidang Koordinat — Klik untuk Meletakkan Titik</div>
+    <div class="interactive-desc">Klik di bidang koordinat untuk meletakkan titik. Koordinat $(x, y)$ dan kuadrannya akan ditampilkan.</div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="coord-svg" width="320" height="320" viewBox="0 0 320 320" style="cursor: crosshair; border: 1px solid var(--border); border-radius: 6px;"></svg>
+    </div>
+    <div id="coord-result" class="result-display" style="font-size: 0.9rem;">Klik pada bidang di atas!</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ JARAK ═══════════════════════ -->
+
+  <h2>Jarak Antara Dua Titik</h2>
+
+  <p>
+    Dari Bab 7, kita sudah menyebutkan rumus jarak — sekarang kita akan menurunkannya secara lengkap.
+  </p>
+
+  <p>
+    Ambil dua titik $A = (x_1, y_1)$ dan $B = (x_2, y_2)$. Tarik garis horizontal dari $A$ dan garis vertikal dari $B$. Mereka bertemu di titik $C = (x_2, y_1)$, membentuk <strong>segitiga siku-siku</strong> $ACB$ dengan:
+  </p>
+
+  <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">
+    <li>Kaki horizontal = $|x_2 - x_1|$</li>
+    <li>Kaki vertikal = $|y_2 - y_1|$</li>
+    <li>Hipotenusa = jarak $AB$</li>
+  </ul>
+
+  <div class="key-insight">
+    <strong>Rumus Jarak (Teorema Pythagoras di Koordinat):</strong>
+    $$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+  </div>
+
+  <p>
+    Contoh: jarak dari $A = (1, 2)$ ke $B = (4, 6)$:
+  </p>
+  <p style="text-align: center;">
+    $d = \sqrt{(4-1)^2 + (6-2)^2} = \sqrt{9 + 16} = \sqrt{25} = 5$
+  </p>
+
+  <p>
+    Perhatikan: $3^2 + 4^2 = 5^2$ — tripel Pythagoras muncul lagi!
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ TITIK TENGAH ═══════════════════════ -->
+
+  <h2>Titik Tengah</h2>
+
+  <div class="key-insight">
+    <strong>Rumus Titik Tengah:</strong> Titik tengah dari $A = (x_1, y_1)$ dan $B = (x_2, y_2)$ adalah:
+    $$M = \left(\frac{x_1 + x_2}{2},\ \frac{y_1 + y_2}{2}\right)$$
+    Rata-rata dari masing-masing koordinat — sesederhana itu.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ GARIS LURUS ═══════════════════════ -->
+
+  <h2>Persamaan Garis Lurus</h2>
+
+  <p>
+    Inilah momen di mana aljabar dan geometri benar-benar bertemu. Sebuah garis lurus — objek geometri — bisa dideskripsikan oleh sebuah persamaan aljabar.
+  </p>
+
+  <h3>Gradien (Kemiringan)</h3>
+
+  <p>
+    <strong>Gradien</strong> mengukur seberapa "miring" sebuah garis — seberapa banyak $y$ berubah ketika $x$ berubah satu satuan.
+  </p>
+
+  <div class="definition-box">
+    <strong>Gradien</strong> garis yang melewati $(x_1, y_1)$ dan $(x_2, y_2)$:
+    $$m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\Delta y}{\Delta x} = \frac{\text{naik}}{\text{lari}}$$
+  </div>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li>$m > 0$: garis naik dari kiri ke kanan ↗</li>
+      <li>$m < 0$: garis turun dari kiri ke kanan ↘</li>
+      <li>$m = 0$: garis horizontal →</li>
+      <li>$m$ tidak terdefinisi: garis vertikal ↑ (karena $\Delta x = 0$, pembagian nol!)</li>
+    </ul>
+  </div>
+
+  <h3>Bentuk Gradien-Intercept</h3>
+
+  <div class="key-insight">
+    $$y = mx + b$$
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$m$ = gradien (kemiringan)</li>
+      <li>$b$ = $y$-intercept (titik potong sumbu-$y$, yaitu nilai $y$ saat $x = 0$)</li>
+    </ul>
+  </div>
+
+  <p>
+    Contoh: $y = 2x + 3$ adalah garis dengan gradien 2 (setiap $x$ naik 1, $y$ naik 2) dan memotong sumbu-$y$ di titik $(0, 3)$.
+  </p>
+
+  <!-- INTERACTIVE 2: Line Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Garis — y = mx + b</div>
+    <div class="interactive-desc">Ubah gradien $m$ dan intercept $b$ untuk melihat bagaimana garis berubah.</div>
+
+    <div class="slider-container">
+      <label>Gradien m: <strong id="line-m-val">1</strong></label>
+      <input type="range" id="line-m" min="-5" max="5" value="1" step="0.5" oninput="updateLine()">
+    </div>
+    <div class="slider-container">
+      <label>Intercept b: <strong id="line-b-val">0</strong></label>
+      <input type="range" id="line-b" min="-6" max="6" value="0" step="0.5" oninput="updateLine()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="line-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="line-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <h3>Garis Sejajar dan Tegak Lurus</h3>
+
+  <div class="key-insight">
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li><strong>Sejajar:</strong> dua garis sejajar memiliki gradien yang <em>sama</em>. $m_1 = m_2$.</li>
+      <li><strong>Tegak lurus:</strong> dua garis tegak lurus memiliki gradien yang <em>berlawanan dan dibalik</em>. $m_1 \cdot m_2 = -1$, atau $m_2 = -\frac{1}{m_1}$.</li>
+    </ul>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERSAMAAN LINGKARAN ═══════════════════════ -->
+
+  <h2>Lingkaran Menjadi Persamaan</h2>
+
+  <p>
+    Dari Bab 8: lingkaran adalah himpunan titik berjarak $r$ dari pusat. Jika pusat di $(h, k)$, maka setiap titik $(x, y)$ di lingkaran memenuhi: jaraknya ke $(h, k)$ sama dengan $r$.
+  </p>
+
+  <p>
+    Gunakan rumus jarak:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\sqrt{(x-h)^2 + (y-k)^2} = r$
+  </p>
+
+  <p>
+    Kuadratkan kedua sisi:
+  </p>
+
+  <div class="key-insight">
+    <strong>Persamaan Lingkaran:</strong>
+    $$(x - h)^2 + (y - k)^2 = r^2$$
+    dengan pusat $(h, k)$ dan jari-jari $r$. Jika pusat di titik asal: $x^2 + y^2 = r^2$.
+  </div>
+
+  <p>
+    Keindahannya: definisi geometri lingkaran (himpunan titik berjarak sama) <em>diterjemahkan langsung</em> menjadi persamaan aljabar melalui Pythagoras dan koordinat. Dua dunia, satu bahasa.
+  </p>
+
+  <!-- INTERACTIVE 3: Circle Equation -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Lingkaran sebagai Persamaan</div>
+    <div class="interactive-desc">Atur pusat $(h, k)$ dan jari-jari $r$. Lihat lingkaran dan persamaannya secara bersamaan.</div>
+
+    <div class="slider-container">
+      <label>Pusat h: <strong id="circ-h-val">0</strong></label>
+      <input type="range" id="circ-h" min="-5" max="5" value="0" step="0.5" oninput="updateCircleEq()">
+    </div>
+    <div class="slider-container">
+      <label>Pusat k: <strong id="circ-k-val">0</strong></label>
+      <input type="range" id="circ-k" min="-5" max="5" value="0" step="0.5" oninput="updateCircleEq()">
+    </div>
+    <div class="slider-container">
+      <label>Jari-jari r: <strong id="circ-r-val">3</strong></label>
+      <input type="range" id="circ-r" min="0.5" max="6" value="3" step="0.5" oninput="updateCircleEq()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="circle-eq-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="circle-eq-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PARABOLA ═══════════════════════ -->
+
+  <h2>Parabola: Kurva Kuadrat</h2>
+
+  <p>
+    Di Bab 5, kita menyelesaikan persamaan kuadrat $ax^2 + bx + c = 0$. Sekarang kita bisa <em>melihat</em> persamaan kuadrat — grafiknya adalah kurva berbentuk U (atau U terbalik) yang disebut <strong>parabola</strong>.
+  </p>
+
+  <div class="key-insight">
+    Grafik $y = ax^2 + bx + c$ adalah parabola:
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li>$a > 0$: parabola terbuka ke atas ∪ (titik terendah = puncak)</li>
+      <li>$a < 0$: parabola terbuka ke bawah ∩ (titik tertinggi = puncak)</li>
+      <li>Titik potong sumbu-$x$ (jika ada) = solusi $ax^2 + bx + c = 0$</li>
+    </ul>
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 5: diskriminan $D = b^2 - 4ac$ menentukan jumlah solusi persamaan kuadrat. Secara geometris: $D > 0$ berarti parabola memotong sumbu-$x$ di <em>dua</em> titik; $D = 0$ berarti menyinggung di satu titik; $D < 0$ berarti tidak memotong sama sekali.
+  </div>
+
+  <!-- INTERACTIVE 4: Parabola -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Parabola — y = ax² + bx + c</div>
+    <div class="interactive-desc">Ubah koefisien untuk melihat bagaimana parabola berubah bentuk dan posisi.</div>
+
+    <div class="slider-container">
+      <label>a: <strong id="para-a-val">1</strong></label>
+      <input type="range" id="para-a" min="-3" max="3" value="1" step="0.25" oninput="updateParabola()">
+    </div>
+    <div class="slider-container">
+      <label>b: <strong id="para-b-val">0</strong></label>
+      <input type="range" id="para-b" min="-6" max="6" value="0" step="0.5" oninput="updateParabola()">
+    </div>
+    <div class="slider-container">
+      <label>c: <strong id="para-c-val">-2</strong></label>
+      <input type="range" id="para-c" min="-6" max="6" value="-2" step="0.5" oninput="updateParabola()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="parabola-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="parabola-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Membalik koordinat.</strong><br>
+    $(3, 5)$ artinya $x = 3$, $y = 5$ — <em>horizontal dulu, vertikal kedua</em>. Bukan sebaliknya. Ingat: abjad — $x$ datang sebelum $y$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Lupa tanda negatif pada pusat lingkaran.</strong><br>
+    $(x - 3)^2 + (y + 2)^2 = 25$ berarti pusat di $(3, -2)$, bukan $(3, 2)$. Karena $y + 2 = y - (-2)$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira gradien nol = garis vertikal.</strong><br>
+    Gradien $0$ = garis <em>horizontal</em> (datar). Garis vertikal memiliki gradien <em>tidak terdefinisi</em> (pembagian nol).
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Hitung jarak antara titik $A = (2, -1)$ dan $B = (-3, 11)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">$d = \sqrt{(\Delta x)^2 + (\Delta y)^2}$.</div>
+    <div class="answer-content" id="a1">$d = \sqrt{(-3-2)^2 + (11-(-1))^2} = \sqrt{(-5)^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13$. Tripel Pythagoras $(5, 12, 13)$ dari Bab 7!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Tentukan persamaan garis yang melewati $(1, 3)$ dan $(4, 9)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Cari gradien $m = \frac{y_2 - y_1}{x_2 - x_1}$, lalu gunakan bentuk titik-gradien.</div>
+    <div class="answer-content" id="a2">$m = \frac{9-3}{4-1} = \frac{6}{3} = 2$. Menggunakan titik $(1, 3)$: $y - 3 = 2(x - 1)$, jadi $y = 2x + 1$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Conceptual</div>
+    <p>Garis $\ell_1$ memiliki persamaan $y = 3x + 2$. Tentukan gradien garis $\ell_2$ yang tegak lurus terhadap $\ell_1$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Gradien garis tegak lurus: $m_2 = -\frac{1}{m_1}$.</div>
+    <div class="answer-content" id="a3">$m_1 = 3$, maka $m_2 = -\frac{1}{3}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Circle</div>
+    <p>Tentukan pusat dan jari-jari lingkaran $(x + 2)^2 + (y - 5)^2 = 36$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Bandingkan dengan bentuk umum $(x - h)^2 + (y - k)^2 = r^2$. Perhatikan tanda!</div>
+    <div class="answer-content" id="a4">$(x + 2)^2 = (x - (-2))^2$, jadi $h = -2$. $(y - 5)^2$ memberi $k = 5$. $r^2 = 36$, jadi $r = 6$. Pusat $(-2, 5)$, jari-jari $6$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application</div>
+    <p>Titik $A = (1, 1)$, $B = (5, 1)$, $C = (5, 4)$ membentuk segitiga. Tunjukkan bahwa segitiga ini siku-siku menggunakan rumus jarak.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Hitung ketiga sisi, lalu cek apakah Pythagoras terpenuhi.</div>
+    <div class="answer-content" id="a5">$AB = \sqrt{16+0} = 4$. $BC = \sqrt{0+9} = 3$. $AC = \sqrt{16+9} = 5$.<br>$AB^2 + BC^2 = 16 + 9 = 25 = AC^2 = 5^2$ ✓. Segitiga siku-siku di $B$ (tripel 3-4-5).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Parabola</div>
+    <p>Grafik $y = x^2 - 4x + 3$ memotong sumbu-$x$ di titik mana saja?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Titik potong sumbu-$x$ artinya $y = 0$. Selesaikan $x^2 - 4x + 3 = 0$.</div>
+    <div class="answer-content" id="a6">$x^2 - 4x + 3 = (x-1)(x-3) = 0$, jadi $x = 1$ atau $x = 3$. Titik potong: $(1, 0)$ dan $(3, 0)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Error Analysis</div>
+    <p>Seorang siswa menulis: "Persamaan lingkaran dengan pusat $(3, -1)$ dan jari-jari 4 adalah $(x - 3)^2 + (y - 1)^2 = 4$." Ada dua kesalahan. Temukan keduanya.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Perhatikan tanda $k$ dan nilai di sisi kanan.</div>
+    <div class="answer-content" id="a7">Kesalahan 1: pusat $k = -1$ harusnya $(y - (-1))^2 = (y + 1)^2$, bukan $(y - 1)^2$.<br>Kesalahan 2: sisi kanan harusnya $r^2 = 4^2 = 16$, bukan $r = 4$.<br>Benar: $(x - 3)^2 + (y + 1)^2 = 16$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 2 & 4)</div>
+    <p>Titik $P$ berada pada garis $y = \frac{3}{4}x$ dan berjarak 10 dari titik asal. Tentukan koordinat $P$ (di kuadran I). Gunakan pecahan dari Bab 2 dan aljabar dari Bab 4.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">$P = (x, \frac{3}{4}x)$. Gunakan rumus jarak dari titik asal: $\sqrt{x^2 + y^2} = 10$.</div>
+    <div class="answer-content" id="a8">$\sqrt{x^2 + (\frac{3}{4}x)^2} = 10$. $x^2 + \frac{9}{16}x^2 = 100$. $\frac{16x^2 + 9x^2}{16} = 100$. $\frac{25x^2}{16} = 100$. $x^2 = 64$, $x = 8$ (kuadran I).<br>$y = \frac{3}{4}(8) = 6$. Jadi $P = (8, 6)$. Cek: $\sqrt{64 + 36} = \sqrt{100} = 10$ ✓. Tripel $(6, 8, 10)$!</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dari Koordinat ke Fungsi</h2>
+
+  <p>
+    Kita baru saja menyatukan aljabar dan geometri — sebuah revolusi. Setiap persamaan sekarang punya gambar, setiap bentuk punya rumus. Garis menjadi $y = mx + b$, lingkaran menjadi $x^2 + y^2 = r^2$, parabola menjadi $y = ax^2 + bx + c$.
+  </p>
+
+  <p>
+    Tapi perhatikan: setiap kali kita menulis $y = \text{(sesuatu yang bergantung pada } x)$, kita sebenarnya mendeskripsikan sebuah <em>mesin</em> — masukkan $x$, keluarkan $y$. Mesin ini punya nama: <strong>fungsi</strong>. Di bab berikutnya, kita akan mempelajari fungsi secara sistematis — apa itu fungsi, jenis-jenisnya, dan mengapa mereka adalah bahasa utama matematika modern.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 10 — Mesin Pengubah Bilangan (Fungsi)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+var gridUnit = 25;
+var gridOX = 160, gridOY = 160;
+
+function drawGrid(svg, w, h) {
+  var s = '';
+  for (var x = gridOX % gridUnit; x <= w; x += gridUnit) {
+    s += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="'+h+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  }
+  for (var y = gridOY % gridUnit; y <= h; y += gridUnit) {
+    s += '<line x1="0" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  }
+  // axes
+  s += '<line x1="0" y1="'+gridOY+'" x2="'+w+'" y2="'+gridOY+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  s += '<line x1="'+gridOX+'" y1="0" x2="'+gridOX+'" y2="'+h+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  // labels
+  for (var i = -6; i <= 6; i++) {
+    if (i === 0) continue;
+    var px = gridOX + i * gridUnit;
+    var py = gridOY - i * gridUnit;
+    if (px > 5 && px < w - 5) s += '<text x="'+px+'" y="'+(gridOY+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+    if (py > 5 && py < h - 5) s += '<text x="'+(gridOX-10)+'" y="'+(py+3)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+  }
+  s += '<text x="'+w+'" y="'+(gridOY-4)+'" text-anchor="end" font-family="Inter" font-size="10" fill="#888">x</text>';
+  s += '<text x="'+(gridOX+8)+'" y="12" font-family="Inter" font-size="10" fill="#888">y</text>';
+  return s;
+}
+
+// ═══════ Interactive 1: Coordinate Plane ═══════
+function initCoordPlane() {
+  var svg = document.getElementById('coord-svg');
+  svg.innerHTML = drawGrid(svg, 320, 320);
+  svg.addEventListener('click', function(e) {
+    var rect = svg.getBoundingClientRect();
+    var sx = e.clientX - rect.left;
+    var sy = e.clientY - rect.top;
+    var scaleX = 320 / rect.width;
+    var scaleY = 320 / rect.height;
+    sx *= scaleX; sy *= scaleY;
+    var x = (sx - gridOX) / gridUnit;
+    var y = -(sy - gridOY) / gridUnit;
+    x = Math.round(x * 2) / 2;
+    y = Math.round(y * 2) / 2;
+    var px = gridOX + x * gridUnit;
+    var py = gridOY - y * gridUnit;
+    var s = drawGrid(svg, 320, 320);
+    s += '<circle cx="'+px+'" cy="'+py+'" r="5" fill="#c0392b"/>';
+    s += '<text x="'+(px+8)+'" y="'+(py-8)+'" font-family="JetBrains Mono" font-size="11" fill="#c0392b">('+x+', '+y+')</text>';
+    // dashed lines to axes
+    s += '<line x1="'+px+'" y1="'+py+'" x2="'+px+'" y2="'+gridOY+'" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,3"/>';
+    s += '<line x1="'+px+'" y1="'+py+'" x2="'+gridOX+'" y2="'+py+'" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,3"/>';
+    svg.innerHTML = s;
+    var quad = '';
+    if (x > 0 && y > 0) quad = 'Kuadran I';
+    else if (x < 0 && y > 0) quad = 'Kuadran II';
+    else if (x < 0 && y < 0) quad = 'Kuadran III';
+    else if (x > 0 && y < 0) quad = 'Kuadran IV';
+    else if (x === 0 && y === 0) quad = 'Titik asal';
+    else if (x === 0) quad = 'Pada sumbu-y';
+    else quad = 'Pada sumbu-x';
+    document.getElementById('coord-result').textContent = 'Titik: (' + x + ', ' + y + ') — ' + quad;
+  });
+}
+
+// ═══════ Interactive 2: Line Explorer ═══════
+function updateLine() {
+  var m = parseFloat(document.getElementById('line-m').value);
+  var b = parseFloat(document.getElementById('line-b').value);
+  document.getElementById('line-m-val').textContent = m;
+  document.getElementById('line-b-val').textContent = b;
+
+  var svg = document.getElementById('line-svg');
+  var s = drawGrid(svg, 320, 320);
+
+  // draw line from x=-8 to x=8
+  var x1 = -8, y1 = m * x1 + b;
+  var x2 = 8, y2 = m * x2 + b;
+  var px1 = gridOX + x1 * gridUnit, py1 = gridOY - y1 * gridUnit;
+  var px2 = gridOX + x2 * gridUnit, py2 = gridOY - y2 * gridUnit;
+  s += '<line x1="'+px1+'" y1="'+py1+'" x2="'+px2+'" y2="'+py2+'" stroke="#2471a3" stroke-width="2.5"/>';
+
+  // y-intercept point
+  var bpx = gridOX, bpy = gridOY - b * gridUnit;
+  s += '<circle cx="'+bpx+'" cy="'+bpy+'" r="4" fill="#c0392b"/>';
+  s += '<text x="'+(bpx+8)+'" y="'+(bpy-6)+'" font-family="JetBrains Mono" font-size="10" fill="#c0392b">(0, '+b+')</text>';
+
+  svg.innerHTML = s;
+
+  var bSign = b >= 0 ? ' + ' + b : ' − ' + Math.abs(b);
+  if (b === 0) bSign = '';
+  document.getElementById('line-result').textContent = 'y = ' + m + 'x' + bSign + '\nGradien: ' + m + (m > 0 ? ' (naik ↗)' : m < 0 ? ' (turun ↘)' : ' (horizontal →)') + '\ny-intercept: (0, ' + b + ')';
+}
+
+// ═══════ Interactive 3: Circle Equation ═══════
+function updateCircleEq() {
+  var h = parseFloat(document.getElementById('circ-h').value);
+  var k = parseFloat(document.getElementById('circ-k').value);
+  var r = parseFloat(document.getElementById('circ-r').value);
+  document.getElementById('circ-h-val').textContent = h;
+  document.getElementById('circ-k-val').textContent = k;
+  document.getElementById('circ-r-val').textContent = r;
+
+  var svg = document.getElementById('circle-eq-svg');
+  var s = drawGrid(svg, 320, 320);
+
+  var cx = gridOX + h * gridUnit;
+  var cy = gridOY - k * gridUnit;
+  var pr = r * gridUnit;
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+pr+'" fill="rgba(36,113,163,0.1)" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="#c0392b"/>';
+  s += '<text x="'+(cx+6)+'" y="'+(cy-6)+'" font-family="JetBrains Mono" font-size="10" fill="#c0392b">('+h+','+k+')</text>';
+
+  svg.innerHTML = s;
+
+  var hStr = h === 0 ? 'x²' : '(x' + (h > 0 ? ' − ' + h : ' + ' + Math.abs(h)) + ')²';
+  var kStr = k === 0 ? 'y²' : '(y' + (k > 0 ? ' − ' + k : ' + ' + Math.abs(k)) + ')²';
+  document.getElementById('circle-eq-result').textContent = hStr + ' + ' + kStr + ' = ' + (r * r) + '\nPusat: (' + h + ', ' + k + '), Jari-jari: ' + r;
+}
+
+// ═══════ Interactive 4: Parabola ═══════
+function updateParabola() {
+  var a = parseFloat(document.getElementById('para-a').value);
+  var b = parseFloat(document.getElementById('para-b').value);
+  var c = parseFloat(document.getElementById('para-c').value);
+  document.getElementById('para-a-val').textContent = a;
+  document.getElementById('para-b-val').textContent = b;
+  document.getElementById('para-c-val').textContent = c;
+
+  var svg = document.getElementById('parabola-svg');
+  var s = drawGrid(svg, 320, 320);
+
+  if (a !== 0) {
+    var pts = [];
+    for (var x = -7; x <= 7; x += 0.2) {
+      var y = a * x * x + b * x + c;
+      var px = gridOX + x * gridUnit;
+      var py = gridOY - y * gridUnit;
+      if (py > -50 && py < 370) pts.push(px + ',' + py);
+    }
+    if (pts.length > 1) {
+      s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    }
+
+    // vertex
+    var vx = -b / (2 * a);
+    var vy = a * vx * vx + b * vx + c;
+    var vpx = gridOX + vx * gridUnit;
+    var vpy = gridOY - vy * gridUnit;
+    if (vpy > 0 && vpy < 320) {
+      s += '<circle cx="'+vpx+'" cy="'+vpy+'" r="4" fill="#c0392b"/>';
+    }
+
+    // x-intercepts
+    var D = b * b - 4 * a * c;
+    var roots = [];
+    if (D > 0) {
+      roots.push((-b + Math.sqrt(D)) / (2 * a));
+      roots.push((-b - Math.sqrt(D)) / (2 * a));
+    } else if (D === 0) {
+      roots.push(-b / (2 * a));
+    }
+    for (var i = 0; i < roots.length; i++) {
+      var rpx = gridOX + roots[i] * gridUnit;
+      s += '<circle cx="'+rpx+'" cy="'+gridOY+'" r="4" fill="#1e8449"/>';
+    }
+  }
+
+  svg.innerHTML = s;
+
+  var D = b * b - 4 * a * c;
+  var vx = a !== 0 ? (-b / (2 * a)) : 0;
+  var vy = a * vx * vx + b * vx + c;
+  var info = 'y = ' + a + 'x² ' + (b >= 0 ? '+ ' + b : '− ' + Math.abs(b)) + 'x ' + (c >= 0 ? '+ ' + c : '− ' + Math.abs(c));
+  if (a !== 0) {
+    info += '\nPuncak: (' + vx.toFixed(2) + ', ' + vy.toFixed(2) + ')';
+    info += '\nDiskriminan D = ' + D.toFixed(2);
+    if (D > 0) info += ' > 0 → dua akar real';
+    else if (D === 0) info += ' = 0 → satu akar (menyinggung)';
+    else info += ' < 0 → tidak ada akar real';
+  }
+  document.getElementById('parabola-result').textContent = info;
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  initCoordPlane();
+  updateLine();
+  updateCircleEq();
+  updateParabola();
+});
+</script>
+</body>
+</html>

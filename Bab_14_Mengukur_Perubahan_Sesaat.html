@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 14 — Mengukur Perubahan Sesaat (Turunan)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 14 · Volume IV</div>
+  <h1 class="chapter-title">Mengukur Perubahan<br>Sesaat</h1>
+  <p class="chapter-subtitle">
+    Tentang turunan — alat untuk mengukur seberapa cepat sesuatu berubah<br>
+    pada satu momen tertentu, dan bagaimana ia mengubah sains.
+  </p>
+  <div class="divider"></div>
+
+  <p class="lead">
+    Di Bab 9, kita mendefinisikan gradien garis lurus: $m = \frac{\Delta y}{\Delta x}$. Gradien mengukur laju perubahan — seberapa banyak $y$ berubah per satuan $x$. Tapi garis lurus punya gradien yang <em>konstan</em>. Bagaimana dengan kurva — yang gradienynya berubah di setiap titik?
+  </p>
+
+  <div class="narrator">
+    Sebuah mobil bergerak. Speedometer menunjukkan kecepatan sesaat — bukan rata-rata. Tapi kecepatan rata-rata = jarak/waktu. Jika interval waktunya diperkecil mendekati nol, kecepatan rata-rata mendekati kecepatan sesaat. Itulah turunan: limit dari kecepatan rata-rata saat interval mendekati nol.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita mengukur laju perubahan sesaat<br>— gradien kurva di satu titik?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Revolusi Kalkulus: Dua Abad Persiapan</h2>
+
+  <h3>Dunia Islam dan India: Langkah-langkah Awal</h3>
+
+  <div class="historical-note">
+    <strong>Ibn al-Haytham</strong> (965–1040 M) mengembangkan metode untuk menghitung jumlah pangkat bilangan berurutan ($\sum k^n$) — alat penting untuk integrasi (Bab 15). Ia menggunakan teknik ini untuk menghitung volume paraboloid, sebuah langkah ke arah kalkulus.
+  </div>
+
+  <div class="historical-note">
+    <strong>Sharaf al-Din al-Tusi</strong> (sekitar 1135–1213 M) melakukan sesuatu yang mengejutkan: untuk menentukan kapan persamaan kubik memiliki solusi, ia mempelajari "titik tertinggi" dari ekspresi aljabar tertentu. Metodenya — mencari titik di mana fungsi berubah dari naik ke turun — adalah inti dari turunan, meskipun tanpa notasi formal.
+  </div>
+
+  <div class="historical-note">
+    Di India, <strong>Bhaskara II</strong> (1114–1185 M) menulis bahwa "kecepatan sesaat planet" bisa ditemukan dengan menghitung selisih posisi pada interval waktu yang sangat kecil — secara eksplisit mendekati konsep turunan. Kemudian, <strong>Madhava</strong> dan mazhab Kerala (abad 14–15 M) menurunkan deret pangkat untuk $\sin x$ dan $\cos x$ — yang membutuhkan pemahaman tentang turunan fungsi trigonometri.
+  </div>
+
+  <h3>Eropa: Newton dan Leibniz</h3>
+
+  <div class="historical-note">
+    <strong>Pierre de Fermat</strong> (1601–1665) mengembangkan metode untuk menemukan titik maksimum dan minimum fungsi — pada dasarnya, menemukan di mana turunan = 0, meskipun ia tidak menggunakan istilah itu. Ia juga menemukan cara menghitung gradien garis singgung ke kurva.
+  </div>
+
+  <div class="historical-note">
+    <strong>Isaac Newton</strong> (1643–1727) dan <strong>Gottfried Wilhelm Leibniz</strong> (1646–1716) secara independen mengembangkan kalkulus pada 1680-an. Newton menyebutnya "method of fluxions" dan menggunakannya untuk fisika — gaya, gerak, gravitasi. Leibniz mengembangkan notasi yang lebih baik ($\frac{dy}{dx}$, $\int$) yang kita gunakan sampai sekarang. Prioritas siapa yang lebih dulu memicu perselisihan pahit selama puluhan tahun.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DARI GARIS TALI KE GARIS SINGGUNG ═══════════════════════ -->
+
+  <h2>Dari Garis Tali ke Garis Singgung</h2>
+
+  <p>
+    Ambil fungsi $f$ dan dua titik di grafiknya: $(a, f(a))$ dan $(a+h, f(a+h))$. Garis yang menghubungkan keduanya disebut <strong>garis tali</strong> (secant line). Gradiennya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $m_{\text{tali}} = \frac{f(a+h) - f(a)}{h}$
+  </p>
+
+  <p>
+    Sekarang biarkan $h$ mendekati $0$ — titik kedua "bergeser" mendekati titik pertama. Garis tali berputar dan mendekati <strong>garis singgung</strong>:
+  </p>
+
+  <div class="definition-box">
+    <strong>Turunan</strong> fungsi $f$ di titik $x = a$:
+    $$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$$
+    Ini adalah gradien garis singgung ke grafik $f$ di titik $(a, f(a))$.
+  </div>
+
+  <div class="recall-box">
+    Ingat latihan 8 di Bab 13: $\displaystyle\lim_{h \to 0} \frac{(3+h)^2 - 9}{h} = 6$. Itu adalah $f'(3)$ untuk $f(x) = x^2$!
+  </div>
+
+  <!-- INTERACTIVE 1: Secant to Tangent -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Dari Garis Tali ke Garis Singgung</div>
+    <div class="interactive-desc">Perkecil $h$ dan lihat garis tali berputar mendekati garis singgung. Gradiennya mendekati turunan.</div>
+
+    <div class="slider-container">
+      <label>h: <strong id="deriv-h-val">2.0</strong></label>
+      <input type="range" id="deriv-h" min="0.01" max="3" value="2" step="0.01" oninput="updateSecant()">
+    </div>
+    <div class="slider-container">
+      <label>Titik a: <strong id="deriv-a-val">1</strong></label>
+      <input type="range" id="deriv-a" min="-2" max="3" value="1" step="0.5" oninput="updateSecant()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="secant-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="secant-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ ATURAN TURUNAN ═══════════════════════ -->
+
+  <h2>Aturan-Aturan Turunan</h2>
+
+  <p>
+    Menghitung turunan dari definisi limit setiap kali sangat melelahkan. Untungnya, ada aturan-aturan yang membuat hidup lebih mudah:
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan dasar:</strong>
+    <table style="width: 100%; font-size: 0.95rem; border-collapse: collapse; margin: 0.5rem 0;">
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$f(x) = c$ (konstanta)</td><td style="padding: 6px;">$f'(x) = 0$</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$f(x) = x^n$</td><td style="padding: 6px;">$f'(x) = nx^{n-1}$</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$f(x) = e^x$</td><td style="padding: 6px;">$f'(x) = e^x$ (!)</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$f(x) = \ln x$</td><td style="padding: 6px;">$f'(x) = \frac{1}{x}$</td></tr>
+      <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">$f(x) = \sin x$</td><td style="padding: 6px;">$f'(x) = \cos x$</td></tr>
+      <tr><td style="padding: 6px;">$f(x) = \cos x$</td><td style="padding: 6px;">$f'(x) = -\sin x$</td></tr>
+    </table>
+  </div>
+
+  <p>
+    Perhatikan: $e^x$ adalah turunan dari dirinya sendiri! Ini adalah sifat yang unik dan merupakan alasan mengapa $e$ begitu penting (Bab 12).
+  </p>
+
+  <div class="key-insight">
+    <strong>Aturan kombinasi:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2.4;">
+      <li><strong>Kelipatan konstanta:</strong> $(cf)' = cf'$</li>
+      <li><strong>Penjumlahan:</strong> $(f + g)' = f' + g'$</li>
+      <li><strong>Perkalian:</strong> $(fg)' = f'g + fg'$</li>
+      <li><strong>Pembagian:</strong> $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$</li>
+      <li><strong>Aturan rantai:</strong> $(f \circ g)' = f'(g(x)) \cdot g'(x)$ — turunan fungsi komposisi</li>
+    </ul>
+  </div>
+
+  <!-- INTERACTIVE 2: Derivative Calculator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Grafik Fungsi dan Turunannya</div>
+    <div class="interactive-desc">Pilih fungsi untuk melihat grafiknya (biru) dan grafik turunannya (merah). Perhatikan: saat fungsi naik, turunan positif; saat fungsi turun, turunan negatif.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setDerivFn('x2')" id="df-x2" style="background: var(--accent-blue); color: white;">x²</button>
+        <button class="btn" onclick="setDerivFn('x3')" id="df-x3">x³</button>
+        <button class="btn" onclick="setDerivFn('sin')" id="df-sin">sin(x)</button>
+        <button class="btn" onclick="setDerivFn('exp')" id="df-exp">eˣ</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="deriv-fn-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="deriv-fn-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ APLIKASI ═══════════════════════ -->
+
+  <h2>Aplikasi: Maksimum, Minimum, dan Optimisasi</h2>
+
+  <p>
+    Di mana fungsi mencapai puncak atau lembah? Di titik di mana turunan = 0 (atau tidak ada):
+  </p>
+
+  <div class="key-insight">
+    <strong>Menemukan titik kritis:</strong>
+    <ol style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li>Hitung $f'(x)$</li>
+      <li>Selesaikan $f'(x) = 0$ → <strong>titik kritis</strong></li>
+      <li>Uji: jika $f'$ berubah dari positif ke negatif → <strong>maksimum lokal</strong>; dari negatif ke positif → <strong>minimum lokal</strong></li>
+    </ol>
+  </div>
+
+  <!-- INTERACTIVE 3: Optimization -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Optimisasi — Menemukan Maksimum dan Minimum</div>
+    <div class="interactive-desc">Fungsi $f(x) = -x^2 + bx + c$. Ubah koefisien dan lihat titik puncak bergeser. Turunan $f'(x) = -2x + b = 0$ saat $x = b/2$.</div>
+
+    <div class="slider-container">
+      <label>b: <strong id="opt-b-val">4</strong></label>
+      <input type="range" id="opt-b" min="-6" max="6" value="4" step="0.5" oninput="updateOptim()">
+    </div>
+    <div class="slider-container">
+      <label>c: <strong id="opt-c-val">1</strong></label>
+      <input type="range" id="opt-c" min="-4" max="6" value="1" step="0.5" oninput="updateOptim()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="optim-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="optim-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN & LATIHAN ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mengira turunan = 0 pasti berarti maksimum/minimum.</strong><br>
+    Titik belok ($x^3$ di $x = 0$) juga memiliki $f'(x) = 0$ tapi bukan maks/min.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Lupa aturan rantai.</strong><br>
+    Turunan $\sin(3x)$ bukan $\cos(3x)$, tapi $3\cos(3x)$. Selalu kalikan dengan turunan "dalam".
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira turunan $x^n$ adalah $x^{n-1}$.</strong><br>
+    Seharusnya $nx^{n-1}$ — jangan lupa koefisien $n$ di depan.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Computation</div>
+    <p>Hitung turunan: (a) $f(x) = 5x^3$, (b) $g(x) = x^4 - 3x^2 + 7$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Aturan pangkat: $(x^n)' = nx^{n-1}$. Turunan konstanta = 0.</div>
+    <div class="answer-content" id="a1">(a) $f'(x) = 15x^2$. (b) $g'(x) = 4x^3 - 6x$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — From Definition</div>
+    <p>Gunakan definisi limit untuk menemukan turunan $f(x) = 3x^2$ di $x = 2$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">$f'(2) = \lim_{h \to 0} \frac{3(2+h)^2 - 3(4)}{h}$.</div>
+    <div class="answer-content" id="a2">$\frac{3(4+4h+h^2) - 12}{h} = \frac{12h + 3h^2}{h} = 12 + 3h \to 12$. Cek: $f'(x) = 6x$, $f'(2) = 12$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Application</div>
+    <p>Sebuah bola dilempar vertikal ke atas dengan ketinggian $h(t) = -5t^2 + 20t$ meter setelah $t$ detik. (a) Berapa kecepatan awal? (b) Kapan bola mencapai tinggi maksimum? (c) Berapa tinggi maksimumnya?</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Kecepatan = $h'(t)$. Tinggi maks saat $h'(t) = 0$.</div>
+    <div class="answer-content" id="a3">(a) $h'(t) = -10t + 20$. Kecepatan awal = $h'(0) = 20$ m/s. (b) $h'(t) = 0$ → $t = 2$ s. (c) $h(2) = -20 + 40 = 20$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Chain Rule</div>
+    <p>Hitung turunan $f(x) = (2x + 1)^5$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Aturan rantai: turunan "luar" × turunan "dalam".</div>
+    <div class="answer-content" id="a4">$f'(x) = 5(2x+1)^4 \cdot 2 = 10(2x+1)^4$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Optimization</div>
+    <p>Temukan nilai minimum dari $f(x) = x^2 - 6x + 10$.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">$f'(x) = 0$ untuk menemukan titik kritis.</div>
+    <div class="answer-content" id="a5">$f'(x) = 2x - 6 = 0$ → $x = 3$. $f(3) = 9 - 18 + 10 = 1$. Karena $f''(x) = 2 > 0$, ini minimum. Nilai minimum = $1$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Tangent Line</div>
+    <p>Tentukan persamaan garis singgung ke $y = x^3$ di titik $(2, 8)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Gradien garis singgung = $f'(2)$. Lalu gunakan $y - y_1 = m(x - x_1)$.</div>
+    <div class="answer-content" id="a6">$f'(x) = 3x^2$, $f'(2) = 12$. Persamaan: $y - 8 = 12(x - 2)$ → $y = 12x - 16$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Conceptual</div>
+    <p>Jelaskan secara intuitif mengapa turunan $e^x$ adalah $e^x$ sendiri.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">Pikirkan tentang pertumbuhan: laju pertumbuhan proporsional terhadap ukuran saat ini.</div>
+    <div class="answer-content" id="a7">$e^x$ mendeskripsikan pertumbuhan di mana <em>laju pertumbuhan pada saat ini</em> sama dengan <em>ukuran saat ini</em>. Semakin besar nilainya, semakin cepat ia tumbuh — dan kecepatan pertumbuhannya tepat sama dengan nilainya. Tidak ada fungsi lain yang memiliki sifat ini.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 8 & 11)</div>
+    <p>Luas lingkaran $A(r) = \pi r^2$. Hitung $A'(r)$. Apa arti geometris hasilnya? (Petunjuk: hubungkan dengan keliling.)</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Turunkan $\pi r^2$ terhadap $r$. Bandingkan hasilnya dengan rumus keliling dari Bab 8.</div>
+    <div class="answer-content" id="a8">$A'(r) = 2\pi r$ — ini tepat rumus <strong>keliling</strong> lingkaran! Artinya: jika jari-jari bertambah sedikit ($dr$), pertambahan luas $\approx$ keliling $\times$ $dr$ — cincin tipis di tepi lingkaran. Kalkulus menghubungkan luas dan keliling secara elegan.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Epilog: Dari Mengukur Perubahan ke Mengumpulkan Perubahan</h2>
+
+  <p>
+    Turunan menjawab: "seberapa cepat sesuatu berubah di satu titik?" Tapi ada pertanyaan kebalikannya: jika kita <em>tahu</em> laju perubahan di setiap titik, bisakah kita menghitung <em>total</em> perubahan? Bisakah kita menghitung luas di bawah kurva yang melengkung? Jawabannya adalah <strong>integral</strong>.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 15 — Mengumpulkan Serpihan Kecil (Integral)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+var gu = 30, gox = 160, goy = 200;
+function dGrid(svg, w, h) {
+  var s = '';
+  for (var i = -6; i <= 6; i++) {
+    var px = gox+i*gu, py = goy-i*gu;
+    s += '<line x1="'+px+'" y1="0" x2="'+px+'" y2="'+h+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+    s += '<line x1="0" y1="'+py+'" x2="'+w+'" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  s += '<line x1="0" y1="'+goy+'" x2="'+w+'" y2="'+goy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+gox+'" y1="0" x2="'+gox+'" y2="'+h+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  return s;
+}
+
+// ═══════ Interactive 1: Secant to Tangent ═══════
+function updateSecant() {
+  var h = parseFloat(document.getElementById('deriv-h').value);
+  var a = parseFloat(document.getElementById('deriv-a').value);
+  document.getElementById('deriv-h-val').textContent = h.toFixed(2);
+  document.getElementById('deriv-a-val').textContent = a;
+
+  var f = function(x) { return x * x; };
+  var svg = document.getElementById('secant-svg');
+  var s = dGrid(svg, 320, 280);
+
+  // curve
+  var pts = [];
+  for (var x = -3; x <= 4.5; x += 0.1) {
+    var py = goy - f(x) * gu;
+    if (py > -20 && py < 300) pts.push((gox+x*gu)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+
+  // secant line
+  var ya = f(a), yah = f(a + h);
+  var m = (yah - ya) / h;
+  var x1 = a - 2, x2 = a + h + 2;
+  var y1 = ya + m * (x1 - a), y2 = ya + m * (x2 - a);
+  s += '<line x1="'+(gox+x1*gu)+'" y1="'+(goy-y1*gu)+'" x2="'+(gox+x2*gu)+'" y2="'+(goy-y2*gu)+'" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>';
+
+  // points
+  s += '<circle cx="'+(gox+a*gu)+'" cy="'+(goy-ya*gu)+'" r="5" fill="#c0392b"/>';
+  s += '<circle cx="'+(gox+(a+h)*gu)+'" cy="'+(goy-yah*gu)+'" r="4" fill="#1e8449"/>';
+
+  svg.innerHTML = s;
+  document.getElementById('secant-result').textContent =
+    'f(x) = x²\nm_tali = [f('+a+'+'+h.toFixed(2)+') − f('+a+')] / '+h.toFixed(2)+' = '+(m).toFixed(4)+
+    '\nTurunan f\'('+a+') = 2×'+a+' = '+(2*a)+
+    '\n(semakin kecil h, gradien tali → turunan)';
+}
+
+// ═══════ Interactive 2: Derivative Function Graph ═══════
+var derivFnType = 'x2';
+function setDerivFn(t) {
+  derivFnType = t;
+  ['x2','x3','sin','exp'].forEach(function(k) {
+    var b = document.getElementById('df-'+k);
+    b.style.background = k === t ? 'var(--accent-blue)' : '';
+    b.style.color = k === t ? 'white' : '';
+  });
+  drawDerivFn();
+}
+function drawDerivFn() {
+  var svg = document.getElementById('deriv-fn-svg');
+  var s = dGrid(svg, 320, 280);
+  var fPts = [], dPts = [], info = '';
+  var sc = derivFnType === 'exp' ? 15 : gu;
+  for (var x = -5; x <= 5; x += 0.08) {
+    var y, dy;
+    if (derivFnType === 'x2') { y = x*x; dy = 2*x; info = "f(x)=x², f'(x)=2x"; }
+    else if (derivFnType === 'x3') { y = x*x*x/3; dy = x*x; info = "f(x)=x³/3, f'(x)=x²"; sc = 20; }
+    else if (derivFnType === 'sin') { y = Math.sin(x); dy = Math.cos(x); info = "f(x)=sin(x), f'(x)=cos(x)"; sc = 40; }
+    else { y = Math.exp(x); dy = Math.exp(x); info = "f(x)=eˣ, f'(x)=eˣ (sama!)"; sc = 15; }
+    var fy = goy - y*sc, fdy = goy - dy*sc;
+    if (fy > -20 && fy < 300) fPts.push((gox+x*gu)+','+fy);
+    if (fdy > -20 && fdy < 300) dPts.push((gox+x*gu)+','+fdy);
+  }
+  s += '<polyline points="'+fPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<polyline points="'+dPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>';
+  s += '<text x="280" y="20" font-family="Inter" font-size="10" fill="#2471a3">f(x)</text>';
+  s += '<text x="280" y="34" font-family="Inter" font-size="10" fill="#c0392b">f\'(x)</text>';
+  svg.innerHTML = s;
+  document.getElementById('deriv-fn-result').textContent = info;
+}
+
+// ═══════ Interactive 3: Optimization ═══════
+function updateOptim() {
+  var b = parseFloat(document.getElementById('opt-b').value);
+  var c = parseFloat(document.getElementById('opt-c').value);
+  document.getElementById('opt-b-val').textContent = b;
+  document.getElementById('opt-c-val').textContent = c;
+
+  var svg = document.getElementById('optim-svg');
+  var s = dGrid(svg, 320, 280);
+  var pts = [];
+  for (var x = -4; x <= 6; x += 0.1) {
+    var y = -x*x + b*x + c;
+    var py = goy - y * gu;
+    if (py > -20 && py < 300) pts.push((gox+x*gu)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+
+  var vx = b / 2;
+  var vy = -vx*vx + b*vx + c;
+  var vpx = gox + vx * gu, vpy = goy - vy * gu;
+  if (vpy > 0 && vpy < 280) {
+    s += '<circle cx="'+vpx+'" cy="'+vpy+'" r="5" fill="#c0392b"/>';
+    s += '<text x="'+(vpx+8)+'" y="'+(vpy-8)+'" font-family="JetBrains Mono" font-size="10" fill="#c0392b">max</text>';
+  }
+  svg.innerHTML = s;
+  document.getElementById('optim-result').textContent =
+    'f(x) = -x² + '+b+'x + '+c+
+    '\nf\'(x) = -2x + '+b+' = 0 → x = '+vx.toFixed(1)+
+    '\nMaksimum: f('+vx.toFixed(1)+') = '+vy.toFixed(2);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateSecant();
+  drawDerivFn();
+  updateOptim();
+});
+</script>
+</body>
+</html>

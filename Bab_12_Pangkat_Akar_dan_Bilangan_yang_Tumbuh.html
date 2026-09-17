@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 12 — Pangkat, Akar, dan Bilangan yang Tumbuh</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 12 · Volume III</div>
+  <h1 class="chapter-title">Pangkat, Akar, dan<br>Bilangan yang Tumbuh</h1>
+  <p class="chapter-subtitle">
+    Tentang eksponen yang membuat bilangan meledak,<br>
+    logaritma yang menjinakkannya, dan bilangan $e$ yang muncul dari mana-mana.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 1, perkalian lahir sebagai "penjumlahan berulang": $3 \times 4 = 3 + 3 + 3 + 3$. Sekarang kita bertanya: bagaimana jika kita melakukan <em>perkalian berulang</em>? $2 \times 2 \times 2 \times 2 = ?$ Di sinilah <strong>pangkat</strong> (eksponen) lahir — dan bersamanya, pertumbuhan yang luar biasa cepat.
+  </p>
+
+  <div class="narrator">
+    Sebuah legenda klasik: penemu permainan catur meminta raja sebagai hadiah: satu butir beras di kotak pertama papan catur, dua di kotak kedua, empat di kotak ketiga — setiap kotak dua kali lipat dari sebelumnya. Raja tertawa — permintaan yang tampak kecil. Tapi di kotak ke-64: $2^{63} = 9.223.372.036.854.775.808$ butir beras. Lebih dari seluruh produksi beras dunia selama ribuan tahun. Itulah kekuatan eksponensial.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita mendeskripsikan pertumbuhan yang berlipat ganda,<br>dan bagaimana kita membaliknya?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Perkalian Berulang ke Logaritma: Perjalanan Panjang</h2>
+
+  <h3>Akar Kuno: Kuadrat dan Kubik</h3>
+
+  <div class="historical-note">
+    Bangsa <strong>Babilonia</strong> sudah membuat tabel kuadrat dan kubik ($n^2$ dan $n^3$) sejak sekitar 2000 SM — mereka membutuhkannya untuk menghitung luas dan volume. Tapi mereka tidak memiliki notasi umum untuk pangkat sembarang.
+  </div>
+
+  <h3>Dunia Islam: Pangkat Tinggi dan Akar</h3>
+
+  <div class="historical-note">
+    <strong>Al-Karaji</strong> (sekitar 953–1029 M) di Baghdad adalah orang pertama yang mendefinisikan pangkat bilangan secara umum melampaui kubik — $x^4$, $x^5$, dan seterusnya — dan merumuskan aturan bahwa $x^m \cdot x^n = x^{m+n}$. Ia juga mengembangkan segitiga aritmetika (yang kemudian dikenal sebagai "Segitiga Pascal") untuk menguraikan $(a+b)^n$.
+  </div>
+
+  <div class="historical-note">
+    <strong>Abu Kamil</strong> (sekitar 850–930 M) bekerja dengan akar tinggi dan mengembangkan teknik untuk menyederhanakan ekspresi yang melibatkan akar bersarang — misalnya $\sqrt{5 + \sqrt{3}}$. Karyanya menunjukkan kematangan dalam bekerja dengan pangkat dan akar sebagai operasi yang saling terkait.
+  </div>
+
+  <div class="historical-note">
+    <strong>Omar Khayyam</strong> (1048–1131 M) menggeneralisasi binomial $(a+b)^n$ dan menuliskan koefisien-koefisiennya — cikal bakal Segitiga Pascal. Ia menggunakan ini dalam konteks menyelesaikan persamaan kubik.
+  </div>
+
+  <h3>Logaritma: Penemuan yang Mengubah Perhitungan</h3>
+
+  <div class="historical-note">
+    <strong>Ibn Yunus</strong> (950–1009 M), yang kita sebut di Bab 10, menemukan rumus "prosthaphaeresis" — mengubah perkalian menjadi penjumlahan menggunakan fungsi trigonometri. Ini adalah cikal bakal ide logaritma: mengubah operasi yang sulit (perkalian) menjadi operasi yang mudah (penjumlahan).
+  </div>
+
+  <div class="historical-note">
+    <strong>John Napier</strong> (1550–1617) dari Skotlandia menemukan <em>logaritma</em> pada 1614. Motivasinya sangat praktis: menyederhanakan perhitungan astronomi yang melibatkan perkalian bilangan besar. Dengan tabel logaritma, perkalian menjadi penjumlahan — menghemat berbulan-bulan kerja. Laplace mengatakan logaritma "menggandakan umur para astronom."
+  </div>
+
+  <div class="historical-note">
+    <strong>Leonhard Euler</strong> (1707–1783) menyatukan segalanya. Ia memperkenalkan bilangan $e \approx 2{,}71828...$ sebagai basis logaritma natural, menunjukkan bahwa $e$ muncul dari rumus bunga majemuk, dan menemukan hubungan menakjubkan $e^{i\pi} + 1 = 0$ — menghubungkan lima konstanta paling penting dalam matematika.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EKSPONEN ═══════════════════════ -->
+
+  <h2>Eksponen: Perkalian Berulang</h2>
+
+  <div class="definition-box">
+    $$a^n = \underbrace{a \times a \times a \times \cdots \times a}_{n \text{ kali}}$$
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$a$ = <strong>basis</strong></li>
+      <li>$n$ = <strong>eksponen</strong> (pangkat)</li>
+    </ul>
+  </div>
+
+  <h3>Aturan Eksponen</h3>
+
+  <div class="key-insight">
+    <ol style="margin: 0.5rem 0 0 1.2rem; line-height: 2.4;">
+      <li>$a^m \cdot a^n = a^{m+n}$ — perkalian basis sama → jumlahkan pangkat</li>
+      <li>$\frac{a^m}{a^n} = a^{m-n}$ — pembagian basis sama → kurangkan pangkat</li>
+      <li>$(a^m)^n = a^{mn}$ — pangkat dari pangkat → kalikan pangkat</li>
+      <li>$(ab)^n = a^n b^n$ — pangkat distribusi terhadap perkalian</li>
+      <li>$a^0 = 1$ (untuk $a \neq 0$) — mengapa? Dari aturan 2: $\frac{a^n}{a^n} = a^{n-n} = a^0 = 1$</li>
+      <li>$a^{-n} = \frac{1}{a^n}$ — pangkat negatif = kebalikan</li>
+      <li>$a^{1/n} = \sqrt[n]{a}$ — pangkat pecahan = akar</li>
+    </ol>
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 3: $\sqrt{2} = 2^{1/2}$. Sekarang kita memahaminya sebagai kasus khusus aturan pangkat pecahan. Akar kuadrat adalah pangkat setengah!
+  </div>
+
+  <!-- INTERACTIVE 1: Exponential Growth -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Pertumbuhan Eksponensial vs Linear</div>
+    <div class="interactive-desc">Bandingkan $f(x) = 2^x$ (eksponensial) dengan $g(x) = 2x$ (linear). Perhatikan bagaimana eksponensial perlahan kemudian meledak.</div>
+
+    <div class="slider-container">
+      <label>Basis eksponen: <strong id="exp-base-val">2</strong></label>
+      <input type="range" id="exp-base" min="1.5" max="4" value="2" step="0.5" oninput="updateExpGrowth()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="exp-growth-svg" width="340" height="280" viewBox="0 0 340 280"></svg>
+    </div>
+
+    <div id="exp-growth-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LOGARITMA ═══════════════════════ -->
+
+  <h2>Logaritma: Membalik Eksponen</h2>
+
+  <p>
+    Jika $2^x = 8$, berapa $x$? Mudah: $x = 3$ karena $2^3 = 8$. Tapi jika $2^x = 10$? Tidak ada bilangan bulat yang bekerja. Kita butuh operasi baru untuk menemukan eksponen — itulah <strong>logaritma</strong>.
+  </p>
+
+  <div class="definition-box">
+    $$\log_a b = c \quad \Longleftrightarrow \quad a^c = b$$
+    "$\log$ basis $a$ dari $b$ sama dengan $c$" berarti "$a$ dipangkatkan $c$ menghasilkan $b$."
+  </div>
+
+  <p>
+    Contoh:
+  </p>
+  <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">
+    <li>$\log_2 8 = 3$ karena $2^3 = 8$</li>
+    <li>$\log_{10} 1000 = 3$ karena $10^3 = 1000$</li>
+    <li>$\log_5 1 = 0$ karena $5^0 = 1$</li>
+    <li>$\log_2 \frac{1}{4} = -2$ karena $2^{-2} = \frac{1}{4}$</li>
+  </ul>
+
+  <div class="key-insight">
+    <strong>Logaritma adalah fungsi invers dari eksponen</strong> (Bab 10). Jika $f(x) = a^x$, maka $f^{-1}(x) = \log_a x$.
+  </div>
+
+  <h3>Aturan Logaritma</h3>
+
+  <div class="key-insight">
+    <ol style="margin: 0.5rem 0 0 1.2rem; line-height: 2.4;">
+      <li>$\log_a(xy) = \log_a x + \log_a y$ — perkalian → penjumlahan</li>
+      <li>$\log_a\frac{x}{y} = \log_a x - \log_a y$ — pembagian → pengurangan</li>
+      <li>$\log_a(x^n) = n\log_a x$ — pangkat → perkalian</li>
+      <li>$\log_a a = 1$ dan $\log_a 1 = 0$</li>
+    </ol>
+    Aturan-aturan ini adalah "cerminan" dari aturan eksponen — karena logaritma <em>adalah</em> eksponen!
+  </div>
+
+  <!-- INTERACTIVE 2: Log Calculator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Kalkulator Logaritma — Mencari Pangkat</div>
+    <div class="interactive-desc">Masukkan basis dan bilangan. Logaritma menjawab: "basis harus dipangkatkan berapa agar menghasilkan bilangan ini?"</div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">Basis:</label>
+        <input type="number" id="log-base" value="2" min="1.1" max="100" step="0.1" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">Bilangan:</label>
+        <input type="number" id="log-num" value="8" min="0.001" max="99999" step="1" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="calcLog()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 14px;">Hitung log</button>
+    </div>
+
+    <div id="log-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ BILANGAN e ═══════════════════════ -->
+
+  <h2>Bilangan $e$: Konstanta Pertumbuhan Natural</h2>
+
+  <p>
+    Ada satu basis yang lebih "natural" dari semua basis lain: bilangan $e \approx 2{,}71828...$
+  </p>
+
+  <p>
+    Dari mana ia muncul? Bayangkan kamu menabung Rp 1.000.000 dengan bunga 100% per tahun. Jika dihitung sekali di akhir tahun: $1.000.000 \times 2 = 2.000.000$. Tapi bagaimana jika bunga dihitung dua kali setahun (50% per semester)? Atau 12 kali (per bulan)? Atau setiap detik?
+  </p>
+
+  <div class="key-insight">
+    $$e = \lim_{n \to \infty}\left(1 + \frac{1}{n}\right)^n \approx 2{,}71828182845...$$
+    Semakin sering bunga dihitung, hasilnya mendekati $e$ — tapi tidak pernah melampaui. Bilangan ini irasional (Bab 3) dan bahkan <em>transenden</em> (bukan akar persamaan polinomial manapun).
+  </div>
+
+  <!-- INTERACTIVE 3: Compound Interest -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mendekati $e$ — Bunga Majemuk</div>
+    <div class="interactive-desc">Tingkatkan jumlah periode penghitungan bunga. Lihat bagaimana $(1 + 1/n)^n$ mendekati $e$.</div>
+
+    <div class="slider-container">
+      <label>Jumlah periode (n): <strong id="compound-n-val">1</strong></label>
+      <input type="range" id="compound-n" min="1" max="500" value="1" oninput="updateCompound()">
+    </div>
+
+    <div id="compound-result" class="result-display" style="font-size: 0.92rem;"></div>
+  </div>
+
+  <h3>Logaritma Natural</h3>
+
+  <div class="key-insight">
+    <strong>Logaritma natural</strong> = logaritma basis $e$, ditulis $\ln x$:
+    $$\ln x = \log_e x$$
+    $\ln e = 1$, $\ln 1 = 0$. Logaritma natural muncul di mana-mana dalam kalkulus (Bab 13–16).
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mengira $a^m \cdot b^m = (ab)^{2m}$.</strong><br>
+    Salah! $a^m \cdot b^m = (ab)^m$. Pangkatnya tetap $m$, bukan dijumlahkan.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Mengira $\log(a + b) = \log a + \log b$.</strong><br>
+    Salah! $\log a + \log b = \log(ab)$. Logaritma mengubah <em>perkalian</em> jadi penjumlahan, bukan penjumlahan jadi penjumlahan.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Lupa bahwa $\log_a x$ hanya terdefinisi untuk $x > 0$.</strong><br>
+    Tidak ada pangkat bilangan positif yang menghasilkan nol atau bilangan negatif. Domain $\log$ = bilangan positif saja.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Sederhanakan: (a) $2^3 \cdot 2^5$, (b) $\frac{3^7}{3^4}$, (c) $(5^2)^3$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Aturan: basis sama dikalikan → jumlahkan pangkat; dibagi → kurangkan; pangkat dari pangkat → kalikan.</div>
+    <div class="answer-content" id="a1">(a) $2^{3+5} = 2^8 = 256$. (b) $3^{7-4} = 3^3 = 27$. (c) $5^{2 \times 3} = 5^6 = 15625$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Hitung tanpa kalkulator: (a) $\log_2 32$, (b) $\log_3 \frac{1}{9}$, (c) $\log_{10} 0{,}001$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Tanya: "Basis dipangkatkan berapa agar menghasilkan bilangan ini?"</div>
+    <div class="answer-content" id="a2">(a) $2^5 = 32$, jadi $\log_2 32 = 5$. (b) $3^{-2} = \frac{1}{9}$, jadi $\log_3 \frac{1}{9} = -2$. (c) $10^{-3} = 0{,}001$, jadi $\log_{10} 0{,}001 = -3$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Log Rules</div>
+    <p>Sederhanakan menjadi satu logaritma: $\log_2 12 - \log_2 3 + \log_2 8$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$\log a - \log b = \log\frac{a}{b}$ dan $\log a + \log b = \log(ab)$.</div>
+    <div class="answer-content" id="a3">$\log_2\frac{12}{3} + \log_2 8 = \log_2 4 + \log_2 8 = \log_2(4 \times 8) = \log_2 32 = 5$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Equation</div>
+    <p>Selesaikan: $3^x = 81$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">$81 = 3^?$</div>
+    <div class="answer-content" id="a4">$81 = 3^4$, jadi $x = 4$. Alternatif: $x = \log_3 81 = 4$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Application</div>
+    <p>Populasi bakteri berlipat ganda setiap 3 jam. Dimulai dari 100 bakteri, berapa populasi setelah 24 jam?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Dalam 24 jam, berapa kali berlipat ganda? Populasi = $100 \times 2^n$.</div>
+    <div class="answer-content" id="a5">$24 \div 3 = 8$ kali lipat ganda. Populasi = $100 \times 2^8 = 100 \times 256 = 25.600$ bakteri.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Conceptual</div>
+    <p>Jelaskan mengapa $a^0 = 1$ untuk semua $a \neq 0$ dengan menggunakan aturan $\frac{a^n}{a^n} = a^{n-n}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">$\frac{a^n}{a^n}$ bisa dihitung dua cara: dengan aturan eksponen, dan langsung.</div>
+    <div class="answer-content" id="a6">Di satu sisi: $\frac{a^n}{a^n} = 1$ (bilangan dibagi dirinya sendiri). Di sisi lain: aturan pembagian → $a^{n-n} = a^0$. Jadi $a^0 = 1$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Error Analysis</div>
+    <p>Siswa menghitung $\log_2(8 + 8) = \log_2 8 + \log_2 8 = 3 + 3 = 6$. Apakah benar?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$\log(a + b) \neq \log a + \log b$. Hitung $\log_2 16$ langsung.</div>
+    <div class="answer-content" id="a7"><strong>Salah!</strong> $\log_2(8 + 8) = \log_2 16 = 4$, bukan 6. $\log_2 8 + \log_2 8 = \log_2(8 \times 8) = \log_2 64 = 6 \neq 4$. Aturan penjumlahan log berlaku untuk $\log(ab)$, bukan $\log(a + b)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 3 & 5)</div>
+    <p>Selesaikan $2^{2x} - 5 \cdot 2^x + 4 = 0$. (Petunjuk: substitusi $u = 2^x$, lalu selesaikan persamaan kuadrat dari Bab 5.)</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">$2^{2x} = (2^x)^2 = u^2$. Jadi persamaan menjadi $u^2 - 5u + 4 = 0$.</div>
+    <div class="answer-content" id="a8">$u^2 - 5u + 4 = (u-1)(u-4) = 0$. Jadi $u = 1$ atau $u = 4$.<br>$2^x = 1 \Rightarrow x = 0$. $2^x = 4 \Rightarrow x = 2$.<br>Solusi: $x = 0$ atau $x = 2$.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Menuju Perubahan yang Tak Terhingga Kecil</h2>
+
+  <p>
+    Kita sekarang memiliki semua "bahan bangunan" untuk memasuki dunia kalkulus. Fungsi linear, kuadrat, trigonometri, eksponensial, logaritma — semuanya sudah kita kenal. Aljabar, geometri, dan koordinat sudah menyatu.
+  </p>
+
+  <p>
+    Tapi ada satu pertanyaan besar yang belum kita jawab: bagaimana kita menangani perubahan yang <em>terus-menerus</em>? Sebuah mobil tidak melompat dari 0 km/jam ke 60 km/jam — ia berakselerasi secara gradual. Bagaimana kita mengukur kecepatannya pada <em>satu detik tertentu</em>? Untuk itu, kita butuh ide baru: <strong>limit</strong> — mendekati tanpa pernah sampai.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 13 — Mendekati Tanpa Pernah Sampai (Limit)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Exponential Growth ═══════
+function updateExpGrowth() {
+  var base = parseFloat(document.getElementById('exp-base').value);
+  document.getElementById('exp-base-val').textContent = base;
+
+  var svg = document.getElementById('exp-growth-svg');
+  var ox = 40, oy = 250, w = 300, h = 230;
+  var xScale = 30, yScale = h / Math.pow(base, 7);
+  var s = '';
+  // axes
+  s += '<line x1="'+ox+'" y1="'+(oy-h)+'" x2="'+ox+'" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="'+(ox+w)+'" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  // x labels
+  for (var i = 0; i <= 8; i++) {
+    var px = ox + i * xScale;
+    s += '<text x="'+px+'" y="'+(oy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+  }
+
+  // exponential curve
+  var ePts = [];
+  for (var x = 0; x <= 8; x += 0.1) {
+    var y = Math.pow(base, x);
+    var py = oy - y * yScale;
+    if (py >= oy - h - 5) ePts.push((ox + x * xScale) + ',' + py);
+  }
+  s += '<polyline points="'+ePts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // linear line (same slope at x=1)
+  var linSlope = Math.pow(base, 1) * 2;
+  var lPts = [];
+  for (var x = 0; x <= 8; x += 0.2) {
+    var y = linSlope * x;
+    var py = oy - y * yScale;
+    if (py >= oy - h - 5) lPts.push((ox + x * xScale) + ',' + py);
+  }
+  s += '<polyline points="'+lPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2" stroke-dasharray="5,3"/>';
+
+  s += '<text x="'+(ox+w-10)+'" y="'+(oy-h+20)+'" text-anchor="end" font-family="Inter" font-size="10" fill="#c0392b">'+base+'^x</text>';
+  s += '<text x="'+(ox+w-10)+'" y="'+(oy-h+34)+'" text-anchor="end" font-family="Inter" font-size="10" fill="#2471a3">linear</text>';
+
+  svg.innerHTML = s;
+
+  var table = '';
+  for (var x = 0; x <= 8; x++) table += base+'^'+x+' = '+Math.pow(base,x).toFixed(0)+'  ';
+  document.getElementById('exp-growth-result').textContent = table;
+}
+
+// ═══════ Interactive 2: Log Calculator ═══════
+function calcLog() {
+  var base = parseFloat(document.getElementById('log-base').value);
+  var num = parseFloat(document.getElementById('log-num').value);
+  var res = document.getElementById('log-result');
+  if (isNaN(base) || isNaN(num) || base <= 0 || base === 1 || num <= 0) {
+    res.textContent = 'Basis harus > 0 dan ≠ 1, bilangan harus > 0.';
+    return;
+  }
+  var val = Math.log(num) / Math.log(base);
+  res.textContent = 'log_'+base+'('+num+') = '+val.toFixed(6)+
+    '\n\nArtinya: '+base+' ^ '+val.toFixed(6)+' = '+num+
+    '\nVerifikasi: '+base+' ^ '+val.toFixed(6)+' = '+Math.pow(base, val).toFixed(6);
+}
+
+// ═══════ Interactive 3: Compound Interest ═══════
+function updateCompound() {
+  var n = parseInt(document.getElementById('compound-n').value);
+  document.getElementById('compound-n-val').textContent = n;
+  var val = Math.pow(1 + 1/n, n);
+  var e = Math.E;
+  var diff = Math.abs(val - e);
+  document.getElementById('compound-result').textContent =
+    '(1 + 1/'+n+')^'+n+' = '+val.toFixed(10)+
+    '\ne                  = '+e.toFixed(10)+
+    '\nSelisih: '+diff.toFixed(10)+
+    '\n\nn=1: 2.000  n=10: '+Math.pow(1.1,10).toFixed(3)+'  n=100: '+Math.pow(1.01,100).toFixed(5)+'  n=1000: '+Math.pow(1.001,1000).toFixed(6);
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  updateExpGrowth();
+  updateCompound();
+});
+</script>
+</body>
+</html>

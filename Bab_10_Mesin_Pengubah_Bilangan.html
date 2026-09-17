@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 10 — Mesin Pengubah Bilangan (Fungsi)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 10 · Volume III</div>
+  <h1 class="chapter-title">Mesin Pengubah<br>Bilangan</h1>
+  <p class="chapter-subtitle">
+    Tentang fungsi — ide paling sentral dalam matematika modern,<br>
+    yang mengubah "berapa hasilnya?" menjadi pertanyaan yang bisa dijawab secara sistematis.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Di Bab 9, kita menulis hal-hal seperti $y = 2x + 1$ dan $y = x^2 - 4x + 3$. Setiap kali kita memasukkan nilai $x$, keluar satu nilai $y$. Tanpa menyadarinya, kita sudah bekerja dengan <strong>fungsi</strong> — mesin abstrak yang mengambil masukan dan menghasilkan keluaran.
+  </p>
+
+  <p>
+    Fungsi ada di mana-mana. Temperatur sebagai fungsi waktu. Luas lingkaran sebagai fungsi jari-jari. Harga sebagai fungsi permintaan. Setiap kali satu besaran <em>bergantung secara pasti</em> pada besaran lain, ada fungsi yang bekerja.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kotak hitam. Kamu memasukkan bilangan melalui lubang di sebelah kiri. Di dalam kotak, sesuatu terjadi — kamu tidak perlu tahu detailnya. Lalu dari lubang di kanan, keluar bilangan baru. Itulah fungsi. Yang penting: <em>setiap masukan menghasilkan tepat satu keluaran</em>.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ PERTANYAAN ═══════════════════════ -->
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita mendeskripsikan hubungan antara dua besaran secara tepat,<br>dan apa yang bisa kita pelajari dari hubungan itu?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Tabel ke Mesin: Evolusi Ide Fungsi</h2>
+
+  <p>
+    Konsep "satu besaran bergantung pada besaran lain" sudah sangat tua. Tapi kata <em>fungsi</em> dan formalisasinya berkembang perlahan selama berabad-abad.
+  </p>
+
+  <h3>Akar Kuno: Tabel dan Pola</h3>
+
+  <div class="historical-note">
+    Bangsa <strong>Babilonia</strong> (sekitar 1800 SM) membuat tabel-tabel yang pada dasarnya adalah tabel fungsi: tabel kuadrat ($n \mapsto n^2$), tabel akar kuadrat, tabel kebalikan ($n \mapsto \frac{1}{n}$). Mereka juga membuat tabel astronomi yang menghubungkan posisi bintang dengan waktu — fungsi dari waktu, meskipun mereka tidak menggunakan istilah itu.
+  </div>
+
+  <h3>Dunia Islam: Fungsi dalam Astronomi dan Aljabar</h3>
+
+  <div class="historical-note">
+    Para astronom Muslim mengembangkan tabel-tabel matematika yang sangat canggih — disebut <em>zij</em>. <strong>Al-Battani</strong> (858–929 M) dari Harran menyusun <em>zij</em> yang mencakup tabel sinus dan tangen untuk setiap setengah derajat — pada dasarnya, mereka menabulasi fungsi trigonometri. Karyanya mempengaruhi Copernicus dan Kepler di Eropa berabad-abad kemudian.
+  </div>
+
+  <div class="historical-note">
+    <strong>Ibn Yunus</strong> (950–1009 M) dari Kairo mengembangkan tabel astronomi yang luar biasa akurat. Ia menggunakan observasi sistematis selama bertahun-tahun dan menemukan formula-formula yang menghubungkan variabel-variabel astronomi — sesuatu yang kita sebut "fungsi" hari ini. Ia juga menemukan rumus perkalian untuk kosinus yang menyederhanakan perhitungan astronomis.
+  </div>
+
+  <div class="historical-note">
+    <strong>Al-Biruni</strong> (973–1048 M), polymath dari Khorezm, secara eksplisit menghubungkan tabel numerik dengan hubungan fungsional. Dalam karyanya tentang geodesi, ia menghitung jari-jari bumi menggunakan pengukuran sudut dari puncak gunung — menerapkan fungsi trigonometri pada masalah dunia nyata dengan presisi yang mencengangkan.
+  </div>
+
+  <h3>Eropa: Formalisasi Bertahap</h3>
+
+  <div class="historical-note">
+    <strong>Nicole Oresme</strong> (sekitar 1320–1382) di Paris adalah orang pertama yang menggambar grafik kuantitas yang berubah terhadap waktu — membuat ide "fungsi sebagai grafik" menjadi visual. Ia menggambar intensitas sebagai tinggi terhadap basis horizontal, mendahului Descartes hampir 300 tahun.
+  </div>
+
+  <div class="historical-note">
+    Kata <em>function</em> pertama kali digunakan oleh <strong>Leibniz</strong> pada tahun 1673, dalam konteks kurva geometri. <strong>Euler</strong> (1707–1783) kemudian mempopulerkan notasi $f(x)$ dan memperluas konsep fungsi menjadi aturan analitik umum. <strong>Dirichlet</strong> (1805–1859) akhirnya memberikan definisi modern: fungsi adalah aturan yang memetakan setiap elemen dari satu himpunan ke tepat satu elemen di himpunan lain.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DEFINISI ═══════════════════════ -->
+
+  <h2>Apa Itu Fungsi?</h2>
+
+  <div class="definition-box">
+    <strong>Fungsi</strong> $f$ dari himpunan $A$ ke himpunan $B$ adalah aturan yang memetakan <em>setiap</em> elemen $x$ di $A$ ke <em>tepat satu</em> elemen $f(x)$ di $B$.
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li>$A$ = <strong>domain</strong> (himpunan semua masukan yang valid)</li>
+      <li>$B$ = <strong>kodomain</strong> (himpunan tempat keluaran berada)</li>
+      <li>$f(x)$ = <strong>nilai fungsi</strong> untuk masukan $x$ (dibaca "$f$ dari $x$")</li>
+      <li>Himpunan semua $f(x)$ yang benar-benar dihasilkan = <strong>range</strong> (jangkauan)</li>
+    </ul>
+  </div>
+
+  <p>
+    Kata kunci: <strong>tepat satu</strong>. Satu masukan tidak boleh menghasilkan dua keluaran berbeda. Inilah yang membedakan fungsi dari "hubungan" umum.
+  </p>
+
+  <div class="key-insight">
+    <strong>Uji garis vertikal (dari Bab 9):</strong> Grafik di bidang koordinat adalah grafik fungsi jika dan hanya jika setiap garis vertikal memotongnya di <em>paling banyak satu titik</em>. Lingkaran $x^2 + y^2 = r^2$ bukan fungsi — satu nilai $x$ bisa menghasilkan dua $y$ (atas dan bawah).
+  </div>
+
+  <h3>Notasi</h3>
+
+  <p>
+    Kita menulis $f(x) = 2x + 1$ untuk mendefinisikan fungsi. Ini berarti:
+  </p>
+  <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">
+    <li>$f(3) = 2(3) + 1 = 7$</li>
+    <li>$f(-2) = 2(-2) + 1 = -3$</li>
+    <li>$f(a) = 2a + 1$ (masukan bisa variabel juga!)</li>
+  </ul>
+
+  <p>
+    Nama $f$ bisa diganti — $g$, $h$, atau apapun. Yang penting: $f$ adalah <em>aturannya</em>, $x$ adalah masukannya, $f(x)$ adalah keluarannya.
+  </p>
+
+  <!-- INTERACTIVE 1: Function Machine -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mesin Fungsi — Masukkan x, Dapatkan f(x)</div>
+    <div class="interactive-desc">Pilih fungsi dan masukkan berbagai nilai $x$ untuk melihat hasilnya.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setFn('linear')" id="fn-linear" style="background: var(--accent-blue); color: white;">f(x) = 2x + 1</button>
+        <button class="btn" onclick="setFn('quad')" id="fn-quad">f(x) = x² − 4</button>
+        <button class="btn" onclick="setFn('abs')" id="fn-abs">f(x) = |x|</button>
+        <button class="btn" onclick="setFn('recip')" id="fn-recip">f(x) = 1/x</button>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">x =</label>
+        <input type="number" id="fn-input" value="3" step="0.5" style="width: 80px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="evalFn()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer;">Hitung f(x)</button>
+    </div>
+
+    <div id="fn-machine-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ JENIS FUNGSI ═══════════════════════ -->
+
+  <h2>Jenis-Jenis Fungsi Dasar</h2>
+
+  <h3>1. Fungsi Linear: $f(x) = mx + b$</h3>
+  <p>
+    Grafiknya garis lurus (Bab 9). Perubahan konstan — setiap kali $x$ bertambah 1, $f(x)$ bertambah $m$. Contoh dunia nyata: biaya taksi (tarif dasar + tarif per km).
+  </p>
+
+  <h3>2. Fungsi Kuadrat: $f(x) = ax^2 + bx + c$</h3>
+  <p>
+    Grafiknya parabola (Bab 9). Memiliki titik puncak (maksimum atau minimum). Contoh: lintasan bola yang dilempar, luas persegi.
+  </p>
+
+  <h3>3. Fungsi Nilai Mutlak: $f(x) = |x|$</h3>
+  <p>
+    $|x|$ berarti "jarak $x$ dari nol" — selalu positif atau nol. $|3| = 3$, $|-3| = 3$, $|0| = 0$. Grafiknya berbentuk V.
+  </p>
+
+  <h3>4. Fungsi Konstan: $f(x) = c$</h3>
+  <p>
+    Keluarannya selalu sama, apapun masukannya. Garis horizontal. Membosankan? Ya. Tapi berguna sebagai kasus batas.
+  </p>
+
+  <h3>5. Fungsi Akar: $f(x) = \sqrt{x}$</h3>
+  <p>
+    Hanya didefinisikan untuk $x \geq 0$ (di bilangan real). Ini kebalikan dari kuadrat — akan kita formalisasi sebagai "fungsi invers".
+  </p>
+
+  <!-- INTERACTIVE 2: Function Gallery -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Galeri Fungsi — Bentuk-Bentuk Grafik</div>
+    <div class="interactive-desc">Pilih jenis fungsi untuk melihat grafiknya. Bandingkan bentuk dan perilaku masing-masing.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="showGraph('linear')" id="gal-linear" style="background: var(--accent-blue); color: white;">Linear</button>
+        <button class="btn" onclick="showGraph('quad')" id="gal-quad">Kuadrat</button>
+        <button class="btn" onclick="showGraph('abs')" id="gal-abs">Nilai Mutlak</button>
+        <button class="btn" onclick="showGraph('sqrt')" id="gal-sqrt">Akar</button>
+        <button class="btn" onclick="showGraph('recip')" id="gal-recip">1/x</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="gallery-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="gallery-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DOMAIN & RANGE ═══════════════════════ -->
+
+  <h2>Domain dan Range</h2>
+
+  <p>
+    Tidak semua masukan valid untuk semua fungsi:
+  </p>
+
+  <div class="key-insight">
+    <strong>Pembatasan domain umum:</strong>
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li><strong>Pembagian nol:</strong> $f(x) = \frac{1}{x}$ tidak terdefinisi saat $x = 0$ (Bab 1).</li>
+      <li><strong>Akar bilangan negatif:</strong> $f(x) = \sqrt{x}$ tidak terdefinisi untuk $x < 0$ (di bilangan real, Bab 3).</li>
+      <li><strong>Logaritma nol/negatif:</strong> $f(x) = \log(x)$ hanya untuk $x > 0$ (Bab 12).</li>
+    </ul>
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 1: pembagian dengan nol tidak terdefinisi. Dari Bab 3: akar kuadrat bilangan negatif bukan bilangan real. Batasan-batasan ini menentukan domain fungsi.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KOMPOSISI ═══════════════════════ -->
+
+  <h2>Komposisi Fungsi: Mesin Berantai</h2>
+
+  <p>
+    Dua mesin bisa disambung — keluaran mesin pertama menjadi masukan mesin kedua.
+  </p>
+
+  <div class="definition-box">
+    <strong>Komposisi</strong> $f$ dan $g$, ditulis $(f \circ g)(x) = f(g(x))$, berarti: pertama jalankan $g$, lalu jalankan $f$ pada hasilnya.
+  </div>
+
+  <p>
+    Contoh: $f(x) = x^2$, $g(x) = x + 3$.<br>
+    $(f \circ g)(2) = f(g(2)) = f(5) = 25$.<br>
+    $(g \circ f)(2) = g(f(2)) = g(4) = 7$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Urutan penting!</strong> Umumnya $f \circ g \neq g \circ f$. Memakai sepatu lalu memakai kaus kaki ≠ memakai kaus kaki lalu memakai sepatu.
+  </div>
+
+  <!-- INTERACTIVE 3: Composition -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Komposisi — Mesin Berantai</div>
+    <div class="interactive-desc">Pilih dua fungsi dan masukkan nilai $x$. Lihat bagaimana $(f \circ g)(x)$ dan $(g \circ f)(x)$ menghasilkan hasil berbeda.</div>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.5rem;">
+      <select id="comp-f" style="font-family: 'JetBrains Mono'; padding: 6px; border: 1px solid var(--border); border-radius: 4px;">
+        <option value="sq">f(x) = x²</option>
+        <option value="dbl">f(x) = 2x</option>
+        <option value="p3">f(x) = x + 3</option>
+      </select>
+      <select id="comp-g" style="font-family: 'JetBrains Mono'; padding: 6px; border: 1px solid var(--border); border-radius: 4px;">
+        <option value="p3" selected>g(x) = x + 3</option>
+        <option value="sq">g(x) = x²</option>
+        <option value="dbl">g(x) = 2x</option>
+      </select>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">x =</label>
+        <input type="number" id="comp-x" value="2" step="1" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="calcComp()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer;">Hitung!</button>
+    </div>
+
+    <div id="comp-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INVERS ═══════════════════════ -->
+
+  <h2>Fungsi Invers: Membalik Mesin</h2>
+
+  <p>
+    Jika fungsi $f$ mengubah $x$ menjadi $y$, maka <strong>fungsi invers</strong> $f^{-1}$ membaliknya: mengubah $y$ kembali menjadi $x$.
+  </p>
+
+  <div class="definition-box">
+    Jika $f(a) = b$, maka $f^{-1}(b) = a$. Fungsi invers "membatalkan" efek fungsi asli:
+    $$f^{-1}(f(x)) = x \quad \text{dan} \quad f(f^{-1}(x)) = x$$
+  </div>
+
+  <p>
+    Contoh: $f(x) = 2x + 6$. Untuk membalik: mulai dari $y = 2x + 6$, selesaikan untuk $x$:
+  </p>
+  <p style="text-align: center;">
+    $y = 2x + 6 \implies x = \frac{y - 6}{2}$
+  </p>
+  <p>
+    Jadi $f^{-1}(x) = \frac{x - 6}{2}$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Tidak semua fungsi punya invers!</strong> Syaratnya: fungsi harus <strong>satu-satu</strong> (injektif) — dua masukan berbeda selalu menghasilkan keluaran berbeda. $f(x) = x^2$ bukan satu-satu karena $f(3) = f(-3) = 9$. Mana yang $f^{-1}(9)$ kembalikan — $3$ atau $-3$?
+  </div>
+
+  <p>
+    Secara grafis: grafik $f^{-1}$ adalah <em>refleksi</em> grafik $f$ terhadap garis $y = x$.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mengira $f(a + b) = f(a) + f(b)$.</strong><br>
+    Ini umumnya <strong>salah</strong>! $(a + b)^2 \neq a^2 + b^2$ (Bab 4). Hanya fungsi linear yang memenuhi $f(a + b) = f(a) + f(b)$ (untuk $b$ tertentu).
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Mengira $f^{-1}(x) = \frac{1}{f(x)}$.</strong><br>
+    $f^{-1}$ bukan $\frac{1}{f}$! Notasinya memang membingungkan — tapi $f^{-1}$ berarti "fungsi yang membalik $f$", bukan "kebalikan aritmetika dari $f(x)$".
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Lupa bahwa urutan komposisi penting.</strong><br>
+    $f(g(x)) \neq g(f(x))$ pada umumnya. Selalu kerjakan dari dalam ke luar.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Diberikan $f(x) = 3x - 5$. Hitung $f(0)$, $f(4)$, dan $f(-2)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Substitusikan setiap nilai ke dalam rumus.</div>
+    <div class="answer-content" id="a1">$f(0) = 3(0) - 5 = -5$. $f(4) = 3(4) - 5 = 7$. $f(-2) = 3(-2) - 5 = -11$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Domain</div>
+    <p>Tentukan domain dari $f(x) = \frac{1}{x - 3} + \sqrt{x + 1}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Dua batasan: penyebut tidak nol, dan argumen akar tidak negatif.</div>
+    <div class="answer-content" id="a2">$x - 3 \neq 0$ → $x \neq 3$. $x + 1 \geq 0$ → $x \geq -1$. Gabungan: $x \geq -1$ dan $x \neq 3$, atau $[-1, 3) \cup (3, \infty)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Composition</div>
+    <p>$f(x) = x^2$, $g(x) = x - 1$. Hitung $(f \circ g)(3)$ dan $(g \circ f)(3)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$(f \circ g)(3) = f(g(3))$. Hitung $g(3)$ dulu, lalu masukkan ke $f$.</div>
+    <div class="answer-content" id="a3">$(f \circ g)(3) = f(g(3)) = f(2) = 4$.<br>$(g \circ f)(3) = g(f(3)) = g(9) = 8$.<br>Hasilnya berbeda! Komposisi tidak komutatif.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Inverse</div>
+    <p>Temukan invers dari $f(x) = 4x - 8$. Verifikasi bahwa $f(f^{-1}(x)) = x$.</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Tulis $y = 4x - 8$, lalu selesaikan untuk $x$ dalam bentuk $y$.</div>
+    <div class="answer-content" id="a4">$y = 4x - 8$ → $x = \frac{y + 8}{4}$. Jadi $f^{-1}(x) = \frac{x + 8}{4}$.<br>Verifikasi: $f(f^{-1}(x)) = f\left(\frac{x+8}{4}\right) = 4 \cdot \frac{x+8}{4} - 8 = x + 8 - 8 = x$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Conceptual</div>
+    <p>Apakah $f(x) = x^3$ memiliki invers? Jika ya, apa inversnya? Bagaimana dengan $f(x) = x^2$?</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Apakah fungsi itu satu-satu? Dua masukan berbeda bisakah menghasilkan keluaran sama?</div>
+    <div class="answer-content" id="a5">$f(x) = x^3$ satu-satu (setiap bilangan punya pangkat tiga unik), inversnya $f^{-1}(x) = \sqrt[3]{x}$.<br>$f(x) = x^2$ <strong>tidak</strong> satu-satu (karena $f(3) = f(-3) = 9$), jadi tidak punya invers di seluruh domain. Tapi jika dibatasi ke $x \geq 0$, inversnya $f^{-1}(x) = \sqrt{x}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Application</div>
+    <p>Suhu dalam Celsius ($C$) dikonversi ke Fahrenheit dengan $F(C) = \frac{9}{5}C + 32$. (a) Hitung $F(100)$. (b) Temukan $F^{-1}$ — rumus konversi dari Fahrenheit ke Celsius.</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">(a) Substitusi langsung. (b) Selesaikan $F = \frac{9}{5}C + 32$ untuk $C$.</div>
+    <div class="answer-content" id="a6">(a) $F(100) = \frac{9}{5}(100) + 32 = 180 + 32 = 212°F$ (titik didih air).<br>(b) $F = \frac{9}{5}C + 32$ → $C = \frac{5}{9}(F - 32)$. Jadi $F^{-1}(x) = \frac{5}{9}(x - 32)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Error Analysis</div>
+    <p>Siswa menghitung: "$f(x) = x^2 + 1$, maka $f(a + 2) = a^2 + 2 + 1 = a^2 + 3$." Apa kesalahannya?</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$f(a + 2)$ berarti ganti setiap $x$ dengan $(a + 2)$, termasuk mengkuadratkannya.</div>
+    <div class="answer-content" id="a7">Siswa lupa mengkuadratkan seluruh $(a + 2)$. Seharusnya: $f(a+2) = (a+2)^2 + 1 = a^2 + 4a + 4 + 1 = a^2 + 4a + 5$. Kesalahan klasik: $(a+2)^2 \neq a^2 + 2$ (lihat Bab 4 tentang distribusi kuadrat).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Connection (Recall Bab 8)</div>
+    <p>Luas lingkaran sebagai fungsi jari-jari: $A(r) = \pi r^2$. (a) Apakah ini fungsi satu-satu jika domain = $r > 0$? (b) Temukan $A^{-1}$ — rumus untuk mencari jari-jari dari luas.</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Untuk $r > 0$, apakah dua jari-jari berbeda bisa menghasilkan luas yang sama?</div>
+    <div class="answer-content" id="a8">(a) Ya, satu-satu untuk $r > 0$ karena jari-jari yang lebih besar selalu menghasilkan luas yang lebih besar.<br>(b) $A = \pi r^2$ → $r^2 = \frac{A}{\pi}$ → $r = \sqrt{\frac{A}{\pi}}$. Jadi $A^{-1}(x) = \sqrt{\frac{x}{\pi}}$.</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Fungsi Khusus yang Menunggu</h2>
+
+  <p>
+    Fungsi adalah bahasa utama matematika — dan kita baru belajar "alfabet"-nya. Di dua bab berikutnya, kita akan bertemu fungsi-fungsi khusus yang muncul berulang kali di alam: <strong>fungsi trigonometri</strong> (sinus, kosinus, tangen — lahir dari segitiga), lalu <strong>fungsi eksponensial dan logaritma</strong> (lahir dari pertumbuhan dan peluruhan).
+  </p>
+
+  <p>
+    Fungsi-fungsi ini bukan hanya abstraksi matematika — mereka mendeskripsikan gelombang suara, pertumbuhan populasi, peluruhan radioaktif, dan orbit planet. Mereka adalah jembatan antara matematika dan dunia fisik.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 11 — Ketika Segitiga Menjelaskan Gelombang (Trigonometri)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+var gridUnit = 25, gridOX = 160, gridOY = 160;
+
+function drawGrid(svg, w, h) {
+  var s = '';
+  for (var x = gridOX % gridUnit; x <= w; x += gridUnit) s += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="'+h+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  for (var y = gridOY % gridUnit; y <= h; y += gridUnit) s += '<line x1="0" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#e8e4dc" stroke-width="0.7"/>';
+  s += '<line x1="0" y1="'+gridOY+'" x2="'+w+'" y2="'+gridOY+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  s += '<line x1="'+gridOX+'" y1="0" x2="'+gridOX+'" y2="'+h+'" stroke="#2c2c2c" stroke-width="1.5"/>';
+  for (var i = -6; i <= 6; i++) {
+    if (i === 0) continue;
+    var px = gridOX + i * gridUnit, py = gridOY - i * gridUnit;
+    if (px > 5 && px < w-5) s += '<text x="'+px+'" y="'+(gridOY+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+    if (py > 5 && py < h-5) s += '<text x="'+(gridOX-10)+'" y="'+(py+3)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">'+i+'</text>';
+  }
+  return s;
+}
+
+// ═══════ Interactive 1: Function Machine ═══════
+var currentFn = 'linear';
+function setFn(type) {
+  currentFn = type;
+  ['linear','quad','abs','recip'].forEach(function(t) {
+    var btn = document.getElementById('fn-' + t);
+    btn.style.background = t === type ? 'var(--accent-blue)' : '';
+    btn.style.color = t === type ? 'white' : '';
+  });
+}
+function evalFn() {
+  var x = parseFloat(document.getElementById('fn-input').value);
+  var res = document.getElementById('fn-machine-result');
+  if (isNaN(x)) { res.textContent = 'Masukkan bilangan.'; return; }
+  var y, label;
+  if (currentFn === 'linear') { y = 2*x+1; label = 'f('+x+') = 2('+x+') + 1 = ' + y; }
+  else if (currentFn === 'quad') { y = x*x-4; label = 'f('+x+') = ('+x+')² − 4 = ' + (x*x) + ' − 4 = ' + y; }
+  else if (currentFn === 'abs') { y = Math.abs(x); label = 'f('+x+') = |'+x+'| = ' + y; }
+  else { if (x === 0) { res.textContent = 'f(0) = 1/0 → TIDAK TERDEFINISI (Bab 1!)'; return; } y = 1/x; label = 'f('+x+') = 1/'+x+' = ' + y.toFixed(6); }
+  res.textContent = label;
+}
+
+// ═══════ Interactive 2: Function Gallery ═══════
+var currentGraph = 'linear';
+function showGraph(type) {
+  currentGraph = type;
+  ['linear','quad','abs','sqrt','recip'].forEach(function(t) {
+    var btn = document.getElementById('gal-' + t);
+    btn.style.background = t === type ? 'var(--accent-blue)' : '';
+    btn.style.color = t === type ? 'white' : '';
+  });
+  drawCurrentGraph();
+}
+
+function drawCurrentGraph() {
+  var svg = document.getElementById('gallery-svg');
+  var s = drawGrid(svg, 320, 320);
+  var pts = [];
+  var info = '';
+  for (var xi = -7; xi <= 7; xi += 0.1) {
+    var y;
+    if (currentGraph === 'linear') { y = xi; info = 'f(x) = x\nDomain: semua bilangan real\nRange: semua bilangan real'; }
+    else if (currentGraph === 'quad') { y = xi*xi; info = 'f(x) = x²\nDomain: semua bilangan real\nRange: y ≥ 0'; }
+    else if (currentGraph === 'abs') { y = Math.abs(xi); info = 'f(x) = |x|\nDomain: semua bilangan real\nRange: y ≥ 0'; }
+    else if (currentGraph === 'sqrt') { if (xi < 0) continue; y = Math.sqrt(xi); info = 'f(x) = √x\nDomain: x ≥ 0\nRange: y ≥ 0'; }
+    else { if (Math.abs(xi) < 0.15) continue; y = 1/xi; info = 'f(x) = 1/x\nDomain: x ≠ 0\nRange: y ≠ 0'; }
+    var px = gridOX + xi * gridUnit;
+    var py = gridOY - y * gridUnit;
+    if (py > -50 && py < 370) pts.push(px+','+py);
+  }
+  if (currentGraph === 'recip') {
+    // split at discontinuity
+    var neg = [], pos = [];
+    for (var xi = -7; xi <= -0.15; xi += 0.1) { var y=1/xi; neg.push((gridOX+xi*gridUnit)+','+(gridOY-y*gridUnit)); }
+    for (var xi = 0.15; xi <= 7; xi += 0.1) { var y=1/xi; pos.push((gridOX+xi*gridUnit)+','+(gridOY-y*gridUnit)); }
+    s += '<polyline points="'+neg.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    s += '<polyline points="'+pos.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  } else {
+    s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  }
+  svg.innerHTML = s;
+  document.getElementById('gallery-result').textContent = info;
+}
+
+// ═══════ Interactive 3: Composition ═══════
+function compEval(type, x) {
+  if (type === 'sq') return x * x;
+  if (type === 'dbl') return 2 * x;
+  if (type === 'p3') return x + 3;
+  return x;
+}
+function compName(type) {
+  if (type === 'sq') return 'x²';
+  if (type === 'dbl') return '2x';
+  if (type === 'p3') return 'x + 3';
+  return 'x';
+}
+
+function calcComp() {
+  var f = document.getElementById('comp-f').value;
+  var g = document.getElementById('comp-g').value;
+  var x = parseFloat(document.getElementById('comp-x').value);
+  if (isNaN(x)) return;
+
+  var gx = compEval(g, x);
+  var fgx = compEval(f, gx);
+  var fx = compEval(f, x);
+  var gfx = compEval(g, fx);
+
+  var res = '(f ∘ g)(' + x + ') = f(g(' + x + ')) = f(' + gx + ') = ' + fgx;
+  res += '\n(g ∘ f)(' + x + ') = g(f(' + x + ')) = g(' + fx + ') = ' + gfx;
+  if (fgx !== gfx) res += '\n\nf ∘ g ≠ g ∘ f — urutan penting!';
+  else res += '\n\nKebetulan sama untuk x = ' + x + ', tapi coba nilai lain!';
+  document.getElementById('comp-result').textContent = res;
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  drawCurrentGraph();
+});
+</script>
+</body>
+</html>

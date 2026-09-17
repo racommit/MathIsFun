@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 1 — Ketika Bilangan Mulai Bekerja</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 1</div>
+  <h1 class="chapter-title">Ketika Bilangan<br>Mulai Bekerja</h1>
+  <p class="chapter-subtitle">
+    Tentang menggabungkan, memisahkan, mengulang, dan membagi — <br>
+    empat tindakan yang mengubah bilangan dari catatan menjadi alat berpikir.
+  </p>
+  <div class="divider"></div>
+
+  <!-- PROLOG -->
+  <p class="lead">
+    Di bab sebelumnya, kita menemukan bilangan. Kita bisa menghitung: satu, dua, tiga, empat, ... Kita bisa menulisnya. Kita bisa membandingkannya. Tapi bilangan yang hanya duduk diam tidak berguna.
+  </p>
+
+  <p>
+    Bayangkan kamu punya 5 ekor kambing di kandang utara dan 3 ekor di kandang selatan. Kamu ingin tahu: berapa total kambingmu? Kamu bisa menghitung ulang semuanya dari awal. Tapi bukankah lebih mudah jika ada <em>cara</em> untuk menggabungkan "5" dan "3" menjadi jawaban, tanpa harus menghitung ulang satu per satu?
+  </p>
+
+  <p>
+    Cara itu adalah <strong>operasi</strong>. Dan operasi pertama yang ditemukan manusia adalah yang paling alami dari semuanya.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- SEJARAH OPERASI -->
+  <h2>Sebelum Simbol: Bagaimana Dunia Kuno Berhitung</h2>
+
+  <p>
+    Operasi aritmetika sudah dipraktikkan ribuan tahun sebelum simbol +, −, ×, dan ÷ ditemukan. Bangsa Mesir, Babilonia, India, dan Cina semuanya bisa menjumlahkan, mengurangkan, mengalikan, dan membagi — tapi semuanya ditulis dalam kata-kata atau prosedur tanpa simbol khusus.
+  </p>
+
+  <div class="historical-note">
+    Bangsa Babilonia (sekitar 2000 SM) sudah punya tabel perkalian yang diukir di tablet tanah liat. Mereka bahkan menghitung tabel <em>kebalikan</em> — daftar $\frac{1}{n}$ dalam basis 60 — untuk mengubah pembagian menjadi perkalian. Metode mereka sangat efisien, dan beberapa tablet menunjukkan perhitungan kompleks yang menyaingi kalkulator modern.
+  </div>
+
+  <div class="historical-note">
+    Di India, matematikawan <strong>Aryabhata</strong> (476–550 M) menulis <em>Aryabhatiya</em>, yang berisi metode sistematis untuk semua operasi aritmetika, termasuk akar kuadrat dan akar pangkat tiga. Muridnya, <strong>Bhaskara I</strong>, mengembangkan metode-metode ini lebih lanjut.<br><br>
+    <strong>Brahmagupta</strong> (598–668 M), dalam <em>Brahmasphutasiddhanta</em>, bukan hanya mendefinisikan aturan untuk bilangan negatif (yang kita bahas nanti di bab ini), tapi juga aturan untuk nol sebagai bilangan — termasuk bahwa $a + 0 = a$ dan $a \times 0 = 0$. Ini mungkin terlihat "jelas" bagi kita, tapi butuh keberanian intelektual untuk memperlakukan "ketiadaan" sebagai objek matematika yang sah.
+  </div>
+
+  <div class="historical-note">
+    Di dunia Islam, <strong>al-Khwarizmi</strong> (sekitar 780–850 M) — yang akan kita temui lebih dalam di Bab 4 — menulis buku tentang aritmetika Hindu yang memperkenalkan sistem bilangan India (termasuk nol dan nilai tempat) kepada dunia Arab dan kemudian Eropa. Dari namanya, kita mendapat kata "algoritma" — sebuah prosedur langkah-demi-langkah untuk menghitung.<br><br>
+    Pedagang dan matematikawan Arab menyebarkan metode-metode ini melalui jalur perdagangan dari Baghdad sampai ke Spanyol (al-Andalus). Dari sanalah Leonardo Fibonacci (1202) memperkenalkan "angka Arab" ke Eropa melalui bukunya <em>Liber Abaci</em>.
+  </div>
+
+  <h3>Kelahiran Simbol</h3>
+
+  <p>
+    Simbol-simbol yang kita gunakan sekarang jauh lebih baru dari operasinya sendiri:
+  </p>
+
+  <p>
+    <strong>+ dan −</strong> pertama kali muncul tercetak di buku <strong>Johannes Widmann</strong> (1489), seorang matematikawan Jerman. Awalnya ia menggunakannya untuk menandai kelebihan dan kekurangan berat barang dagangan — bukan untuk operasi matematika!
+  </p>
+
+  <p>
+    <strong>×</strong> diperkenalkan oleh <strong>William Oughtred</strong> (1631), matematikawan Inggris. Ia memilih tanda silang karena perkalian "menyilangkan" dua bilangan.
+  </p>
+
+  <p>
+    <strong>÷</strong> dipopulerkan oleh <strong>Johann Rahn</strong> (1659) di Swiss. Tanda <strong>=</strong> diciptakan oleh <strong>Robert Recorde</strong> (1557), matematikawan Welsh, yang menulis: "Tak ada dua hal yang bisa lebih setara dari dua garis sejajar." Sebelumnya, orang menulis kata-kata seperti <em>aequales</em> atau <em>gleich</em>.
+  </p>
+
+  <p>
+    Butuh hampir 200 tahun dari penemuan simbol-simbol ini sampai mereka digunakan secara universal. Selama itu, setiap negara dan bahkan setiap matematikawan punya notasi masing-masing — bayangkan betapa membingungkannya!
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- PENJUMLAHAN -->
+  <h2>Penjumlahan: Menggabungkan Dua Kumpulan</h2>
+
+  <div class="recall-box">
+    Ingat dari Bab 0: bilangan adalah <em>abstraksi</em> — cara untuk menyatakan "berapa banyak" tanpa harus menunjuk benda satu per satu. Sekarang kita akan melakukan sesuatu dengan abstraksi itu.
+  </div>
+
+  <p>
+    Penjumlahan lahir dari kebutuhan paling sederhana: <strong>menggabungkan</strong>.
+  </p>
+
+  <div class="narrator">
+    Aku punya 5 apel di tangan kiri dan 3 apel di tangan kanan. Aku taruh semuanya di meja. Berapa apel di meja?
+  </div>
+
+  <p>
+    Kamu bisa menjawab dengan menghitung ulang: satu, dua, tiga, empat, lima, enam, tujuh, delapan. Tapi itu melelahkan — terutama kalau jumlahnya besar. Penjumlahan adalah <em>jalan pintas</em> untuk menghitung ulang.
+  </p>
+
+  <p>
+    Ketika kita menulis:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">$5 + 3 = 8$</p>
+
+  <p>
+    Yang sebenarnya kita katakan adalah: <em>"jika kamu mulai menghitung dari 5 dan melanjutkan sebanyak 3 langkah lagi, kamu akan sampai di 8."</em>
+  </p>
+
+  <p>
+    Mari kita bongkar notasi ini. Ada tiga bagian:
+  </p>
+
+  <p>
+    <strong>Simbol "+"</strong> — dibaca "tambah" atau "plus" (dari bahasa Latin <em>plus</em>, artinya "lebih"). Simbol ini pertama kali digunakan secara luas oleh matematikawan Jerman Johannes Widmann pada tahun 1489. Sebelumnya, orang menulis kata "et" (Latin untuk "dan") atau huruf "p" (<em>plus</em>). Simbol + kemungkinan berasal dari singkatan huruf "t" dari kata Latin "et" yang makin disederhanakan.
+  </p>
+
+  <p>
+    <strong>Simbol "="</strong> — dibaca "sama dengan". Diciptakan oleh Robert Recorde, matematikawan Welsh, pada tahun 1557. Dalam bukunya <em>The Whetstone of Witte</em>, dia menulis bahwa dia memilih dua garis sejajar karena <em>"noe 2 thynges, can be moare equalle"</em> — tidak ada dua hal yang bisa lebih setara dari dua garis sejajar. Tanda = berarti: <em>apa yang ada di kiri punya nilai yang sama dengan apa yang ada di kanan</em>.
+  </p>
+
+  <p>
+    <strong>Angka 5, 3, dan 8</strong> — masing-masing mewakili jumlah. 5 dan 3 adalah yang kita gabungkan. 8 adalah hasilnya, yang kita sebut <strong>jumlah</strong> (<em>sum</em>).
+  </p>
+
+  <h3>Melihat Penjumlahan</h3>
+
+  <p>
+    Penjumlahan bisa divisualisasikan dengan beberapa cara. Cara pertama: sebagai penggabungan kelompok.
+  </p>
+
+  <!-- Visual: Block addition -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melihat Penjumlahan sebagai Penggabungan</div>
+    <div class="interactive-desc">Geser kedua slider untuk mengubah bilangan yang dijumlahkan. Perhatikan bagaimana dua kelompok bergabung menjadi satu.</div>
+
+    <div class="slider-container">
+      <label>Bilangan pertama: <strong id="addA-val">5</strong></label>
+      <input type="range" id="addA" min="0" max="12" value="5" oninput="updateAddition()">
+    </div>
+    <div class="slider-container">
+      <label>Bilangan kedua: <strong id="addB-val">3</strong></label>
+      <input type="range" id="addB" min="0" max="12" value="3" oninput="updateAddition()">
+    </div>
+
+    <div id="addition-visual" class="block-grid"></div>
+    <div id="addition-result" class="result-display"></div>
+  </div>
+
+  <p>
+    Cara kedua yang sangat penting: sebagai <strong>langkah di garis bilangan</strong>.
+  </p>
+
+  <p>
+    Garis bilangan adalah ide sederhana tapi sangat kuat: bayangkan garis lurus tak terhingga, dengan titik-titik yang mewakili bilangan, berjarak sama, berurutan dari kiri ke kanan.
+  </p>
+
+  <!-- Visual: Number line addition -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjumlahan di Garis Bilangan</div>
+    <div class="interactive-desc">
+      Penjumlahan $a + b$ berarti: mulai di titik $a$, lalu melangkah ke kanan sebanyak $b$ langkah. Di mana kamu berhenti, itulah hasilnya.
+    </div>
+    <div class="numberline-wrap">
+      <svg id="nl-add" class="numberline-svg" width="620" height="120" viewBox="0 0 620 120"></svg>
+    </div>
+    <div class="slider-container">
+      <label>$a$ = <strong id="nlA-val">5</strong></label>
+      <input type="range" id="nlA" min="0" max="10" value="5" oninput="updateNumberLine()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="nlB-val">3</strong></label>
+      <input type="range" id="nlB" min="0" max="10" value="3" oninput="updateNumberLine()">
+    </div>
+    <div id="nl-result" class="result-display"></div>
+  </div>
+
+  <h3>Sifat-Sifat Penjumlahan</h3>
+
+  <p>
+    Sekarang, mari kita perhatikan sesuatu yang mungkin terasa "sudah jelas" — tapi sebenarnya sangat dalam.
+  </p>
+
+  <p>
+    Apakah $5 + 3$ sama dengan $3 + 5$?
+  </p>
+
+  <p>
+    Tentu saja — keduanya sama-sama 8. Tapi <em>mengapa</em>? Karena menggabungkan 5 apel dengan 3 apel menghasilkan tumpukan yang sama persis dengan menggabungkan 3 apel dengan 5 apel. Urutan penggabungan tidak mengubah hasil.
+  </p>
+
+  <p>
+    Ini disebut <strong>sifat komutatif</strong> penjumlahan:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem;">$a + b = b + a$</p>
+
+  <p>
+    Kata "komutatif" dari bahasa Latin <em>commutare</em>, artinya "saling menukar". Kamu bisa menukar posisi bilangan tanpa mengubah hasil.
+  </p>
+
+  <div class="key-insight">
+    <strong>Catatan penting:</strong> Sifat komutatif terasa "jelas" untuk penjumlahan. Tapi tidak semua operasi punya sifat ini. Nanti kita akan menemukan operasi di mana urutan <em>sangat penting</em> — dan di situlah matematika mulai menarik.
+  </div>
+
+  <p>
+    Ada sifat lain yang tidak kalah penting. Bayangkan kamu punya tiga kumpulan: 2, 3, dan 4. Kamu bisa menjumlahkannya dengan dua cara:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $(2 + 3) + 4 = 5 + 4 = 9$<br>
+    $2 + (3 + 4) = 2 + 7 = 9$
+  </p>
+
+  <p>
+    Hasilnya sama. Ini disebut <strong>sifat asosiatif</strong> — cara kamu mengelompokkan penjumlahan tidak mengubah hasilnya:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem;">$(a + b) + c = a + (b + c)$</p>
+
+  <p>
+    Dan terakhir: apa yang terjadi jika kamu menambahkan nol?
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">$5 + 0 = 5$</p>
+
+  <p>
+    Tidak ada yang berubah. Nol adalah <strong>elemen identitas</strong> untuk penjumlahan — dia tidak mengubah apapun. Ini terdengar sepele, tapi konsep "elemen identitas" akan muncul kembali di banyak tempat dalam matematika.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- PENGURANGAN -->
+  <h2>Pengurangan: Ketika Sesuatu Berkurang</h2>
+
+  <p>
+    Jika penjumlahan lahir dari menggabungkan, pengurangan lahir dari <strong>memisahkan</strong>.
+  </p>
+
+  <div class="narrator">
+    Kamu punya 8 apel. Kamu memberikan 3 kepada temanmu. Berapa yang tersisa?
+  </div>
+
+  <p>
+    Pengurangan adalah kebalikan dari penjumlahan. Jika penjumlahan melangkah ke kanan di garis bilangan, pengurangan melangkah ke <strong>kiri</strong>.
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">$8 - 3 = 5$</p>
+
+  <p>
+    Simbol "−" juga diperkenalkan oleh Johannes Widmann pada 1489, berdampingan dengan "+". Bentuknya mungkin berasal dari garis horizontal yang digunakan pedagang untuk menandai barang yang sudah dikurangi dari tumpukan.
+  </p>
+
+  <p>
+    Tapi pengurangan membawa sesuatu yang baru — sesuatu yang tidak dimiliki penjumlahan. Sebuah <em>masalah</em>.
+  </p>
+
+  <h3>Masalah Pengurangan: Bilangan Apa yang Kurang dari Nol?</h3>
+
+  <p>
+    Coba ini: $3 - 5 = \text{?}$
+  </p>
+
+  <p>
+    Kamu punya 3 apel dan ingin memberikan 5. Tapi kamu tidak punya cukup! Dalam dunia fisik, ini tidak masuk akal. Kamu tidak bisa memberikan apa yang tidak kamu punya.
+  </p>
+
+  <p>
+    Tapi dalam matematika — dan ini salah satu hal terindah tentang matematika — kita bisa <em>menciptakan</em> jawaban yang masuk akal.
+  </p>
+
+  <p>
+    Jawabannya: $3 - 5 = -2$. Bilangan <em>negatif</em>.
+  </p>
+
+  <div class="narrator">
+    Bayangkan garis bilangan. Kamu berdiri di angka 3 dan melangkah 5 langkah ke kiri. Kamu melewati 2, melewati 1, melewati 0... dan terus berjalan. Kamu mendarat di titik yang kita sebut "negatif 2", ditulis $-2$.
+  </div>
+
+  <!-- Interactive: number line subtraction showing negatives -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Pengurangan dan Bilangan Negatif di Garis Bilangan</div>
+    <div class="interactive-desc">
+      Geser slider. Perhatikan apa yang terjadi ketika bilangan yang dikurangi lebih besar dari bilangan awal — kamu akan menemui bilangan negatif.
+    </div>
+    <div class="numberline-wrap">
+      <svg id="nl-sub" class="numberline-svg" width="620" height="120" viewBox="0 0 620 120"></svg>
+    </div>
+    <div class="slider-container">
+      <label>$a$ = <strong id="nlSubA-val">8</strong></label>
+      <input type="range" id="nlSubA" min="0" max="10" value="8" oninput="updateSubNL()">
+    </div>
+    <div class="slider-container">
+      <label>$b$ = <strong id="nlSubB-val">3</strong></label>
+      <input type="range" id="nlSubB" min="0" max="15" value="3" oninput="updateSubNL()">
+    </div>
+    <div id="nl-sub-result" class="result-display"></div>
+  </div>
+
+  <div class="historical-note">
+    Bilangan negatif tidak langsung diterima. Matematikawan Yunani kuno menolaknya — bagi mereka, bilangan merepresentasikan panjang atau jumlah benda, dan panjang negatif tidak masuk akal. Matematikawan India seperti Brahmagupta (abad ke-7) adalah yang pertama menggunakan bilangan negatif secara sistematis, menyebutnya sebagai "utang" versus "kekayaan". Bahkan di Eropa abad ke-18, beberapa matematikawan masih menyebut bilangan negatif sebagai "absurd." Butuh waktu berabad-abad sampai matematikawan menerima bahwa bilangan negatif bukan cacat — tapi perluasan yang sah dari dunia bilangan.
+  </div>
+
+  <div class="key-insight">
+    <strong>Pola yang berulang:</strong> Inilah yang terjadi berulang kali dalam matematika. Sebuah operasi (pengurangan) menciptakan <em>masalah</em> (hasilnya bisa "kurang dari nol"). Alih-alih menolak masalah itu, matematikawan memperluas dunia bilangan untuk menampung jawabannya. Bilangan asli $(1, 2, 3, ...)$ diperluas menjadi <strong>bilangan bulat</strong> $(..., -3, -2, -1, 0, 1, 2, 3, ...)$. Pola ini — operasi menciptakan masalah, masalah menciptakan bilangan baru — akan kita temui lagi dan lagi.
+  </div>
+
+  <p>
+    Satu hal lagi tentang pengurangan yang penting: pengurangan <strong>tidak komutatif</strong>.
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $8 - 3 = 5$ &nbsp;&nbsp; tapi &nbsp;&nbsp; $3 - 8 = -5$
+  </p>
+
+  <p>
+    Urutan <em>penting</em>. Kamu tidak bisa menukar posisi bilangan dalam pengurangan dan mengharapkan hasil yang sama. Ini berbeda dari penjumlahan.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- PERKALIAN -->
+  <h2>Perkalian: Ketika Penjumlahan Diulang</h2>
+
+  <p>
+    Bayangkan kamu punya 4 keranjang, dan setiap keranjang berisi 6 apel. Berapa total apelmu?
+  </p>
+
+  <p>
+    Kamu bisa menjumlahkan: $6 + 6 + 6 + 6 = 24$.
+  </p>
+
+  <p>
+    Tapi bagaimana jika kamu punya 100 keranjang? Menulis "$6 + 6 + 6 + ...$" seratus kali sangat tidak praktis. Kamu butuh <em>jalan pintas</em> baru.
+  </p>
+
+  <p>
+    Jalan pintas itu adalah <strong>perkalian</strong>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">$4 \times 6 = 24$</p>
+
+  <p>
+    Perkalian, pada awalnya, adalah <strong>penjumlahan berulang</strong>. "$4 \times 6$" berarti "jumlahkan 6 sebanyak 4 kali."
+  </p>
+
+  <p>
+    Simbol "$\times$" diperkenalkan oleh William Oughtred pada tahun 1631. Simbol lain yang sering digunakan adalah titik "$\cdot$" (diperkenalkan Leibniz), dan dalam aljabar nanti kamu akan sering melihat perkalian ditulis tanpa simbol sama sekali: $ab$ berarti $a \times b$.
+  </p>
+
+  <h3>Cara Kedua Melihat Perkalian: Luas</h3>
+
+  <p>
+    Tapi perkalian bukan hanya penjumlahan berulang. Ada cara lain untuk memahaminya yang lebih kaya — dan yang akan jauh lebih berguna di masa depan.
+  </p>
+
+  <p>
+    Bayangkan sebuah persegi panjang dengan panjang 4 dan lebar 6. Jika kamu isi persegi panjang itu dengan kotak-kotak berukuran $1 \times 1$, berapa kotak yang dibutuhkan?
+  </p>
+
+  <!-- Interactive: Multiplication as area -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Perkalian sebagai Luas</div>
+    <div class="interactive-desc">
+      Geser slider untuk mengubah panjang dan lebar. Perhatikan bahwa jumlah kotak = panjang × lebar. Ini bukan kebetulan — ini adalah <em>makna geometris</em> perkalian.
+    </div>
+
+    <div class="slider-container">
+      <label>Baris (panjang): <strong id="multR-val">4</strong></label>
+      <input type="range" id="multR" min="1" max="10" value="4" oninput="updateMultGrid()">
+    </div>
+    <div class="slider-container">
+      <label>Kolom (lebar): <strong id="multC-val">6</strong></label>
+      <input type="range" id="multC" min="1" max="10" value="6" oninput="updateMultGrid()">
+    </div>
+
+    <div class="mult-grid-container">
+      <div id="mult-grid" class="mult-grid"></div>
+    </div>
+    <div id="mult-result" class="result-display"></div>
+  </div>
+
+  <p>
+    Dua cara melihat perkalian ini — sebagai penjumlahan berulang dan sebagai luas — akan terus berguna. Yang satu lebih alami untuk menghitung, yang lain lebih berguna untuk memahami <em>mengapa</em> perkalian memiliki sifat-sifat tertentu.
+  </p>
+
+  <h3>Sifat-Sifat Perkalian</h3>
+
+  <p>
+    Perkalian punya sifat-sifat yang mirip dengan penjumlahan:
+  </p>
+
+  <p>
+    <strong>Komutatif:</strong> $4 \times 6 = 6 \times 4$. Secara visual: persegi panjang $4 \times 6$ dan persegi panjang $6 \times 4$ punya luas yang sama — kamu tinggal memutar 90 derajat.
+  </p>
+
+  <p>
+    <strong>Asosiatif:</strong> $(2 \times 3) \times 4 = 2 \times (3 \times 4) = 24$. Cara kamu mengelompokkan tidak mengubah hasil.
+  </p>
+
+  <p>
+    <strong>Elemen identitas:</strong> $5 \times 1 = 5$. Mengalikan dengan 1 tidak mengubah apapun. (Bandingkan: untuk penjumlahan, elemen identitasnya 0.)
+  </p>
+
+  <p>
+    Dan ada satu sifat baru yang menghubungkan perkalian dan penjumlahan — sifat yang sangat penting:
+  </p>
+
+  <p>
+    <strong>Distributif:</strong> $3 \times (4 + 2) = (3 \times 4) + (3 \times 2) = 12 + 6 = 18$
+  </p>
+
+  <p>
+    Ini bisa dilihat secara visual: bayangkan persegi panjang $3 \times 6$ yang dipotong menjadi dua bagian — $3 \times 4$ dan $3 \times 2$. Luas total tidak berubah.
+  </p>
+
+  <!-- Interactive: Distributive property visual -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Sifat Distributif: Memotong Persegi Panjang</div>
+    <div class="interactive-desc">
+      Geser pemisah untuk "memotong" persegi panjang menjadi dua bagian. Perhatikan bahwa luas total selalu sama — kamu hanya mengubah cara menghitungnya.
+    </div>
+
+    <div class="slider-container">
+      <label>Tinggi ($a$): <strong id="distA-val">3</strong></label>
+      <input type="range" id="distA" min="1" max="8" value="3" oninput="updateDistributive()">
+    </div>
+    <div class="slider-container">
+      <label>Total lebar ($b + c$): <strong id="distBC-val">6</strong></label>
+      <input type="range" id="distBC" min="2" max="12" value="6" oninput="updateDistributive()">
+    </div>
+    <div class="slider-container">
+      <label>Posisi potongan ($b$): <strong id="distB-val">4</strong></label>
+      <input type="range" id="distCut" min="1" max="5" value="4" oninput="updateDistributive()">
+    </div>
+
+    <div class="mult-grid-container">
+      <div id="dist-grid" class="mult-grid" style="gap: 0;"></div>
+    </div>
+    <div id="dist-result" class="result-display"></div>
+  </div>
+
+  <p>
+    Sifat distributif ini mungkin terasa sederhana sekarang. Tapi dia adalah fondasi dari <em>seluruh aljabar</em>. Ketika nanti kamu melihat $(a+b)^2 = a^2 + 2ab + b^2$, itu hanyalah sifat distributif yang dipakai berulang kali. Kita akan sampai ke sana.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- PEMBAGIAN -->
+  <h2>Pembagian: Membagi Secara Adil</h2>
+
+  <p>
+    Pembagian lahir dari kebutuhan yang sangat manusiawi: <strong>keadilan</strong>.
+  </p>
+
+  <div class="narrator">
+    Ada 12 buah apel dan 4 orang. Bagaimana membaginya secara adil?
+  </div>
+
+  <p>
+    Jawabannya: setiap orang mendapat 3 apel. Kita menulis:
+  </p>
+
+  <p style="text-align: center; font-size: 1.3rem;">$12 \div 4 = 3$</p>
+
+  <p>
+    Pembagian adalah <em>kebalikan dari perkalian</em>, seperti pengurangan adalah kebalikan dari penjumlahan. "$12 \div 4 = \text{?}$" sebenarnya bertanya: "<em>bilangan berapa yang jika dikalikan 4 menghasilkan 12?</em>"
+  </p>
+
+  <p>
+    Atau dalam notasi: $? \times 4 = 12$, maka $? = 3$.
+  </p>
+
+  <!-- Visual: Division -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Membagi Apel</div>
+    <div class="interactive-desc">
+      Geser slider untuk mengubah jumlah apel dan jumlah orang. Perhatikan apa yang terjadi ketika pembagiannya tidak habis — muncul "sisa".
+    </div>
+    <div class="slider-container">
+      <label>Jumlah apel: <strong id="divApples-val">12</strong></label>
+      <input type="range" id="divApples" min="1" max="20" value="12" oninput="updateDivision()">
+    </div>
+    <div class="slider-container">
+      <label>Jumlah orang: <strong id="divPeople-val">4</strong></label>
+      <input type="range" id="divPeople" min="1" max="8" value="4" oninput="updateDivision()">
+    </div>
+    <div id="division-visual" class="division-visual"></div>
+    <div id="division-result" class="result-display"></div>
+  </div>
+
+  <h3>Masalah Pembagian: Ketika Tidak Habis Dibagi</h3>
+
+  <p>
+    Coba bagikan 7 apel untuk 3 orang. Setiap orang mendapat 2 apel, tapi masih ada 1 apel tersisa. Apa yang terjadi dengan apel itu?
+  </p>
+
+  <p>
+    Dalam dunia bilangan bulat, kita punya konsep <strong>sisa</strong> (atau <em>remainder</em>):
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $7 \div 3 = 2 \text{ sisa } 1$
+  </p>
+
+  <p>
+    Tapi bagaimana kalau kamu benar-benar ingin membagi apel itu secara adil? Kamu harus <em>memotong</em> apel terakhir menjadi 3 bagian, dan setiap orang mendapat $\frac{1}{3}$ apel tambahan.
+  </p>
+
+  <p>
+    Jadi jawaban yang sebenarnya: setiap orang mendapat $2\frac{1}{3}$ apel — dua apel utuh dan sepertiga apel.
+  </p>
+
+  <div class="key-insight">
+    <strong>Pola berulang lagi!</strong> Seperti pengurangan yang memaksa kita menemukan bilangan negatif, pembagian memaksa kita menemukan bilangan baru: <strong>pecahan</strong>. Bilangan bulat tidak cukup untuk menjawab semua pertanyaan pembagian. Kita harus memperluas dunia bilangan sekali lagi. Ini akan menjadi topik bab berikutnya.
+  </div>
+
+  <h3>Masalah Pembagian yang Lebih Dalam: Membagi dengan Nol</h3>
+
+  <p>
+    Satu pertanyaan lagi: apa hasil $6 \div 0$?
+  </p>
+
+  <p>
+    Ingat, $6 \div 0$ bertanya: <em>"bilangan berapa yang jika dikalikan 0 menghasilkan 6?"</em>
+  </p>
+
+  <p>
+    Tapi bilangan apa pun dikalikan 0 hasilnya selalu 0. Tidak ada bilangan yang bisa menghasilkan 6 jika dikalikan 0. Jawabannya bukan nol, bukan tak hingga — jawabannya <strong>tidak ada</strong>.
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $6 \div 0$ <strong>tidak terdefinisi</strong>
+  </p>
+
+  <p>
+    Ini bukan keterbatasan kita. Ini bukan soal kita "belum cukup pintar." Pembagian dengan nol secara fundamental tidak memiliki jawaban yang konsisten. Memaksakan jawaban akan merusak seluruh struktur matematika yang sudah kita bangun.
+  </p>
+
+  <div class="key-insight">
+    <strong>Pelajaran:</strong> Tidak setiap pertanyaan punya jawaban. Mengenali kapan sesuatu <em>tidak bisa dijawab</em> — dan memahami <em>mengapa</em> — sama pentingnya dengan menemukan jawaban.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- PETA EMPAT OPERASI -->
+  <h2>Peta Empat Operasi</h2>
+
+  <p>
+    Sekarang kita punya empat operasi dasar. Mari kita lihat hubungannya:
+  </p>
+
+  <div class="interactive-section" style="padding: 1.5rem;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 2.4; text-align: center;">
+      <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+        <div>
+          <div style="color: var(--accent-blue); font-weight: 500;">Penjumlahan (+)</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary);">menggabungkan</div>
+          <div style="font-size: 1.5rem; margin: 0.3rem 0;">↕</div>
+          <div style="color: var(--accent); font-weight: 500;">Pengurangan (−)</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary);">memisahkan</div>
+          <div style="font-size: 0.72rem; color: var(--text-light); margin-top: 0.3rem; font-style: italic;">saling kebalikan</div>
+        </div>
+        <div>
+          <div style="color: var(--accent-blue); font-weight: 500;">Perkalian (×)</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary);">mengulang / menskalakan</div>
+          <div style="font-size: 1.5rem; margin: 0.3rem 0;">↕</div>
+          <div style="color: var(--accent); font-weight: 500;">Pembagian (÷)</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary);">membagi rata</div>
+          <div style="font-size: 0.72rem; color: var(--text-light); margin-top: 0.3rem; font-style: italic;">saling kebalikan</div>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-secondary); font-family: 'Crimson Pro', serif; font-style: italic;">
+        Perkalian = penjumlahan yang diulang<br>
+        Pembagian = pengurangan yang diulang
+      </div>
+    </div>
+  </div>
+
+  <p>
+    Setiap operasi memiliki "masalah" yang memaksa kita memperluas dunia bilangan:
+  </p>
+
+  <p>
+    Pengurangan → melahirkan <strong>bilangan negatif</strong> (dari bilangan asli ke bilangan bulat).<br>
+    Pembagian → melahirkan <strong>pecahan</strong> (dari bilangan bulat ke bilangan rasional).<br>
+  </p>
+
+  <p>
+    Dan nanti kita akan menemukan bahwa operasi lain — seperti akar kuadrat — melahirkan bilangan yang lebih aneh lagi. Tapi itu cerita untuk bab-bab mendatang.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- LATIHAN -->
+  <h2>Latihan: Menguji Pemahamanmu</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Konseptual</div>
+    <p>Pengurangan tidak komutatif: $a - b \neq b - a$ (umumnya). Apakah pembagian komutatif? Apakah $a \div b$ selalu sama dengan $b \div a$? Berikan contoh.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Coba $12 \div 4$ dan $4 \div 12$.</div>
+    <div class="answer-content" id="a1">
+      $12 \div 4 = 3$, tapi $4 \div 12 = \frac{1}{3}$. Keduanya jelas berbeda. Jadi pembagian <strong>tidak komutatif</strong>. Dari empat operasi dasar, hanya penjumlahan dan perkalian yang komutatif. Pengurangan dan pembagian tidak.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Koneksi</div>
+    <p>
+      Kita bilang perkalian adalah "penjumlahan berulang." Dengan logika yang sama, bisakah kamu menjelaskan pembagian sebagai "pengurangan berulang"? Coba jelaskan $12 \div 3$ sebagai proses pengurangan berulang.
+    </p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Mulai dari 12, kurangi 3 berulang kali. Berapa kali kamu bisa melakukannya sampai habis?</div>
+    <div class="answer-content" id="a2">
+      $12 - 3 = 9$. $9 - 3 = 6$. $6 - 3 = 3$. $3 - 3 = 0$. Kamu bisa mengurangi 3 dari 12 sebanyak <strong>4 kali</strong> sampai habis. Maka $12 \div 3 = 4$. Pembagian memang bisa dipahami sebagai "berapa kali bisa dikurangi sampai habis?" — pengurangan berulang. Ini hubungan yang indah: penjumlahan ↔ perkalian (diulang), pengurangan ↔ pembagian (diulang).
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Visualisasi</div>
+    <p>
+      Gunakan sifat distributif untuk menghitung $7 \times 13$ di kepalamu, tanpa mengalikan langsung. Petunjuk: pecah 13 menjadi bilangan yang lebih mudah.
+    </p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">$13 = 10 + 3$. Jadi $7 \times 13 = 7 \times (10 + 3) = \text{?}$</div>
+    <div class="answer-content" id="a3">
+      $7 \times 13 = 7 \times (10 + 3) = (7 \times 10) + (7 \times 3) = 70 + 21 = 91$. Ini persis sifat distributif. Bayangkan persegi panjang $7 \times 13$ yang dipotong menjadi $7 \times 10$ dan $7 \times 3$. Ini juga cara kerja perkalian bersusun yang kamu pelajari di SD — hanya ditulis dalam format berbeda.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Berpikir Kritis</div>
+    <p>
+      Mengapa $0 \div 0$ bukan sama dengan 1, meskipun secara intuitif "sesuatu dibagi dirinya sendiri = 1"?
+    </p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Ingat: $a \div b = c$ berarti $c \times b = a$. Jadi $0 \div 0 = c$ berarti $c \times 0 = 0$. Nilai $c$ berapa yang memenuhi ini?</div>
+    <div class="answer-content" id="a4">
+      $0 \div 0 = c$ berarti $c \times 0 = 0$. Tapi <em>semua</em> bilangan memenuhi ini! $1 \times 0 = 0$, $5 \times 0 = 0$, $1000000 \times 0 = 0$. Jadi $c$ bisa apa saja — dan justru karena itu, $0 \div 0$ tidak terdefinisi. Bukan karena tidak ada jawaban, tapi karena ada <em>terlalu banyak</em> jawaban. Kontras dengan $6 \div 0$: di sana tidak ada satupun jawaban. Keduanya bermasalah, tapi dengan cara yang berbeda.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Tantangan (Recall Bab 0)</div>
+    <p>
+      Kita bilang basis 10 berarti setiap posisi bernilai 10 kali posisi sebelumnya. Dengan menggunakan sifat-sifat operasi yang kamu pelajari di bab ini, jelaskan mengapa $347 = 3 \times 100 + 4 \times 10 + 7 \times 1$.
+    </p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Pikirkan tentang apa arti setiap digit di posisinya. "3" di posisi ratusan berarti 3 kelompok yang masing-masing berisi 100.</div>
+    <div class="answer-content" id="a5">
+      <p>Angka "347" sebenarnya adalah kependekan dari proses berikut:</p>
+      <p>"3" di posisi ratusan berarti <em>ada 3 kelompok seratus</em> → $3 \times 100$ (perkalian sebagai pengulangan).</p>
+      <p>"4" di posisi puluhan berarti <em>ada 4 kelompok sepuluh</em> → $4 \times 10$.</p>
+      <p>"7" di posisi satuan berarti <em>ada 7 satuan</em> → $7 \times 1$.</p>
+      <p>Totalnya: kita <em>gabungkan</em> semua kelompok → $3 \times 100 + 4 \times 10 + 7 \times 1$ (penjumlahan sebagai penggabungan).</p>
+      <p>Jadi sistem bilangan posisional yang kita bahas di Bab 0 ternyata bergantung pada <em>perkalian</em> (untuk menentukan nilai setiap posisi) dan <em>penjumlahan</em> (untuk menggabungkan semua posisi). Dua operasi dari bab ini sudah tertanam di dalam cara kita menulis bilangan.</p>
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- EPILOG -->
+  <h2>Epilog: Empat Operasi, dan Pintu yang Terbuka</h2>
+
+  <p>
+    Di bab ini kita menemukan empat operasi dasar — bukan sebagai rumus yang harus dihafal, tapi sebagai <em>alat</em> yang lahir dari kebutuhan nyata:
+  </p>
+
+  <p>
+    Perlu menggabungkan? Penjumlahan.<br>
+    Perlu memisahkan? Pengurangan.<br>
+    Perlu mengulang? Perkalian.<br>
+    Perlu membagi rata? Pembagian.
+  </p>
+
+  <p>
+    Dan kita menemukan sesuatu yang lebih dalam: setiap operasi membawa <em>masalah</em> yang memaksa kita memperluas dunia bilangan. Pengurangan melahirkan bilangan negatif. Pembagian melahirkan pecahan.
+  </p>
+
+  <p>
+    Di bab berikutnya, kita akan masuk ke dunia pecahan — bilangan yang lahir karena membagi tidak selalu habis. Kita akan bertanya: apa artinya "setengah"? Bagaimana membandingkan $\frac{2}{3}$ dengan $\frac{3}{4}$? Dan mengapa begitu banyak orang membenci pecahan — padahal sebenarnya, pecahan lebih alami dari yang kita kira?
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 2 — Ketika Bilangan Bulat Tidak Cukup: Pecahan dan Rasio</div>
+  </div>
+
+  <div class="chapter-end">
+    <div class="ornament">· · ·</div>
+  </div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// Addition Visual
+function updateAddition() {
+  const a = parseInt(document.getElementById('addA').value);
+  const b = parseInt(document.getElementById('addB').value);
+  document.getElementById('addA-val').textContent = a;
+  document.getElementById('addB-val').textContent = b;
+  const container = document.getElementById('addition-visual');
+  container.innerHTML = '';
+  for (let i = 0; i < a; i++) {
+    const block = document.createElement('div');
+    block.className = 'block block-blue';
+    block.textContent = i + 1;
+    container.appendChild(block);
+  }
+  if (a > 0 && b > 0) {
+    const plus = document.createElement('div');
+    plus.className = 'block block-plus';
+    plus.textContent = '+';
+    container.appendChild(plus);
+  }
+  for (let i = 0; i < b; i++) {
+    const block = document.createElement('div');
+    block.className = 'block block-orange';
+    block.textContent = a + i + 1;
+    container.appendChild(block);
+  }
+  if (a + b > 0) {
+    const eq = document.createElement('div');
+    eq.className = 'block block-eq';
+    eq.textContent = '=';
+    container.appendChild(eq);
+    const res = document.createElement('div');
+    res.className = 'block block-green';
+    res.textContent = a + b;
+    res.style.width = '36px';
+    res.style.fontSize = '0.85rem';
+    container.appendChild(res);
+  }
+  document.getElementById('addition-result').innerHTML =
+    `<span style="color: var(--accent-blue);">${a}</span> + <span style="color: var(--accent-warm);">${b}</span> = <strong>${a + b}</strong>`;
+}
+updateAddition();
+
+// Number Line
+function drawNumberLine(svgId, start, steps, isSubtraction) {
+  const svg = document.getElementById(svgId);
+  const w = 620, h = 120;
+  svg.innerHTML = '';
+  const minVal = isSubtraction ? Math.min(0, start - steps) : 0;
+  const maxVal = isSubtraction ? Math.max(start, 12) : Math.max(start + steps, 12);
+  const range = maxVal - minVal;
+  const margin = 30;
+  const lineW = w - 2 * margin;
+  const ns = (val) => margin + ((val - minVal) / range) * lineW;
+  svg.innerHTML += `<line x1="${margin-10}" y1="70" x2="${w-margin+10}" y2="70" stroke="#ccc" stroke-width="1.5"/>`;
+  for (let i = minVal; i <= maxVal; i++) {
+    const x = ns(i);
+    const isZero = i === 0;
+    svg.innerHTML += `<line x1="${x}" y1="65" x2="${x}" y2="75" stroke="${isZero ? '#333' : '#aaa'}" stroke-width="${isZero ? 2 : 1}"/>`;
+    svg.innerHTML += `<text x="${x}" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="${i < 0 ? '#c0392b' : '#555'}">${i}</text>`;
+  }
+  const endVal = isSubtraction ? start - steps : start + steps;
+  const startX = ns(start);
+  const endX = ns(endVal);
+  svg.innerHTML += `<circle cx="${startX}" cy="70" r="6" fill="#2471a3"/>`;
+  svg.innerHTML += `<text x="${startX}" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#2471a3" font-weight="600">mulai: ${start}</text>`;
+  if (steps > 0) {
+    const dir = isSubtraction ? -1 : 1;
+    const color = isSubtraction ? '#c0392b' : '#27ae60';
+    const midX = (startX + endX) / 2;
+    const arcH = Math.min(35, Math.abs(endX - startX) * 0.3 + 15);
+    svg.innerHTML += `<path d="M${startX},68 Q${midX},${68 - arcH} ${endX},68" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="4,3"/>`;
+    svg.innerHTML += `<polygon points="${endX},68 ${endX - dir * 7},62 ${endX - dir * 7},74" fill="${color}"/>`;
+    svg.innerHTML += `<text x="${midX}" y="${58 - arcH}" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="${color}">${isSubtraction ? '−' : '+'}${steps}</text>`;
+    svg.innerHTML += `<circle cx="${endX}" cy="70" r="6" fill="${color}"/>`;
+    svg.innerHTML += `<text x="${endX}" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="${color}" font-weight="600">hasil: ${endVal}</text>`;
+  }
+}
+
+function updateNumberLine() {
+  const a = parseInt(document.getElementById('nlA').value);
+  const b = parseInt(document.getElementById('nlB').value);
+  document.getElementById('nlA-val').textContent = a;
+  document.getElementById('nlB-val').textContent = b;
+  drawNumberLine('nl-add', a, b, false);
+  document.getElementById('nl-result').innerHTML = `$${a} + ${b} = ${a + b}$`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('nl-result')]);
+}
+updateNumberLine();
+
+// Subtraction Number Line
+function updateSubNL() {
+  const a = parseInt(document.getElementById('nlSubA').value);
+  const b = parseInt(document.getElementById('nlSubB').value);
+  document.getElementById('nlSubA-val').textContent = a;
+  document.getElementById('nlSubB-val').textContent = b;
+  drawNumberLine('nl-sub', a, b, true);
+  const result = a - b;
+  let note = '';
+  if (result < 0) note = ' &nbsp;<span style="color: var(--accent); font-size: 0.85rem;">(bilangan negatif!)</span>';
+  document.getElementById('nl-sub-result').innerHTML = `$${a} - ${b} = ${result}$${note}`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('nl-sub-result')]);
+}
+updateSubNL();
+
+// Multiplication Grid
+function updateMultGrid() {
+  const r = parseInt(document.getElementById('multR').value);
+  const c = parseInt(document.getElementById('multC').value);
+  document.getElementById('multR-val').textContent = r;
+  document.getElementById('multC-val').textContent = c;
+  const grid = document.getElementById('mult-grid');
+  grid.style.gridTemplateColumns = `repeat(${c}, 32px)`;
+  grid.innerHTML = '';
+  const colors = ['#3498db', '#2980b9', '#2471a3', '#1a5276'];
+  for (let i = 0; i < r; i++) {
+    for (let j = 0; j < c; j++) {
+      const cell = document.createElement('div');
+      cell.className = 'mult-cell';
+      cell.style.background = colors[i % colors.length];
+      cell.style.opacity = 0.6 + (j / c) * 0.4;
+      grid.appendChild(cell);
+    }
+  }
+  document.getElementById('mult-result').innerHTML =
+    `$${r} \\times ${c} = ${r * c}$ &nbsp;<span style="font-size: 0.85rem; color: var(--text-secondary);">(${r} baris × ${c} kolom = ${r * c} kotak)</span>`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('mult-result')]);
+}
+updateMultGrid();
+
+// Distributive Property
+function updateDistributive() {
+  const a = parseInt(document.getElementById('distA').value);
+  const totalW = parseInt(document.getElementById('distBC').value);
+  const cutSlider = document.getElementById('distCut');
+  cutSlider.max = totalW - 1;
+  let b = parseInt(cutSlider.value);
+  if (b >= totalW) { b = totalW - 1; cutSlider.value = b; }
+  const cVal = totalW - b;
+  document.getElementById('distA-val').textContent = a;
+  document.getElementById('distBC-val').textContent = totalW;
+  document.getElementById('distB-val').textContent = `${b} | c = ${cVal}`;
+  const grid = document.getElementById('dist-grid');
+  grid.style.gridTemplateColumns = `repeat(${totalW}, 32px)`;
+  grid.style.gap = '0';
+  grid.innerHTML = '';
+  for (let i = 0; i < a; i++) {
+    for (let j = 0; j < totalW; j++) {
+      const cell = document.createElement('div');
+      cell.className = 'mult-cell';
+      cell.style.background = j < b ? '#3498db' : '#e67e22';
+      cell.style.border = '1px solid rgba(255,255,255,0.4)';
+      if (j === b) cell.style.borderLeft = '3px solid #c0392b';
+      grid.appendChild(cell);
+    }
+  }
+  document.getElementById('dist-result').innerHTML =
+    `$${a} \\times ${totalW} = ${a} \\times (${b} + ${cVal}) = ${a * b} + ${a * cVal} = ${a * totalW}$`;
+  if (window.MathJax) MathJax.typeset([document.getElementById('dist-result')]);
+}
+updateDistributive();
+
+// Division
+function updateDivision() {
+  const apples = parseInt(document.getElementById('divApples').value);
+  const people = parseInt(document.getElementById('divPeople').value);
+  document.getElementById('divApples-val').textContent = apples;
+  document.getElementById('divPeople-val').textContent = people;
+  const each = Math.floor(apples / people);
+  const remainder = apples % people;
+  const container = document.getElementById('division-visual');
+  container.innerHTML = '';
+  for (let p = 0; p < people; p++) {
+    const pile = document.createElement('div');
+    pile.className = 'person-pile';
+    let items = '';
+    for (let a = 0; a < each; a++) items += '<span class="apple">\u{1F34E}</span>';
+    pile.innerHTML = `<div class="label">Orang ${p + 1}</div><div class="items">${items}</div>`;
+    container.appendChild(pile);
+  }
+  if (remainder > 0) {
+    const rem = document.createElement('div');
+    rem.className = 'person-pile remainder-pile';
+    let items = '';
+    for (let a = 0; a < remainder; a++) items += '<span class="apple">\u{1F34E}</span>';
+    rem.innerHTML = `<div class="label" style="color: var(--accent);">Sisa</div><div class="items">${items}</div>`;
+    container.appendChild(rem);
+  }
+  let resultText = `$${apples} \\div ${people} = ${each}$`;
+  if (remainder > 0) {
+    resultText += ` <span style="color: var(--accent);">sisa ${remainder}</span>`;
+    resultText += `<br><span style="font-size: 0.85rem; color: var(--text-secondary);">Atau secara tepat: setiap orang mendapat $${each}\\frac{${remainder}}{${people}}$ apel</span>`;
+  } else {
+    resultText += ` <span style="color: var(--accent-green);">habis!</span>`;
+  }
+  document.getElementById('division-result').innerHTML = resultText;
+  if (window.MathJax) MathJax.typeset([document.getElementById('division-result')]);
+}
+updateDivision();
+</script>
+</body>
+</html>

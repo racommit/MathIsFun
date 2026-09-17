@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 13 — Mendekati Tanpa Pernah Sampai</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="book-container">
+
+  <div class="chapter-label">Bab 13 · Volume IV</div>
+  <h1 class="chapter-title">Mendekati Tanpa<br>Pernah Sampai</h1>
+  <p class="chapter-subtitle">
+    Tentang limit — ide yang memungkinkan kita bicara tentang<br>
+    tak hingga secara tepat, dan membuka pintu ke kalkulus.
+  </p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════ PROLOG ═══════════════════════ -->
+
+  <p class="lead">
+    Kita sudah bertemu ide "mendekati" beberapa kali. Di Bab 3, metode Archimedes mendekati $\pi$ dengan segi-banyak yang sisi-sisinya semakin banyak. Di Bab 8, kita memotong lingkaran menjadi juring semakin tipis untuk mendapatkan $\pi r^2$. Di Bab 12, $(1 + \frac{1}{n})^n$ mendekati $e$ saat $n$ semakin besar. Tapi kita belum pernah mendefinisikan secara tepat apa artinya "mendekati".
+  </p>
+
+  <p>
+    Bab ini memformalisasi intuisi itu. <strong>Limit</strong> adalah ide yang memungkinkan kita berbicara tentang proses yang tak pernah selesai — dan tetap mendapatkan jawaban yang tepat.
+  </p>
+
+  <div class="narrator">
+    Bayangkan kamu berjalan menuju dinding. Setiap langkah, kamu menempuh <em>setengah</em> dari jarak tersisa. Langkah pertama: setengah jalan. Langkah kedua: tiga perempat jalan. Lalu tujuh per delapan. Lalu lima belas per enam belas. Kamu tidak pernah sampai — tapi kamu semakin dekat tanpa batas. Jarakmu <em>mendekati</em> nol. Posisimu <em>mendekati</em> dinding. Dalam bahasa matematika: <strong>limitnya</strong> adalah dinding.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <h2>Pertanyaan Utama</h2>
+
+  <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
+    "Bagaimana kita mendefinisikan 'mendekati' secara tepat,<br>dan mengapa kita perlu melakukannya?"
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ SEJARAH ═══════════════════════ -->
+
+  <h2>Dari Paradoks Zeno ke Kalkulus: 2.400 Tahun Perjalanan</h2>
+
+  <h3>Yunani: Paradoks yang Mengganggu</h3>
+
+  <div class="historical-note">
+    <strong>Zeno dari Elea</strong> (sekitar 490–430 SM) merumuskan paradoks-paradoks tentang gerak. Yang paling terkenal: Achilles dan kura-kura. Achilles berlari mengejar kura-kura yang sudah unggul 100 meter. Saat Achilles sampai di posisi awal kura-kura, kura-kura sudah maju 10 meter. Saat Achilles sampai di situ, kura-kura sudah maju 1 meter. Dan seterusnya — tanpa akhir. Kapan Achilles menyusul? Paradoks ini mengganggu filsuf selama dua milenium. Limit memberikan jawabannya.
+  </div>
+
+  <div class="historical-note">
+    <strong>Eudoxus dari Cnidus</strong> (sekitar 408–355 SM) mengembangkan "metode kelelahan" (<em>method of exhaustion</em>) — mengapit besaran yang dicari di antara dua pendekatan yang semakin ketat. Archimedes menggunakannya untuk menghitung $\pi$ dan luas parabola. Ini adalah cikal bakal limit, meskipun tanpa formalisasi.
+  </div>
+
+  <h3>Dunia Islam: Menuju Kalkulus</h3>
+
+  <div class="historical-note">
+    <strong>Ibn al-Haytham</strong> (Alhazen, 965–1040 M) menghitung volume benda putar menggunakan teknik yang pada dasarnya adalah integrasi — menjumlahkan irisan yang semakin tipis. Ia menghitung $\sum_{k=1}^{n} k^4$ (jumlah pangkat empat) untuk mendapatkan volume paraboloid. Metodenya secara implisit menggunakan ide limit: irisan semakin banyak, masing-masing semakin tipis, totalnya mendekati volume eksak.
+  </div>
+
+  <div class="historical-note">
+    <strong>Sharaf al-Din al-Tusi</strong> (sekitar 1135–1213 M) menganalisis kapan persamaan kubik memiliki solusi dengan mempelajari <em>nilai maksimum</em> ekspresi tertentu. Metodenya mendekati ide "titik kritis" — tempat di mana fungsi berubah arah — yang merupakan inti turunan (Bab 14).
+  </div>
+
+  <h3>India: Deret Tak Hingga</h3>
+
+  <div class="historical-note">
+    <strong>Madhava dari Sangamagrama</strong> (sekitar 1350–1425 M) dan mazhab Kerala di India menemukan deret tak hingga untuk $\pi$, $\sin x$, dan $\cos x$ — lebih dari 200 tahun sebelum Newton dan Leibniz. Deret Madhava:
+    $$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots$$
+    Mereka bahkan menganalisis <em>konvergensi</em> deret ini — seberapa cepat jumlah parsial mendekati nilai sebenarnya. Ini adalah matematika limit yang sangat maju.
+  </div>
+
+  <h3>Eropa: Formalisasi</h3>
+
+  <div class="historical-note">
+    <strong>Newton</strong> (1643–1727) dan <strong>Leibniz</strong> (1646–1716) secara independen mengembangkan kalkulus pada 1680-an — menggunakan limit secara implisit. Tapi formalisasi ketat baru datang 150 tahun kemudian dari <strong>Cauchy</strong> (1789–1857) dan <strong>Weierstrass</strong> (1815–1897), yang memberikan definisi epsilon-delta yang kita gunakan sampai sekarang.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LIMIT INTUITIF ═══════════════════════ -->
+
+  <h2>Limit: Ide Intuitif</h2>
+
+  <div class="definition-box">
+    $\displaystyle\lim_{x \to a} f(x) = L$ berarti: saat $x$ mendekati $a$ (tapi tidak harus sama dengan $a$), nilai $f(x)$ mendekati $L$.
+  </div>
+
+  <p>
+    Contoh sederhana: $\displaystyle\lim_{x \to 3} (2x + 1) = 7$. Saat $x$ mendekati 3, $2x + 1$ mendekati 7. Di sini, kita bisa langsung substitusi: $f(3) = 7$. Tidak ada drama.
+  </p>
+
+  <p>
+    Tapi limit menjadi <em>penting</em> justru saat substitusi langsung <strong>tidak bekerja</strong>:
+  </p>
+
+  <div class="key-insight">
+    $$\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \; ?$$
+    Substitusi $x = 2$: $\frac{4 - 4}{2 - 2} = \frac{0}{0}$ — tidak terdefinisi! Tapi faktorkan: $\frac{(x-2)(x+2)}{x-2} = x + 2$ (untuk $x \neq 2$). Jadi limitnya = $2 + 2 = 4$.
+  </div>
+
+  <p>
+    Perhatikan: fungsi $\frac{x^2 - 4}{x - 2}$ tidak terdefinisi di $x = 2$ (pembagian nol!). Tapi <em>limitnya</em> ada — karena limit bertanya tentang apa yang terjadi <em>mendekati</em> 2, bukan <em>di</em> 2.
+  </p>
+
+  <!-- INTERACTIVE 1: Limit Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mendekati Limit — Tabel Nilai</div>
+    <div class="interactive-desc">Lihat bagaimana $f(x) = \frac{x^2 - 4}{x - 2}$ mendekati 4 saat $x$ mendekati 2 dari kedua sisi.</div>
+
+    <div id="limit-table-result" class="result-display" style="font-size: 0.85rem; font-family: 'JetBrains Mono'; white-space: pre;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LIMIT TAK HINGGA ═══════════════════════ -->
+
+  <h2>Limit Menuju Tak Hingga</h2>
+
+  <p>
+    Kita juga bisa bertanya: apa yang terjadi saat $x$ menjadi sangat besar?
+  </p>
+
+  <div class="key-insight">
+    $$\lim_{x \to \infty} \frac{1}{x} = 0$$
+    Saat $x$ semakin besar ($10, 100, 1000, ...$), $\frac{1}{x}$ semakin kecil ($0{,}1$; $0{,}01$; $0{,}001; ...$) mendekati nol tapi tidak pernah mencapainya.
+  </div>
+
+  <div class="key-insight">
+    Untuk fungsi rasional $\frac{p(x)}{q(x)}$ saat $x \to \infty$, bandingkan derajat tertinggi pembilang dan penyebut:
+    <ul style="margin: 0.5rem 0 0 1.2rem; line-height: 2;">
+      <li>Derajat pembilang $<$ penyebut: limit = $0$</li>
+      <li>Derajat sama: limit = rasio koefisien tertinggi</li>
+      <li>Derajat pembilang $>$ penyebut: limit = $\pm\infty$</li>
+    </ul>
+  </div>
+
+  <!-- INTERACTIVE 2: Function Limit Graph -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Visualisasi Limit — Mendekati dari Kedua Sisi</div>
+    <div class="interactive-desc">Pilih fungsi dan lihat grafiknya. Perhatikan perilaku di dekat titik limit.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setLimitFn('hole')" id="lf-hole" style="background: var(--accent-blue); color: white;">(x²−4)/(x−2)</button>
+        <button class="btn" onclick="setLimitFn('recip')" id="lf-recip">1/x</button>
+        <button class="btn" onclick="setLimitFn('sinc')" id="lf-sinc">sin(x)/x</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="limit-graph-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="limit-graph-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KONTINUITAS ═══════════════════════ -->
+
+  <h2>Kontinuitas: Fungsi Tanpa Lompatan</h2>
+
+  <p>
+    Fungsi $f$ disebut <strong>kontinu</strong> di $x = a$ jika tiga hal terpenuhi:
+  </p>
+
+  <div class="key-insight">
+    <ol style="margin: 0.5rem 0 0 1.2rem; line-height: 2.2;">
+      <li>$f(a)$ terdefinisi (ada lubang? tidak kontinu)</li>
+      <li>$\displaystyle\lim_{x \to a} f(x)$ ada</li>
+      <li>$\displaystyle\lim_{x \to a} f(x) = f(a)$ — limit = nilai fungsi</li>
+    </ol>
+  </div>
+
+  <p>
+    Secara intuitif: fungsi kontinu adalah fungsi yang grafiknya bisa digambar <em>tanpa mengangkat pena</em>. Semua fungsi yang kita kenal (polinomial, trigonometri, eksponensial) kontinu di domain mereka.
+  </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ DERET TAK HINGGA ═══════════════════════ -->
+
+  <h2>Deret Tak Hingga: Menjumlahkan Tanpa Henti</h2>
+
+  <p>
+    Limit memungkinkan kita menjawab paradoks Zeno. Saat kamu berjalan setengah, lalu seperempat, lalu seperdelapan:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \cdots = \;?$
+  </p>
+
+  <div class="key-insight">
+    <strong>Deret geometri tak hingga:</strong> Jika $|r| < 1$:
+    $$a + ar + ar^2 + ar^3 + \cdots = \frac{a}{1 - r}$$
+    Jadi $\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots = \frac{1/2}{1 - 1/2} = 1$. Kamu <em>memang</em> sampai ke dinding — melalui tak hingga banyak langkah.
+  </div>
+
+  <div class="recall-box">
+    Ingat dari Bab 2: desimal berulang $0{,}\overline{3} = 0{,}333...$ adalah deret geometri: $\frac{3}{10} + \frac{3}{100} + \frac{3}{1000} + \cdots = \frac{3/10}{1 - 1/10} = \frac{1}{3}$. Limit sudah bekerja sejak Bab 2!
+  </div>
+
+  <!-- INTERACTIVE 3: Infinite Series -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Deret Geometri — Menjumlahkan Tanpa Henti</div>
+    <div class="interactive-desc">Tambahkan suku-suku dan lihat bagaimana jumlah parsial mendekati limit.</div>
+
+    <div class="slider-container">
+      <label>Rasio r: <strong id="series-r-val">0.5</strong></label>
+      <input type="range" id="series-r" min="0.1" max="0.95" value="0.5" step="0.05" oninput="updateSeries()">
+    </div>
+    <div class="slider-container">
+      <label>Jumlah suku: <strong id="series-n-val">5</strong></label>
+      <input type="range" id="series-n" min="1" max="30" value="5" oninput="updateSeries()">
+    </div>
+
+    <div id="series-result" class="result-display" style="font-size: 0.85rem; font-family: 'JetBrains Mono'; white-space: pre;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ KESALAHAN UMUM ═══════════════════════ -->
+
+  <h2>Kesalahan Umum</h2>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❶ Mengira limit harus "sampai" di nilainya.</strong><br>
+    Limit bicara tentang <em>mendekati</em>, bukan mencapai. $\lim_{x \to 2} f(x) = 4$ tidak berarti $f(2) = 4$.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❷ Menyimpulkan $\frac{0}{0}$ berarti limit tidak ada.</strong><br>
+    $\frac{0}{0}$ adalah "bentuk tak tentu" — limitnya bisa berapa saja. Perlu manipulasi aljabar (faktorkan, rasionalkan, dll.) untuk menemukannya.
+  </div>
+
+  <div class="key-insight" style="border-left-color: var(--accent);">
+    <strong>❸ Mengira deret tak hingga selalu konvergen.</strong><br>
+    $1 + 2 + 4 + 8 + \cdots$ divergen (menuju $\infty$). Deret geometri hanya konvergen jika $|r| < 1$.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
+
+  <h2>Latihan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 1 — Recall</div>
+    <p>Hitung $\displaystyle\lim_{x \to 5} (3x - 7)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h1')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a1')">Lihat Jawaban</button>
+    <div class="hint-content" id="h1">Fungsi ini kontinu — substitusi langsung.</div>
+    <div class="answer-content" id="a1">$3(5) - 7 = 15 - 7 = 8$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 2 — Computation</div>
+    <p>Hitung $\displaystyle\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h2')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a2')">Lihat Jawaban</button>
+    <div class="hint-content" id="h2">Faktorkan pembilang: $x^2 - 9 = (x-3)(x+3)$.</div>
+    <div class="answer-content" id="a2">$\frac{(x-3)(x+3)}{x-3} = x+3$ (untuk $x \neq 3$). Limit = $3 + 3 = 6$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 3 — Infinity</div>
+    <p>Hitung $\displaystyle\lim_{x \to \infty} \frac{3x^2 + 5}{x^2 - 1}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h3')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a3')">Lihat Jawaban</button>
+    <div class="hint-content" id="h3">Bagi pembilang dan penyebut dengan $x^2$.</div>
+    <div class="answer-content" id="a3">$\frac{3 + 5/x^2}{1 - 1/x^2} \to \frac{3+0}{1-0} = 3$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 4 — Series</div>
+    <p>Hitung: $1 + \frac{1}{3} + \frac{1}{9} + \frac{1}{27} + \cdots$</p>
+    <button class="hint-btn" onclick="toggleHint('h4')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a4')">Lihat Jawaban</button>
+    <div class="hint-content" id="h4">Deret geometri: $a = 1$, $r = \frac{1}{3}$.</div>
+    <div class="answer-content" id="a4">$\frac{a}{1-r} = \frac{1}{1 - 1/3} = \frac{1}{2/3} = \frac{3}{2} = 1{,}5$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 5 — Conceptual</div>
+    <p>Apakah $\displaystyle\lim_{x \to 0} \frac{1}{x}$ ada? Jelaskan.</p>
+    <button class="hint-btn" onclick="toggleHint('h5')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a5')">Lihat Jawaban</button>
+    <div class="hint-content" id="h5">Periksa dari kiri ($x \to 0^-$) dan dari kanan ($x \to 0^+$) secara terpisah.</div>
+    <div class="answer-content" id="a5">Dari kanan: $\frac{1}{x} \to +\infty$. Dari kiri: $\frac{1}{x} \to -\infty$. Limit kiri ≠ limit kanan, jadi limit <strong>tidak ada</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 6 — Application</div>
+    <p>Bola dijatuhkan dari ketinggian 10 m. Setiap kali memantul, ia mencapai $\frac{3}{4}$ dari ketinggian sebelumnya. Berapa total jarak yang ditempuh bola?</p>
+    <button class="hint-btn" onclick="toggleHint('h6')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a6')">Lihat Jawaban</button>
+    <div class="hint-content" id="h6">Jarak = turun 10 + naik $10 \times \frac{3}{4}$ + turun $10 \times \frac{3}{4}$ + naik $10 \times (\frac{3}{4})^2$ + ...</div>
+    <div class="answer-content" id="a6">Jarak = $10 + 2 \times \left(\frac{30}{4} + \frac{30}{4} \times \frac{3}{4} + \cdots\right) = 10 + 2 \times \frac{30/4}{1 - 3/4} = 10 + 2 \times \frac{7.5}{0.25} = 10 + 60 = 70$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Connection (Recall Bab 2)</div>
+    <p>Buktikan bahwa $0{,}\overline{9} = 0{,}999... = 1$ menggunakan deret geometri.</p>
+    <button class="hint-btn" onclick="toggleHint('h7')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a7')">Lihat Jawaban</button>
+    <div class="hint-content" id="h7">$0{,}999... = \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \cdots$ — deret geometri.</div>
+    <div class="answer-content" id="a7">$a = \frac{9}{10}$, $r = \frac{1}{10}$. Jumlah = $\frac{9/10}{1 - 1/10} = \frac{9/10}{9/10} = 1$. Ya, $0{,}\overline{9}$ tepat sama dengan $1$ — bukan "mendekati", tapi <em>sama</em>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Challenge</div>
+    <p>Hitung $\displaystyle\lim_{h \to 0} \frac{(3+h)^2 - 9}{h}$. (Ini akan menjadi sangat penting di Bab 14!)</p>
+    <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
+    <div class="hint-content" id="h8">Uraikan $(3+h)^2 = 9 + 6h + h^2$.</div>
+    <div class="answer-content" id="a8">$\frac{9 + 6h + h^2 - 9}{h} = \frac{6h + h^2}{h} = 6 + h$. Limit saat $h \to 0$: $6$.<br>(Spoiler: ini adalah turunan $f(x) = x^2$ di $x = 3$.)</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
+
+  <h2>Epilog: Dari Mendekati ke Mengukur Perubahan</h2>
+
+  <p>
+    Limit adalah pintu masuk ke kalkulus. Kita sekarang bisa berbicara tentang proses yang melibatkan "tak hingga kecil" secara tepat. Di bab berikutnya, kita akan menggunakan limit untuk menjawab pertanyaan yang mendasar: jika sesuatu berubah, seberapa cepat ia berubah <em>pada satu titik tertentu</em>? Jawabannya adalah <strong>turunan</strong> — dan ia akan mengubah cara kita memahami gerakan, pertumbuhan, dan perubahan.
+  </p>
+
+  <div class="next-chapter">
+    <div class="label">Bab selanjutnya</div>
+    <div class="title">Bab 14 — Mengukur Perubahan Sesaat (Turunan)</div>
+  </div>
+
+  <div class="chapter-end"><div class="ornament">· · ·</div></div>
+
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ═══════ Interactive 1: Limit Table ═══════
+function buildLimitTable() {
+  var vals = [1.5, 1.9, 1.99, 1.999, 1.9999, 2.0001, 2.001, 2.01, 2.1, 2.5];
+  var lines = ['   x          f(x) = (x²-4)/(x-2)   = x+2', '─'.repeat(48)];
+  for (var i = 0; i < vals.length; i++) {
+    var x = vals[i];
+    var fx = (x * x - 4) / (x - 2);
+    var pad = x < 2 ? '←  ' : '→  ';
+    if (x === 2.0001) lines.push('   ────────── x = 2: TIDAK TERDEFINISI ──────────');
+    lines.push('   ' + x.toFixed(4) + '      ' + fx.toFixed(6) + '          ' + (x + 2).toFixed(4));
+  }
+  lines.push('');
+  lines.push('   Limit = 4');
+  document.getElementById('limit-table-result').textContent = lines.join('\n');
+}
+
+// ═══════ Interactive 2: Limit Graph ═══════
+var limitFnType = 'hole';
+function setLimitFn(type) {
+  limitFnType = type;
+  ['hole','recip','sinc'].forEach(function(t) {
+    var b = document.getElementById('lf-' + t);
+    b.style.background = t === type ? 'var(--accent-blue)' : '';
+    b.style.color = t === type ? 'white' : '';
+  });
+  drawLimitGraph();
+}
+
+function drawLimitGraph() {
+  var svg = document.getElementById('limit-graph-svg');
+  var ox = 160, oy = 140, u = 25;
+  var s = '';
+  // grid
+  for (var i = -6; i <= 6; i++) {
+    var px = ox + i * u, py = oy - i * u;
+    if (i !== 0) {
+      s += '<line x1="'+px+'" y1="0" x2="'+px+'" y2="280" stroke="#e8e4dc" stroke-width="0.5"/>';
+      s += '<line x1="0" y1="'+py+'" x2="320" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+    }
+  }
+  s += '<line x1="0" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+ox+'" y1="0" x2="'+ox+'" y2="280" stroke="#2c2c2c" stroke-width="1.2"/>';
+
+  var pts = [], info = '';
+  if (limitFnType === 'hole') {
+    for (var x = -5; x <= 7; x += 0.1) {
+      if (Math.abs(x - 2) < 0.05) continue;
+      var y = x + 2;
+      pts.push((ox + x * u) + ',' + (oy - y * u));
+    }
+    // hole marker
+    s += '<circle cx="'+(ox+2*u)+'" cy="'+(oy-4*u)+'" r="4" fill="white" stroke="#c0392b" stroke-width="2"/>';
+    info = 'f(x) = (x²−4)/(x−2)\nLubang di x=2, tapi lim(x→2) = 4';
+  } else if (limitFnType === 'recip') {
+    var neg = [], pos = [];
+    for (var x = -6; x <= -0.12; x += 0.08) { neg.push((ox+x*u)+','+(oy-u/x)); }
+    for (var x = 0.12; x <= 6; x += 0.08) { pos.push((ox+x*u)+','+(oy-u/x)); }
+    s += '<polyline points="'+neg.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    s += '<polyline points="'+pos.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    info = 'f(x) = 1/x\nlim(x→0) TIDAK ADA (kiri: −∞, kanan: +∞)\nlim(x→∞) = 0';
+    pts = null;
+  } else {
+    for (var x = -6; x <= 6; x += 0.08) {
+      var y = x === 0 ? 1 : Math.sin(x) / x;
+      pts.push((ox + x * u) + ',' + (oy - y * u));
+    }
+    s += '<circle cx="'+ox+'" cy="'+(oy-u)+'" r="4" fill="white" stroke="#c0392b" stroke-width="2"/>';
+    info = 'f(x) = sin(x)/x\nf(0) tidak terdefinisi, tapi lim(x→0) = 1';
+  }
+  if (pts) s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  svg.innerHTML = s;
+  document.getElementById('limit-graph-result').textContent = info;
+}
+
+// ═══════ Interactive 3: Infinite Series ═══════
+function updateSeries() {
+  var r = parseFloat(document.getElementById('series-r').value);
+  var n = parseInt(document.getElementById('series-n').value);
+  document.getElementById('series-r-val').textContent = r.toFixed(2);
+  document.getElementById('series-n-val').textContent = n;
+
+  var exact = 1 / (1 - r);
+  var sum = 0;
+  var lines = ['Suku:'];
+  for (var i = 0; i < Math.min(n, 10); i++) {
+    var term = Math.pow(r, i);
+    sum += term;
+    lines.push('  r^' + i + ' = ' + term.toFixed(6));
+  }
+  if (n > 10) {
+    for (var i = 10; i < n; i++) sum += Math.pow(r, i);
+    lines.push('  ... (' + (n - 10) + ' suku lagi)');
+  }
+  lines.push('');
+  lines.push('Jumlah ' + n + ' suku = ' + sum.toFixed(8));
+  lines.push('Limit (∞ suku) = 1/(1−' + r.toFixed(2) + ') = ' + exact.toFixed(8));
+  lines.push('Selisih: ' + Math.abs(exact - sum).toFixed(10));
+  document.getElementById('series-result').textContent = lines.join('\n');
+}
+
+// ═══════ Init ═══════
+document.addEventListener('DOMContentLoaded', function() {
+  buildLimitTable();
+  drawLimitGraph();
+  updateSeries();
+});
+</script>
+</body>
+</html>
