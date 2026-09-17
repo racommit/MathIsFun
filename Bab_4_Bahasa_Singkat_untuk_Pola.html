@@ -232,7 +232,7 @@ window.MathJax = {
   </p>
 
   <p>
-    <strong>Memfaktorkan:</strong> $6x + 9 = 3(2x + 3)$. Ini kebalikan dari distribusi — kita "menarik keluar" faktor persekutuan.
+    <strong>Memfaktorkan:</strong> $6x + 9 = 3(2x + 3)$. Ini kebalikan dari distribusi — kita "menarik keluar" faktor persekutuan. Faktorisasi adalah keterampilan yang sangat penting — kita akan membahasnya lebih dalam sebentar lagi.
   </p>
 
   <!-- INTERACTIVE 2: Simplifying expressions -->
@@ -382,6 +382,202 @@ window.MathJax = {
 
     <div id="sq-identity-viz" style="text-align: center; margin: 1rem 0;"></div>
     <div id="sq-identity-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ ATURAN EKSPONEN ═══════════════════════ -->
+
+  <h2>Aturan Eksponen: Pangkat yang Bertemu</h2>
+
+  <p>
+    Di awal bab ini, kita menulis $x^2 = x \times x$ dan $x^3 = x \times x \times x$. Tapi apa yang terjadi ketika pangkat-pangkat ini bertemu dalam operasi? Mari kita temukan aturannya.
+  </p>
+
+  <h3>Perkalian Pangkat dengan Basis Sama</h3>
+
+  <p>
+    $x^2 \times x^3 = (x \cdot x) \times (x \cdot x \cdot x) = x \cdot x \cdot x \cdot x \cdot x = x^5$
+  </p>
+
+  <p>
+    Perhatikan: $2 + 3 = 5$. Jadi $x^2 \times x^3 = x^{2+3}$. Pangkatnya <em>dijumlahkan</em>.
+  </p>
+
+  <div class="definition-box">
+    <strong>Aturan perkalian:</strong> $x^a \times x^b = x^{a+b}$<br>
+    Mengapa? Karena kita menggabungkan "$a$ buah perkalian $x$" dengan "$b$ buah perkalian $x$" — totalnya $a + b$ buah.
+  </div>
+
+  <h3>Pembagian Pangkat dengan Basis Sama</h3>
+
+  <p>
+    $\frac{x^5}{x^2} = \frac{x \cdot x \cdot x \cdot x \cdot x}{x \cdot x} = x \cdot x \cdot x = x^3$
+  </p>
+
+  <p>
+    $5 - 2 = 3$. Pangkatnya <em>dikurangkan</em>.
+  </p>
+
+  <div class="definition-box">
+    <strong>Aturan pembagian:</strong> $\frac{x^a}{x^b} = x^{a-b}$ &nbsp; (untuk $x \neq 0$)
+  </div>
+
+  <h3>Pangkat dari Pangkat</h3>
+
+  <p>
+    $(x^2)^3 = x^2 \times x^2 \times x^2 = x^{2+2+2} = x^6$
+  </p>
+
+  <div class="definition-box">
+    <strong>Aturan pangkat dari pangkat:</strong> $(x^a)^b = x^{a \times b}$
+  </div>
+
+  <h3>Dua Kasus Khusus yang Penting</h3>
+
+  <p>
+    <strong>Pangkat nol:</strong> Dari aturan pembagian, $\frac{x^3}{x^3} = x^{3-3} = x^0$. Tapi $\frac{x^3}{x^3} = 1$ (bilangan apapun dibagi dirinya sendiri). Jadi:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $x^0 = 1$ &nbsp; (untuk $x \neq 0$)
+  </p>
+
+  <p>
+    <strong>Pangkat negatif:</strong> $\frac{x^2}{x^5} = x^{2-5} = x^{-3}$. Tapi juga $\frac{x^2}{x^5} = \frac{1}{x^3}$. Jadi:
+  </p>
+
+  <p style="text-align: center; font-size: 1.15rem;">
+    $x^{-n} = \frac{1}{x^n}$
+  </p>
+
+  <div class="key-insight">
+    <strong>Ringkasan aturan eksponen:</strong><br>
+    $x^a \times x^b = x^{a+b}$ &nbsp;|&nbsp; $\frac{x^a}{x^b} = x^{a-b}$ &nbsp;|&nbsp; $(x^a)^b = x^{ab}$<br>
+    $(xy)^a = x^a y^a$ &nbsp;|&nbsp; $x^0 = 1$ &nbsp;|&nbsp; $x^{-n} = \frac{1}{x^n}$
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan:</strong> $x^2 \times x^3 \neq x^6$</p>
+    <p>Pangkatnya <em>dijumlahkan</em> (bukan dikalikan) saat basis sama dikalikan. Yang pangkatnya dikalikan adalah $(x^2)^3 = x^6$.</p>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ FAKTORISASI ═══════════════════════ -->
+
+  <h2>Faktorisasi: Membongkar Ekspresi</h2>
+
+  <p>
+    <strong>Faktorisasi</strong> adalah kebalikan dari distribusi. Jika distribusi "membuka kurung", maka faktorisasi "memasukkan ke dalam kurung". Ini keterampilan yang sangat penting — kamu akan menggunakannya terus sampai kalkulus.
+  </p>
+
+  <h3>Faktor Persekutuan</h3>
+
+  <p>
+    Langkah pertama: cari faktor yang dimiliki semua suku, lalu "tarik keluar".
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $6x + 9 = 3(2x + 3)$<br>
+    $4x^2 + 2x = 2x(2x + 1)$<br>
+    $12x^3 - 8x^2 + 4x = 4x(3x^2 - 2x + 1)$
+  </p>
+
+  <div class="recall-box">
+    Ingat FPB dari Bab 2! Untuk memfaktorkan $12x^3 - 8x^2 + 4x$, cari FPB dari koefisien (FPB(12, 8, 4) = 4) dan pangkat terendah dari $x$ (yaitu $x^1$). Jadi faktor persekutuannya = $4x$.
+  </div>
+
+  <h3>Faktorisasi Selisih Kuadrat</h3>
+
+  <p>
+    Kita sudah menemukan identitas: $a^2 - b^2 = (a+b)(a-b)$. Ini bisa digunakan "terbalik" untuk memfaktorkan:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $x^2 - 25 = (x+5)(x-5)$<br>
+    $4x^2 - 9 = (2x)^2 - 3^2 = (2x+3)(2x-3)$
+  </p>
+
+  <h3>Faktorisasi Trinomial: $x^2 + bx + c$</h3>
+
+  <p>
+    Ini yang sering muncul. Kita ingin menulis $x^2 + bx + c$ sebagai $(x + p)(x + q)$.
+  </p>
+
+  <p>
+    Distribusikan $(x + p)(x + q)$:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $(x + p)(x + q) = x^2 + qx + px + pq = x^2 + (p+q)x + pq$
+  </p>
+
+  <p>
+    Bandingkan dengan $x^2 + bx + c$: kita butuh dua bilangan $p$ dan $q$ yang <strong>jumlahnya = $b$</strong> dan <strong>kalinya = $c$</strong>.
+  </p>
+
+  <div class="narrator">
+    Contoh: $x^2 + 5x + 6$. Cari dua bilangan yang jumlahnya 5 dan kalinya 6. Jawab: 2 dan 3. Jadi $x^2 + 5x + 6 = (x+2)(x+3)$.
+  </div>
+
+  <p>
+    Contoh lain: $x^2 - x - 12$. Jumlahnya $-1$, kalinya $-12$. Bilangan: $3$ dan $-4$ (karena $3 + (-4) = -1$ dan $3 \times (-4) = -12$). Jadi $x^2 - x - 12 = (x+3)(x-4)$.
+  </p>
+
+  <div class="key-insight">
+    <strong>Cara memfaktorkan $x^2 + bx + c$:</strong><br>
+    1. Cari dua bilangan $p$ dan $q$ sehingga $p + q = b$ dan $p \times q = c$<br>
+    2. Tulis $(x + p)(x + q)$<br>
+    3. Periksa dengan mendistribusikan kembali!
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ NOTASI FUNGSI ═══════════════════════ -->
+
+  <h2>Notasi Fungsi: $f(x)$</h2>
+
+  <p>
+    Kita sudah melihat ekspresi seperti $2x + 3$ — "mesin" yang menerima bilangan dan mengeluarkan bilangan lain. Matematikawan memberikan mesin ini sebuah <em>nama</em> menggunakan notasi khusus:
+  </p>
+
+  <p style="text-align: center; font-size: 1.2rem;">
+    $f(x) = 2x + 3$
+  </p>
+
+  <p>
+    Dibaca: "$f$ dari $x$ sama dengan $2x + 3$." Huruf $f$ adalah nama mesinnya. Huruf $x$ di dalam kurung menunjukkan apa yang dimasukkan. Ekspresi di sisi kanan adalah resep pengolahannya.
+  </p>
+
+  <p>
+    Untuk menghitung output ketika inputnya diketahui, <strong>substitusi</strong>:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2;">
+    $f(4) = 2(4) + 3 = 11$<br>
+    $f(-1) = 2(-1) + 3 = 1$<br>
+    $f(0) = 2(0) + 3 = 3$
+  </p>
+
+  <p>
+    Kita bisa punya banyak fungsi dengan nama berbeda:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2;">
+    $f(x) = 2x + 3$ &nbsp;&nbsp; $g(x) = x^2$ &nbsp;&nbsp; $h(x) = \sqrt{x}$
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa notasi $f(x)$ penting?</strong><br>
+    — Memberi <em>nama</em> pada ekspresi sehingga bisa dirujuk singkat<br>
+    — Memperjelas hubungan input-output: $f(3) = 9$ lebih jelas dari "$y = 9$ ketika $x = 3$"<br>
+    — Di Bab 10, kita akan mempelajari fungsi secara mendalam — notasi ini adalah fondasi yang dibutuhkan
+  </div>
+
+  <div class="common-mistake">
+    <p><strong>Jebakan:</strong> $f(x)$ bukan "$f$ dikali $x$"!</p>
+    <p>Kurung di sini bukan perkalian — kurung menunjukkan "input". $f(3)$ berarti "nilai fungsi $f$ ketika inputnya 3", bukan "$f \times 3$".</p>
   </div>
 
   <div class="divider divider-center"></div>
@@ -566,12 +762,43 @@ window.MathJax = {
   </div>
 
   <div class="exercise">
-    <div class="exercise-label">Latihan 8 — Challenge</div>
-    <p>Tunjukkan bahwa $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac$ dengan menggunakan sifat distributif secara bertahap.</p>
+    <div class="exercise-label">Latihan 8 — Exponents</div>
+    <p>Sederhanakan: (a) $x^3 \cdot x^4$ &nbsp; (b) $\frac{x^7}{x^2}$ &nbsp; (c) $(x^2)^5$ &nbsp; (d) $x^3 \cdot x^{-1}$</p>
     <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
     <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
-    <div class="hint-content" id="h8">Tulis $(a + b + c)^2 = ((a + b) + c)^2$. Gunakan identitas $(p + q)^2 = p^2 + 2pq + q^2$ dengan $p = (a+b)$ dan $q = c$.</div>
-    <div class="answer-content" id="a8">
+    <div class="hint-content" id="h8">Gunakan aturan: perkalian → jumlahkan pangkat; pembagian → kurangkan pangkat; pangkat dari pangkat → kalikan pangkat.</div>
+    <div class="answer-content" id="a8">(a) $x^{3+4} = x^7$ &nbsp; (b) $x^{7-2} = x^5$ &nbsp; (c) $x^{2 \times 5} = x^{10}$ &nbsp; (d) $x^{3+(-1)} = x^2$. Untuk (d): $x^{-1} = \frac{1}{x}$, jadi $x^3 \cdot \frac{1}{x} = x^2$ juga masuk akal.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Faktorisasi</div>
+    <p>Faktorkan: (a) $x^2 + 7x + 12$ &nbsp; (b) $x^2 - 4x - 21$ &nbsp; (c) $3x^2 + 6x$</p>
+    <button class="hint-btn" onclick="toggleHint('h9')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a9')">Lihat Jawaban</button>
+    <div class="hint-content" id="h9">(a) Cari dua bilangan yang jumlahnya 7 dan kalinya 12. (b) Jumlah = −4, kali = −21. (c) Tarik faktor persekutuan $3x$.</div>
+    <div class="answer-content" id="a9">(a) $3 + 4 = 7$, $3 \times 4 = 12$ → $(x+3)(x+4)$<br>
+    (b) $3 + (-7) = -4$, $3 \times (-7) = -21$ → $(x+3)(x-7)$<br>
+    (c) $3x^2 + 6x = 3x(x + 2)$</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Notasi Fungsi</div>
+    <p>Jika $f(x) = x^2 - 3x + 2$, hitung: (a) $f(0)$ &nbsp; (b) $f(2)$ &nbsp; (c) $f(-1)$</p>
+    <button class="hint-btn" onclick="toggleHint('h10')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a10')">Lihat Jawaban</button>
+    <div class="hint-content" id="h10">Substitusi nilai ke setiap $x$ dalam ekspresi. Hati-hati dengan tanda saat $x = -1$: $(-1)^2 = 1$.</div>
+    <div class="answer-content" id="a10">(a) $f(0) = 0 - 0 + 2 = 2$<br>
+    (b) $f(2) = 4 - 6 + 2 = 0$ — menarik! Ini berarti $x = 2$ adalah "akar" dari fungsi ini<br>
+    (c) $f(-1) = 1 + 3 + 2 = 6$</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Challenge</div>
+    <p>Tunjukkan bahwa $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac$ dengan menggunakan sifat distributif secara bertahap.</p>
+    <button class="hint-btn" onclick="toggleHint('h11')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a11')">Lihat Jawaban</button>
+    <div class="hint-content" id="h11">Tulis $(a + b + c)^2 = ((a + b) + c)^2$. Gunakan identitas $(p + q)^2 = p^2 + 2pq + q^2$ dengan $p = (a+b)$ dan $q = c$.</div>
+    <div class="answer-content" id="a11">
       $((a+b)+c)^2 = (a+b)^2 + 2(a+b)c + c^2$<br>
       $= a^2 + 2ab + b^2 + 2ac + 2bc + c^2$<br>
       $= a^2 + b^2 + c^2 + 2ab + 2bc + 2ac$. ✓<br>
