@@ -247,7 +247,34 @@ window.MathJax = {
   </div>
 
   <p>
-    Siap? Mari kita mulai.
+    Siap? Tapi sebelum memulai bukti, kita perlu satu fakta kecil yang akan menjadi inti argumen.
+  </p>
+
+  <h3>Pemanasan: Genap dan Ganjil</h3>
+
+  <p>
+    Bilangan <strong>genap</strong> adalah bilangan yang habis dibagi 2: ..., −4, −2, 0, 2, 4, 6, ... Setiap bilangan genap bisa ditulis sebagai $2k$ untuk bilangan bulat $k$ tertentu.
+  </p>
+
+  <p>
+    Bilangan <strong>ganjil</strong> adalah bilangan yang tidak habis dibagi 2: ..., −3, −1, 1, 3, 5, 7, ... Setiap bilangan ganjil bisa ditulis sebagai $2k + 1$.
+  </p>
+
+  <p>
+    Fakta penting yang kita butuhkan:
+  </p>
+
+  <div class="key-insight">
+    <strong>Jika $a^2$ genap, maka $a$ pasti genap.</strong><br><br>
+    Mengapa? Kita buktikan dengan <em>kontraposisi</em> — buktikan kebalikannya: "jika $a$ ganjil, maka $a^2$ ganjil."<br><br>
+    Jika $a$ ganjil, maka $a = 2k + 1$ untuk bilangan bulat $k$ tertentu.<br>
+    $a^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$<br><br>
+    Hasilnya berbentuk $2(\text{sesuatu}) + 1$ — itu bilangan ganjil!<br><br>
+    Jadi ganjil × ganjil = ganjil. Artinya, satu-satunya cara $a^2$ bisa genap adalah jika $a$ sendiri genap.
+  </div>
+
+  <p>
+    Sekarang kita siap. Mari mulai bukti sebenarnya.
   </p>
 
   <div class="proof-box">
@@ -532,7 +559,135 @@ window.MathJax = {
     <p><strong>Jebakan:</strong> Mengira semua desimal "aneh" itu irasional.</p>
     <p>$0{,}101001000100001...$ — apakah ini irasional? <strong>Ya</strong>, karena polanya terus berubah (jumlah nol bertambah), jadi tidak <em>berulang</em> secara periodik.</p>
     <p>$0{,}123456789101112...$ — semua bilangan asli disambung. Irasional juga? <strong>Ya</strong> (ini disebut <em>konstanta Champernowne</em>).</p>
-    <p>Tapi $0{,}999999... = 0{,}\overline{9}$? Ini ternyata tepat sama dengan 1. Rasional!</p>
+    <p>Tapi $0{,}999999... = 0{,}\overline{9}$? Ini ternyata tepat sama dengan 1. Rasional! Kamu mungkin tidak percaya — mari kita buktikan.</p>
+  </div>
+
+  <h3>Mengapa 0,999... = 1 (Bukan "Hampir 1")</h3>
+
+  <p>
+    Ini salah satu fakta matematika yang paling mengejutkan. Banyak orang merasa $0{,}\overline{9}$ "hampir" 1 tapi "tidak benar-benar" 1. Mari kita buktikan bahwa mereka <em>persis sama</em> — dengan tiga cara berbeda.
+  </p>
+
+  <div class="proof-box">
+    <p><strong>Bukti 1 — Aljabar sederhana:</strong></p>
+    <p>Misalkan $x = 0{,}999...$</p>
+    <p>Kalikan kedua sisi dengan 10: $10x = 9{,}999...$</p>
+    <p>Kurangkan persamaan pertama dari kedua: $10x - x = 9{,}999... - 0{,}999...$</p>
+    <p>$9x = 9$</p>
+    <p>$x = 1$ &nbsp; $\blacksquare$</p>
+  </div>
+
+  <div class="proof-box">
+    <p><strong>Bukti 2 — Dari pecahan:</strong></p>
+    <p>Kita sudah tahu dari Bab 2 bahwa $\frac{1}{3} = 0{,}\overline{3}$.</p>
+    <p>Kalikan kedua sisi dengan 3: $3 \times \frac{1}{3} = 3 \times 0{,}\overline{3}$</p>
+    <p>$1 = 0{,}\overline{9}$ &nbsp; $\blacksquare$</p>
+  </div>
+
+  <div class="proof-box">
+    <p><strong>Bukti 3 — "Tidak ada bilangan di antara":</strong></p>
+    <p>Jika $0{,}\overline{9} \neq 1$, maka pasti ada bilangan di antara keduanya (dari Bab 2: antara dua bilangan real berbeda, selalu ada bilangan lain).</p>
+    <p>Coba sebutkan bilangan antara $0{,}\overline{9}$ dan 1. Kamu tidak bisa — karena memang tidak ada. Jika tidak ada bilangan di antara mereka, mereka adalah bilangan yang <em>sama</em>. &nbsp; $\blacksquare$</p>
+  </div>
+
+  <div class="narrator">
+    Ini bukan keanehan atau trik — ini konsekuensi dari cara kerja representasi desimal. Beberapa bilangan punya dua representasi desimal yang berbeda: $1 = 1{,}000...$ dan $1 = 0{,}999...$, sama seperti $\frac{1}{2} = \frac{2}{4}$ — cara penulisan berbeda, nilai sama.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ ATURAN AKAR ═══════════════════════ -->
+
+  <h2>Aturan Bermain dengan Akar Kuadrat</h2>
+
+  <p>
+    Sebelum ke latihan, mari kita pelajari cara <em>menyederhanakan</em> dan <em>mengoperasikan</em> ekspresi yang mengandung akar kuadrat. Ini akan terus berguna sampai kalkulus.
+  </p>
+
+  <h3>Aturan Perkalian dan Pembagian Akar</h3>
+
+  <p>
+    Dua aturan fundamental:
+  </p>
+
+  <div class="definition-box">
+    <p><strong>Aturan perkalian:</strong> $\sqrt{a} \times \sqrt{b} = \sqrt{a \times b}$ &nbsp; (untuk $a, b \geq 0$)</p>
+    <p><strong>Aturan pembagian:</strong> $\frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}}$ &nbsp; (untuk $a \geq 0, b > 0$)</p>
+  </div>
+
+  <p>
+    Contoh: $\sqrt{3} \times \sqrt{12} = \sqrt{36} = 6$. Dua bilangan irasional, dikalikan, hasilnya bilangan bulat!
+  </p>
+
+  <h3>Menyederhanakan Akar: Mengeluarkan Kuadrat Sempurna</h3>
+
+  <p>
+    Tidak semua akar bisa disederhanakan menjadi bilangan bulat. Tapi banyak yang bisa dibuat <em>lebih sederhana</em> dengan mengeluarkan faktor kuadrat sempurna.
+  </p>
+
+  <p>
+    Langkahnya: cari faktor dari bilangan di dalam akar yang merupakan kuadrat sempurna, lalu "keluarkan" akarnya.
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt{2} = 5\sqrt{2}$<br>
+    $\sqrt{72} = \sqrt{36 \times 2} = 6\sqrt{2}$<br>
+    $\sqrt{48} = \sqrt{16 \times 3} = 4\sqrt{3}$<br>
+    $\sqrt{200} = \sqrt{100 \times 2} = 10\sqrt{2}$
+  </p>
+
+  <div class="recall-box">
+    Ingat faktorisasi prima dari Bab 2! Untuk $\sqrt{72}$: $72 = 2^3 \times 3^2$. Setiap faktor prima dengan pangkat genap bisa "dikeluarkan" dari akar: $\sqrt{72} = \sqrt{2^2 \times 3^2 \times 2} = 2 \times 3 \times \sqrt{2} = 6\sqrt{2}$.
+  </div>
+
+  <h3>Menjumlahkan dan Mengurangkan Akar</h3>
+
+  <p>
+    Kita hanya bisa menjumlahkan akar yang <em>sejenis</em> — sama seperti kita hanya bisa menjumlahkan pecahan yang penyebutnya sama (Bab 2).
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $3\sqrt{2} + 5\sqrt{2} = 8\sqrt{2}$ &nbsp; ✓ (sejenis)<br>
+    $\sqrt{2} + \sqrt{3}$ &nbsp; ← tidak bisa disederhanakan (beda jenis)
+  </p>
+
+  <p>
+    Kadang akar yang <em>terlihat</em> berbeda ternyata sejenis setelah disederhanakan:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem;">
+    $\sqrt{50} + \sqrt{8} = 5\sqrt{2} + 2\sqrt{2} = 7\sqrt{2}$
+  </p>
+
+  <h3>Merasionalkan Penyebut</h3>
+
+  <p>
+    Dalam matematika, kita biasanya menghindari akar di penyebut pecahan. Proses menghilangkannya disebut <strong>merasionalkan penyebut</strong>.
+  </p>
+
+  <p>
+    Caranya: kalikan pembilang dan penyebut dengan akar yang sama.
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">
+    $\frac{1}{\sqrt{2}} = \frac{1}{\sqrt{2}} \times \frac{\sqrt{2}}{\sqrt{2}} = \frac{\sqrt{2}}{2}$
+  </p>
+
+  <p>
+    Mengapa $\frac{\sqrt{2}}{\sqrt{2}} = 1$? Karena bilangan apapun dibagi dirinya sendiri = 1. Jadi kita mengalikan dengan 1 dalam "penyamaran" — nilai pecahan tidak berubah, tapi bentuknya berubah menjadi lebih bersih.
+  </p>
+
+  <p>
+    Contoh lain:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.2;">
+    $\frac{6}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3}$<br>
+    $\frac{5}{\sqrt{5}} = \frac{5\sqrt{5}}{5} = \sqrt{5}$
+  </p>
+
+  <div class="key-insight">
+    <strong>Mengapa merasionalkan?</strong> Bukan karena $\frac{1}{\sqrt{2}}$ "salah" — nilainya sama persis dengan $\frac{\sqrt{2}}{2}$. Tapi bentuk rasional di penyebut lebih mudah untuk: (1) membandingkan pecahan, (2) menjumlahkan pecahan, dan (3) memperkirakan nilainya secara mental.
   </div>
 
   <div class="divider divider-center"></div>
@@ -613,12 +768,33 @@ window.MathJax = {
   </div>
 
   <div class="exercise">
-    <div class="exercise-label">Latihan 8 — Recall dari Bab 2</div>
-    <p>Di Bab 2, kita belajar bahwa antara dua pecahan selalu bisa ditemukan pecahan lain. Apakah antara dua bilangan irasional juga selalu ada bilangan irasional? Berikan contoh.</p>
+    <div class="exercise-label">Latihan 8 — Simplification</div>
+    <p>Sederhanakan: (a) $\sqrt{98}$ &nbsp; (b) $\sqrt{32} + \sqrt{18}$ &nbsp; (c) $\frac{4}{\sqrt{2}}$</p>
     <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
     <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
-    <div class="hint-content" id="h8">Coba: antara $\sqrt{2}$ dan $\sqrt{3}$, apakah ada bilangan irasional? Bagaimana dengan rata-ratanya?</div>
-    <div class="answer-content" id="a8">Ya! Antara dua bilangan irasional selalu ada bilangan irasional lain. Contoh: $\sqrt{2} \approx 1{,}414$ dan $\sqrt{3} \approx 1{,}732$. Di antaranya ada $\sqrt{2{,}5} \approx 1{,}581$ (irasional, karena 2,5 bukan kuadrat sempurna). Rata-rata $\frac{\sqrt{2}+\sqrt{3}}{2}$ juga irasional dan berada di antara keduanya. Faktanya, antara dua bilangan real manapun, selalu ada bilangan rasional DAN bilangan irasional — garis bilangan benar-benar "padat" dengan keduanya.</div>
+    <div class="hint-content" id="h8">(a) $98 = 49 \times 2$. (b) Sederhanakan masing-masing terlebih dahulu. (c) Rasionalkan penyebut.</div>
+    <div class="answer-content" id="a8">(a) $\sqrt{98} = \sqrt{49 \times 2} = 7\sqrt{2}$<br>
+    (b) $\sqrt{32} + \sqrt{18} = \sqrt{16 \times 2} + \sqrt{9 \times 2} = 4\sqrt{2} + 3\sqrt{2} = 7\sqrt{2}$<br>
+    (c) $\frac{4}{\sqrt{2}} = \frac{4\sqrt{2}}{2} = 2\sqrt{2}$</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — 0,999... = 1</div>
+    <p>Gunakan metode aljabar (misalkan $x = 0{,}\overline{7}$, kalikan 10, kurangkan) untuk menemukan pecahan yang sama dengan $0{,}777...$</p>
+    <button class="hint-btn" onclick="toggleHint('h9')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a9')">Lihat Jawaban</button>
+    <div class="hint-content" id="h9">$x = 0{,}777...$, maka $10x = 7{,}777...$. Kurangkan: $10x - x = ?$</div>
+    <div class="answer-content" id="a9">$x = 0{,}\overline{7}$. $10x = 7{,}\overline{7}$. $10x - x = 7{,}777... - 0{,}777... = 7$. $9x = 7$. $x = \frac{7}{9}$.<br>
+    Cek: $7 \div 9 = 0{,}777...$ ✓. Metode ini bekerja untuk semua desimal berulang!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Recall dari Bab 2</div>
+    <p>Di Bab 2, kita belajar bahwa antara dua pecahan selalu bisa ditemukan pecahan lain. Apakah antara dua bilangan irasional juga selalu ada bilangan irasional? Berikan contoh.</p>
+    <button class="hint-btn" onclick="toggleHint('h10')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a10')">Lihat Jawaban</button>
+    <div class="hint-content" id="h10">Coba: antara $\sqrt{2}$ dan $\sqrt{3}$, apakah ada bilangan irasional? Bagaimana dengan rata-ratanya?</div>
+    <div class="answer-content" id="a10">Ya! Antara dua bilangan irasional selalu ada bilangan irasional lain. Contoh: $\sqrt{2} \approx 1{,}414$ dan $\sqrt{3} \approx 1{,}732$. Di antaranya ada $\sqrt{2{,}5} \approx 1{,}581$ (irasional, karena 2,5 bukan kuadrat sempurna). Rata-rata $\frac{\sqrt{2}+\sqrt{3}}{2}$ juga irasional dan berada di antara keduanya. Faktanya, antara dua bilangan real manapun, selalu ada bilangan rasional DAN bilangan irasional — garis bilangan benar-benar "padat" dengan keduanya.</div>
   </div>
 
   <div class="divider divider-center"></div>
