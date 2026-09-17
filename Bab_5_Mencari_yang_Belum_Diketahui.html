@@ -199,6 +199,110 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════════ SISTEM PERSAMAAN LINEAR ═══════════════════════ -->
+
+  <h2>Sistem Persamaan Linear</h2>
+
+  <p>
+    Kadang satu persamaan tidak cukup. Bayangkan: kamu membeli 2 kopi dan 1 teh seharga 25 ribu. Temanmu membeli 1 kopi dan 3 teh seharga 30 ribu. Berapa harga kopi? Berapa harga teh?
+  </p>
+
+  <p>
+    Misalkan harga kopi $= x$, harga teh $= y$. Kita punya <em>dua</em> persamaan dengan <em>dua</em> yang tidak diketahui:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem; line-height: 2;">
+    $2x + y = 25$<br>
+    $x + 3y = 30$
+  </p>
+
+  <p>
+    Ini disebut <strong>sistem persamaan linear</strong> (SPL). Solusinya adalah nilai $x$ dan $y$ yang membuat <em>kedua</em> persamaan benar secara bersamaan.
+  </p>
+
+  <h3>Metode 1: Substitusi</h3>
+
+  <p>
+    Ide: isolasikan satu variabel dari satu persamaan, lalu substitusikan ke persamaan lainnya.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    Dari persamaan (2): $x = 30 - 3y$<br>
+    Substitusi ke persamaan (1): $2(30 - 3y) + y = 25$<br>
+    $60 - 6y + y = 25$<br>
+    $-5y = -35$<br>
+    $y = 7$<br>
+    Kembali: $x = 30 - 3(7) = 9$
+  </p>
+
+  <p>
+    <strong>Verifikasi:</strong> $2(9) + 7 = 25$ ✓ dan $9 + 3(7) = 30$ ✓. Kopi 9 ribu, teh 7 ribu.
+  </p>
+
+  <h3>Metode 2: Eliminasi</h3>
+
+  <p>
+    Ide: kalikan persamaan agar koefisien salah satu variabel sama, lalu kurangkan untuk menghilangkan variabel itu.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    $2x + y = 25$ &nbsp; ... (1)<br>
+    $x + 3y = 30$ &nbsp; ... (2)<br><br>
+    Kalikan (2) dengan 2: $2x + 6y = 60$ &nbsp; ... (2')<br>
+    Kurangkan (1) dari (2'): $(2x + 6y) - (2x + y) = 60 - 25$<br>
+    $5y = 35$<br>
+    $y = 7$ &nbsp; → &nbsp; $x = 9$
+  </p>
+
+  <div class="key-insight">
+    <strong>Kapan pakai substitusi vs eliminasi?</strong><br>
+    — <strong>Substitusi</strong>: jika salah satu variabel mudah diisolasi (koefisiennya 1 atau $-1$).<br>
+    — <strong>Eliminasi</strong>: jika koefisiennya "rapi" dan mudah disamakan.
+  </div>
+
+  <h3>Kasus Khusus</h3>
+
+  <p>
+    Tidak semua SPL punya tepat satu solusi:
+  </p>
+
+  <p>
+    — <strong>Tidak ada solusi</strong>: $x + y = 3$ dan $x + y = 5$. Mustahil — satu hal tidak bisa sama dengan 3 dan 5 sekaligus. Secara geometris: dua garis sejajar yang tidak pernah bertemu.<br>
+    — <strong>Tak hingga solusi</strong>: $x + y = 3$ dan $2x + 2y = 6$. Persamaan kedua hanyalah persamaan pertama dikali 2 — bukan informasi baru. Secara geometris: dua garis yang berimpit.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Sistem Persamaan Linear</div>
+    <div class="interactive-desc">Masukkan dua persamaan $a_1x + b_1y = c_1$ dan $a_2x + b_2y = c_2$. Lihat solusinya langkah demi langkah.</div>
+
+    <div style="font-family:'JetBrains Mono'; font-size:0.92rem; margin-bottom:0.8rem;">
+      <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+        <input type="number" id="spl-a1" value="2" style="width:40px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+        <span>x +</span>
+        <input type="number" id="spl-b1" value="1" style="width:40px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+        <span>y =</span>
+        <input type="number" id="spl-c1" value="25" style="width:45px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+      </div>
+      <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
+        <input type="number" id="spl-a2" value="1" style="width:40px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+        <span>x +</span>
+        <input type="number" id="spl-b2" value="3" style="width:40px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+        <span>y =</span>
+        <input type="number" id="spl-c2" value="30" style="width:45px; text-align:center; font-family:inherit; padding:3px; border:1px solid var(--border); border-radius:4px;">
+        <button onclick="solveSPL()" style="font-family:'Inter'; padding:5px 12px; background:var(--accent-blue); color:white; border:none; border-radius:6px; cursor:pointer;">Selesaikan</button>
+      </div>
+    </div>
+
+    <div id="spl-result" style="font-family:'JetBrains Mono'; font-size:0.85rem; line-height:2;"></div>
+  </div>
+
+  <div class="recall-box">
+    <strong>Koneksi ke Teknik Elektro:</strong> Sistem persamaan linear adalah inti dari analisis rangkaian listrik. Hukum Kirchhoff menghasilkan sistem persamaan: setiap <em>loop</em> dan setiap <em>node</em> memberi satu persamaan. Rangkaian dengan 5 komponen bisa menghasilkan SPL dengan 5 variabel — prinsipnya sama, hanya skala yang berbeda. Di Bab 18, kita akan melihat bagaimana matriks membuat penyelesaian SPL besar lebih efisien.
+  </div>
+
+  <div class="divider divider-center"></div>
+
   <h2>Persamaan Kuadrat</h2>
 
   <p>
@@ -231,10 +335,93 @@ window.MathJax = {
     Jika perkalian dua hal sama dengan nol, salah satunya <em>harus</em> nol (dari Bab 1: satu-satunya cara mendapat 0 dari perkalian adalah jika salah satu faktor 0). Jadi $x - 2 = 0$ atau $x - 3 = 0$, artinya $x = 2$ atau $x = 3$.
   </p>
 
-  <h3>Rumus Kuadrat</h3>
+  <h3>Melengkapkan Kuadrat Sempurna</h3>
 
   <p>
-    Tidak semua persamaan kuadrat mudah difaktorkan. Untuk kasus umum, ada rumus yang selalu bekerja:
+    Tidak semua persamaan kuadrat mudah difaktorkan. Coba selesaikan $x^2 + 6x + 2 = 0$ — bisakah kamu menemukan dua bilangan bulat yang dikalikan $= 2$ dan dijumlahkan $= 6$? Tidak ada yang cocok.
+  </p>
+
+  <p>
+    Di sinilah teknik kuno Babilonia muncul kembali: <strong>melengkapkan kuadrat sempurna</strong> (<em>completing the square</em>). Idenya: mengubah ekspresi $x^2 + bx$ menjadi bentuk $(x + p)^2$ yang jauh lebih mudah diselesaikan.
+  </p>
+
+  <div class="key-insight">
+    <strong>Pola kunci:</strong> Ingat dari Bab 4 bahwa $(x + p)^2 = x^2 + 2px + p^2$. Koefisien $x$ adalah $2p$. Jadi jika kita punya $x^2 + bx$, maka $p = \frac{b}{2}$, dan kita perlu menambahkan $\left(\frac{b}{2}\right)^2$ untuk melengkapinya.
+    $$x^2 + bx + \left(\frac{b}{2}\right)^2 = \left(x + \frac{b}{2}\right)^2$$
+  </div>
+
+  <p>
+    Mari selesaikan $x^2 + 6x + 2 = 0$ langkah demi langkah:
+  </p>
+
+  <p style="text-align: center; font-size: 1.05rem; line-height: 2.4;">
+    $x^2 + 6x + 2 = 0$<br>
+    $x^2 + 6x = -2$ &nbsp; (pindahkan konstanta ke kanan)<br>
+    $x^2 + 6x + 9 = -2 + 9$ &nbsp; (tambahkan $\left(\frac{6}{2}\right)^2 = 9$ ke kedua sisi)<br>
+    $(x + 3)^2 = 7$ &nbsp; (sisi kiri sekarang kuadrat sempurna!)<br>
+    $x + 3 = \pm\sqrt{7}$ &nbsp; (akar kuadrat kedua sisi)<br>
+    $x = -3 \pm \sqrt{7}$
+  </p>
+
+  <p>
+    Jadi $x = -3 + \sqrt{7} \approx -0{,}354$ atau $x = -3 - \sqrt{7} \approx -5{,}646$.
+  </p>
+
+  <div class="narrator">
+    Teknik ini terlihat seperti "trik" — menambahkan bilangan tertentu agar sisi kiri jadi kuadrat sempurna. Tapi ini bukan trik, ini <em>strategi</em>: kita sengaja menciptakan pola $(x+p)^2$ karena dari bentuk itu, kita tinggal mengakar kuadratkan. Al-Khwarizmi melakukan hal yang sama secara geometris: menambahkan persegi kecil di sudut-sudut untuk "melengkapkan" bentuknya.
+  </div>
+
+  <p>
+    Contoh kedua, dengan koefisien $a \neq 1$: selesaikan $2x^2 + 12x + 7 = 0$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    $2x^2 + 12x + 7 = 0$<br>
+    $x^2 + 6x + \frac{7}{2} = 0$ &nbsp; (bagi semua dengan 2)<br>
+    $x^2 + 6x = -\frac{7}{2}$<br>
+    $x^2 + 6x + 9 = -\frac{7}{2} + 9 = \frac{11}{2}$<br>
+    $(x + 3)^2 = \frac{11}{2}$<br>
+    $x = -3 \pm \sqrt{\frac{11}{2}}$
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Melengkapkan Kuadrat Sempurna</div>
+    <div class="interactive-desc">Masukkan koefisien dalam $x^2 + bx + c = 0$. Lihat langkah completing the square.</div>
+
+    <div style="display:flex; gap:8px; align-items:center; font-family:'JetBrains Mono'; font-size:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+      <span>x² +</span>
+      <input type="number" id="cs-b" value="6" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>x +</span>
+      <input type="number" id="cs-c" value="2" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>= 0</span>
+      <button onclick="solveByCompSq()" style="font-family:'Inter'; padding:6px 14px; background:var(--accent-blue); color:white; border:none; border-radius:6px; cursor:pointer;">Selesaikan</button>
+    </div>
+
+    <div id="comp-sq-steps" style="font-family:'JetBrains Mono'; font-size:0.85rem; line-height:2.2;"></div>
+  </div>
+
+  <h3>Menurunkan Rumus Kuadrat</h3>
+
+  <p>
+    Sekarang kita punya alat untuk membuktikan rumus kuadrat. Kita akan menyelesaikan $ax^2 + bx + c = 0$ secara umum menggunakan completing the square:
+  </p>
+
+  <div class="proof-box">
+    <p><strong>Penurunan rumus kuadrat dari completing the square:</strong></p>
+    <p style="line-height: 2.4;">
+      $ax^2 + bx + c = 0$<br>
+      $x^2 + \frac{b}{a}x + \frac{c}{a} = 0$ &nbsp; (bagi semua dengan $a$)<br>
+      $x^2 + \frac{b}{a}x = -\frac{c}{a}$ &nbsp; (pindahkan $\frac{c}{a}$)<br>
+      $x^2 + \frac{b}{a}x + \frac{b^2}{4a^2} = -\frac{c}{a} + \frac{b^2}{4a^2}$ &nbsp; (tambahkan $\left(\frac{b}{2a}\right)^2$)<br>
+      $\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}$ &nbsp; (kuadrat sempurna!)<br>
+      $x + \frac{b}{2a} = \pm\frac{\sqrt{b^2 - 4ac}}{2a}$<br>
+      $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ &nbsp; ∎
+    </p>
+  </div>
+
+  <p>
+    Rumus ini bukan sekadar "hafalan" — ia adalah <em>hasil</em> dari completing the square pada kasus paling umum. Jika kamu lupa rumusnya, kamu selalu bisa menurunkannya lagi.
   </p>
 
   <div class="key-insight">
@@ -320,6 +507,83 @@ window.MathJax = {
     <strong>Aturan kritis:</strong> Jika kamu mengalikan atau membagi kedua sisi pertidaksamaan dengan bilangan <strong>negatif</strong>, arah tanda harus <strong>dibalik</strong>.<br><br>
     Contoh: $-2x > 6 \to x < -3$ (tanda $>$ berubah jadi $<$)<br>
     Mengapa? Karena mengalikan dengan negatif membalik urutan di garis bilangan: $2 > 1$, tapi $-2 < -1$.
+  </div>
+
+  <h3>Pertidaksamaan Linear: Contoh Terstruktur</h3>
+
+  <p>
+    Contoh 1: Selesaikan $3x - 7 \leq 8$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    $3x - 7 \leq 8$<br>
+    $3x \leq 15$ &nbsp; (tambah 7)<br>
+    $x \leq 5$
+  </p>
+
+  <p>
+    Solusinya bukan satu bilangan, tapi <em>himpunan</em>: semua bilangan yang kurang dari atau sama dengan 5. Dalam notasi interval: $(-\infty, 5]$.
+  </p>
+
+  <p>
+    Contoh 2 (dengan tanda terbalik): Selesaikan $4 - 2x > 10$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    $4 - 2x > 10$<br>
+    $-2x > 6$ &nbsp; (kurangi 4)<br>
+    $x < -3$ &nbsp; (bagi $-2$, tanda <strong>terbalik!</strong>)
+  </p>
+
+  <h3>Pertidaksamaan Gabungan</h3>
+
+  <p>
+    Kadang kita ingin $x$ berada di antara dua batas. Misalnya: "suhu mesin harus antara 60°C dan 90°C." Dalam matematika:
+  </p>
+
+  <p style="text-align: center; font-size: 1.1rem;">$60 \leq T \leq 90$</p>
+
+  <p>
+    Contoh: Selesaikan $-1 < 2x + 3 \leq 9$.
+  </p>
+
+  <p style="text-align: center; font-size: 1.02rem; line-height: 2.4;">
+    $-1 < 2x + 3 \leq 9$<br>
+    $-4 < 2x \leq 6$ &nbsp; (kurangi 3 dari ketiga bagian)<br>
+    $-2 < x \leq 3$ &nbsp; (bagi 2)
+  </p>
+
+  <p>
+    Dalam notasi interval: $(-2, 3]$. Tanda kurung biasa $($ berarti "tidak termasuk", kurung siku $]$ berarti "termasuk".
+  </p>
+
+  <div class="recall-box">
+    <strong>Koneksi ke Teknik Elektro:</strong> Pertidaksamaan muncul terus-menerus dalam desain rangkaian. Tegangan kerja suatu komponen punya batas: $V_{\min} \leq V \leq V_{\max}$. Jika tegangan keluar dari rentang itu, komponen bisa rusak. Merancang rangkaian berarti memastikan semua pertidaksamaan terpenuhi.
+  </div>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menyelesaikan Pertidaksamaan</div>
+    <div class="interactive-desc">Masukkan pertidaksamaan linear $ax + b$ dan pilih tanda. Lihat solusi dan representasi garis bilangan.</div>
+
+    <div style="display:flex; gap:6px; align-items:center; font-family:'JetBrains Mono'; font-size:0.95rem; margin-bottom:1rem; flex-wrap:wrap;">
+      <input type="number" id="ineq-a" value="-2" style="width:45px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <span>x +</span>
+      <input type="number" id="ineq-b" value="4" style="width:45px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <select id="ineq-sign" style="font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+        <option value="lt">&lt;</option>
+        <option value="le">≤</option>
+        <option value="gt" selected>&gt;</option>
+        <option value="ge">≥</option>
+      </select>
+      <input type="number" id="ineq-c" value="10" style="width:50px; text-align:center; font-family:inherit; padding:4px; border:1px solid var(--border); border-radius:4px;">
+      <button onclick="solveInequality()" style="font-family:'Inter'; padding:5px 12px; background:var(--accent-blue); color:white; border:none; border-radius:6px; cursor:pointer;">Selesaikan</button>
+    </div>
+
+    <div id="ineq-result" style="font-family:'JetBrains Mono'; font-size:0.85rem; line-height:2;"></div>
+    <div style="text-align:center; margin-top:0.5rem;">
+      <svg id="ineq-svg" width="360" height="60" viewBox="0 0 360 60" style="max-width:100%;"></svg>
+    </div>
   </div>
 
   <div class="divider divider-center"></div>
@@ -418,12 +682,57 @@ window.MathJax = {
   </div>
 
   <div class="exercise">
-    <div class="exercise-label">Latihan 8 — Challenge</div>
-    <p>Gunakan rumus kuadrat untuk menyelesaikan $2x^2 + 3x - 2 = 0$. Periksa kedua solusi.</p>
+    <div class="exercise-label">Latihan 8 — Computation</div>
+    <p>Selesaikan $x^2 + 4x - 1 = 0$ dengan melengkapkan kuadrat sempurna.</p>
     <button class="hint-btn" onclick="toggleHint('h8')">Lihat Petunjuk</button>
     <button class="answer-btn" onclick="toggleAnswer('a8')">Lihat Jawaban</button>
-    <div class="hint-content" id="h8">$a = 2$, $b = 3$, $c = -2$. Hitung $D = b^2 - 4ac$ dulu.</div>
-    <div class="answer-content" id="a8">$D = 9 - 4(2)(-2) = 9 + 16 = 25$. $x = \frac{-3 \pm \sqrt{25}}{4} = \frac{-3 \pm 5}{4}$. Jadi $x = \frac{2}{4} = \frac{1}{2}$ atau $x = \frac{-8}{4} = -2$. Periksa: $2(\frac{1}{2})^2 + 3(\frac{1}{2}) - 2 = \frac{1}{2} + \frac{3}{2} - 2 = 0$ ✓. $2(-2)^2 + 3(-2) - 2 = 8 - 6 - 2 = 0$ ✓.</div>
+    <div class="hint-content" id="h8">Pindahkan $-1$ ke kanan, lalu tambahkan $\left(\frac{4}{2}\right)^2 = 4$ ke kedua sisi.</div>
+    <div class="answer-content" id="a8">$x^2 + 4x = 1$. Tambah 4: $x^2 + 4x + 4 = 5$. $(x+2)^2 = 5$. $x = -2 \pm \sqrt{5}$. Dua solusi: $x \approx 0{,}236$ dan $x \approx -4{,}236$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — SPL (Substitusi)</div>
+    <p>Selesaikan sistem: $y = 2x + 1$ dan $3x + y = 11$.</p>
+    <button class="hint-btn" onclick="toggleHint('h9')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a9')">Lihat Jawaban</button>
+    <div class="hint-content" id="h9">Persamaan pertama sudah mengisolasi $y$. Substitusikan ke persamaan kedua.</div>
+    <div class="answer-content" id="a9">Substitusi: $3x + (2x+1) = 11 \to 5x + 1 = 11 \to 5x = 10 \to x = 2$. Maka $y = 2(2)+1 = 5$. Periksa: $3(2) + 5 = 11$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — SPL (Eliminasi)</div>
+    <p>Selesaikan: $3x + 2y = 16$ dan $x - 2y = 0$.</p>
+    <button class="hint-btn" onclick="toggleHint('h10')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a10')">Lihat Jawaban</button>
+    <div class="hint-content" id="h10">Koefisien $y$ sudah berlawanan tanda ($+2y$ dan $-2y$). Jumlahkan kedua persamaan.</div>
+    <div class="answer-content" id="a10">Jumlahkan: $(3x+2y) + (x-2y) = 16 + 0 \to 4x = 16 \to x = 4$. Dari persamaan kedua: $4 - 2y = 0 \to y = 2$. Periksa: $3(4)+2(2) = 16$ ✓.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Pertidaksamaan</div>
+    <p>Selesaikan $5 - 3x \geq -7$ dan nyatakan dalam notasi interval.</p>
+    <button class="hint-btn" onclick="toggleHint('h11')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a11')">Lihat Jawaban</button>
+    <div class="hint-content" id="h11">Kurangi 5 dari kedua sisi, lalu bagi dengan $-3$. Ingat: bagi negatif, tanda terbalik!</div>
+    <div class="answer-content" id="a11">$5 - 3x \geq -7 \to -3x \geq -12 \to x \leq 4$ (tanda terbalik!). Notasi interval: $(-\infty, 4]$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Pertidaksamaan Gabungan</div>
+    <p>Selesaikan $-3 \leq 4x - 1 < 15$.</p>
+    <button class="hint-btn" onclick="toggleHint('h12')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a12')">Lihat Jawaban</button>
+    <div class="hint-content" id="h12">Tambahkan 1 ke ketiga bagian, lalu bagi 4.</div>
+    <div class="answer-content" id="a12">$-3 \leq 4x - 1 < 15 \to -2 \leq 4x < 16 \to -\frac{1}{2} \leq x < 4$. Notasi interval: $[-\frac{1}{2}, 4)$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 13 — Challenge</div>
+    <p>Gunakan rumus kuadrat untuk menyelesaikan $2x^2 + 3x - 2 = 0$. Periksa kedua solusi.</p>
+    <button class="hint-btn" onclick="toggleHint('h13')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a13')">Lihat Jawaban</button>
+    <div class="hint-content" id="h13">$a = 2$, $b = 3$, $c = -2$. Hitung $D = b^2 - 4ac$ dulu.</div>
+    <div class="answer-content" id="a13">$D = 9 - 4(2)(-2) = 9 + 16 = 25$. $x = \frac{-3 \pm \sqrt{25}}{4} = \frac{-3 \pm 5}{4}$. Jadi $x = \frac{2}{4} = \frac{1}{2}$ atau $x = \frac{-8}{4} = -2$. Periksa: $2(\frac{1}{2})^2 + 3(\frac{1}{2}) - 2 = \frac{1}{2} + \frac{3}{2} - 2 = 0$ ✓. $2(-2)^2 + 3(-2) - 2 = 8 - 6 - 2 = 0$ ✓.</div>
   </div>
 
   <div class="divider divider-center"></div>
@@ -591,11 +900,155 @@ function drawParabola(a, b, c, D) {
   svg.innerHTML = s;
 }
 
+// ═══════ Interactive 4: Completing the square ═══════
+function solveByCompSq() {
+  var b = parseFloat(document.getElementById('cs-b').value) || 0;
+  var c = parseFloat(document.getElementById('cs-c').value) || 0;
+  var half = b / 2;
+  var sq = half * half;
+  var rhs = sq - c;
+  var lines = [];
+  lines.push('x² + ' + b + 'x + ' + c + ' = 0');
+  lines.push('');
+  lines.push('Langkah 1: Pindahkan konstanta');
+  lines.push('x² + ' + b + 'x = ' + (-c));
+  lines.push('');
+  lines.push('Langkah 2: (b/2)² = (' + b + '/2)² = ' + half + '² = ' + sq);
+  lines.push('Tambahkan ' + sq + ' ke kedua sisi:');
+  lines.push('x² + ' + b + 'x + ' + sq + ' = ' + (-c) + ' + ' + sq + ' = ' + rhs);
+  lines.push('');
+  lines.push('Langkah 3: Faktorkan sisi kiri');
+  lines.push('(x + ' + half + ')² = ' + rhs);
+  if (rhs < 0) {
+    lines.push('');
+    lines.push('Sisi kanan negatif → tidak ada solusi real!');
+  } else if (rhs === 0) {
+    lines.push('');
+    lines.push('x + ' + half + ' = 0');
+    lines.push('x = ' + (-half) + ' (akar kembar)');
+  } else {
+    var sr = Math.sqrt(rhs);
+    lines.push('');
+    lines.push('Langkah 4: Akar kuadrat');
+    lines.push('x + ' + half + ' = ±√' + rhs + ' = ±' + sr.toFixed(4));
+    lines.push('');
+    lines.push('x₁ = ' + (-half) + ' + ' + sr.toFixed(4) + ' = ' + (-half + sr).toFixed(4));
+    lines.push('x₂ = ' + (-half) + ' − ' + sr.toFixed(4) + ' = ' + (-half - sr).toFixed(4));
+  }
+  document.getElementById('comp-sq-steps').innerText = lines.join('\n');
+}
+
+// ═══════ Interactive 5: System of linear equations ═══════
+function solveSPL() {
+  var a1 = parseFloat(document.getElementById('spl-a1').value) || 0;
+  var b1 = parseFloat(document.getElementById('spl-b1').value) || 0;
+  var c1 = parseFloat(document.getElementById('spl-c1').value) || 0;
+  var a2 = parseFloat(document.getElementById('spl-a2').value) || 0;
+  var b2 = parseFloat(document.getElementById('spl-b2').value) || 0;
+  var c2 = parseFloat(document.getElementById('spl-c2').value) || 0;
+  var det = a1 * b2 - a2 * b1;
+  var lines = [];
+  lines.push('Persamaan 1: ' + a1 + 'x + ' + b1 + 'y = ' + c1);
+  lines.push('Persamaan 2: ' + a2 + 'x + ' + b2 + 'y = ' + c2);
+  lines.push('');
+  lines.push('Determinan: ' + a1 + '·' + b2 + ' − ' + a2 + '·' + b1 + ' = ' + det);
+  if (Math.abs(det) < 0.0001) {
+    if (Math.abs(a1*c2 - a2*c1) < 0.0001) {
+      lines.push('');
+      lines.push('Determinan = 0 dan persamaan sebanding');
+      lines.push('→ Tak hingga banyak solusi (garis berimpit)');
+    } else {
+      lines.push('');
+      lines.push('Determinan = 0 tapi persamaan tidak sebanding');
+      lines.push('→ Tidak ada solusi (garis sejajar)');
+    }
+  } else {
+    var x = (c1 * b2 - c2 * b1) / det;
+    var y = (a1 * c2 - a2 * c1) / det;
+    lines.push('');
+    lines.push('Metode Eliminasi:');
+    lines.push('Kalikan pers.1 dengan ' + b2 + ': ' + (a1*b2) + 'x + ' + (b1*b2) + 'y = ' + (c1*b2));
+    lines.push('Kalikan pers.2 dengan ' + b1 + ': ' + (a2*b1) + 'x + ' + (b2*b1) + 'y = ' + (c2*b1));
+    lines.push('Kurangkan: ' + (a1*b2 - a2*b1) + 'x = ' + (c1*b2 - c2*b1));
+    lines.push('');
+    lines.push('x = ' + x.toFixed(4).replace(/\.?0+$/, ''));
+    lines.push('y = ' + y.toFixed(4).replace(/\.?0+$/, ''));
+    lines.push('');
+    var chk1 = a1*x + b1*y;
+    var chk2 = a2*x + b2*y;
+    lines.push('Verifikasi:');
+    lines.push('  ' + a1 + '(' + x.toFixed(2).replace(/\.?0+$/,'') + ') + ' + b1 + '(' + y.toFixed(2).replace(/\.?0+$/,'') + ') = ' + chk1.toFixed(2).replace(/\.?0+$/,'') + (Math.abs(chk1 - c1) < 0.01 ? ' ✓' : ' ✗'));
+    lines.push('  ' + a2 + '(' + x.toFixed(2).replace(/\.?0+$/,'') + ') + ' + b2 + '(' + y.toFixed(2).replace(/\.?0+$/,'') + ') = ' + chk2.toFixed(2).replace(/\.?0+$/,'') + (Math.abs(chk2 - c2) < 0.01 ? ' ✓' : ' ✗'));
+  }
+  document.getElementById('spl-result').innerText = lines.join('\n');
+}
+
+// ═══════ Interactive 6: Inequality solver ═══════
+function solveInequality() {
+  var a = parseFloat(document.getElementById('ineq-a').value) || 1;
+  var b = parseFloat(document.getElementById('ineq-b').value) || 0;
+  var c = parseFloat(document.getElementById('ineq-c').value) || 0;
+  var sign = document.getElementById('ineq-sign').value;
+  var signStr = {lt:'<', le:'≤', gt:'>', ge:'≥'}[sign];
+  var lines = [];
+  lines.push(a + 'x + ' + b + ' ' + signStr + ' ' + c);
+  lines.push('');
+  lines.push('Langkah 1: Kurangi ' + b);
+  var rhs = c - b;
+  lines.push(a + 'x ' + signStr + ' ' + rhs);
+  if (a === 0) {
+    lines.push('');
+    lines.push(0 + ' ' + signStr + ' ' + rhs + ' → ' + (eval('0' + {lt:'<',le:'<=',gt:'>',ge:'>='}[sign] + rhs) ? 'Selalu benar (semua x)' : 'Tidak pernah benar (tidak ada solusi)'));
+  } else {
+    lines.push('');
+    lines.push('Langkah 2: Bagi dengan ' + a);
+    var sol = rhs / a;
+    var finalSign = signStr;
+    if (a < 0) {
+      finalSign = {lt:'>', le:'≥', gt:'<', ge:'≤'}[sign];
+      lines.push('  (a negatif → tanda TERBALIK!)');
+    }
+    lines.push('x ' + finalSign + ' ' + sol.toFixed(4).replace(/\.?0+$/, ''));
+    var incl = finalSign === '≤' || finalSign === '≥';
+    var goRight = finalSign === '>' || finalSign === '≥';
+    if (goRight) {
+      lines.push('Notasi interval: ' + (incl ? '[' : '(') + sol.toFixed(2).replace(/\.?0+$/,'') + ', ∞)');
+    } else {
+      lines.push('Notasi interval: (-∞, ' + sol.toFixed(2).replace(/\.?0+$/,'') + (incl ? ']' : ')'));
+    }
+    drawIneqLine(sol, goRight, incl);
+  }
+  document.getElementById('ineq-result').innerText = lines.join('\n');
+}
+function drawIneqLine(val, goRight, inclusive) {
+  var svg = document.getElementById('ineq-svg');
+  var w = 360, h = 60, cy = 30, px = w / 2;
+  var s = '';
+  s += '<line x1="20" y1="' + cy + '" x2="' + (w-20) + '" y2="' + cy + '" stroke="#ccc" stroke-width="2"/>';
+  for (var t = -3; t <= 3; t++) {
+    var tx = px + t * 40;
+    s += '<line x1="' + tx + '" y1="' + (cy-4) + '" x2="' + tx + '" y2="' + (cy+4) + '" stroke="#999" stroke-width="1"/>';
+    s += '<text x="' + tx + '" y="' + (cy+16) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">' + (val + t).toFixed(1).replace(/\.0$/,'') + '</text>';
+  }
+  s += '<circle cx="' + px + '" cy="' + cy + '" r="5" fill="' + (inclusive ? '#2471a3' : 'white') + '" stroke="#2471a3" stroke-width="2"/>';
+  if (goRight) {
+    s += '<line x1="' + px + '" y1="' + cy + '" x2="' + (w-20) + '" y2="' + cy + '" stroke="#2471a3" stroke-width="3"/>';
+    s += '<polygon points="' + (w-20) + ',' + (cy-5) + ' ' + (w-10) + ',' + cy + ' ' + (w-20) + ',' + (cy+5) + '" fill="#2471a3"/>';
+  } else {
+    s += '<line x1="20" y1="' + cy + '" x2="' + px + '" y2="' + cy + '" stroke="#2471a3" stroke-width="3"/>';
+    s += '<polygon points="20,' + (cy-5) + ' 10,' + cy + ' 20,' + (cy+5) + '" fill="#2471a3"/>';
+  }
+  svg.innerHTML = s;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   resetBalance();
   solveLinear();
   solveQuadratic();
+  solveByCompSq();
+  solveSPL();
+  solveInequality();
 });
 </script>
 </body>
