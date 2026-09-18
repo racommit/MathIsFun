@@ -119,6 +119,10 @@ window.MathJax = {
     • <strong>Simpangan baku</strong>: $\sigma = \sqrt{\sigma^2}$ — "rata-rata seberapa jauh data dari pusat"
   </div>
 
+  <div class="narrator">
+    <strong>Kenapa kuadrat, bukan nilai mutlak?</strong> Pertanyaan wajar: kenapa varians pakai $(x_i - \bar{x})^2$ alih-alih $|x_i - \bar{x}|$ saja? Gauss menemukan <em>metode kuadrat terkecil</em> (least squares) tahun 1795 — ia butuh rumus yang bisa diturunkan dengan kalkulus untuk mencari nilai optimal. Fungsi kuadrat mulus dan bisa diturunkan di mana saja; fungsi nilai mutlak punya "patahan" tajam di nol yang membuat kalkulus macet. Jadi kuadrat bukan karena lebih "benar" — melainkan karena <strong>ia bersahabat dengan kalkulus</strong>, dan seluruh statistik modern dibangun di atas fondasi itu.
+  </div>
+
   <!-- INTERACTIVE 2: Mean & Std Dev -->
   <div class="interactive-section">
     <div class="interactive-label">Eksperimen Interaktif</div>
@@ -141,6 +145,10 @@ window.MathJax = {
   <!-- ═══════════════════════ DISTRIBUSI NORMAL ═══════════════════════ -->
 
   <h2>Distribusi Normal (Kurva Lonceng)</h2>
+
+  <div class="historical-note">
+    <strong>Gauss dan planet kerdil yang hilang.</strong> Tahun 1801, astronom Giuseppe Piazzi menemukan Ceres — objek baru di langit. Tapi setelah 41 hari pengamatan, Ceres menghilang di balik matahari. Seluruh Eropa kehilangan jejak. Carl Friedrich Gauss, baru 24 tahun, mengembangkan metode statistik untuk memprediksi posisi Ceres dari data pengamatan yang penuh <em>error</em>. Kuncinya: ia mengasumsikan error pengukuran mengikuti distribusi berbentuk lonceng — yang kini kita sebut <strong>distribusi normal</strong> atau <em>distribusi Gauss</em>. Prediksinya tepat: Ceres ditemukan kembali persis di posisi yang ia hitung. Kurva lonceng lahir bukan dari teori abstrak, tapi dari kebutuhan nyata menemukan planet yang hilang.
+  </div>
 
   <p>
     Banyak fenomena alam mengikuti distribusi normal: tinggi badan, skor ujian, error pengukuran. Kurva berbentuk lonceng, simetris di sekitar mean.

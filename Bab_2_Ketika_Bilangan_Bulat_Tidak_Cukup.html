@@ -328,8 +328,13 @@ window.MathJax = {
 
   <h2>Menemukan FPB dan KPK</h2>
 
+  <div class="narrator">
+    Bayangkan kamu punya 24 kue dan 36 permen. Kamu ingin membagikannya ke beberapa anak, masing-masing dapat jumlah kue yang sama <em>dan</em> jumlah permen yang sama, tanpa ada sisa. Berapa anak <em>paling banyak</em> yang bisa kebagian?<br><br>
+    Kamu bisa bagi ke 2 anak (masing-masing 12 kue, 18 permen). Bisa ke 3 anak (8 kue, 12 permen). Bisa ke 4 anak (6 kue, 9 permen). Bisa ke 6 anak (4 kue, 6 permen). Tapi 7? $24 \div 7$ sisa 3. Tidak bisa. Paling banyak? 12 anak (masing-masing 2 kue, 3 permen). Bilangan 12 ini punya nama: <strong>FPB</strong> dari 24 dan 36.
+  </div>
+
   <p>
-    Dua alat ini — <strong>FPB</strong> (Faktor Persekutuan terBesar) dan <strong>KPK</strong> (Kelipatan Persekutuan terKecil) — akan kita gunakan berulang kali di bab ini. Jadi mari kita benar-benar memahaminya sebelum melangkah lebih jauh.
+    FPB dan KPK bukan alat yang diciptakan untuk menyiksa siswa — mereka lahir dari kebutuhan nyata: membagi adil, menyinkronkan jadwal, dan (seperti akan kita lihat) mengoperasikan pecahan.
   </p>
 
   <h3>Faktor: Bilangan yang Membagi Habis</h3>
@@ -354,11 +359,19 @@ window.MathJax = {
     <strong>FPB (Faktor Persekutuan terBesar)</strong> dari dua bilangan $a$ dan $b$ adalah bilangan terbesar yang membagi habis <em>keduanya</em>.
   </div>
 
+  <div class="historical-note">
+    FPB bukan konsep baru. Sekitar 300 SM, <strong>Euclid</strong> menulis algoritma untuk menghitung FPB yang masih digunakan <em>sampai hari ini</em> di setiap komputer dan smartphone. Algoritmanya elegan: untuk mencari FPB(24, 36), bagi 36 dengan 24 → sisa 12. Sekarang cari FPB(24, 12) → bagi 24 dengan 12 → sisa 0. Selesai! FPB = 12. Prinsipnya: terus ganti bilangan yang lebih besar dengan sisa pembagian, sampai sisa = 0. Ini salah satu algoritma tertua dalam sejarah manusia — berusia 2.300 tahun dan belum digantikan.
+  </div>
+
   <h3>Cara Mencari FPB: Faktorisasi Prima</h3>
 
   <p>
     Setiap bilangan bisa dipecah menjadi perkalian <strong>bilangan prima</strong> — bilangan yang hanya bisa dibagi 1 dan dirinya sendiri (2, 3, 5, 7, 11, 13, ...). Ini disebut <strong>faktorisasi prima</strong>.
   </p>
+
+  <div class="narrator">
+    Pikirkan bilangan prima sebagai <em>atom</em> dunia bilangan. Seperti semua zat tersusun dari unsur-unsur kimia yang tak bisa dipecah lagi, semua bilangan bulat tersusun dari perkalian bilangan prima yang tak bisa dipecah lagi. $12 = 2 \times 2 \times 3$ — tiga "atom" yang membentuknya. Dan seperti dalam kimia, "resep atom" ini <em>unik</em> — hanya ada satu cara memfaktorkan setiap bilangan (ini disebut <strong>Teorema Fundamental Aritmetika</strong>).
+  </div>
 
   <p>
     Caranya: terus bagi dengan bilangan prima terkecil sampai habis.
@@ -382,6 +395,13 @@ window.MathJax = {
   </div>
 
   <h3>Kelipatan dan KPK</h3>
+
+  <div class="narrator">
+    Di halte bus depan kampus, bus merah datang setiap 4 menit dan bus biru setiap 6 menit. Keduanya berangkat bersamaan pukul 07.00. Kapan mereka bertemu lagi di halte yang sama?<br><br>
+    Bus merah: menit ke-4, 8, 12, 16, 20, 24...<br>
+    Bus biru: menit ke-6, 12, 18, 24, 30...<br>
+    Mereka bertemu di menit ke-<strong>12</strong>! Bilangan ini — kelipatan terkecil yang dimiliki keduanya — adalah <strong>KPK</strong>.
+  </div>
 
   <p>
     <strong>Kelipatan</strong> dari suatu bilangan adalah hasil kali bilangan itu dengan 1, 2, 3, ...

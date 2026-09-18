@@ -128,7 +128,7 @@ window.MathJax = {
   <h2>Aturan-Aturan Turunan</h2>
 
   <p>
-    Menghitung turunan dari definisi limit setiap kali sangat melelahkan. Untungnya, ada aturan-aturan yang membuat hidup lebih mudah:
+    Menghitung turunan dari definisi limit setiap kali sangat melelahkan. Untungnya, ada aturan-aturan yang membuat hidup lebih mudah. Tapi hati-hati: beberapa aturan ini <em>tidak</em> seintuitif kelihatannya — dan memahami <em>mengapa</em> mereka berbentuk seperti itu jauh lebih berharga daripada menghafalnya.
   </p>
 
   <div class="key-insight">
@@ -156,6 +156,10 @@ window.MathJax = {
       <li><strong>Pembagian:</strong> $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$</li>
       <li><strong>Aturan rantai:</strong> $(f \circ g)' = f'(g(x)) \cdot g'(x)$ — turunan fungsi komposisi</li>
     </ul>
+  </div>
+
+  <div class="narrator">
+    Kenapa $(fg)' = f'g + fg'$ dan bukan $(fg)' = f' \cdot g'$ (yang lebih "intuitif")? Bayangkan luas persegi panjang dengan panjang $f(x)$ dan lebar $g(x)$. Jika <em>keduanya</em> berubah sedikit, luas bertambah karena dua alasan: (1) panjang bertambah $df$ sementara lebar tetap → tambahan $g \cdot df$, dan (2) lebar bertambah $dg$ sementara panjang tetap → tambahan $f \cdot dg$. Totalnya: $f'g + fg'$. Bukan perkalian turunan, tapi penjumlahan kontribusi masing-masing — karena masing-masing tumbuh "secara bergantian."
   </div>
 
   <!-- INTERACTIVE 2: Derivative Calculator -->
