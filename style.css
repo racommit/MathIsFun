@@ -648,6 +648,108 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+/* ── Cross-Reference Popup ── */
+.xref {
+  position: relative;
+  display: inline;
+  cursor: pointer;
+}
+.xref .xref-text {
+  border-bottom: 1.5px dotted var(--accent-blue);
+  color: var(--accent-blue);
+  transition: color 0.2s;
+}
+.xref:hover .xref-text {
+  color: #1a5276;
+  border-bottom-style: solid;
+}
+.xref .xref-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: white;
+  background: var(--accent-blue);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 3px;
+  vertical-align: super;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.xref:hover .xref-tag {
+  background: #1a5276;
+}
+.xref .xref-popup {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 4px 20px rgba(44, 44, 44, 0.15);
+  z-index: 100;
+  font-style: normal;
+  text-align: left;
+  line-height: 1.5;
+  animation: xrefFadeIn 0.15s ease-out;
+}
+@keyframes xrefFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.xref .xref-popup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: white;
+}
+.xref .xref-popup::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: var(--border);
+}
+.xref:hover .xref-popup,
+.xref.xref-active .xref-popup {
+  display: block;
+}
+.xref .xref-popup-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.xref .xref-popup-header::before {
+  content: "↩";
+  font-size: 0.72rem;
+}
+.xref .xref-popup-body {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.xref .xref-popup-body strong {
+  color: var(--text);
+}
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   html { font-size: 16px; }
@@ -658,6 +760,16 @@ h3 {
   .block { width: 22px; height: 22px; font-size: 0.6rem; }
   .mult-cell { width: 26px; height: 26px; }
   .fraction-bar { height: 32px; }
+  .xref .xref-popup {
+    width: 260px;
+    left: 0;
+    transform: translateX(0);
+  }
+  .xref .xref-popup::after,
+  .xref .xref-popup::before {
+    left: 20px;
+    transform: none;
+  }
 }
 
 /* ── MathJax override ── */

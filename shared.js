@@ -20,3 +20,17 @@ function gcd(a, b) {
 function lcm(a, b) {
   return (a * b) / gcd(a, b);
 }
+
+// Cross-reference popup: tap to toggle on mobile
+document.addEventListener('click', function(e) {
+  var xref = e.target.closest('.xref');
+  document.querySelectorAll('.xref.xref-active').forEach(function(el) {
+    if (el !== xref) el.classList.remove('xref-active');
+  });
+  if (xref) {
+    if ('ontouchstart' in window) {
+      e.preventDefault();
+      xref.classList.toggle('xref-active');
+    }
+  }
+});
