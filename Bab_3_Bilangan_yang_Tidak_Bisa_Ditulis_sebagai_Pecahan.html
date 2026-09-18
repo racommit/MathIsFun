@@ -332,6 +332,83 @@ window.MathJax = {
     <div id="proof-steps" style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 2;"></div>
   </div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP: √3 ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-sqrt3">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Giliranmu: buktikan bahwa $\sqrt{3}$ irasional.</div>
+    <div class="pw-method">Gunakan metode yang sama — bukti dengan kontradiksi. Lengkapi setiap langkah.</div>
+
+    <div class="pw-step" id="pw3-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Andaian:</strong> Misalkan $\sqrt{3}$ rasional, maka $\sqrt{3} = \frac{a}{b}$ (bentuk paling sederhana). Kuadratkan kedua sisi: $3 =$</p>
+        <input type="text" class="pw-input" id="pw3-i1" placeholder="a²/...">
+        <div class="pw-feedback" id="pw3-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pw3-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kalikan silang:</strong> maka $a^2 =$</p>
+        <input type="text" class="pw-input" id="pw3-i2" placeholder="...b²">
+        <div class="pw-feedback" id="pw3-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pw3-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$a^2 = 3b^2$ berarti $a^2$ habis dibagi 3. Jika kuadrat suatu bilangan habis dibagi 3, bilangan itu sendiri habis dibagi...</p>
+        <input type="text" class="pw-input pw-input-sm" id="pw3-i3" placeholder="?">
+        <div class="pw-feedback" id="pw3-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pw3-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Substitusi:</strong> Tulis $a = 3k$. Maka $(3k)^2 = 3b^2 \Rightarrow 9k^2 = 3b^2$. Sederhanakan: $b^2 =$</p>
+        <input type="text" class="pw-input" id="pw3-i4" placeholder="...k²">
+        <div class="pw-feedback" id="pw3-f4"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pw3-s5">
+      <div class="pw-step-num">5</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kontradiksi:</strong> $b^2 = 3k^2$ berarti $b$ juga habis dibagi 3. Tapi $a$ dan $b$ keduanya habis dibagi 3, yang bertentangan dengan andaian bahwa...</p>
+        <select class="pw-select" id="pw3-i5">
+          <option value="">— pilih —</option>
+          <option value="A">$a$ dan $b$ bilangan bulat positif</option>
+          <option value="B">$\frac{a}{b}$ sudah dalam bentuk paling sederhana</option>
+          <option value="C">$\sqrt{3}$ bilangan positif</option>
+        </select>
+        <div class="pw-feedback" id="pw3-f5"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkSqrt3Proof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pw3-result"></div>
+  </div>
+
+  <script>
+  function checkSqrt3Proof() {
+    var ok = true;
+    ok &= pwCheck('pw3-i1', 'pw3-f1', ['a^2/b^2', 'a²/b²'], 'Kuadratkan kedua sisi dari √3 = a/b');
+    ok &= pwCheck('pw3-i2', 'pw3-f2', ['3b^2', '3b²', '3*b^2'], 'Kalikan kedua sisi dengan b²');
+    ok &= pwCheck('pw3-i3', 'pw3-f3', ['3'], 'Pikirkan: jika p² habis dibagi 3, maka p habis dibagi...?');
+    ok &= pwCheck('pw3-i4', 'pw3-f4', ['3k^2', '3k²', '3*k^2'], 'Bagi kedua sisi 9k² = 3b² dengan 3');
+    ok &= pwCheckSelect('pw3-i5', 'pw3-f5', 'B',
+      'Benar! Jika keduanya habis dibagi 3, pecahan belum paling sederhana — kontradiksi!',
+      'Ingat: apa arti "bentuk paling sederhana"?');
+    pwResult('pw3-result', ok, 'Bukti valid! Kamu baru saja membuktikan bahwa √3 irasional — dengan logika murni.');
+  }
+  </script>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ BILANGAN IRASIONAL ═══════════════════════ -->

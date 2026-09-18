@@ -255,6 +255,122 @@ window.MathJax = {
     $1 + 2 + 4 + 8 + \cdots$ divergen (menuju $\infty$). Deret geometri hanya konvergen jika $|r| < 1$.
   </div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP: Limit ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-limit">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan: $\displaystyle\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = 4$</div>
+    <div class="pw-method">Substitusi langsung gagal — buktikan dengan aljabar, lalu verifikasi secara numerik.</div>
+
+    <div class="pw-step" id="pwl-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Coba substitusi:</strong> Masukkan $x = 2$: pembilang $= 2^2 - 4 =$
+          <input type="text" class="pw-input pw-input-sm" id="pwl-i1a" placeholder="?">
+          , penyebut $= 2 - 2 =$
+          <input type="text" class="pw-input pw-input-sm" id="pwl-i1b" placeholder="?">
+          . Bentuk $\frac{0}{0}$ — tak tentu!</p>
+        <div class="pw-feedback" id="pwl-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwl-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Faktorkan pembilang:</strong> $x^2 - 4 = (x+\text{?})(x-\text{?})$. Faktornya:</p>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <span>$(x +$</span>
+          <input type="text" class="pw-input pw-input-sm" id="pwl-i2a" placeholder="?">
+          <span>$)(x -$</span>
+          <input type="text" class="pw-input pw-input-sm" id="pwl-i2b" placeholder="?">
+          <span>$)$</span>
+        </div>
+        <div class="pw-feedback" id="pwl-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwl-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Sederhanakan:</strong> $\frac{(x+2)(x-2)}{x-2}$. Coret $(x-2)$, sisa:</p>
+        <input type="text" class="pw-input pw-input-md" id="pwl-i3" placeholder="?">
+        <div class="pw-feedback" id="pwl-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwl-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Substitusi limit:</strong> $\displaystyle\lim_{x \to 2} (x+2) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwl-i4" placeholder="?">
+        <div class="pw-feedback" id="pwl-f4"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwl-s5">
+      <div class="pw-step-num">5</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi numerik:</strong> Hitung $\frac{x^2-4}{x-2}$ untuk $x$ mendekati 2:</p>
+        <table class="pw-numtable" id="pwl-table">
+          <tr><th>$x$</th><th>$x^2 - 4$</th><th>$x - 2$</th><th>$\frac{x^2-4}{x-2}$</th></tr>
+        </table>
+        <div style="text-align:center; margin-top:0.5rem;">
+          <button class="btn" onclick="fillLimitTable()">Hitung Tabel</button>
+        </div>
+        <div class="pw-feedback" id="pwl-f5"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkLimitProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwl-result"></div>
+  </div>
+
+  <script>
+  function fillLimitTable() {
+    var table = document.getElementById('pwl-table');
+    while (table.rows.length > 1) table.deleteRow(1);
+    var xs = [1.5, 1.9, 1.99, 1.999, 2.001, 2.01, 2.1, 2.5];
+    xs.forEach(function(x) {
+      var num = x*x - 4, den = x - 2, ratio = num/den;
+      var tr = table.insertRow();
+      tr.innerHTML = '<td>' + x + '</td><td>' + num.toFixed(4) + '</td><td>' + den.toFixed(4) + '</td><td><strong>' + ratio.toFixed(4) + '</strong></td>';
+      if (Math.abs(x - 2) < 0.01) tr.className = 'highlight';
+    });
+    var fb = document.getElementById('pwl-f5');
+    fb.innerHTML = '<strong>&#10003;</strong> Lihat: semakin dekat x ke 2, semakin dekat hasilnya ke 4!';
+    fb.className = 'pw-feedback correct';
+    var step = document.getElementById('pwl-s5');
+    step.classList.remove('wrong'); step.classList.add('correct');
+  }
+
+  function checkLimitProof() {
+    var ok = true;
+    // Step 1
+    var ok1a = pwCheckNum('pwl-i1a', 'pwl-f1', 0);
+    var ok1b = pwCheckNum('pwl-i1b', 'pwl-f1', 0);
+    ok &= ok1a && ok1b;
+    // Step 2
+    var ok2a = pwCheckNum('pwl-i2a', 'pwl-f2', 2);
+    var ok2b = pwCheckNum('pwl-i2b', 'pwl-f2', 2);
+    ok &= ok2a && ok2b;
+    // Step 3
+    ok &= pwCheck('pwl-i3', 'pwl-f3', ['x+2', '(x+2)'], 'Setelah mencoret (x-2), apa yang tersisa?');
+    // Step 4
+    ok &= pwCheckNum('pwl-i4', 'pwl-f4', 4);
+    // Step 5: check if table was filled
+    var table = document.getElementById('pwl-table');
+    if (table.rows.length < 3) {
+      var fb5 = document.getElementById('pwl-f5');
+      fb5.textContent = 'Klik "Hitung Tabel" dulu untuk melihat bukti numerik.';
+      fb5.className = 'pw-feedback wrong';
+      ok = false;
+    }
+    pwResult('pwl-result', ok, 'Bukti valid! Aljabar dan numerik sepakat — limitnya memang 4. Kamu baru saja melakukan inti dari kalkulus.');
+  }
+  </script>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->

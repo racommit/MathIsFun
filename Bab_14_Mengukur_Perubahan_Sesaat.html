@@ -184,6 +184,76 @@ window.MathJax = {
     <div id="deriv-fn-result" class="result-display" style="font-size: 0.88rem;"></div>
   </div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP: Derivative ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-deriv">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan dari definisi: jika $f(x) = x^2$, maka $f'(x) = 2x$.</div>
+    <div class="pw-method">Gunakan definisi turunan $f'(x) = \displaystyle\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$ dan sederhanakan langkah demi langkah.</div>
+
+    <div class="pw-step" id="pwd-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Hitung $f(x+h)$:</strong> Jika $f(x) = x^2$, maka $f(x+h) = (x+h)^2$. Ekspansi:</p>
+        <input type="text" class="pw-input" id="pwd-i1" placeholder="x² + ... + h²">
+        <div class="pw-feedback" id="pwd-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Hitung selisih:</strong> $f(x+h) - f(x) = (x^2 + 2xh + h^2) - x^2 =$</p>
+        <input type="text" class="pw-input" id="pwd-i2" placeholder="...">
+        <div class="pw-feedback" id="pwd-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Bagi dengan $h$:</strong> $\frac{2xh + h^2}{h} =$</p>
+        <input type="text" class="pw-input" id="pwd-i3" placeholder="...">
+        <div class="pw-feedback" id="pwd-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Ambil limit:</strong> $\displaystyle\lim_{h \to 0} (2x + h) =$</p>
+        <input type="text" class="pw-input pw-input-md" id="pwd-i4" placeholder="...">
+        <div class="pw-feedback" id="pwd-f4"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd-s5">
+      <div class="pw-step-num">5</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi:</strong> Jika $f'(x) = 2x$, berapa gradien kurva $y = x^2$ di titik $x = 3$?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwd-i5" placeholder="?">
+        <div class="pw-feedback" id="pwd-f5"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkDerivProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwd-result"></div>
+  </div>
+
+  <script>
+  function checkDerivProof() {
+    var ok = true;
+    ok &= pwCheck('pwd-i1', 'pwd-f1', ['x^2+2xh+h^2', 'x²+2xh+h²', 'h^2+2xh+x^2', 'h²+2xh+x²'], 'Gunakan $(a+b)^2 = a^2 + 2ab + b^2$ dengan a=x, b=h');
+    ok &= pwCheck('pwd-i2', 'pwd-f2', ['2xh+h^2', '2xh+h²', 'h^2+2xh', 'h²+2xh'], 'x² di awal dan di akhir saling mencoret');
+    ok &= pwCheck('pwd-i3', 'pwd-f3', ['2x+h'], 'Faktorkan h dari pembilang, lalu coret h');
+    ok &= pwCheck('pwd-i4', 'pwd-f4', ['2x'], 'Saat h → 0, suku h menghilang');
+    ok &= pwCheckNum('pwd-i5', 'pwd-f5', 6);
+    pwResult('pwd-result', ok, 'Bukti valid! Kamu baru saja menurunkan aturan pangkat dari definisi limit — inti kalkulus diferensial.');
+  }
+  </script>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ APLIKASI ═══════════════════════ -->

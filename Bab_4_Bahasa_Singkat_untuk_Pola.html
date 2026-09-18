@@ -384,6 +384,76 @@ window.MathJax = {
     <div id="sq-identity-result" class="result-display"></div>
   </div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP: Identity ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-identity">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan: $(a - b)^2 = a^2 - 2ab + b^2$</div>
+    <div class="pw-method">Dua cara: buktikan secara aljabar (distribusi), lalu verifikasi dengan angka.</div>
+
+    <div class="pw-step" id="pwid-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Ekspansi:</strong> $(a-b)^2 = (a-b)(a-b)$. Distribusikan $a$: $a \cdot a + a \cdot (-b) =$</p>
+        <input type="text" class="pw-input" id="pwid-i1" placeholder="a² ...">
+        <div class="pw-feedback" id="pwid-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwid-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Sekarang distribusikan $(-b)$: $(-b) \cdot a + (-b)(-b) =$</p>
+        <input type="text" class="pw-input" id="pwid-i2" placeholder="-ab ...">
+        <div class="pw-feedback" id="pwid-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwid-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Gabungkan:</strong> $(a^2 - ab) + (-ab + b^2) = a^2 - 2ab + b^2$. Berapa suku $ab$ yang muncul?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwid-i3" placeholder="?">
+        <div class="pw-feedback" id="pwid-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwid-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi numerik:</strong> Cek dengan $a = 7, b = 3$. Hitung $(7-3)^2 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwid-i4" placeholder="?">
+        <div class="pw-feedback" id="pwid-f4"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwid-s5">
+      <div class="pw-step-num">5</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Sekarang hitung via rumus: $7^2 - 2(7)(3) + 3^2 = 49 - 42 + 9 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwid-i5" placeholder="?">
+        <div class="pw-feedback" id="pwid-f5"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkIdentityProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwid-result"></div>
+  </div>
+
+  <script>
+  function checkIdentityProof() {
+    var ok = true;
+    ok &= pwCheck('pwid-i1', 'pwid-f1', ['a^2-ab', 'a²-ab', 'a^2 - ab', 'a²−ab'], 'Distribusikan: a·a = a² dan a·(-b) = -ab');
+    ok &= pwCheck('pwid-i2', 'pwid-f2', ['-ab+b^2', '-ab+b²', 'b^2-ab', 'b²-ab'], '(-b)·a = -ab dan (-b)·(-b) = +b²');
+    ok &= pwCheck('pwid-i3', 'pwid-f3', ['2', 'dua'], 'Ada -ab dari langkah 1 dan -ab dari langkah 2');
+    ok &= pwCheckNum('pwid-i4', 'pwid-f4', 16);
+    ok &= pwCheckNum('pwid-i5', 'pwid-f5', 16);
+    pwResult('pwid-result', ok, 'Bukti valid! Ekspansi aljabar dan verifikasi numerik cocok — identitas terbukti.');
+  }
+  </script>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ ATURAN EKSPONEN ═══════════════════════ -->

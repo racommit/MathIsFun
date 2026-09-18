@@ -618,6 +618,74 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP: Counterexample ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-counter">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Patahkan klaim palsu ini.</div>
+    <div class="pw-method">Temanmu mengklaim: "Jika $x^2 = y^2$, maka pasti $x = y$." Temukan <strong>bukti tandingan</strong> — nilai $x$ dan $y$ yang membuktikan klaim ini salah.</div>
+
+    <div class="pw-step" id="pwc-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Masukkan dua bilangan berbeda yang kuadratnya sama:</p>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <span>$x =$</span> <input type="text" class="pw-input pw-input-sm" id="pwc-x" placeholder="?">
+          <span>$y =$</span> <input type="text" class="pw-input pw-input-sm" id="pwc-y" placeholder="?">
+        </div>
+        <div class="pw-feedback" id="pwc-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwc-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Kenapa klaim itu salah? Apa yang dilupakan temanmu?</p>
+        <select class="pw-select" id="pwc-sel">
+          <option value="">— pilih —</option>
+          <option value="A">Bilangan negatif dikuadratkan jadi positif: $(-a)^2 = a^2$</option>
+          <option value="B">Perkalian dua bilangan negatif tidak selalu positif</option>
+          <option value="C">Akar kuadrat hanya punya satu jawaban</option>
+        </select>
+        <div class="pw-feedback" id="pwc-f2"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkCounterProof()">Periksa Bukti Tandingan</button>
+    </div>
+    <div class="pw-result" id="pwc-result"></div>
+  </div>
+
+  <script>
+  function checkCounterProof() {
+    var x = parseFloat(document.getElementById('pwc-x').value);
+    var y = parseFloat(document.getElementById('pwc-y').value);
+    var fb1 = document.getElementById('pwc-f1');
+    var step1 = document.getElementById('pwc-s1');
+    var ok1 = false;
+    if (isNaN(x) || isNaN(y)) {
+      fb1.textContent = 'Masukkan dua angka.'; fb1.className = 'pw-feedback wrong';
+      step1.classList.remove('correct'); step1.classList.add('wrong');
+    } else if (x === y) {
+      fb1.textContent = 'x dan y harus berbeda — itu bukan bukti tandingan!'; fb1.className = 'pw-feedback wrong';
+      step1.classList.remove('correct'); step1.classList.add('wrong');
+    } else if (Math.abs(x*x - y*y) > 0.0001) {
+      fb1.textContent = 'x² = ' + (x*x) + ' tapi y² = ' + (y*y) + ' — tidak sama!'; fb1.className = 'pw-feedback wrong';
+      step1.classList.remove('correct'); step1.classList.add('wrong');
+    } else {
+      fb1.innerHTML = '<strong>&#10003;</strong> x² = ' + (x*x) + ' = y², tapi x ≠ y. Klaim runtuh!';
+      fb1.className = 'pw-feedback correct';
+      step1.classList.remove('wrong'); step1.classList.add('correct');
+      ok1 = true;
+    }
+    var ok2 = pwCheckSelect('pwc-sel', 'pwc-f2', 'A',
+      'Benar! $(-a)^2 = a^2$, jadi $x^2 = y^2$ tidak menjamin $x = y$.',
+      'Pikirkan: apa yang terjadi saat bilangan negatif dikuadratkan?');
+    pwResult('pwc-result', ok1 && ok2, 'Bukti tandingan valid! Satu contoh saja cukup untuk meruntuhkan klaim universal.');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>
