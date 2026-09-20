@@ -195,6 +195,63 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-antideriv">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Verifikasi bahwa $\int x^2\,dx = \frac{x^3}{3} + C$ dengan menurunkannya kembali.</div>
+    <div class="pw-method">Jika $F'(x) = f(x)$, maka $\int f(x)\,dx = F(x) + C$. Turunkan hasilnya untuk membuktikan.</div>
+
+    <div class="pw-step" id="pwad-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Turunan:</strong> $\frac{d}{dx}\left(\frac{x^3}{3}\right) = \frac{1}{3} \cdot 3x^2 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwad-i1" placeholder="?">
+        <div class="pw-feedback" id="pwad-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwad-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi numerik:</strong> $\int_0^3 x^2\,dx = \frac{3^3}{3} - \frac{0^3}{3} =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwad-i2" placeholder="?">
+        <div class="pw-feedback" id="pwad-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwad-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Generalisasi:</strong> Mengapa ada $+C$?</p>
+        <select class="pw-select" id="pwad-i3">
+          <option value="">— pilih —</option>
+          <option value="A">Karena turunan konstanta = 0, jadi banyak fungsi punya turunan yang sama</option>
+          <option value="B">Karena integral selalu menghasilkan bilangan bulat</option>
+          <option value="C">Karena C adalah koefisien dari x</option>
+        </select>
+        <div class="pw-feedback" id="pwad-f3"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkAntiDerivProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwad-result"></div>
+  </div>
+
+  <script>
+  function checkAntiDerivProof() {
+    var ok = true;
+    ok &= pwCheck('pwad-i1', 'pwad-f1', ['x^2', 'x²'], 'Aturan pangkat: d/dx(x³/3) = 3x²/3 = x²');
+    ok &= pwCheckNum('pwad-i2', 'pwad-f2', 9);
+    ok &= pwCheckSelect('pwad-i3', 'pwad-f3', 'A',
+      'Tepat! x³/3 + 5 dan x³/3 - 100 semuanya turunannya = x². Konstanta "hilang" saat diturunkan.',
+      'Pikirkan: apa turunan dari x³/3 + 7 vs x³/3 + 99?');
+    pwResult('pwad-result', ok, 'Terbukti! Integral dan turunan saling membalik — dan +C mengingatkan kita bahwa "membalik" tidak selalu unik.');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

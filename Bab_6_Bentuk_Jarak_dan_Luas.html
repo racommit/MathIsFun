@@ -264,6 +264,56 @@ window.MathJax = {
     <p>$L = \pi r^2$, bukan $\pi d^2$. Jika diameter $= 10$, maka $r = 5$ dan $L = 25\pi$, bukan $100\pi$.</p>
   </div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-triangle-area">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan: luas segitiga $= \frac{1}{2} \times$ alas $\times$ tinggi.</div>
+    <div class="pw-method">Bangun dari luas persegi panjang — potong secara diagonal.</div>
+
+    <div class="pw-step" id="pwta-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Mulai:</strong> Persegi panjang dengan alas 6 dan tinggi 4. Luasnya =</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwta-i1" placeholder="?">
+        <div class="pw-feedback" id="pwta-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwta-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Potong diagonal:</strong> Diagonal membagi persegi panjang menjadi 2 segitiga identik. Luas tiap segitiga =</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwta-i2" placeholder="?">
+        <div class="pw-feedback" id="pwta-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwta-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Generalisasi:</strong> Untuk alas $a$ dan tinggi $t$, luas segitiga = $\frac{1}{2} \times a \times t$. Cek: alas 10, tinggi 7 → luas =</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwta-i3" placeholder="?">
+        <div class="pw-feedback" id="pwta-f3"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkTriAreaProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwta-result"></div>
+  </div>
+
+  <script>
+  function checkTriAreaProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwta-i1', 'pwta-f1', 24);
+    ok &= pwCheckNum('pwta-i2', 'pwta-f2', 12);
+    ok &= pwCheckNum('pwta-i3', 'pwta-f3', 35);
+    pwResult('pwta-result', ok, 'Terbukti! Setiap segitiga = setengah persegi panjang. Rumus ini bukan hafalan — ia fakta geometris.');
+  }
+  </script>
+
   <div class="divider divider-center"></div>
 
   <h2>Latihan</h2>

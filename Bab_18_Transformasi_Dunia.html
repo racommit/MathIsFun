@@ -208,6 +208,74 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-det">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan bahwa $\det(AB) = \det(A) \cdot \det(B)$ untuk matriks 2×2.</div>
+    <div class="pw-method">Hitung kedua sisi secara numerik dan bandingkan.</div>
+
+    <div class="pw-step" id="pwdet-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Matriks:</strong> $A = \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}$. $\det(A) = 2(4) - 1(3) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdet-i1" placeholder="?">
+        <div class="pw-feedback" id="pwdet-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdet-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$B = \begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}$. $\det(B) = 1(3) - 0(2) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdet-i2" placeholder="?">
+        <div class="pw-feedback" id="pwdet-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdet-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Perkalian:</strong> $AB = \begin{pmatrix} 2(1)+1(2) & 2(0)+1(3) \\ 3(1)+4(2) & 3(0)+4(3) \end{pmatrix} = \begin{pmatrix} 4 & 3 \\ 11 & 12 \end{pmatrix}$. $\det(AB) = 4(12) - 3(11) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdet-i3" placeholder="?">
+        <div class="pw-feedback" id="pwdet-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdet-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Bandingkan:</strong> $\det(A) \cdot \det(B) = 5 \times 3 =$<input type="text" class="pw-input pw-input-sm" id="pwdet-i4" placeholder="?" style="width:3rem">. Sama dengan $\det(AB)$? Ini berarti determinan bersifat:</p>
+        <select class="pw-select" id="pwdet-i4s">
+          <option value="">— pilih —</option>
+          <option value="A">Multiplikatif — det perkalian = perkalian det</option>
+          <option value="B">Aditif — det jumlah = jumlah det</option>
+          <option value="C">Konstan — det selalu sama</option>
+        </select>
+        <div class="pw-feedback" id="pwdet-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkDetProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwdet-result"></div>
+  </div>
+
+  <script>
+  function checkDetProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwdet-i1', 'pwdet-f1', 5);
+    ok &= pwCheckNum('pwdet-i2', 'pwdet-f2', 3);
+    ok &= pwCheckNum('pwdet-i3', 'pwdet-f3', 15);
+    ok &= pwCheckNum('pwdet-i4', 'pwdet-f4', 15);
+    ok &= pwCheckSelect('pwdet-i4s', 'pwdet-f4', 'A',
+      'Tepat! Determinan mengukur "faktor skala luas". Dua transformasi berturut-turut = perkalian skalanya.',
+      'Determinan mengubah perkalian matriks jadi perkalian angka — sifat apa itu?');
+    pwResult('pwdet-result', ok, 'Terbukti! det(AB) = det(A)·det(B). Determinan = faktor skala luas — dua transformasi berturut-turut mengalikan skalanya.');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

@@ -664,6 +664,63 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-comm">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan bahwa perkalian komutatif: $a \times b = b \times a$ menggunakan model luas.</div>
+    <div class="pw-method">Persegi panjang 3×5 dan 5×3 — apakah luasnya sama?</div>
+
+    <div class="pw-step" id="pwcm-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Hitung:</strong> Persegi panjang 3 baris × 5 kolom = berapa kotak?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwcm-i1" placeholder="?">
+        <div class="pw-feedback" id="pwcm-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwcm-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Putar 90°: sekarang 5 baris × 3 kolom = berapa kotak?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwcm-i2" placeholder="?">
+        <div class="pw-feedback" id="pwcm-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwcm-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Mengapa sama?</strong></p>
+        <select class="pw-select" id="pwcm-i3">
+          <option value="">— pilih —</option>
+          <option value="A">Memutar persegi panjang tidak mengubah jumlah kotak di dalamnya</option>
+          <option value="B">Karena 3 dan 5 keduanya bilangan ganjil</option>
+          <option value="C">Karena perkalian adalah penjumlahan berulang</option>
+        </select>
+        <div class="pw-feedback" id="pwcm-f3"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkCommProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwcm-result"></div>
+  </div>
+
+  <script>
+  function checkCommProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwcm-i1', 'pwcm-f1', 15);
+    ok &= pwCheckNum('pwcm-i2', 'pwcm-f2', 15);
+    ok &= pwCheckSelect('pwcm-i3', 'pwcm-f3', 'A',
+      'Tepat! Rotasi membuktikan a×b = b×a secara visual — berlaku untuk SEMUA bilangan.',
+      'Pikirkan: apa yang terjadi pada luas saat kita putar?');
+    pwResult('pwcm-result', ok, 'Terbukti! Komutatif perkalian bukan aturan hafalan — ia konsekuensi logis dari geometri persegi panjang.');
+  }
+  </script>
+
   <!-- ═══════════════════════════════════════════ -->
   <!-- LATIHAN -->
   <!-- ═══════════════════════════════════════════ -->

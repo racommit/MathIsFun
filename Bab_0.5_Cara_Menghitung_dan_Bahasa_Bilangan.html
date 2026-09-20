@@ -482,6 +482,73 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-base">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan bahwa basis yang lebih besar membutuhkan lebih sedikit digit untuk menulis angka yang sama.</div>
+    <div class="pw-method">Bandingkan representasi angka 255 dalam basis 2, 10, dan 16.</div>
+
+    <div class="pw-step" id="pwbs-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Basis 10:</strong> Angka 255 membutuhkan berapa digit?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwbs-i1" placeholder="?">
+        <div class="pw-feedback" id="pwbs-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwbs-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Basis 2:</strong> $255 = 11111111_2$ (delapan angka 1). Berapa digit?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwbs-i2" placeholder="?">
+        <div class="pw-feedback" id="pwbs-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwbs-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Basis 16:</strong> $255 = \text{FF}_{16}$. Berapa digit?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwbs-i3" placeholder="?">
+        <div class="pw-feedback" id="pwbs-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwbs-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Pola:</strong> Basis 2 → 8 digit, Basis 10 → 3 digit, Basis 16 → 2 digit. Jumlah digit kira-kira proporsional dengan:</p>
+        <select class="pw-select" id="pwbs-i4">
+          <option value="">— pilih —</option>
+          <option value="A">$\log_{\text{basis}}(\text{angka})$ — semakin besar basis, semakin sedikit digit</option>
+          <option value="B">Angka dibagi basis</option>
+          <option value="C">Akar kuadrat dari angka</option>
+        </select>
+        <div class="pw-feedback" id="pwbs-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkBaseProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwbs-result"></div>
+  </div>
+
+  <script>
+  function checkBaseProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwbs-i1', 'pwbs-f1', 3);
+    ok &= pwCheckNum('pwbs-i2', 'pwbs-f2', 8);
+    ok &= pwCheckNum('pwbs-i3', 'pwbs-f3', 2);
+    ok &= pwCheckSelect('pwbs-i4', 'pwbs-f4', 'A',
+      'Tepat! Jumlah digit ≈ log(angka)/log(basis). Inilah mengapa komputer pakai basis 2 tapi manusia pakai basis 10.',
+      'Pikirkan: 8, 3, 2 digit — hubungannya bukan linear dengan basis');
+    pwResult('pwbs-result', ok, 'Terbukti! Basis besar = sedikit digit, tapi butuh lebih banyak simbol. Tradeoff ini menjelaskan mengapa setiap peradaban memilih basis berbeda.');
+  }
+  </script>
+
   <!-- ═══════════════════════════════════════════ -->
   <!-- LATIHAN -->
   <!-- ═══════════════════════════════════════════ -->

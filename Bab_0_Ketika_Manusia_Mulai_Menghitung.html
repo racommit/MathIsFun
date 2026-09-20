@@ -431,6 +431,73 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-base">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan bahwa sistem desimal bisa mewakili bilangan besar lebih efisien dari tally marks.</div>
+    <div class="pw-method">Hitung berapa simbol yang dibutuhkan masing-masing sistem untuk bilangan yang sama.</div>
+
+    <div class="pw-step" id="pwb-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Tally marks:</strong> Berapa goresan untuk mewakili 47?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwb-i1" placeholder="?">
+        <div class="pw-feedback" id="pwb-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwb-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Desimal (basis 10):</strong> Berapa digit untuk menulis 47?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwb-i2" placeholder="?">
+        <div class="pw-feedback" id="pwb-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwb-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Biner (basis 2):</strong> $47 = 32 + 8 + 4 + 2 + 1 = 101111_2$. Berapa digit?</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwb-i3" placeholder="?">
+        <div class="pw-feedback" id="pwb-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwb-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Untuk bilangan $n$, sistem desimal butuh sekitar $\log_{10}(n)$ digit. Mana yang tumbuh paling lambat?</p>
+        <select class="pw-select" id="pwb-i4">
+          <option value="">— pilih —</option>
+          <option value="A">Tally marks (sebanyak n goresan)</option>
+          <option value="B">Desimal (sekitar log₁₀ n digit)</option>
+          <option value="C">Semua tumbuh sama cepat</option>
+        </select>
+        <div class="pw-feedback" id="pwb-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkBaseProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwb-result"></div>
+  </div>
+
+  <script>
+  function checkBaseProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwb-i1', 'pwb-f1', 47);
+    ok &= pwCheckNum('pwb-i2', 'pwb-f2', 2);
+    ok &= pwCheckNum('pwb-i3', 'pwb-f3', 6);
+    ok &= pwCheckSelect('pwb-i4', 'pwb-f4', 'B',
+      'Benar! Logaritma tumbuh sangat lambat — inilah kekuatan sistem posisional.',
+      'Bandingkan: 47 goresan vs 2 digit vs 6 bit. Mana yang paling hemat?');
+    pwResult('pwb-result', ok, 'Terbukti! Sistem posisional (desimal) mengompresi informasi secara logaritmik — revolusi terbesar dalam sejarah penulisan angka.');
+  }
+  </script>
+
   <!-- LATIHAN -->
   <h2>Latihan: Menguji Pemahamanmu</h2>
 

@@ -259,6 +259,67 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-logrul">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan $\log(a \cdot b) = \log a + \log b$ dari definisi eksponen.</div>
+    <div class="pw-method">Jika $10^m = a$ dan $10^n = b$, maka $a \cdot b = ?$ dalam bentuk pangkat.</div>
+
+    <div class="pw-step" id="pwlr-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Definisi:</strong> $\log a = m$ berarti $10^m = a$. $\log b = n$ berarti $10^n = b$. Maka $a \cdot b = 10^m \cdot 10^n =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwlr-i1" placeholder="10^...">
+        <div class="pw-feedback" id="pwlr-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwlr-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Dari $a \cdot b = 10^{m+n}$, maka $\log(a \cdot b) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwlr-i2" placeholder="?">
+        <div class="pw-feedback" id="pwlr-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwlr-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi numerik:</strong> $\log(100 \times 1000) = \log(100) + \log(1000)$. Hitung: $\log(100) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwlr-i3" placeholder="?">
+        <div class="pw-feedback" id="pwlr-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwlr-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$\log(1000) =$<input type="text" class="pw-input pw-input-sm" id="pwlr-i4a" placeholder="?" style="width:3rem">, maka $\log(100000) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwlr-i4b" placeholder="?">
+        <div class="pw-feedback" id="pwlr-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkLogRuleProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwlr-result"></div>
+  </div>
+
+  <script>
+  function checkLogRuleProof() {
+    var ok = true;
+    ok &= pwCheck('pwlr-i1', 'pwlr-f1', ['10^(m+n)', '10^m+n'], 'Aturan pangkat: 10^m × 10^n = 10^(m+n)');
+    ok &= pwCheck('pwlr-i2', 'pwlr-f2', ['m+n'], 'Definisi log: jika 10^(m+n) = ab, maka log(ab) = m+n');
+    ok &= pwCheckNum('pwlr-i3', 'pwlr-f3', 2);
+    ok &= pwCheckNum('pwlr-i4a', 'pwlr-f4', 3);
+    ok &= pwCheckNum('pwlr-i4b', 'pwlr-f4', 5);
+    pwResult('pwlr-result', ok, 'Terbukti! Aturan log BUKAN rumus hafalan — ia adalah aturan pangkat yang "dibalik". log mengubah perkalian jadi penjumlahan.');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>

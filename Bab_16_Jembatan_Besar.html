@@ -230,6 +230,73 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-ftc">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Verifikasi FTC: $\int_1^4 2x\,dx = F(4) - F(1)$ di mana $F(x) = x^2$.</div>
+    <div class="pw-method">Hitung integral tentu menggunakan anti-turunan, lalu bandingkan.</div>
+
+    <div class="pw-step" id="pwftc-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Anti-turunan:</strong> $F(x) = x^2$ karena $F'(x) = 2x$. Hitung $F(4) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwftc-i1" placeholder="?">
+        <div class="pw-feedback" id="pwftc-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwftc-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$F(1) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwftc-i2" placeholder="?">
+        <div class="pw-feedback" id="pwftc-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwftc-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$F(4) - F(1) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwftc-i3" placeholder="?">
+        <div class="pw-feedback" id="pwftc-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwftc-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Arti geometris:</strong> Angka 15 ini sama dengan luas di bawah garis $y=2x$ dari $x=1$ sampai $x=4$. FTC menghubungkan:</p>
+        <select class="pw-select" id="pwftc-i4">
+          <option value="">— pilih —</option>
+          <option value="A">Luas (integral) dengan anti-turunan — tanpa perlu menghitung limit jumlah Riemann</option>
+          <option value="B">Gradien dengan intercept</option>
+          <option value="C">Persamaan linear dengan kuadrat</option>
+        </select>
+        <div class="pw-feedback" id="pwftc-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkFTCProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwftc-result"></div>
+  </div>
+
+  <script>
+  function checkFTCProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwftc-i1', 'pwftc-f1', 16);
+    ok &= pwCheckNum('pwftc-i2', 'pwftc-f2', 1);
+    ok &= pwCheckNum('pwftc-i3', 'pwftc-f3', 15);
+    ok &= pwCheckSelect('pwftc-i4', 'pwftc-f4', 'A',
+      'Tepat! FTC adalah "jembatan besar" — menghitung luas tanpa limit tak hingga.',
+      'FTC menghubungkan DUA konsep besar kalkulus');
+    pwResult('pwftc-result', ok, 'Terbukti! Fundamental Theorem of Calculus: integral tentu = selisih anti-turunan. Itulah mengapa bab ini bernama "Jembatan Besar".');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

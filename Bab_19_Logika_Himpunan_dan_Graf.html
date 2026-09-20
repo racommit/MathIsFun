@@ -204,6 +204,96 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-demorgan">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan Hukum De Morgan: $\overline{A \cup B} = \overline{A} \cap \overline{B}$ dengan tabel kebenaran.</div>
+    <div class="pw-method">Isi tabel untuk semua kombinasi keanggotaan, lalu bandingkan kolom terakhir.</div>
+
+    <div class="pw-step" id="pwdm-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kasus 1:</strong> $x \in A$, $x \in B$. Maka $x \in A \cup B$? Ya. $x \in \overline{A \cup B}$?</p>
+        <select class="pw-select" id="pwdm-i1">
+          <option value="">— pilih —</option>
+          <option value="A">Tidak</option>
+          <option value="B">Ya</option>
+        </select>
+        <div class="pw-feedback" id="pwdm-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdm-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kasus 2:</strong> $x \in A$, $x \notin B$. $\overline{A \cup B}$: Tidak. $\overline{A} \cap \overline{B}$: $x \notin \overline{A}$ karena $x \in A$, jadi $\overline{A} \cap \overline{B} =$</p>
+        <select class="pw-select" id="pwdm-i2">
+          <option value="">— pilih —</option>
+          <option value="A">Tidak (x tidak di irisan)</option>
+          <option value="B">Ya (x di irisan)</option>
+        </select>
+        <div class="pw-feedback" id="pwdm-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdm-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kasus 4 (kunci):</strong> $x \notin A$, $x \notin B$. $A \cup B$: $x$ tidak ada di keduanya, jadi $x \notin A \cup B$. Maka $x \in \overline{A \cup B}$?</p>
+        <select class="pw-select" id="pwdm-i3a">
+          <option value="">— pilih —</option>
+          <option value="A">Ya</option>
+          <option value="B">Tidak</option>
+        </select>
+        <p class="pw-prompt" style="margin-top:0.5rem">Dan $x \in \overline{A}$? Ya. $x \in \overline{B}$? Ya. Maka $x \in \overline{A} \cap \overline{B}$?</p>
+        <select class="pw-select" id="pwdm-i3b">
+          <option value="">— pilih —</option>
+          <option value="A">Ya</option>
+          <option value="B">Tidak</option>
+        </select>
+        <div class="pw-feedback" id="pwdm-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdm-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Kesimpulan:</strong> Di semua 4 kasus, $\overline{A \cup B}$ dan $\overline{A} \cap \overline{B}$ selalu:</p>
+        <select class="pw-select" id="pwdm-i4">
+          <option value="">— pilih —</option>
+          <option value="A">Sama — maka kedua himpunan identik (De Morgan terbukti)</option>
+          <option value="B">Berbeda — De Morgan salah</option>
+          <option value="C">Kadang sama, kadang berbeda</option>
+        </select>
+        <div class="pw-feedback" id="pwdm-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkDeMorganProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwdm-result"></div>
+  </div>
+
+  <script>
+  function checkDeMorganProof() {
+    var ok = true;
+    ok &= pwCheckSelect('pwdm-i1', 'pwdm-f1', 'A',
+      'Benar! x ada di A∪B, jadi x TIDAK ada di komplemen-nya.', 'Komplemen = kebalikan keanggotaan');
+    ok &= pwCheckSelect('pwdm-i2', 'pwdm-f2', 'A',
+      'Benar! x ∈ A, jadi x ∉ Ā, jadi irisan Ā∩B̄ gagal.', 'Irisan butuh KEDUA kondisi terpenuhi');
+    ok &= pwCheckSelect('pwdm-i3a', 'pwdm-f3', 'A',
+      '', 'x tidak di A∪B, berarti x ADA di komplemennya');
+    ok &= pwCheckSelect('pwdm-i3b', 'pwdm-f3', 'A',
+      'Benar! Inilah satu-satunya kasus di mana keduanya "Ya".', 'x ∈ Ā dan x ∈ B̄, jadi x ∈ Ā∩B̄');
+    ok &= pwCheckSelect('pwdm-i4', 'pwdm-f4', 'A',
+      'Tepat! Setiap kasus cocok — bukti lengkap.',
+      'Bandingkan kolom terakhir di semua 4 baris');
+    pwResult('pwdm-result', ok, 'Terbukti! Hukum De Morgan: "bukan (A atau B)" = "bukan A DAN bukan B". Logika ini juga berlaku di rangkaian listrik — sangat penting untuk Teknik Elektro!');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

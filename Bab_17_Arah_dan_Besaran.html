@@ -205,6 +205,73 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-dot">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan bahwa $\vec{u} \cdot \vec{v} = 0$ jika dan hanya jika $\vec{u} \perp \vec{v}$.</div>
+    <div class="pw-method">Gunakan vektor konkret dan verifikasi secara geometris.</div>
+
+    <div class="pw-step" id="pwdot-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Hitung:</strong> $\vec{u} = (3, 4)$, $\vec{v} = (4, -3)$. $\vec{u} \cdot \vec{v} = 3(4) + 4(-3) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdot-i1" placeholder="?">
+        <div class="pw-feedback" id="pwdot-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdot-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Cek tegak lurus:</strong> Gradien $\vec{u} = 4/3$. Gradien $\vec{v} =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdot-i2" placeholder="?">
+        <div class="pw-feedback" id="pwdot-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdot-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Perkalian gradien: $(4/3) \times (-3/4) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwdot-i3" placeholder="?">
+        <div class="pw-feedback" id="pwdot-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwdot-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Dua garis tegak lurus jika perkalian gradiennya $= -1$. Maka dot product $= 0$ berarti:</p>
+        <select class="pw-select" id="pwdot-i4">
+          <option value="">— pilih —</option>
+          <option value="A">Kedua vektor saling tegak lurus (sudut 90°)</option>
+          <option value="B">Kedua vektor sejajar</option>
+          <option value="C">Salah satu vektor bernilai nol</option>
+        </select>
+        <div class="pw-feedback" id="pwdot-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkDotProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwdot-result"></div>
+  </div>
+
+  <script>
+  function checkDotProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwdot-i1', 'pwdot-f1', 0);
+    ok &= pwCheck('pwdot-i2', 'pwdot-f2', ['-3/4'], 'Gradien = komponen-y / komponen-x = -3/4');
+    ok &= pwCheckNum('pwdot-i3', 'pwdot-f3', -1);
+    ok &= pwCheckSelect('pwdot-i4', 'pwdot-f4', 'A',
+      'Tepat! Dot product = 0 ⟺ tegak lurus. Ini akan sangat berguna di fisika dan teknik.',
+      'Ingat: dot product mengukur seberapa "searah" dua vektor');
+    pwResult('pwdot-result', ok, 'Terbukti! Dot product = 0 artinya tegak lurus — aljabar mendeteksi geometri tanpa menggambar.');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

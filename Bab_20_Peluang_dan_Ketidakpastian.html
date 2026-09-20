@@ -199,6 +199,73 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-comp">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan $P(\overline{A}) = 1 - P(A)$ dari aksioma peluang.</div>
+    <div class="pw-method">Gunakan fakta bahwa $A$ dan $\overline{A}$ saling lepas dan gabungannya = ruang sampel $S$.</div>
+
+    <div class="pw-step" id="pwcmp-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Fakta 1:</strong> $A \cup \overline{A} = S$ (ruang sampel). Maka $P(A \cup \overline{A}) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwcmp-i1" placeholder="P(S) = ?">
+        <div class="pw-feedback" id="pwcmp-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwcmp-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Fakta 2:</strong> $A$ dan $\overline{A}$ saling lepas ($A \cap \overline{A} = \emptyset$). Maka $P(A \cup \overline{A}) = P(A) + P(\overline{A})$. Dari langkah 1: $P(A) + P(\overline{A}) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwcmp-i2" placeholder="?">
+        <div class="pw-feedback" id="pwcmp-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwcmp-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Pindah ruas:</strong> $P(\overline{A}) =$</p>
+        <select class="pw-select" id="pwcmp-i3">
+          <option value="">— pilih —</option>
+          <option value="A">$1 - P(A)$</option>
+          <option value="B">$P(A) - 1$</option>
+          <option value="C">$1 / P(A)$</option>
+        </select>
+        <div class="pw-feedback" id="pwcmp-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwcmp-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Verifikasi:</strong> Peluang hujan besok $P(H) = 0.3$. Peluang TIDAK hujan $P(\overline{H}) =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwcmp-i4" placeholder="?">
+        <div class="pw-feedback" id="pwcmp-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkCompProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwcmp-result"></div>
+  </div>
+
+  <script>
+  function checkCompProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwcmp-i1', 'pwcmp-f1', 1);
+    ok &= pwCheckNum('pwcmp-i2', 'pwcmp-f2', 1);
+    ok &= pwCheckSelect('pwcmp-i3', 'pwcmp-f3', 'A',
+      'Tepat! Ini langsung dari P(A) + P(Ā) = 1.',
+      'Pindahkan P(A) ke sisi kanan: P(Ā) = ?');
+    ok &= pwCheckNum('pwcmp-i4', 'pwcmp-f4', 0.7);
+    pwResult('pwcmp-result', ok, 'Terbukti! P(Ā) = 1 - P(A) bukan rumus — ia HARUS benar karena "terjadi" dan "tidak terjadi" lengkap menghabiskan semua kemungkinan.');
+  }
+  </script>
+
   <h2>Latihan</h2>
 
   <div class="exercise">

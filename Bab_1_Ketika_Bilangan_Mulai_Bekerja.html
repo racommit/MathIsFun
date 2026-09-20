@@ -605,6 +605,74 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-distrib">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan sifat distributif: $a \times (b + c) = a \times b + a \times c$</div>
+    <div class="pw-method">Buktikan dengan luas persegi panjang, lalu verifikasi dengan angka.</div>
+
+    <div class="pw-step" id="pwd1-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Visual:</strong> Persegi panjang $3 \times (4+2)$ punya panjang 3 dan lebar $(4+2)$. Total luas $= 3 \times 6 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwd1-i1" placeholder="?">
+        <div class="pw-feedback" id="pwd1-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd1-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Bagi dua:</strong> Potong persegi itu menjadi $3 \times 4$ dan $3 \times 2$. Luas masing-masing: <input type="text" class="pw-input pw-input-sm" id="pwd1-i2a" placeholder="?"> dan <input type="text" class="pw-input pw-input-sm" id="pwd1-i2b" placeholder="?"></p>
+        <div class="pw-feedback" id="pwd1-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd1-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Jumlahkan:</strong> $12 + 6 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwd1-i3" placeholder="?">
+        <div class="pw-feedback" id="pwd1-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwd1-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Sama! Kenapa ini selalu berhasil untuk bilangan apapun?</p>
+        <select class="pw-select" id="pwd1-i4">
+          <option value="">— pilih —</option>
+          <option value="A">Karena persegi panjang besar = gabungan dua persegi kecil (luas terjaga)</option>
+          <option value="B">Karena perkalian itu komutatif</option>
+          <option value="C">Karena penjumlahan itu asosiatif</option>
+        </select>
+        <div class="pw-feedback" id="pwd1-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkDistribProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwd1-result"></div>
+  </div>
+
+  <script>
+  function checkDistribProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwd1-i1', 'pwd1-f1', 18);
+    var ok2a = pwCheckNum('pwd1-i2a', 'pwd1-f2', 12);
+    var ok2b = pwCheckNum('pwd1-i2b', 'pwd1-f2', 6);
+    ok &= ok2a && ok2b;
+    ok &= pwCheckNum('pwd1-i3', 'pwd1-f3', 18);
+    ok &= pwCheckSelect('pwd1-i4', 'pwd1-f4', 'A',
+      'Benar! Memotong persegi panjang tidak mengubah total luas — inilah esensi distributif.',
+      'Pikirkan: apa yang terjadi secara geometris saat kamu "distribusikan" perkalian?');
+    pwResult('pwd1-result', ok, 'Terbukti! Sifat distributif bukan aturan hafalan — ia fakta geometris tentang luas.');
+  }
+  </script>
+
   <!-- LATIHAN -->
   <h2>Latihan: Menguji Pemahamanmu</h2>
 

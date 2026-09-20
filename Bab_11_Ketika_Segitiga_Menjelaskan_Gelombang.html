@@ -322,6 +322,78 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-pyth-trig">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan $\sin^2\theta + \cos^2\theta = 1$ dari Teorema Pythagoras.</div>
+    <div class="pw-method">Gunakan segitiga siku-siku dan definisi sin/cos sebagai rasio sisi.</div>
+
+    <div class="pw-step" id="pwpt-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Definisi:</strong> Pada segitiga siku-siku dengan hipotenusa $r$, sisi depan $y$, sisi samping $x$: $\sin\theta =$</p>
+        <select class="pw-select" id="pwpt-i1">
+          <option value="">— pilih —</option>
+          <option value="A">$y / r$</option>
+          <option value="B">$x / r$</option>
+          <option value="C">$y / x$</option>
+        </select>
+        <div class="pw-feedback" id="pwpt-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwpt-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">$\cos\theta =$</p>
+        <select class="pw-select" id="pwpt-i2">
+          <option value="">— pilih —</option>
+          <option value="A">$y / r$</option>
+          <option value="B">$x / r$</option>
+          <option value="C">$x / y$</option>
+        </select>
+        <div class="pw-feedback" id="pwpt-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwpt-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Substitusi:</strong> $\sin^2\theta + \cos^2\theta = (y/r)^2 + (x/r)^2 = \frac{y^2 + x^2}{r^2}$. Dari Pythagoras, $x^2 + y^2 =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwpt-i3" placeholder="?">
+        <div class="pw-feedback" id="pwpt-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwpt-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Jadi $\frac{x^2 + y^2}{r^2} = \frac{r^2}{r^2} =$</p>
+        <input type="text" class="pw-input pw-input-sm" id="pwpt-i4" placeholder="?">
+        <div class="pw-feedback" id="pwpt-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkPythTrigProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwpt-result"></div>
+  </div>
+
+  <script>
+  function checkPythTrigProof() {
+    var ok = true;
+    ok &= pwCheckSelect('pwpt-i1', 'pwpt-f1', 'A',
+      'Benar! Sin = sisi depan / hipotenusa.', 'SOH: Sin = Opposite / Hypotenuse');
+    ok &= pwCheckSelect('pwpt-i2', 'pwpt-f2', 'B',
+      'Benar! Cos = sisi samping / hipotenusa.', 'CAH: Cos = Adjacent / Hypotenuse');
+    ok &= pwCheck('pwpt-i3', 'pwpt-f3', ['r^2', 'r²'], 'Pythagoras: x² + y² = r² (hipotenusa kuadrat)');
+    ok &= pwCheckNum('pwpt-i4', 'pwpt-f4', 1);
+    pwResult('pwpt-result', ok, 'Terbukti! Identitas Pythagoras trigonometri langsung dari teorema aslinya. Satu identitas, dua dunia terhubung.');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>

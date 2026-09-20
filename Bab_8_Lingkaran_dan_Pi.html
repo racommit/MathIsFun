@@ -405,6 +405,66 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-circle">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Buktikan: turunan luas lingkaran = kelilingnya. $\frac{d}{dr}(\pi r^2) = 2\pi r$</div>
+    <div class="pw-method">Bayangkan lingkaran "tumbuh" sedikit — kulit tipis di tepinya adalah keliling.</div>
+
+    <div class="pw-step" id="pwc2-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Luas lingkaran radius 5:</strong> $\pi (5)^2 =$</p>
+        <input type="text" class="pw-input" id="pwc2-i1" placeholder="...π">
+        <div class="pw-feedback" id="pwc2-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwc2-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Luas lingkaran radius 5.01:</strong> $\pi (5{,}01)^2 = \pi \times 25{,}1001 \approx$</p>
+        <input type="text" class="pw-input" id="pwc2-i2" placeholder="...π">
+        <div class="pw-feedback" id="pwc2-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwc2-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Selisih luas:</strong> $\approx 25{,}1001\pi - 25\pi = 0{,}1001\pi$. Bagi dengan $\Delta r = 0{,}01$: laju perubahan $\approx$</p>
+        <input type="text" class="pw-input" id="pwc2-i3" placeholder="...π">
+        <div class="pw-feedback" id="pwc2-f3"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwc2-s4">
+      <div class="pw-step-num">4</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Bandingkan:</strong> keliling lingkaran radius 5 = $2\pi(5) =$</p>
+        <input type="text" class="pw-input" id="pwc2-i4" placeholder="...π">
+        <div class="pw-feedback" id="pwc2-f4"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkCircleProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwc2-result"></div>
+  </div>
+
+  <script>
+  function checkCircleProof() {
+    var ok = true;
+    ok &= pwCheck('pwc2-i1', 'pwc2-f1', ['25π', '25pi', '25*pi'], '5² = 25, jadi luasnya 25π');
+    ok &= pwCheck('pwc2-i2', 'pwc2-f2', ['25.1001π', '25.1001pi', '25,1001π', '25,1001pi'], '5.01² = 25.1001');
+    ok &= pwCheck('pwc2-i3', 'pwc2-f3', ['10.01π', '10.01pi', '10,01π', '10,01pi', '10π', '10pi'], '0.1001π ÷ 0.01 ≈ 10.01π ≈ 10π');
+    ok &= pwCheck('pwc2-i4', 'pwc2-f4', ['10π', '10pi'], '2 × 5 = 10, jadi kelilingnya 10π');
+    pwResult('pwc2-result', ok, 'Terbukti! Laju perubahan luas ≈ 10π = keliling. "Kulit" tipis di tepi lingkaran = keliling × ketebalan. Cantik!');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>

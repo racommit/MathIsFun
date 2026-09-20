@@ -982,6 +982,68 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-fpb">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Verifikasi: FPB$(a,b) \times$ KPK$(a,b) = a \times b$</div>
+    <div class="pw-method">Hitung FPB dan KPK untuk tiga pasang bilangan, lalu buktikan polanya.</div>
+
+    <div class="pw-step" id="pwf-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Pasangan 1:</strong> $a = 12, b = 8$. FPB = <input type="text" class="pw-input pw-input-sm" id="pwf-i1a" placeholder="?">, KPK = <input type="text" class="pw-input pw-input-sm" id="pwf-i1b" placeholder="?">. Hasil kali FPB × KPK = <input type="text" class="pw-input pw-input-sm" id="pwf-i1c" placeholder="?">. Dan $12 \times 8$ = <input type="text" class="pw-input pw-input-sm" id="pwf-i1d" placeholder="?"></p>
+        <div class="pw-feedback" id="pwf-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwf-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Pasangan 2:</strong> $a = 15, b = 20$. FPB = <input type="text" class="pw-input pw-input-sm" id="pwf-i2a" placeholder="?">, KPK = <input type="text" class="pw-input pw-input-sm" id="pwf-i2b" placeholder="?">. FPB × KPK = <input type="text" class="pw-input pw-input-sm" id="pwf-i2c" placeholder="?"></p>
+        <div class="pw-feedback" id="pwf-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwf-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt">Kenapa ini selalu benar? Pikirkan dalam faktorisasi prima.</p>
+        <select class="pw-select" id="pwf-i3">
+          <option value="">— pilih —</option>
+          <option value="A">FPB mengambil pangkat minimum, KPK mengambil pangkat maksimum — bersama mereka = semua faktor</option>
+          <option value="B">Karena FPB selalu membagi KPK</option>
+          <option value="C">Kebetulan saja untuk bilangan kecil</option>
+        </select>
+        <div class="pw-feedback" id="pwf-f3"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkFpbProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwf-result"></div>
+  </div>
+
+  <script>
+  function checkFpbProof() {
+    var ok = true;
+    var ok1a = pwCheckNum('pwf-i1a', 'pwf-f1', 4);
+    var ok1b = pwCheckNum('pwf-i1b', 'pwf-f1', 24);
+    var ok1c = pwCheckNum('pwf-i1c', 'pwf-f1', 96);
+    var ok1d = pwCheckNum('pwf-i1d', 'pwf-f1', 96);
+    ok &= ok1a && ok1b && ok1c && ok1d;
+    var ok2a = pwCheckNum('pwf-i2a', 'pwf-f2', 5);
+    var ok2b = pwCheckNum('pwf-i2b', 'pwf-f2', 60);
+    var ok2c = pwCheckNum('pwf-i2c', 'pwf-f2', 300);
+    ok &= ok2a && ok2b && ok2c;
+    ok &= pwCheckSelect('pwf-i3', 'pwf-f3', 'A',
+      'Benar! min + max = total. Contoh: 12=2²·3, 8=2³. FPB=2²=4, KPK=2³·3=24. Kali: 2⁵·3 = 96 = 12×8.',
+      'Pikirkan: apa hubungan pangkat prima dalam FPB dan KPK?');
+    pwResult('pwf-result', ok, 'Terbukti! FPB × KPK = a × b bukan kebetulan — ini konsekuensi langsung dari Teorema Fundamental Aritmetika.');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>

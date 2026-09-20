@@ -530,6 +530,59 @@ window.MathJax = {
 
   <div class="divider divider-center"></div>
 
+  <!-- ═══════════════════ PROOF WORKSHOP ═══════════════════ -->
+
+  <div class="proof-workshop" id="pw-pyth">
+    <div class="pw-label">Tantangan Pembuktian</div>
+    <div class="pw-claim">Verifikasi Teorema Pythagoras: apakah segitiga dengan sisi-sisi berikut siku-siku?</div>
+    <div class="pw-method">Jika $a^2 + b^2 = c^2$ (c sisi terpanjang), maka segitiga siku-siku.</div>
+
+    <div class="pw-step" id="pwpy-s1">
+      <div class="pw-step-num">1</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Sisi 3, 4, 5:</strong> $3^2 + 4^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i1a" placeholder="?"> dan $5^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i1b" placeholder="?">. Siku-siku?</p>
+        <select class="pw-select" id="pwpy-i1c"><option value="">—</option><option value="Y">Ya</option><option value="N">Tidak</option></select>
+        <div class="pw-feedback" id="pwpy-f1"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwpy-s2">
+      <div class="pw-step-num">2</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Sisi 5, 12, 13:</strong> $5^2 + 12^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i2a" placeholder="?"> dan $13^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i2b" placeholder="?">. Siku-siku?</p>
+        <select class="pw-select" id="pwpy-i2c"><option value="">—</option><option value="Y">Ya</option><option value="N">Tidak</option></select>
+        <div class="pw-feedback" id="pwpy-f2"></div>
+      </div>
+    </div>
+
+    <div class="pw-step" id="pwpy-s3">
+      <div class="pw-step-num">3</div>
+      <div class="pw-step-body">
+        <p class="pw-prompt"><strong>Sisi 4, 5, 7:</strong> $4^2 + 5^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i3a" placeholder="?"> dan $7^2 =$ <input type="text" class="pw-input pw-input-sm" id="pwpy-i3b" placeholder="?">. Siku-siku?</p>
+        <select class="pw-select" id="pwpy-i3c"><option value="">—</option><option value="Y">Ya</option><option value="N">Tidak</option></select>
+        <div class="pw-feedback" id="pwpy-f3"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button class="btn btn-accent" onclick="checkPythProof()">Periksa Bukti Saya</button>
+    </div>
+    <div class="pw-result" id="pwpy-result"></div>
+  </div>
+
+  <script>
+  function checkPythProof() {
+    var ok = true;
+    ok &= pwCheckNum('pwpy-i1a', 'pwpy-f1', 25) && pwCheckNum('pwpy-i1b', 'pwpy-f1', 25);
+    ok &= pwCheckSelect('pwpy-i1c', 'pwpy-f1', 'Y', '25 = 25, siku-siku!', '');
+    ok &= pwCheckNum('pwpy-i2a', 'pwpy-f2', 169) && pwCheckNum('pwpy-i2b', 'pwpy-f2', 169);
+    ok &= pwCheckSelect('pwpy-i2c', 'pwpy-f2', 'Y', '169 = 169, siku-siku!', '');
+    ok &= pwCheckNum('pwpy-i3a', 'pwpy-f3', 41) && pwCheckNum('pwpy-i3b', 'pwpy-f3', 49);
+    ok &= pwCheckSelect('pwpy-i3c', 'pwpy-f3', 'N', '41 ≠ 49, bukan siku-siku!', '41 ≠ 49, cek lagi');
+    pwResult('pwpy-result', ok, 'Terbukti! Pythagoras bukan hanya menghitung — ia juga menguji. Jika a² + b² ≠ c², segitiga bukan siku-siku.');
+  }
+  </script>
+
   <!-- ═══════════════════════ LATIHAN ═══════════════════════ -->
 
   <h2>Latihan</h2>
