@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 12 · Volume III</div>
@@ -396,6 +397,107 @@ window.MathJax = {
     <div class="answer-content" id="a8">$u^2 - 5u + 4 = (u-1)(u-4) = 0$. Jadi $u = 1$ atau $u = 4$.<br>$2^x = 1 \Rightarrow x = 0$. $2^x = 4 \Rightarrow x = 2$.<br>Solusi: $x = 0$ atau $x = 2$.</div>
   </div>
 
+  <!-- ═══════════════════ INTERACTIVE 4: Linear vs Exponential vs Log ═══════════════════ -->
+
+  <h2>Membandingkan Tiga Jenis Pertumbuhan</h2>
+
+  <p>
+    Tiga fungsi yang paling penting dalam ilmu pengetahuan: <strong>linear</strong> ($y = ax$), <strong>eksponensial</strong> ($y = a^x$), dan <strong>logaritmik</strong> ($y = \log_a x$). Bagaimana mereka berbeda? Mari kita lihat ketiganya secara bersamaan.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Linear vs Eksponensial vs Logaritmik</div>
+    <div class="interactive-desc">Atur parameter dan amati bagaimana ketiga fungsi berperilaku sangat berbeda saat $x$ membesar. Fungsi mana yang "menang" untuk $x$ besar?</div>
+
+    <div class="slider-container">
+      <label>Koefisien linear ($a$ pada $y = ax$): <strong id="cmp-lin-val">2</strong></label>
+      <input type="range" id="cmp-lin" min="1" max="10" value="2" step="1" oninput="updateComparison()">
+    </div>
+    <div class="slider-container">
+      <label>Basis eksponensial ($b$ pada $y = b^x$): <strong id="cmp-exp-val">2</strong></label>
+      <input type="range" id="cmp-exp" min="1.5" max="4" value="2" step="0.5" oninput="updateComparison()">
+    </div>
+    <div class="slider-container">
+      <label>Basis logaritma ($c$ pada $y = \log_c x$): <strong id="cmp-log-val">2</strong></label>
+      <input type="range" id="cmp-log" min="2" max="10" value="2" step="1" oninput="updateComparison()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="cmp-svg" width="380" height="300" viewBox="0 0 380 300"></svg>
+    </div>
+
+    <div id="cmp-result" class="result-display" style="font-size: 0.85rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════ INTERACTIVE 5: Log Scale Explorer ═══════════════════ -->
+
+  <h2>Skala Logaritmik: Menjinakkan Bilangan Raksasa</h2>
+
+  <p>
+    Di dunia nyata, banyak besaran memiliki rentang yang sangat luas. Gempa bumi bisa berenergi 1 joule atau 10.000.000.000.000.000 joule. Jika kita menggambar ini pada garis bilangan biasa, nilai-nilai kecil akan menghilang. <strong>Skala logaritmik</strong> mengatasi masalah ini: setiap langkah mewakili perkalian, bukan penjumlahan.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Skala Logaritmik</div>
+    <div class="interactive-desc">Pilih konteks dan lihat bagaimana skala logaritmik mengompres bilangan raksasa menjadi rentang yang bisa dipahami manusia.</div>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem;">
+      <button class="hint-btn" onclick="showLogScale('gempa')" style="background: var(--accent-blue); color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-family: 'Inter'; font-size: 0.82rem;">Gempa Bumi (Richter)</button>
+      <button class="hint-btn" onclick="showLogScale('suara')" style="background: var(--accent-blue); color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-family: 'Inter'; font-size: 0.82rem;">Kekerasan Suara (dB)</button>
+      <button class="hint-btn" onclick="showLogScale('ph')" style="background: var(--accent-blue); color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-family: 'Inter'; font-size: 0.82rem;">Keasaman (pH)</button>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="logscale-svg" width="380" height="260" viewBox="0 0 380 260"></svg>
+    </div>
+
+    <div id="logscale-result" class="result-display" style="font-size: 0.85rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════ LATIHAN TAMBAHAN ═══════════════════ -->
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall (Koneksi Bab 2: Pecahan)</div>
+    <p>Tuliskan dalam bentuk pecahan (tanpa pangkat negatif): (a) $2^{-3}$, (b) $5^{-2}$, (c) $\left(\frac{3}{4}\right)^{-2}$, (d) $10^{-1} + 10^{-2}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h130')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a130')">Lihat Jawaban</button>
+    <div class="hint-content" id="h130">Ingat dari Bab 2: pecahan adalah bilangan yang bisa ditulis $\frac{a}{b}$. Aturan: $a^{-n} = \frac{1}{a^n}$. Untuk pecahan berpangkat negatif: $\left(\frac{a}{b}\right)^{-n} = \left(\frac{b}{a}\right)^n$.</div>
+    <div class="answer-content" id="a130">(a) $2^{-3} = \frac{1}{2^3} = \frac{1}{8}$. (b) $5^{-2} = \frac{1}{5^2} = \frac{1}{25}$. (c) $\left(\frac{3}{4}\right)^{-2} = \left(\frac{4}{3}\right)^2 = \frac{16}{9}$. (d) $10^{-1} + 10^{-2} = \frac{1}{10} + \frac{1}{100} = \frac{10}{100} + \frac{1}{100} = \frac{11}{100}$. Pangkat negatif adalah "jembatan" antara eksponen dan pecahan — setiap pangkat negatif menghasilkan pecahan.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Conceptual: Mengapa $\log(0)$ Tidak Terdefinisi?</div>
+    <p>Jelaskan mengapa $\log_a 0$ tidak memiliki jawaban untuk basis $a > 0$, $a \neq 1$. Gunakan definisi logaritma sebagai invers eksponen.</p>
+    <button class="hint-btn" onclick="toggleHint('h131')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a131')">Lihat Jawaban</button>
+    <div class="hint-content" id="h131">$\log_a 0 = x$ berarti $a^x = 0$. Coba pikirkan: adakah nilai $x$ (positif, negatif, atau nol) yang membuat $a^x = 0$ jika $a > 0$?</div>
+    <div class="answer-content" id="a131">$\log_a 0 = x$ berarti $a^x = 0$. Tapi jika $a > 0$: <br>— Untuk $x > 0$: $a^x > 0$ (bilangan positif dipangkatkan apapun tetap positif).<br>— Untuk $x = 0$: $a^0 = 1 \neq 0$.<br>— Untuk $x < 0$: $a^x = \frac{1}{a^{|x|}} > 0$ (masih positif).<br>— Bahkan saat $x \to -\infty$: $a^x \to 0$ tapi <em>tidak pernah mencapai</em> nol (ini adalah konsep limit dari Bab 13).<br>Jadi tidak ada bilangan real $x$ yang memenuhi $a^x = 0$. Maka $\log_a 0$ <strong>tidak terdefinisi</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Application: Peluruhan Radioaktif</div>
+    <p>Suatu zat radioaktif memiliki waktu paruh (<em>half-life</em>) 5 tahun, artinya setiap 5 tahun massanya berkurang setengah. Jika massa awal adalah 200 gram: (a) Tuliskan rumus massa setelah $t$ tahun. (b) Berapa massa setelah 20 tahun? (c) Setelah berapa tahun massa tersisa kurang dari 1 gram? (Gunakan logaritma.)</p>
+    <button class="hint-btn" onclick="toggleHint('h132')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a132')">Lihat Jawaban</button>
+    <div class="hint-content" id="h132">Peluruhan radioaktif: $M(t) = M_0 \cdot \left(\frac{1}{2}\right)^{t/T}$ dengan $T$ = waktu paruh. Untuk bagian (c), selesaikan $200 \cdot (1/2)^{t/5} < 1$ menggunakan logaritma.</div>
+    <div class="answer-content" id="a132">(a) $M(t) = 200 \cdot \left(\frac{1}{2}\right)^{t/5}$.<br>(b) $M(20) = 200 \cdot \left(\frac{1}{2}\right)^{20/5} = 200 \cdot \left(\frac{1}{2}\right)^4 = 200 \cdot \frac{1}{16} = 12{,}5$ gram.<br>(c) $200 \cdot \left(\frac{1}{2}\right)^{t/5} < 1 \Rightarrow \left(\frac{1}{2}\right)^{t/5} < \frac{1}{200}$. Ambil $\log_2$: $-\frac{t}{5} < -\log_2 200 \Rightarrow \frac{t}{5} > \log_2 200 \approx 7{,}64$. Jadi $t > 38{,}2$ tahun. Massa tersisa kurang dari 1 gram setelah sekitar <strong>38,2 tahun</strong> (hampir 8 kali waktu paruh).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Computation: Sifat-Sifat Logaritma</div>
+    <p>Sederhanakan masing-masing ekspresi menjadi satu bilangan: (a) $\log_2 8 + \log_2 4$, (b) $\log_3 54 - \log_3 2$, (c) $2\log_5 5 + \log_5 \frac{1}{25}$, (d) $\frac{\log_{10} 1000}{\log_{10} 10}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h133')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a133')">Lihat Jawaban</button>
+    <div class="hint-content" id="h133">Gunakan tiga sifat utama: $\log(ab) = \log a + \log b$ (produk), $\log(a/b) = \log a - \log b$ (hasil bagi), $\log(a^n) = n \log a$ (pangkat). Untuk (d), ingat bahwa $\frac{\log_a b}{\log_a c} = \log_c b$ (rumus ganti basis).</div>
+    <div class="answer-content" id="a133">(a) $\log_2 8 + \log_2 4 = \log_2(8 \times 4) = \log_2 32 = 5$.<br>(b) $\log_3 54 - \log_3 2 = \log_3\frac{54}{2} = \log_3 27 = 3$.<br>(c) $2\log_5 5 + \log_5\frac{1}{25} = \log_5 5^2 + \log_5 5^{-2} = 2 + (-2) = 0$. Atau: $\log_5(25 \times \frac{1}{25}) = \log_5 1 = 0$.<br>(d) $\frac{\log_{10} 1000}{\log_{10} 10} = \frac{3}{1} = 3$. Ini juga bisa dilihat sebagai rumus ganti basis: $\log_{10} 1000 = 3$.</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -497,11 +599,194 @@ function updateCompound() {
     '\n\nn=1: 2.000  n=10: '+Math.pow(1.1,10).toFixed(3)+'  n=100: '+Math.pow(1.01,100).toFixed(5)+'  n=1000: '+Math.pow(1.001,1000).toFixed(6);
 }
 
+// ═══════ Interactive 4: Linear vs Exponential vs Log Comparison ═══════
+function updateComparison() {
+  var a = parseFloat(document.getElementById('cmp-lin').value);
+  var b = parseFloat(document.getElementById('cmp-exp').value);
+  var c = parseFloat(document.getElementById('cmp-log').value);
+  document.getElementById('cmp-lin-val').textContent = a;
+  document.getElementById('cmp-exp-val').textContent = b;
+  document.getElementById('cmp-log-val').textContent = c;
+
+  var svg = document.getElementById('cmp-svg');
+  var ox = 45, oy = 265, w = 310, h = 240;
+  var xMax = 8;
+  var yMax = Math.min(Math.pow(b, xMax), 300);
+  if (yMax < a * xMax) yMax = a * xMax + 5;
+  if (yMax < 10) yMax = 10;
+  var xS = w / xMax, yS = h / yMax;
+  var s = '';
+  // axes
+  s += '<line x1="'+ox+'" y1="'+(oy-h)+'" x2="'+ox+'" y2="'+oy+'" stroke="var(--text-secondary, #555)" stroke-width="1.2"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="'+(ox+w)+'" y2="'+oy+'" stroke="var(--text-secondary, #555)" stroke-width="1.2"/>';
+  for (var i = 0; i <= xMax; i++) {
+    s += '<text x="'+(ox+i*xS)+'" y="'+(oy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--text-secondary, #888)">'+i+'</text>';
+  }
+  // grid lines
+  for (var g = 0; g <= 4; g++) {
+    var gy = oy - (yMax * g / 4) * yS;
+    s += '<line x1="'+ox+'" y1="'+gy+'" x2="'+(ox+w)+'" y2="'+gy+'" stroke="var(--border, #ddd)" stroke-width="0.5"/>';
+    s += '<text x="'+(ox-5)+'" y="'+(gy+3)+'" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="var(--text-secondary, #888)">'+(yMax*g/4).toFixed(0)+'</text>';
+  }
+
+  // linear
+  var lPts = [];
+  for (var x = 0; x <= xMax; x += 0.2) {
+    var y = a * x;
+    var py = oy - y * yS;
+    if (py >= oy - h - 5 && py <= oy) lPts.push((ox + x * xS)+','+py);
+  }
+  if (lPts.length > 1) s += '<polyline points="'+lPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+
+  // exponential
+  var ePts = [];
+  for (var x = 0; x <= xMax; x += 0.1) {
+    var y = Math.pow(b, x);
+    var py = oy - y * yS;
+    if (py >= oy - h - 5 && py <= oy) ePts.push((ox + x * xS)+','+py);
+  }
+  if (ePts.length > 1) s += '<polyline points="'+ePts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // logarithmic
+  var logPts = [];
+  for (var x = 0.1; x <= xMax; x += 0.1) {
+    var y = Math.log(x) / Math.log(c);
+    var py = oy - y * yS;
+    if (py >= oy - h - 5 && py <= oy + 5) logPts.push((ox + x * xS)+','+py);
+  }
+  if (logPts.length > 1) s += '<polyline points="'+logPts.join(' ')+'" fill="none" stroke="#27ae60" stroke-width="2.5"/>';
+
+  // legend
+  s += '<rect x="'+(ox+w-120)+'" y="'+(oy-h+5)+'" width="115" height="52" fill="var(--bg, white)" fill-opacity="0.85" rx="4"/>';
+  s += '<line x1="'+(ox+w-115)+'" y1="'+(oy-h+17)+'" x2="'+(ox+w-95)+'" y2="'+(oy-h+17)+'" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<text x="'+(ox+w-90)+'" y="'+(oy-h+20)+'" font-family="Inter" font-size="10" fill="var(--text-primary, #333)">y = '+a+'x (linear)</text>';
+  s += '<line x1="'+(ox+w-115)+'" y1="'+(oy-h+32)+'" x2="'+(ox+w-95)+'" y2="'+(oy-h+32)+'" stroke="#c0392b" stroke-width="2.5"/>';
+  s += '<text x="'+(ox+w-90)+'" y="'+(oy-h+35)+'" font-family="Inter" font-size="10" fill="var(--text-primary, #333)">y = '+b+'^x (eksp.)</text>';
+  s += '<line x1="'+(ox+w-115)+'" y1="'+(oy-h+47)+'" x2="'+(ox+w-95)+'" y2="'+(oy-h+47)+'" stroke="#27ae60" stroke-width="2.5"/>';
+  s += '<text x="'+(ox+w-90)+'" y="'+(oy-h+50)+'" font-family="Inter" font-size="10" fill="var(--text-primary, #333)">y = log'+c+'(x) (log)</text>';
+
+  svg.innerHTML = s;
+
+  var tbl = 'Pada x = '+xMax+':\n';
+  tbl += '  Linear: y = '+(a*xMax)+'\n';
+  tbl += '  Eksponensial: y = '+Math.pow(b,xMax).toFixed(1)+'\n';
+  tbl += '  Logaritmik: y = '+(Math.log(xMax)/Math.log(c)).toFixed(3)+'\n\n';
+  tbl += 'Eksponensial tumbuh jauh lebih cepat dari linear. Logaritmik tumbuh paling lambat — ia adalah "kebalikan" dari eksponensial.';
+  document.getElementById('cmp-result').textContent = tbl;
+}
+
+// ═══════ Interactive 5: Log Scale Explorer ═══════
+function showLogScale(mode) {
+  var svg = document.getElementById('logscale-svg');
+  var res = document.getElementById('logscale-result');
+  var ox = 30, oy = 30, w = 330, barH = 28, gap = 6;
+  var items = [], title = '', explanation = '';
+
+  if (mode === 'gempa') {
+    title = 'Skala Richter (Magnitudo Gempa)';
+    items = [
+      {label: 'Tak terasa', mag: 1, color: '#82e0aa'},
+      {label: 'Terasa ringan', mag: 3, color: '#f9e79f'},
+      {label: 'Kerusakan ringan', mag: 5, color: '#f0b27a'},
+      {label: 'Gempa besar', mag: 7, color: '#e74c3c'},
+      {label: 'Gempa dahsyat', mag: 9, color: '#922b21'}
+    ];
+    explanation = 'Setiap kenaikan 1 pada skala Richter = energi 31,6x lebih besar!\n';
+    explanation += 'Gempa magnitudo 9 melepaskan energi 31,6^8 = sekitar 10 TRILIUN kali lebih besar dari magnitudo 1.\n';
+    explanation += 'Tanpa skala logaritmik, angka-angka ini mustahil ditampilkan berdampingan.';
+  } else if (mode === 'suara') {
+    title = 'Desibel (Kekerasan Suara)';
+    items = [
+      {label: 'Bisikan', mag: 20, color: '#82e0aa'},
+      {label: 'Percakapan', mag: 60, color: '#f9e79f'},
+      {label: 'Lalu lintas', mag: 80, color: '#f0b27a'},
+      {label: 'Konser rock', mag: 110, color: '#e74c3c'},
+      {label: 'Roket', mag: 180, color: '#922b21'}
+    ];
+    explanation = 'Desibel menggunakan skala logaritmik: dB = 10 log10(I/I0).\n';
+    explanation += 'Setiap kenaikan 10 dB = intensitas suara 10x lebih kuat.\n';
+    explanation += 'Konser rock (110 dB) intensitasnya 10 MILIAR kali bisikan (20 dB)!';
+  } else {
+    title = 'Skala pH (Keasaman)';
+    items = [
+      {label: 'Asam lambung', mag: 1, color: '#e74c3c'},
+      {label: 'Jus lemon', mag: 2, color: '#f0b27a'},
+      {label: 'Kopi', mag: 5, color: '#f9e79f'},
+      {label: 'Air murni', mag: 7, color: '#82e0aa'},
+      {label: 'Sabun', mag: 10, color: '#85c1e9'},
+      {label: 'Pemutih', mag: 13, color: '#7d3c98'}
+    ];
+    explanation = 'pH = -log10[H+], di mana [H+] = konsentrasi ion hidrogen.\n';
+    explanation += 'Setiap penurunan 1 pH = konsentrasi H+ 10x lebih besar (lebih asam).\n';
+    explanation += 'Asam lambung (pH 1) memiliki 1.000.000x lebih banyak ion H+ dari air murni (pH 7).';
+  }
+
+  var maxMag = 0;
+  for (var i = 0; i < items.length; i++) if (items[i].mag > maxMag) maxMag = items[i].mag;
+  var totalH = items.length * (barH + gap) + 40;
+  svg.setAttribute('height', totalH);
+  svg.setAttribute('viewBox', '0 0 380 ' + totalH);
+
+  var s = '';
+  s += '<text x="'+ox+'" y="18" font-family="Inter" font-size="12" font-weight="600" fill="var(--text-primary, #333)">'+title+'</text>';
+
+  for (var i = 0; i < items.length; i++) {
+    var y = oy + i * (barH + gap);
+    var barW = (items[i].mag / maxMag) * (w - 80);
+    if (barW < 20) barW = 20;
+    s += '<rect x="'+ox+'" y="'+y+'" width="'+barW+'" height="'+barH+'" rx="4" fill="'+items[i].color+'" opacity="0.85"/>';
+    s += '<text x="'+(ox+barW+6)+'" y="'+(y+barH/2+4)+'" font-family="JetBrains Mono" font-size="10" fill="var(--text-primary, #333)">'+items[i].mag+'</text>';
+    s += '<text x="'+(ox+8)+'" y="'+(y+barH/2+4)+'" font-family="Inter" font-size="10" fill="#1a1a1a">'+items[i].label+'</text>';
+  }
+
+  svg.innerHTML = s;
+  res.textContent = explanation;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   updateExpGrowth();
   updateCompound();
+  updateComparison();
+  showLogScale('gempa');
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_11_Ketika_Segitiga_Menjelaskan_Gelombang.html">Bab 11</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_13_Mendekati_Tanpa_Pernah_Sampai.html">Bab 13</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

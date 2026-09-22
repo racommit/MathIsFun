@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 20 · Volume V — Bab Terakhir</div>
@@ -71,6 +72,14 @@ window.MathJax = {
   <div class="definition-box">
     $$P(A) = \frac{\text{jumlah hasil yang menguntungkan}}{\text{jumlah semua hasil yang mungkin}}$$
     $0 \leq P(A) \leq 1$. P = 0 berarti mustahil, P = 1 berarti pasti.
+  </div>
+
+  <div class="recall-box">
+    <strong>Ingat Bab 2 — Pecahan:</strong> Peluang selalu berupa <strong>pecahan</strong> antara 0 dan 1. Ketika kita menulis $P = \frac{3}{6}$, kita sedang melakukan operasi pecahan yang sudah kita pelajari: menyederhanakan $\frac{3}{6} = \frac{1}{2}$, menjumlahkan peluang seperti menjumlahkan pecahan, dan mengalikan pecahan untuk kejadian independen. Semua aturan pecahan dari Bab 2 — KPK penyebut, menyederhanakan, mengubah ke desimal — langsung terpakai di sini.
+  </div>
+
+  <div class="recall-box">
+    <strong>Ingat Bab 1 — Perkalian sebagai Penghitungan Sistematis:</strong> Menghitung banyaknya kemungkinan (kombinatorika) bergantung pada <strong>perkalian</strong>. Jika ada 6 pilihan baju dan 4 pilihan celana, total kombinasi = $6 \times 4 = 24$. Ini adalah prinsip perkalian dari Bab 1 yang menjadi fondasi menghitung ruang sampel: berapa "jumlah semua hasil yang mungkin" di penyebut rumus peluang.
   </div>
 
   <div class="key-insight">
@@ -181,6 +190,66 @@ window.MathJax = {
     </div>
 
     <div id="norm-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 4: Coin/Dice Multi-Simulator -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Simulator Koin & Dadu — Hukum Bilangan Besar</div>
+    <div class="interactive-desc">Pilih koin atau dadu, lempar berkali-kali, dan amati distribusi frekuensi mendekati probabilitas teoretis seiring jumlah percobaan bertambah.</div>
+
+    <div style="margin-bottom: 1rem; text-align: center;">
+      <label style="margin-right: 1rem;">
+        <input type="radio" name="sim-type" value="coin" checked onchange="resetSim()"> Koin (Kepala/Ekor)
+      </label>
+      <label>
+        <input type="radio" name="sim-type" value="dice" onchange="resetSim()"> Dadu (1–6)
+      </label>
+    </div>
+
+    <div style="margin-bottom: 1rem; text-align: center;">
+      <button class="btn" onclick="runSim(1)" style="background: var(--accent-blue); color: white;">Lempar 1x</button>
+      <button class="btn" onclick="runSim(10)">Lempar 10x</button>
+      <button class="btn" onclick="runSim(100)">Lempar 100x</button>
+      <button class="btn" onclick="runSim(1000)">Lempar 1000x</button>
+      <button class="btn" onclick="resetSim()">Reset</button>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="sim-svg" width="340" height="220" viewBox="0 0 340 220"></svg>
+    </div>
+
+    <div id="sim-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 5: Normal Distribution Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Distribusi Normal</div>
+    <div class="interactive-desc">Geser slider mean dan simpangan baku, lalu lihat bagaimana kurva lonceng berubah. Daerah di bawah kurva menunjukkan proporsi data dalam interval tertentu.</div>
+
+    <div class="slider-container">
+      <label>Mean (μ): <strong id="nex-mu-val">50</strong></label>
+      <input type="range" id="nex-mu" min="20" max="80" value="50" step="1" oninput="updateNormExplorer()">
+    </div>
+    <div class="slider-container">
+      <label>Simpangan baku (σ): <strong id="nex-sigma-val">10</strong></label>
+      <input type="range" id="nex-sigma" min="2" max="25" value="10" step="1" oninput="updateNormExplorer()">
+    </div>
+    <div class="slider-container">
+      <label>Tunjukkan daerah: <strong id="nex-area-val">1σ (68%)</strong></label>
+      <input type="range" id="nex-area" min="1" max="3" value="1" step="1" oninput="updateNormExplorer()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="nex-svg" width="340" height="240" viewBox="0 0 340 240"></svg>
+    </div>
+
+    <div id="nex-result" class="result-display" style="font-size: 0.88rem;"></div>
   </div>
 
   <div class="divider divider-center"></div>
@@ -340,6 +409,60 @@ window.MathJax = {
     <div class="answer-content" id="a8">Contoh: dalam sebuah ruangan dengan 9 pekerja bergaji 5 juta dan 1 CEO bergaji 500 juta, rata-rata gaji = 54.5 juta — menyesatkan! Median = 5 juta — jauh lebih mewakili "gaji tipikal." Outlier mendistorsi mean.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall Bab 2: Pecahan dalam Peluang</div>
+    <p>Dari 52 kartu remi, 13 adalah kartu hati. Nyatakan peluang mengambil kartu hati sebagai pecahan yang paling sederhana. Kemudian, berapa peluang mengambil kartu hati ATAU kartu wajik (13 kartu)? Sederhanakan.</p>
+    <button class="hint-btn" onclick="toggleHint('h70')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a70')">Lihat Jawaban</button>
+    <div class="hint-content" id="h70">Ingat Bab 2: untuk menyederhanakan pecahan, bagi pembilang dan penyebut dengan FPB. $P(\text{hati}) = \frac{13}{52}$. Untuk "atau," karena hati dan wajik saling lepas, jumlahkan peluangnya.</div>
+    <div class="answer-content" id="a70">$P(\text{hati}) = \frac{13}{52} = \frac{1}{4}$. (FPB 13 dan 52 = 13.)<br>$P(\text{hati atau wajik}) = \frac{13}{52} + \frac{13}{52} = \frac{26}{52} = \frac{1}{2}$.<br>Operasi pecahan dari Bab 2 langsung terpakai!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Teorema Bayes</div>
+    <p>Sebuah penyakit langka menyerang 1 dari 1000 orang. Tes untuk penyakit ini akurat 99% (jika sakit, tes positif 99% kasus; jika sehat, tes negatif 99% kasus). Jika seseorang tes positif, berapa peluang dia benar-benar sakit?</p>
+    <button class="hint-btn" onclick="toggleHint('h71')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a71')">Lihat Jawaban</button>
+    <div class="hint-content" id="h71">Gunakan Teorema Bayes: $P(\text{sakit}|\text{positif}) = \frac{P(\text{positif}|\text{sakit}) \cdot P(\text{sakit})}{P(\text{positif})}$. Hitung $P(\text{positif})$ total: dari yang sakit DAN dari yang sehat tapi false positive.</div>
+    <div class="answer-content" id="a71">
+      $P(\text{sakit}) = \frac{1}{1000} = 0.001$, $P(\text{sehat}) = 0.999$<br>
+      $P(\text{positif}|\text{sakit}) = 0.99$, $P(\text{positif}|\text{sehat}) = 0.01$ (false positive)<br><br>
+      $P(\text{positif}) = 0.99 \times 0.001 + 0.01 \times 0.999 = 0.00099 + 0.00999 = 0.01098$<br><br>
+      $$P(\text{sakit}|\text{positif}) = \frac{0.99 \times 0.001}{0.01098} \approx 0.0902 \approx 9\%$$
+      Mengejutkan! Meskipun tes 99% akurat, peluang benar-benar sakit hanya sekitar 9%. Ini karena penyakitnya sangat langka — sebagian besar tes positif adalah <strong>false positive</strong>.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Aplikasi: Kontrol Kualitas</div>
+    <p>Sebuah pabrik memproduksi 10.000 baut per hari. Tingkat cacat 2%. Inspektur mengambil sampel 5 baut secara acak. Berapa peluang <em>semua</em> 5 baut dalam kondisi baik? (Gunakan prinsip perkalian untuk kejadian independen.)</p>
+    <button class="hint-btn" onclick="toggleHint('h72')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a72')">Lihat Jawaban</button>
+    <div class="hint-content" id="h72">$P(\text{baik}) = 1 - 0.02 = 0.98$ untuk setiap baut. Karena pengambilan dari 10.000 baut bisa dianggap independen, kalikan peluang 5 kali: $P = 0.98^5$.</div>
+    <div class="answer-content" id="a72">
+      $P(\text{semua baik}) = 0.98^5 = 0.98 \times 0.98 \times 0.98 \times 0.98 \times 0.98$<br>
+      $= 0.9039... \approx 90.4\%$<br><br>
+      Jadi ada sekitar 9.6% peluang setidaknya satu baut cacat ditemukan dalam sampel 5. Semakin besar sampel, semakin besar peluang menemukan cacat — inilah mengapa kontrol kualitas menggunakan sampel yang cukup besar.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Mean, Median, Varians dari Data</div>
+    <p>Nilai ujian 8 siswa: 65, 70, 72, 75, 78, 80, 82, 90. Hitung: (a) mean, (b) median, (c) varians, dan (d) simpangan baku.</p>
+    <button class="hint-btn" onclick="toggleHint('h73')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a73')">Lihat Jawaban</button>
+    <div class="hint-content" id="h73">Mean = jumlah semua / 8. Median = rata-rata dua nilai tengah (data ke-4 dan ke-5). Varians = rata-rata dari $(x_i - \bar{x})^2$.</div>
+    <div class="answer-content" id="a73">
+      <strong>(a) Mean:</strong> $\bar{x} = \frac{65+70+72+75+78+80+82+90}{8} = \frac{612}{8} = 76.5$<br><br>
+      <strong>(b) Median:</strong> Data sudah urut, 8 data. Median = $\frac{x_4 + x_5}{2} = \frac{75 + 78}{2} = 76.5$<br><br>
+      <strong>(c) Varians:</strong><br>
+      $\sigma^2 = \frac{(65{-}76.5)^2 + (70{-}76.5)^2 + (72{-}76.5)^2 + (75{-}76.5)^2 + (78{-}76.5)^2 + (80{-}76.5)^2 + (82{-}76.5)^2 + (90{-}76.5)^2}{8}$<br>
+      $= \frac{132.25 + 42.25 + 20.25 + 2.25 + 2.25 + 12.25 + 30.25 + 182.25}{8} = \frac{424}{8} = 53$<br><br>
+      <strong>(d) Simpangan baku:</strong> $\sigma = \sqrt{53} \approx 7.28$<br><br>
+      Artinya: rata-rata, nilai siswa menyimpang sekitar 7.28 poin dari mean.
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog: Akhir Perjalanan, Awal Penerapan</h2>
@@ -479,7 +602,189 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   updateNormal();
+  drawSim();
+  updateNormExplorer();
 });
+
+// ═══════ Interactive 4: Coin/Dice Multi-Simulator ═══════
+var simCoinCounts = [0, 0]; // [kepala, ekor]
+var simDiceCounts = [0, 0, 0, 0, 0, 0];
+var simTotal = 0;
+
+function getSimType() {
+  var radios = document.getElementsByName('sim-type');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) return radios[i].value;
+  }
+  return 'coin';
+}
+
+function resetSim() {
+  simCoinCounts = [0, 0];
+  simDiceCounts = [0, 0, 0, 0, 0, 0];
+  simTotal = 0;
+  drawSim();
+}
+
+function runSim(n) {
+  var type = getSimType();
+  for (var i = 0; i < n; i++) {
+    if (type === 'coin') {
+      simCoinCounts[Math.random() < 0.5 ? 0 : 1]++;
+    } else {
+      simDiceCounts[Math.floor(Math.random() * 6)]++;
+    }
+    simTotal++;
+  }
+  drawSim();
+}
+
+function drawSim() {
+  var svg = document.getElementById('sim-svg');
+  var type = getSimType();
+  var s = '';
+
+  if (type === 'coin') {
+    var labels = ['Kepala', 'Ekor'];
+    var counts = simCoinCounts;
+    var nBars = 2;
+    var expected = 0.5;
+    var barW = 80, gap = 40, ox = 60;
+    var maxH = 160;
+    var maxCount = Math.max(counts[0], counts[1]) || 1;
+
+    for (var i = 0; i < nBars; i++) {
+      var x = ox + i * (barW + gap);
+      var h = (counts[i] / maxCount) * maxH;
+      s += '<rect x="'+x+'" y="'+(190-h)+'" width="'+barW+'" height="'+h+'" fill="rgba(36,113,163,0.5)" rx="4"/>';
+      s += '<text x="'+(x+barW/2)+'" y="210" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">'+labels[i]+'</text>';
+      if (counts[i] > 0) {
+        var pct = (counts[i] / simTotal * 100).toFixed(1);
+        s += '<text x="'+(x+barW/2)+'" y="'+(185-h)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11">'+counts[i]+' ('+pct+'%)</text>';
+      }
+      if (simTotal > 0) {
+        var ey = 190 - (simTotal * expected / maxCount) * maxH;
+        s += '<line x1="'+x+'" y1="'+ey+'" x2="'+(x+barW)+'" y2="'+ey+'" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>';
+      }
+    }
+    if (simTotal > 0) {
+      s += '<text x="280" y="15" font-family="Inter" font-size="9" fill="#c0392b">— ekspektasi 50%</text>';
+    }
+  } else {
+    var counts = simDiceCounts;
+    var nBars = 6;
+    var barW = 36, gap = 12, ox = 25;
+    var maxH = 150;
+    var maxCount = Math.max.apply(null, counts) || 1;
+
+    for (var i = 0; i < nBars; i++) {
+      var x = ox + i * (barW + gap);
+      var h = (counts[i] / maxCount) * maxH;
+      s += '<rect x="'+x+'" y="'+(190-h)+'" width="'+barW+'" height="'+h+'" fill="rgba(36,113,163,0.5)" rx="3"/>';
+      s += '<text x="'+(x+barW/2)+'" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="600">'+(i+1)+'</text>';
+      if (counts[i] > 0) {
+        s += '<text x="'+(x+barW/2)+'" y="'+(185-h)+'" text-anchor="middle" font-family="Inter" font-size="10">'+counts[i]+'</text>';
+      }
+      if (simTotal > 0) {
+        var expected = simTotal / 6;
+        var ey = 190 - (expected / maxCount) * maxH;
+        s += '<line x1="'+x+'" y1="'+ey+'" x2="'+(x+barW)+'" y2="'+ey+'" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>';
+      }
+    }
+    if (simTotal > 0) {
+      s += '<text x="280" y="15" font-family="Inter" font-size="9" fill="#c0392b">— ekspektasi 1/6</text>';
+    }
+  }
+
+  svg.innerHTML = s;
+
+  var res = document.getElementById('sim-result');
+  if (simTotal === 0) {
+    res.textContent = 'Pilih koin atau dadu, lalu klik tombol untuk memulai!';
+  } else if (type === 'coin') {
+    res.textContent = 'Total: ' + simTotal + ' lemparan\nKepala: ' + simCoinCounts[0] + ' (' + (simCoinCounts[0]/simTotal*100).toFixed(1) + '%)  Ekor: ' + simCoinCounts[1] + ' (' + (simCoinCounts[1]/simTotal*100).toFixed(1) + '%)\nEkspektasi: 50% masing-masing — semakin banyak lemparan, semakin dekat!';
+  } else {
+    var txt = 'Total: ' + simTotal + ' lemparan\n';
+    for (var i = 0; i < 6; i++) {
+      txt += (i+1) + ': ' + (simDiceCounts[i]/simTotal*100).toFixed(1) + '%  ';
+    }
+    txt += '\nEkspektasi: 16.67% — amati konvergensi!';
+    res.textContent = txt;
+  }
+}
+
+// ═══════ Interactive 5: Normal Distribution Explorer ═══════
+function updateNormExplorer() {
+  var mu = parseFloat(document.getElementById('nex-mu').value);
+  var sigma = parseFloat(document.getElementById('nex-sigma').value);
+  var nSigma = parseInt(document.getElementById('nex-area').value);
+
+  document.getElementById('nex-mu-val').textContent = mu;
+  document.getElementById('nex-sigma-val').textContent = sigma;
+  var areaLabels = {1: '1σ (68%)', 2: '2σ (95%)', 3: '3σ (99.7%)'};
+  var areaPcts = {1: 68, 2: 95, 3: 99.7};
+  document.getElementById('nex-area-val').textContent = areaLabels[nSigma];
+
+  var svg = document.getElementById('nex-svg');
+  var ox = 170, oy = 210, xSc = 3, ySc;
+
+  function gauss(x) {
+    return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mu) / sigma, 2));
+  }
+  var peak = gauss(mu);
+  ySc = 160 / peak;
+
+  var s = '';
+  // axis
+  s += '<line x1="10" y1="'+oy+'" x2="330" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+
+  // shade n-sigma area
+  var lo = mu - nSigma * sigma, hi = mu + nSigma * sigma;
+  var shadePts = '';
+  for (var x = lo; x <= hi; x += 0.5) {
+    var px = ox + (x - mu) * xSc;
+    if (px >= 5 && px <= 335) {
+      shadePts += px + ',' + (oy - gauss(x) * ySc) + ' ';
+    }
+  }
+  var pxLo = Math.max(5, ox + (lo - mu) * xSc);
+  var pxHi = Math.min(335, ox + (hi - mu) * xSc);
+  shadePts = pxLo + ',' + oy + ' ' + shadePts + pxHi + ',' + oy;
+  s += '<polygon points="' + shadePts + '" fill="rgba(36,113,163,0.25)"/>';
+
+  // curve
+  var pts = [];
+  for (var x = mu - 4 * sigma; x <= mu + 4 * sigma; x += sigma * 0.03) {
+    var px = ox + (x - mu) * xSc;
+    var py = oy - gauss(x) * ySc;
+    if (px >= 5 && px <= 335 && py > 5) pts.push(px + ',' + py);
+  }
+  s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // mean line
+  s += '<line x1="'+ox+'" y1="'+(oy - peak * ySc)+'" x2="'+ox+'" y2="'+oy+'" stroke="#2471a3" stroke-width="1.5" stroke-dasharray="3,3"/>';
+  s += '<text x="'+ox+'" y="'+(oy + 16)+'" text-anchor="middle" font-family="Inter" font-size="10" fill="#2471a3">μ='+mu+'</text>';
+
+  // sigma markers
+  for (var k = -nSigma; k <= nSigma; k++) {
+    if (k === 0) continue;
+    var mx = ox + k * sigma * xSc;
+    if (mx > 10 && mx < 330) {
+      s += '<line x1="'+mx+'" y1="'+(oy-5)+'" x2="'+mx+'" y2="'+(oy+5)+'" stroke="currentColor" stroke-width="1"/>';
+      s += '<text x="'+mx+'" y="'+(oy+16)+'" text-anchor="middle" font-family="Inter" font-size="8">'+(mu + k * sigma)+'</text>';
+    }
+  }
+
+  // area label
+  s += '<text x="'+ox+'" y="'+(oy - peak * ySc - 8)+'" text-anchor="middle" font-family="Inter" font-size="11" fill="#2471a3" font-weight="600">'+areaPcts[nSigma]+'%</text>';
+
+  svg.innerHTML = s;
+
+  document.getElementById('nex-result').textContent =
+    'μ = ' + mu + ', σ = ' + sigma +
+    '\nDaerah biru = ' + nSigma + 'σ: [' + (mu - nSigma * sigma) + ', ' + (mu + nSigma * sigma) + '] mengandung ' + areaPcts[nSigma] + '% data' +
+    '\nLebar kurva ditentukan oleh σ: semakin besar σ, semakin tersebar datanya.';
+}
 
 // ═══════ Interactive 3: Normal Distribution ═══════
 function updateNormal() {
@@ -525,5 +830,42 @@ function updateNormal() {
     '\nDaerah biru = 1σ (≈68%)';
 }
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_19_Logika_Himpunan_dan_Graf.html">Bab 19</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <span class="nav-spacer"></span>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

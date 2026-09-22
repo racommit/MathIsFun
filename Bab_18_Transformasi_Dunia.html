@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 18 · Volume V</div>
@@ -77,6 +78,10 @@ window.MathJax = {
     <strong>Perkalian matriks:</strong> $C_{ij} = \sum_k A_{ik} \cdot B_{kj}$ — baris kali kolom.
   </div>
 
+  <div class="recall-box">
+    Ingat dari <span class="xref"><span class="xref-text">Bab 5</span><span class="xref-tag">Bab 5</span><span class="xref-popup"><span class="xref-popup-header">Bab 5 — Mencari yang Belum Diketahui</span><span class="xref-popup-body">Sistem persamaan linier (SPL) diselesaikan dengan eliminasi dan substitusi. Matriks memberikan cara <strong>sistematis</strong> untuk menuliskan dan menyelesaikan SPL — koefisien masuk matriks, variabel jadi vektor, dan SPL menjadi $A\vec{x} = \vec{b}$.</span></span></span>: sistem persamaan linier seperti $\begin{cases} 2x + 3y = 7 \\ x - y = 1 \end{cases}$ bisa ditulis sebagai perkalian matriks $\begin{pmatrix} 2 & 3 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 7 \\ 1 \end{pmatrix}$. Jika determinan matriks $\neq 0$, solusi unik ada: $\vec{x} = A^{-1}\vec{b}$. Matriks mengubah eliminasi manual menjadi operasi aljabar yang bisa diotomatisasi.
+  </div>
+
   <h3>Matriks sebagai Transformasi Linier</h3>
 
   <p>
@@ -91,6 +96,10 @@ window.MathJax = {
       <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 6px;">Refleksi sumbu-$x$</td><td style="padding: 6px;">$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$</td></tr>
       <tr><td style="padding: 6px;">Identitas</td><td style="padding: 6px;">$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ (tidak mengubah apa pun)</td></tr>
     </table>
+  </div>
+
+  <div class="recall-box">
+    Ingat dari <span class="xref"><span class="xref-text">Bab 9</span><span class="xref-tag">Bab 9</span><span class="xref-popup"><span class="xref-popup-header">Bab 9 — Ketika Aljabar Bertemu Geometri</span><span class="xref-popup-body">Bidang koordinat Kartesius menghubungkan aljabar dan geometri: setiap titik punya koordinat $(x, y)$, setiap persamaan punya grafik. Transformasi matriks <strong>menggerakkan</strong> titik-titik ini — rotasi, refleksi, dan skala mengubah grafik secara geometris melalui operasi aljabar pada koordinat.</span></span></span>: di bidang koordinat, setiap titik dinyatakan sebagai $(x, y)$. Transformasi matriks bekerja tepat di atas kerangka ini — matriks mengambil koordinat titik, mengalikannya, dan menghasilkan koordinat baru. Grafik parabola $y = x^2$ dari Bab 9 bisa diregangkan, diputar, atau dicerminkan hanya dengan mengalikan setiap titiknya dengan matriks yang tepat. Bidang koordinat adalah "kanvas", matriks adalah "kuas"-nya.
   </div>
 
   <h3>Determinan</h3>
@@ -191,6 +200,124 @@ window.MathJax = {
 
     <div id="det-result" class="result-display" style="font-size: 0.88rem;"></div>
   </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 4: Free-form Matrix Transform with Sliders -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Bengkel Transformasi: Bentuk Bebas</div>
+    <div class="interactive-desc">Atur keempat entri matriks $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$ dengan slider dan lihat efeknya pada segitiga. Coba buat rotasi, skala, geser, atau kombinasinya!</div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; max-width: 340px; margin: 0 auto 1rem;">
+      <div class="slider-container">
+        <label>a: <strong id="free-a-val">1.0</strong></label>
+        <input type="range" id="free-a" min="-2" max="2" value="1" step="0.1" oninput="updateFreeTransform()">
+      </div>
+      <div class="slider-container">
+        <label>b: <strong id="free-b-val">0.0</strong></label>
+        <input type="range" id="free-b" min="-2" max="2" value="0" step="0.1" oninput="updateFreeTransform()">
+      </div>
+      <div class="slider-container">
+        <label>c: <strong id="free-c-val">0.0</strong></label>
+        <input type="range" id="free-c" min="-2" max="2" value="0" step="0.1" oninput="updateFreeTransform()">
+      </div>
+      <div class="slider-container">
+        <label>d: <strong id="free-d-val">1.0</strong></label>
+        <input type="range" id="free-d" min="-2" max="2" value="1" step="0.1" oninput="updateFreeTransform()">
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 0.5rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setFreePreset(1,0,0,1)" title="Identitas">I</button>
+        <button class="btn" onclick="setFreePreset(0,-1,1,0)" title="Rotasi 90°">R90</button>
+        <button class="btn" onclick="setFreePreset(1,0.5,0,1)" title="Geser horizontal">Geser</button>
+        <button class="btn" onclick="setFreePreset(2,0,0,0.5)" title="Skala anisotropik">Skala</button>
+        <button class="btn" onclick="setFreePreset(-1,0,0,1)" title="Refleksi sumbu-y">Cermin</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="free-svg" width="340" height="340" viewBox="0 0 340 340"></svg>
+    </div>
+
+    <div id="free-result" class="result-display" style="font-size: 0.85rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 5: Matrix Multiplication Step-by-Step -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Perkalian Matriks Langkah demi Langkah</div>
+    <div class="interactive-desc">Klik setiap sel hasil $C$ untuk melihat perhitungan baris × kolom dengan penyorotan visual.</div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 1.5rem 0;">
+      <!-- Matrix A -->
+      <div style="text-align: center;">
+        <div style="font-weight: 600; margin-bottom: 0.3rem; color: #c0392b;">A</div>
+        <table id="mm-tbl-a" style="border-collapse: collapse; font-family: 'JetBrains Mono'; font-size: 0.95rem;">
+          <tr><td class="mm-cell" id="mm-a00">2</td><td class="mm-cell" id="mm-a01">3</td></tr>
+          <tr><td class="mm-cell" id="mm-a10">1</td><td class="mm-cell" id="mm-a11">0</td></tr>
+        </table>
+      </div>
+      <!-- Matrix B -->
+      <div style="text-align: center;">
+        <div style="font-weight: 600; margin-bottom: 0.3rem; color: #27ae60;">B</div>
+        <table id="mm-tbl-b" style="border-collapse: collapse; font-family: 'JetBrains Mono'; font-size: 0.95rem;">
+          <tr><td class="mm-cell" id="mm-b00">1</td><td class="mm-cell" id="mm-b01">4</td></tr>
+          <tr><td class="mm-cell" id="mm-b10">5</td><td class="mm-cell" id="mm-b11">2</td></tr>
+        </table>
+      </div>
+      <!-- Matrix C = Result -->
+      <div style="text-align: center;">
+        <div style="font-weight: 600; margin-bottom: 0.3rem; color: var(--accent-blue);">C = A × B</div>
+        <table id="mm-tbl-c" style="border-collapse: collapse; font-family: 'JetBrains Mono'; font-size: 0.95rem;">
+          <tr><td class="mm-cell mm-cell-result" id="mm-c00" onclick="highlightMM(0,0)">?</td><td class="mm-cell mm-cell-result" id="mm-c01" onclick="highlightMM(0,1)">?</td></tr>
+          <tr><td class="mm-cell mm-cell-result" id="mm-c10" onclick="highlightMM(1,0)">?</td><td class="mm-cell mm-cell-result" id="mm-c11" onclick="highlightMM(1,1)">?</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="mm-explanation" class="result-display" style="font-size: 0.88rem; min-height: 2.5rem;">
+      Klik sel mana pun di matriks C untuk melihat perhitungannya.
+    </div>
+
+    <div style="text-align: center; margin-top: 0.8rem;">
+      <button class="btn" onclick="revealAllMM()">Tampilkan Semua</button>
+      <button class="btn" onclick="resetMM()">Reset</button>
+    </div>
+  </div>
+
+  <style>
+    .mm-cell {
+      padding: 10px 16px;
+      border: 1px solid var(--border, #ddd);
+      text-align: center;
+      min-width: 40px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .mm-cell-result {
+      cursor: pointer;
+      background: var(--bg-alt, #f5f5f5);
+      font-weight: 600;
+    }
+    .mm-cell-result:hover {
+      background: var(--accent-blue);
+      color: white;
+    }
+    .mm-highlight-row {
+      background: rgba(192, 57, 43, 0.15) !important;
+    }
+    .mm-highlight-col {
+      background: rgba(39, 174, 96, 0.15) !important;
+    }
+    .mm-highlight-active {
+      background: rgba(36, 113, 163, 0.2) !important;
+      font-weight: 700;
+    }
+  </style>
 
   <div class="divider divider-center"></div>
 
@@ -350,6 +477,60 @@ window.MathJax = {
     <div class="answer-content" id="a8">$\det A = 1$. $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$. Cek: $\begin{pmatrix}2&1\\1&1\end{pmatrix}\begin{pmatrix}1&-1\\-1&2\end{pmatrix} = \begin{pmatrix}1&0\\0&1\end{pmatrix}$ ✓.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall Bab 4: Ekspresi Matriks</div>
+    <p>Sederhanakan ekspresi matriks berikut menggunakan sifat-sifat aljabar (distributif, identitas):
+    $$A(B + C) - AB$$
+    di mana $A$, $B$, $C$ adalah matriks yang ukurannya cocok.</p>
+    <button class="hint-btn" onclick="toggleHint('h50')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a50')">Lihat Jawaban</button>
+    <div class="hint-content" id="h50">Ingat dari <strong>Bab 4</strong>: sifat distributif $a(b+c) = ab + ac$ berlaku juga untuk matriks. Distribusikan $A$ ke $(B+C)$ dulu, lalu sederhanakan.</div>
+    <div class="answer-content" id="a50">$A(B+C) - AB = AB + AC - AB = AC$. Sifat distributif matriks bekerja seperti aljabar biasa (Bab 4), selama urutan perkalian dipertahankan — karena $AB \neq BA$ pada umumnya, kita tidak boleh memindahkan posisi $A$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Non-komutatif: Kapan Urutan Penting?</div>
+    <p>Rotasi 90° diikuti refleksi sumbu-$x$ vs. refleksi sumbu-$x$ diikuti rotasi 90°. Hitung kedua komposisi dan jelaskan mengapa hasilnya berbeda secara geometris.</p>
+    <button class="hint-btn" onclick="toggleHint('h51')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a51')">Lihat Jawaban</button>
+    <div class="hint-content" id="h51">$R_{90} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$, $F_x = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$. Hitung $F_x \cdot R_{90}$ dan $R_{90} \cdot F_x$ secara terpisah.</div>
+    <div class="answer-content" id="a51">
+      $F_x R_{90} = \begin{pmatrix} 1&0\\0&-1 \end{pmatrix}\begin{pmatrix} 0&-1\\1&0 \end{pmatrix} = \begin{pmatrix} 0&-1\\-1&0 \end{pmatrix}$ (refleksi terhadap garis $y = -x$).<br><br>
+      $R_{90} F_x = \begin{pmatrix} 0&-1\\1&0 \end{pmatrix}\begin{pmatrix} 1&0\\0&-1 \end{pmatrix} = \begin{pmatrix} 0&1\\1&0 \end{pmatrix}$ (refleksi terhadap garis $y = x$).<br><br>
+      Keduanya adalah refleksi, tetapi terhadap garis yang <em>berbeda</em>! Secara geometris: cermin dulu lalu putar menghasilkan orientasi berbeda dari putar dulu lalu cermin — urutan transformasi fisik memang penting, dan matriks menangkap ini dengan tepat melalui sifat non-komutatifnya.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Aplikasi: Grafik Komputer</div>
+    <p>Sebuah karakter game berada di posisi $\vec{p} = (3, 1)$. Untuk animasi serangan, karakter harus: (1) diperbesar 1.5× di kedua arah, lalu (2) diputar 30° berlawanan arah jarum jam. Tulis matriks gabungan $M = R_{30} \cdot S_{1.5}$ dan hitung posisi akhir karakter.</p>
+    <button class="hint-btn" onclick="toggleHint('h52')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a52')">Lihat Jawaban</button>
+    <div class="hint-content" id="h52">$S_{1.5} = \begin{pmatrix} 1.5&0\\0&1.5 \end{pmatrix}$, $R_{30} = \begin{pmatrix} \cos 30°&-\sin 30°\\ \sin 30°&\cos 30° \end{pmatrix}$. Transformasi terakhir ditulis paling kiri!</div>
+    <div class="answer-content" id="a52">
+      $S = \begin{pmatrix} 1.5&0\\0&1.5 \end{pmatrix}$, $R = \begin{pmatrix} \frac{\sqrt{3}}{2}&-\frac{1}{2}\\ \frac{1}{2}&\frac{\sqrt{3}}{2} \end{pmatrix}$.<br><br>
+      $M = RS = \begin{pmatrix} \frac{3\sqrt{3}}{4}&-\frac{3}{4}\\ \frac{3}{4}&\frac{3\sqrt{3}}{4} \end{pmatrix} \approx \begin{pmatrix} 1.299&-0.75\\ 0.75&1.299 \end{pmatrix}$.<br><br>
+      $M\vec{p} = \begin{pmatrix} 1.299(3)+(-0.75)(1) \\ 0.75(3)+1.299(1) \end{pmatrix} = \begin{pmatrix} 3.15 \\ 3.55 \end{pmatrix}$.<br><br>
+      Dalam game sesungguhnya, GPU menghitung jutaan perkalian matriks seperti ini setiap frame — itulah mengapa matriks adalah bahasa utama grafik komputer.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Determinan dan Makna Geometris</div>
+    <p>Sebuah segitiga memiliki luas 6 satuan. Jika ditransformasi oleh matriks $M = \begin{pmatrix} 3 & 1 \\ 2 & 4 \end{pmatrix}$:<br>
+    (a) Hitung $\det(M)$.<br>
+    (b) Berapa luas segitiga setelah transformasi?<br>
+    (c) Apakah orientasi (searah/berlawanan jarum jam) berubah?</p>
+    <button class="hint-btn" onclick="toggleHint('h53')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a53')">Lihat Jawaban</button>
+    <div class="hint-content" id="h53">$\det = ad - bc$. Luas baru $= |\det(M)| \times$ luas lama. Tanda determinan menentukan orientasi.</div>
+    <div class="answer-content" id="a53">
+      (a) $\det(M) = 3(4) - 1(2) = 12 - 2 = 10$.<br><br>
+      (b) Luas baru $= |\det(M)| \times 6 = 10 \times 6 = 60$ satuan luas.<br><br>
+      (c) Karena $\det(M) = 10 > 0$, orientasi <em>tidak berubah</em>. Jika determinan negatif, segitiga akan "terbalilk" seperti cermin — titik-titik yang tadinya searah jarum jam menjadi berlawanan, atau sebaliknya.
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog</h2>
@@ -489,9 +670,151 @@ function updateDet() {
     '\nLuas baru = |det| × luas lama = '+Math.abs(det).toFixed(2);
 }
 
+// ═══════ Interactive 4: Free-form Transform with Triangle ═══════
+function setFreePreset(a,b,c,d) {
+  document.getElementById('free-a').value=a;
+  document.getElementById('free-b').value=b;
+  document.getElementById('free-c').value=c;
+  document.getElementById('free-d').value=d;
+  updateFreeTransform();
+}
+function updateFreeTransform() {
+  var a=parseFloat(document.getElementById('free-a').value);
+  var b=parseFloat(document.getElementById('free-b').value);
+  var c=parseFloat(document.getElementById('free-c').value);
+  var d=parseFloat(document.getElementById('free-d').value);
+  document.getElementById('free-a-val').textContent=a.toFixed(1);
+  document.getElementById('free-b-val').textContent=b.toFixed(1);
+  document.getElementById('free-c-val').textContent=c.toFixed(1);
+  document.getElementById('free-d-val').textContent=d.toFixed(1);
+
+  var svg=document.getElementById('free-svg');
+  var ox=170,oy=170,sc=60;
+  var s='';
+  // grid
+  for(var i=-2;i<=2;i++){
+    s+='<line x1="'+(ox+i*sc)+'" y1="10" x2="'+(ox+i*sc)+'" y2="330" stroke="#eee" stroke-width="0.5"/>';
+    s+='<line x1="10" y1="'+(oy+i*sc)+'" x2="330" y2="'+(oy+i*sc)+'" stroke="#eee" stroke-width="0.5"/>';
+  }
+  s+='<line x1="10" y1="'+oy+'" x2="330" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s+='<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="330" stroke="currentColor" stroke-width="1"/>';
+
+  // original triangle
+  var tri = [[0,0],[1,0],[0.5,1]];
+  var origPts = tri.map(function(p){return (ox+p[0]*sc)+','+(oy-p[1]*sc);}).join(' ');
+  s += '<polygon points="'+origPts+'" fill="rgba(200,200,200,0.25)" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>';
+  s += '<text x="'+(ox+0.5*sc)+'" y="'+(oy+15)+'" text-anchor="middle" font-family="Inter" font-size="9" fill="#999">asli</text>';
+
+  // transformed triangle
+  var tpts = tri.map(function(pt){ return [a*pt[0]+b*pt[1], c*pt[0]+d*pt[1]]; });
+  var transPts = tpts.map(function(p){return (ox+p[0]*sc)+','+(oy-p[1]*sc);}).join(' ');
+  s += '<polygon points="'+transPts+'" fill="rgba(36,113,163,0.25)" stroke="#2471a3" stroke-width="2"/>';
+
+  // transformed basis vectors
+  s += drawArrow(s, ox,oy, ox+a*sc,oy-c*sc, '#c0392b', 2);
+  s += drawArrow(s, ox,oy, ox+b*sc,oy-d*sc, '#27ae60', 2);
+  s += '<text x="'+(ox+a*sc+8)+'" y="'+(oy-c*sc)+'" font-family="Inter" font-size="9" fill="#c0392b">('+a.toFixed(1)+','+c.toFixed(1)+')</text>';
+  s += '<text x="'+(ox+b*sc+8)+'" y="'+(oy-d*sc)+'" font-family="Inter" font-size="9" fill="#27ae60">('+b.toFixed(1)+','+d.toFixed(1)+')</text>';
+
+  svg.innerHTML=s;
+  var det=a*d-b*c;
+  var desc='';
+  if(Math.abs(det)<0.01) desc='Singular! Segitiga menjadi garis (atau titik).';
+  else if(det<0) desc='Orientasi terbalik (cermin). ';
+  else desc='Orientasi terjaga. ';
+  document.getElementById('free-result').textContent=
+    'Matriks: [['+a.toFixed(1)+', '+b.toFixed(1)+'], ['+c.toFixed(1)+', '+d.toFixed(1)+']]\n'+
+    'det = '+det.toFixed(2)+' → luas menjadi '+Math.abs(det).toFixed(2)+' kali lipat\n'+desc;
+}
+
+// ═══════ Interactive 5: Matrix Multiplication Step-by-Step ═══════
+var mmA=[[2,3],[1,0]], mmB=[[1,4],[5,2]], mmRevealed=[[false,false],[false,false]];
+function highlightMM(row,col) {
+  // clear highlights
+  for(var r=0;r<2;r++) for(var k=0;k<2;k++){
+    document.getElementById('mm-a'+r+k).className='mm-cell';
+    document.getElementById('mm-b'+r+k).className='mm-cell';
+  }
+  // highlight row of A
+  for(var k=0;k<2;k++) document.getElementById('mm-a'+row+k).className='mm-cell mm-highlight-row';
+  // highlight col of B
+  for(var k=0;k<2;k++) document.getElementById('mm-b'+k+col).className='mm-cell mm-highlight-col';
+  // compute
+  var val=0, terms=[];
+  for(var k=0;k<2;k++){
+    val+=mmA[row][k]*mmB[k][col];
+    terms.push(mmA[row][k]+' × '+mmB[k][col]);
+  }
+  document.getElementById('mm-c'+row+col).textContent=val;
+  document.getElementById('mm-c'+row+col).className='mm-cell mm-cell-result mm-highlight-active';
+  mmRevealed[row][col]=true;
+  document.getElementById('mm-explanation').textContent=
+    'C['+row+']['+col+'] = '+terms.join(' + ')+' = '+(mmA[row][0]*mmB[0][col])+' + '+(mmA[row][1]*mmB[1][col])+' = '+val+
+    '\n(Baris '+row+' dari A) · (Kolom '+col+' dari B)';
+}
+function revealAllMM(){
+  for(var r=0;r<2;r++) for(var c=0;c<2;c++) highlightMM(r,c);
+  // clear highlights after showing all
+  setTimeout(function(){
+    for(var r=0;r<2;r++) for(var k=0;k<2;k++){
+      document.getElementById('mm-a'+r+k).className='mm-cell';
+      document.getElementById('mm-b'+r+k).className='mm-cell';
+      document.getElementById('mm-c'+r+k).className='mm-cell mm-cell-result';
+    }
+    document.getElementById('mm-explanation').textContent='Semua sel terisi! C = A × B selesai.';
+  }, 600);
+}
+function resetMM(){
+  mmRevealed=[[false,false],[false,false]];
+  for(var r=0;r<2;r++) for(var c=0;c<2;c++){
+    document.getElementById('mm-c'+r+c).textContent='?';
+    document.getElementById('mm-c'+r+c).className='mm-cell mm-cell-result';
+    document.getElementById('mm-a'+r+c).className='mm-cell';
+    document.getElementById('mm-b'+r+c).className='mm-cell';
+  }
+  document.getElementById('mm-explanation').textContent='Klik sel mana pun di matriks C untuk melihat perhitungannya.';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  updateTrans(); updateMatMul(); updateDet();
+  updateTrans(); updateMatMul(); updateDet(); updateFreeTransform();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_17_Arah_dan_Besaran.html">Bab 17</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_19_Logika_Himpunan_dan_Graf.html">Bab 19</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

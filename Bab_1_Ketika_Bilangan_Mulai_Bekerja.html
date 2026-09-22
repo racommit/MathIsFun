@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 1</div>
@@ -981,5 +982,42 @@ function updateDivision() {
 }
 updateDivision();
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_0.5_Cara_Menghitung_dan_Bahasa_Bilangan.html">Bab 0.5</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_1.5_Aturan_Permainan_yang_Belum_Lengkap.html">Bab 1.5</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

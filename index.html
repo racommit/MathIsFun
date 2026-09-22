@@ -17,9 +17,29 @@
   --accent: #c0392b;
   --accent-warm: #d4731a;
   --accent-blue: #2471a3;
+  --accent-green: #1e8449;
   --border: #d5cfc4;
   --shadow: rgba(44, 44, 44, 0.08);
   --card-bg: #ffffff;
+  --progress-bg: #e0ddd6;
+  --progress-fill: #2ecc71;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --bg-alt: #16213e;
+  --text: #e0e0e0;
+  --text-secondary: #a0a0b0;
+  --text-light: #707085;
+  --accent: #e74c3c;
+  --accent-warm: #e6922e;
+  --accent-blue: #5dade2;
+  --accent-green: #2ecc71;
+  --border: #2a2a45;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --card-bg: #1e1e36;
+  --progress-bg: #2a2a45;
+  --progress-fill: #2ecc71;
 }
 
 html { font-size: 18px; scroll-behavior: smooth; }
@@ -40,7 +60,7 @@ body {
 
 .hero {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
 }
@@ -71,6 +91,81 @@ body {
   margin: 0 auto;
 }
 
+/* ── Progress Overview ── */
+.progress-overview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2.5rem;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.progress-bar-wrap {
+  flex: 1;
+}
+
+.progress-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 0.4rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--progress-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+.progress-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent-green);
+  white-space: nowrap;
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: all 0.3s;
+}
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
 /* ── Bagian ── */
 .bagian {
   margin-bottom: 2.5rem;
@@ -91,7 +186,7 @@ body {
 /* ── Cards ── */
 .chapter-card {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem;
   padding: 0.85rem 1rem;
   margin-bottom: 0.35rem;
@@ -104,6 +199,27 @@ body {
 .chapter-card:hover {
   background: var(--card-bg);
   box-shadow: 0 1px 4px var(--shadow);
+}
+
+.chapter-card .read-check {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: transparent;
+  transition: all 0.3s;
+  order: 10;
+}
+
+.chapter-card .read-check.done {
+  border-color: var(--accent-green);
+  background: var(--accent-green);
+  color: white;
 }
 
 .chapter-num {
@@ -158,6 +274,43 @@ body {
   color: #1e40af;
 }
 
+[data-theme="dark"] .tag-new { background: #44380e; color: #fcd34d; }
+[data-theme="dark"] .tag-updated { background: #1e3a5f; color: #93c5fd; }
+
+/* ── Search ── */
+.search-wrap {
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  padding: 0.7rem 1rem 0.7rem 2.4rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238a8a8a' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.8rem center;
+}
+
+[data-theme="dark"] .search-input {
+  background-color: var(--card-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23707085' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+}
+
+.search-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(36, 113, 163, 0.1);
+}
+
+.chapter-card.hidden { display: none; }
+.bagian.hidden { display: none; }
+
 /* ── Footer ── */
 .footer {
   text-align: center;
@@ -184,10 +337,14 @@ body {
   .hero h1 { font-size: 1.7rem; }
   .chapter-card { gap: 0.65rem; padding: 0.75rem 0.65rem; }
   .chapter-num { min-width: 2.4rem; }
+  .progress-overview { flex-direction: column; text-align: center; }
+  .theme-toggle { width: 36px; height: 36px; font-size: 1rem; }
 }
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
+
 <div class="container">
 
   <div class="hero">
@@ -196,220 +353,252 @@ body {
     <p>Persiapan fondasi matematika untuk Teknik Elektro — dibangun dari nol, selangkah demi selangkah.</p>
   </div>
 
+  <div class="progress-overview" id="progressOverview">
+    <div class="progress-bar-wrap">
+      <div class="progress-label">Progres Membaca</div>
+      <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+    </div>
+    <div class="progress-count" id="progressCount">0 / 23</div>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchInput" placeholder="Cari bab atau konsep..." autocomplete="off">
+  </div>
+
   <!-- ═══════ BAGIAN I ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">I — Bilangan dan Operasi</div>
 
-    <a class="chapter-card" href="Bab_0_Ketika_Manusia_Mulai_Menghitung.html">
+    <a class="chapter-card" href="Bab_0_Ketika_Manusia_Mulai_Menghitung.html" data-keywords="bilangan korespondensi tally mesir babilonia hindu arab sistem bilangan menghitung">
       <span class="chapter-num">Bab 0</span>
       <div class="chapter-info">
         <div class="chapter-name">Ketika Manusia Mulai Menghitung</div>
         <div class="chapter-desc">Korespondensi 1-ke-1, tally, sistem bilangan Mesir, Babilonia, Hindu-Arab</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_0.5_Cara_Menghitung_dan_Bahasa_Bilangan.html">
+    <a class="chapter-card" href="Bab_0.5_Cara_Menghitung_dan_Bahasa_Bilangan.html" data-keywords="kardinal ordinal subitizing biner heksadesimal nol basis bilangan">
       <span class="chapter-num bridge">Bab 0.5</span>
       <div class="chapter-info">
         <div class="chapter-name">Cara Menghitung dan Bahasa Bilangan</div>
         <div class="chapter-desc">Kardinal vs ordinal, subitizing, biner, heksadesimal, tiga peran nol</div>
       </div>
-      <span class="tag tag-new">baru</span>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_1_Ketika_Bilangan_Mulai_Bekerja.html">
+    <a class="chapter-card" href="Bab_1_Ketika_Bilangan_Mulai_Bekerja.html" data-keywords="penjumlahan pengurangan perkalian pembagian operasi komutatif asosiatif distributif negatif">
       <span class="chapter-num">Bab 1</span>
       <div class="chapter-info">
         <div class="chapter-name">Ketika Bilangan Mulai Bekerja</div>
         <div class="chapter-desc">Empat operasi dasar, sifat komutatif/asosiatif/distributif, bilangan negatif</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_1.5_Aturan_Permainan_yang_Belum_Lengkap.html">
+    <a class="chapter-card" href="Bab_1.5_Aturan_Permainan_yang_Belum_Lengkap.html" data-keywords="negatif kali negatif urutan operasi pembagian pengurangan berulang BODMAS">
       <span class="chapter-num bridge">Bab 1.5</span>
       <div class="chapter-info">
         <div class="chapter-name">Aturan Permainan yang Belum Lengkap</div>
         <div class="chapter-desc">Operasi negatif, mengapa (−)(−) = (+), urutan operasi, pembagian sebagai pengurangan berulang</div>
       </div>
-      <span class="tag tag-new">baru</span>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_2_Ketika_Bilangan_Bulat_Tidak_Cukup.html">
+    <a class="chapter-card" href="Bab_2_Ketika_Bilangan_Bulat_Tidak_Cukup.html" data-keywords="pecahan FPB KPK pembilang penyebut desimal rasio proporsi kebalikan reciprocal">
       <span class="chapter-num">Bab 2</span>
       <div class="chapter-info">
         <div class="chapter-name">Ketika Bilangan Bulat Tidak Cukup</div>
         <div class="chapter-desc">Pecahan, FPB &amp; KPK, operasi pecahan, kebalikan, pecahan negatif, desimal</div>
       </div>
-      <span class="tag tag-updated">diperluas</span>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_3_Bilangan_yang_Tidak_Bisa_Ditulis_sebagai_Pecahan.html">
+    <a class="chapter-card" href="Bab_3_Bilangan_yang_Tidak_Bisa_Ditulis_sebagai_Pecahan.html" data-keywords="irasional akar kuadrat pi bilangan real desimal tak berulang kontradiksi sqrt">
       <span class="chapter-num">Bab 3</span>
       <div class="chapter-info">
         <div class="chapter-name">Bilangan yang Tidak Bisa Ditulis sebagai Pecahan</div>
         <div class="chapter-desc">Bilangan irasional, √2, π, garis bilangan real</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
   <!-- ═══════ BAGIAN II ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">II — Aljabar</div>
 
-    <a class="chapter-card" href="Bab_4_Bahasa_Singkat_untuk_Pola.html">
+    <a class="chapter-card" href="Bab_4_Bahasa_Singkat_untuk_Pola.html" data-keywords="variabel ekspresi aljabar faktorisasi pangkat koefisien suku pola">
       <span class="chapter-num">Bab 4</span>
       <div class="chapter-info">
         <div class="chapter-name">Bahasa Singkat untuk Pola</div>
         <div class="chapter-desc">Variabel, ekspresi aljabar, faktorisasi, pangkat</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_5_Mencari_yang_Belum_Diketahui.html">
+    <a class="chapter-card" href="Bab_5_Mencari_yang_Belum_Diketahui.html" data-keywords="persamaan linear kuadrat pertidaksamaan akar solusi SPL completing the square">
       <span class="chapter-num">Bab 5</span>
       <div class="chapter-info">
         <div class="chapter-name">Mencari yang Belum Diketahui</div>
         <div class="chapter-desc">Persamaan linear, kuadrat, pertidaksamaan</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
   <!-- ═══════ BAGIAN III ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">III — Geometri</div>
 
-    <a class="chapter-card" href="Bab_6_Bentuk_Jarak_dan_Luas.html">
+    <a class="chapter-card" href="Bab_6_Bentuk_Jarak_dan_Luas.html" data-keywords="sudut poligon keliling luas persegi segitiga bangun datar trapesium jajar genjang">
       <span class="chapter-num">Bab 6</span>
       <div class="chapter-info">
         <div class="chapter-name">Bentuk, Jarak, dan Luas</div>
         <div class="chapter-desc">Sudut, poligon, keliling, luas bangun datar</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_7_Segitiga_dan_Rahasianya.html">
+    <a class="chapter-card" href="Bab_7_Segitiga_dan_Rahasianya.html" data-keywords="pythagoras kongruensi keserupaan segitiga siku istimewa hypotenuse similarity">
       <span class="chapter-num">Bab 7</span>
       <div class="chapter-info">
         <div class="chapter-name">Segitiga dan Rahasianya</div>
         <div class="chapter-desc">Pythagoras, kongruensi, keserupaan, segitiga istimewa</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_8_Lingkaran_dan_Pi.html">
+    <a class="chapter-card" href="Bab_8_Lingkaran_dan_Pi.html" data-keywords="lingkaran keliling luas pi diameter jari-jari busur sektor sudut pusat">
       <span class="chapter-num">Bab 8</span>
       <div class="chapter-info">
         <div class="chapter-name">Lingkaran dan Pi</div>
         <div class="chapter-desc">Keliling, luas lingkaran, sudut pusat, busur, sektor</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_9_Ketika_Aljabar_Bertemu_Geometri.html">
+    <a class="chapter-card" href="Bab_9_Ketika_Aljabar_Bertemu_Geometri.html" data-keywords="koordinat kartesius jarak gradien persamaan garis slope titik bidang cartesian">
       <span class="chapter-num">Bab 9</span>
       <div class="chapter-info">
         <div class="chapter-name">Ketika Aljabar Bertemu Geometri</div>
         <div class="chapter-desc">Koordinat Kartesian, jarak, gradien, persamaan garis</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
   <!-- ═══════ BAGIAN IV ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">IV — Fungsi</div>
 
-    <a class="chapter-card" href="Bab_10_Mesin_Pengubah_Bilangan.html">
+    <a class="chapter-card" href="Bab_10_Mesin_Pengubah_Bilangan.html" data-keywords="fungsi domain range grafik komposisi input output mesin pemetaan">
       <span class="chapter-num">Bab 10</span>
       <div class="chapter-info">
         <div class="chapter-name">Mesin Pengubah Bilangan</div>
         <div class="chapter-desc">Fungsi, domain, range, grafik, komposisi</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_11_Ketika_Segitiga_Menjelaskan_Gelombang.html">
+    <a class="chapter-card" href="Bab_11_Ketika_Segitiga_Menjelaskan_Gelombang.html" data-keywords="trigonometri sin cos tan unit circle gelombang sinusoidal radian derajat">
       <span class="chapter-num">Bab 11</span>
       <div class="chapter-info">
         <div class="chapter-name">Ketika Segitiga Menjelaskan Gelombang</div>
         <div class="chapter-desc">Trigonometri, sin/cos/tan, unit circle, grafik sinusoidal</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_12_Pangkat_Akar_dan_Bilangan_yang_Tumbuh.html">
+    <a class="chapter-card" href="Bab_12_Pangkat_Akar_dan_Bilangan_yang_Tumbuh.html" data-keywords="eksponen logaritma pertumbuhan peluruhan e euler basis pangkat akar eksponensial">
       <span class="chapter-num">Bab 12</span>
       <div class="chapter-info">
         <div class="chapter-name">Pangkat, Akar, dan Bilangan yang Tumbuh</div>
         <div class="chapter-desc">Eksponensial, logaritma, pertumbuhan dan peluruhan</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
   <!-- ═══════ BAGIAN V ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">V — Kalkulus</div>
 
-    <a class="chapter-card" href="Bab_13_Mendekati_Tanpa_Pernah_Sampai.html">
+    <a class="chapter-card" href="Bab_13_Mendekati_Tanpa_Pernah_Sampai.html" data-keywords="limit barisan kekontinuan mendekati konvergen divergen epsilon delta">
       <span class="chapter-num">Bab 13</span>
       <div class="chapter-info">
         <div class="chapter-name">Mendekati Tanpa Pernah Sampai</div>
         <div class="chapter-desc">Limit, barisan, kekontinuan</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_14_Mengukur_Perubahan_Sesaat.html">
+    <a class="chapter-card" href="Bab_14_Mengukur_Perubahan_Sesaat.html" data-keywords="turunan diferensiasi derivatif gradien kecepatan percepatan aturan rantai power rule">
       <span class="chapter-num">Bab 14</span>
       <div class="chapter-info">
         <div class="chapter-name">Mengukur Perubahan Sesaat</div>
         <div class="chapter-desc">Turunan, aturan diferensiasi, aplikasi</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_15_Mengumpulkan_Serpihan_Kecil.html">
+    <a class="chapter-card" href="Bab_15_Mengumpulkan_Serpihan_Kecil.html" data-keywords="integral antiturunan luas kurva riemann akumulasi primitif">
       <span class="chapter-num">Bab 15</span>
       <div class="chapter-info">
         <div class="chapter-name">Mengumpulkan Serpihan Kecil</div>
         <div class="chapter-desc">Integral, antiturunan, luas di bawah kurva</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_16_Jembatan_Besar.html">
+    <a class="chapter-card" href="Bab_16_Jembatan_Besar.html" data-keywords="teorema fundamental kalkulus FTC hubungan turunan integral newton leibniz">
       <span class="chapter-num">Bab 16</span>
       <div class="chapter-info">
         <div class="chapter-name">Jembatan Besar</div>
         <div class="chapter-desc">Teorema Fundamental Kalkulus, hubungan turunan dan integral</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
   <!-- ═══════ BAGIAN VI ═══════ -->
-  <div class="bagian">
+  <div class="bagian" data-bagian>
     <div class="bagian-title">VI — Aljabar Linear dan Matematika Diskrit</div>
 
-    <a class="chapter-card" href="Bab_17_Arah_dan_Besaran.html">
+    <a class="chapter-card" href="Bab_17_Arah_dan_Besaran.html" data-keywords="vektor skalar dot product cross product magnitude arah komponen basis">
       <span class="chapter-num">Bab 17</span>
       <div class="chapter-info">
         <div class="chapter-name">Arah dan Besaran</div>
         <div class="chapter-desc">Vektor, operasi vektor, dot product</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_18_Transformasi_Dunia.html">
+    <a class="chapter-card" href="Bab_18_Transformasi_Dunia.html" data-keywords="matriks transformasi linear rotasi refleksi determinan invers sistem persamaan">
       <span class="chapter-num">Bab 18</span>
       <div class="chapter-info">
         <div class="chapter-name">Transformasi Dunia</div>
         <div class="chapter-desc">Matriks, operasi matriks, transformasi linear</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_19_Logika_Himpunan_dan_Graf.html">
+    <a class="chapter-card" href="Bab_19_Logika_Himpunan_dan_Graf.html" data-keywords="logika proposisi himpunan graf teori diskrit konjungsi disjungsi implikasi">
       <span class="chapter-num">Bab 19</span>
       <div class="chapter-info">
         <div class="chapter-name">Logika, Himpunan, dan Graf</div>
         <div class="chapter-desc">Proposisi, operasi himpunan, teori graf dasar</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
 
-    <a class="chapter-card" href="Bab_20_Peluang_dan_Ketidakpastian.html">
+    <a class="chapter-card" href="Bab_20_Peluang_dan_Ketidakpastian.html" data-keywords="probabilitas peluang distribusi statistik rata-rata median varians standar deviasi">
       <span class="chapter-num">Bab 20</span>
       <div class="chapter-info">
         <div class="chapter-name">Peluang dan Ketidakpastian</div>
         <div class="chapter-desc">Probabilitas, distribusi, statistik dasar</div>
       </div>
+      <span class="read-check">&#10003;</span>
     </a>
   </div>
 
@@ -419,5 +608,76 @@ body {
   </div>
 
 </div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀' : '☾';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀' : '☾';
+});
+
+// Progress tracking
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.chapter-card');
+  var total = cards.length;
+  var read = 0;
+
+  cards.forEach(function(card) {
+    var href = card.getAttribute('href');
+    try {
+      var ts = localStorage.getItem('math-read-' + href);
+      if (ts) {
+        card.querySelector('.read-check').classList.add('done');
+        read++;
+      }
+    } catch(e) {}
+  });
+
+  var pct = total > 0 ? Math.round((read / total) * 100) : 0;
+  var fill = document.getElementById('progressFill');
+  var count = document.getElementById('progressCount');
+  if (fill) fill.style.width = pct + '%';
+  if (count) count.textContent = read + ' / ' + total;
+});
+
+// Search
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('searchInput');
+  if (!input) return;
+  input.addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    var cards = document.querySelectorAll('.chapter-card');
+    var sections = document.querySelectorAll('[data-bagian]');
+
+    cards.forEach(function(card) {
+      var name = card.querySelector('.chapter-name').textContent.toLowerCase();
+      var desc = card.querySelector('.chapter-desc').textContent.toLowerCase();
+      var keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+      var match = !q || name.includes(q) || desc.includes(q) || keywords.includes(q);
+      card.classList.toggle('hidden', !match);
+    });
+
+    sections.forEach(function(sec) {
+      var visible = sec.querySelectorAll('.chapter-card:not(.hidden)');
+      sec.classList.toggle('hidden', visible.length === 0);
+    });
+  });
+});
+</script>
 </body>
 </html>

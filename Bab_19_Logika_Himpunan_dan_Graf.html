@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 19 · Volume V</div>
@@ -98,6 +99,10 @@ window.MathJax = {
     <div id="truth-table" style="max-width: 320px; margin: 0 auto;"></div>
   </div>
 
+  <div class="recall-box" data-bab="5">
+    <strong>Ingat Bab 5 — Persamaan dan Pertidaksamaan.</strong> Di Bab 5, kamu belajar menyelesaikan persamaan seperti $2x + 3 = 7$ dan pertidaksamaan seperti $x > 5$. Persamaan dan pertidaksamaan sebenarnya adalah <em>proposisi dengan variabel</em> — dalam logika disebut <strong>predikat</strong>. Pernyataan "$x^2 - 4 = 0$" bukan proposisi (nilainya bergantung pada $x$), tetapi "$\forall x \in \mathbb{R},\; x^2 \geq 0$" adalah proposisi (bernilai benar). Teknik memecahkan persamaan di Bab 5 sesungguhnya adalah rangkaian langkah logis: setiap operasi aljabar yang kamu lakukan adalah implikasi ($\Rightarrow$), dan solusinya valid hanya jika setiap langkah mempertahankan kesetaraan logis ($\Leftrightarrow$).
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ HIMPUNAN ═══════════════════════ -->
@@ -119,6 +124,10 @@ window.MathJax = {
     • $A \cap B$ (irisan): elemen yang ada di <em>kedua</em> himpunan<br>
     • $A \setminus B$ (selisih): elemen di $A$ tapi tidak di $B$<br>
     • $A^c$ (komplemen): semua elemen di semesta yang tidak di $A$
+  </div>
+
+  <div class="recall-box" data-bab="3">
+    <strong>Ingat Bab 3 — Bilangan Real, Rasional, dan Irasional.</strong> Di Bab 3 kamu menemukan bahwa dunia bilangan memiliki hierarki: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$. Ini adalah contoh nyata operasi himpunan! Bilangan rasional $\mathbb{Q}$ dan bilangan irasional $\mathbb{I}$ membagi bilangan real menjadi dua bagian yang <em>tidak saling tumpang tindih</em>: $\mathbb{Q} \cap \mathbb{I} = \varnothing$ (tidak ada bilangan yang rasional sekaligus irasional) dan $\mathbb{Q} \cup \mathbb{I} = \mathbb{R}$ (setiap bilangan real pasti rasional atau irasional). Dalam bahasa himpunan: $\mathbb{I} = \mathbb{R} \setminus \mathbb{Q}$ — bilangan irasional adalah <strong>komplemen</strong> dari bilangan rasional terhadap bilangan real.
   </div>
 
   <!-- INTERACTIVE 2: Venn Diagram -->
@@ -186,6 +195,43 @@ window.MathJax = {
     </div>
 
     <div id="graph-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <!-- INTERACTIVE 4: Clickable Venn Diagram -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Diagram Venn Interaktif</div>
+    <div class="interactive-desc">Klik daerah pada diagram untuk menyalakan/mematikan, lalu lihat operasi himpunan mana yang cocok.</div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="venn-click-svg" width="320" height="240" viewBox="0 0 320 240" style="cursor: pointer;"></svg>
+    </div>
+
+    <div style="margin-bottom: 0.5rem; text-align: center;">
+      <button class="btn" onclick="resetVennClick()" style="font-size: 0.82rem;">Reset</button>
+    </div>
+
+    <div id="venn-click-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 5: Graph Builder -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Bangun Graf Sendiri</div>
+    <div class="interactive-desc">Klik area kosong untuk menambah vertex. Klik dua vertex berturut-turut untuk menambah edge. Lihat derajat setiap vertex.</div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="graph-build-svg" width="320" height="280" viewBox="0 0 320 280" style="cursor: crosshair; border: 1px solid var(--border); border-radius: 8px; background: var(--bg);"></svg>
+    </div>
+
+    <div style="margin-bottom: 0.5rem; text-align: center;">
+      <button class="btn" onclick="resetGraphBuild()" style="font-size: 0.82rem;">Reset Graf</button>
+      <button class="btn" onclick="removeLastEdgeGB()" style="font-size: 0.82rem;">Hapus Edge Terakhir</button>
+    </div>
+
+    <div id="graph-build-result" class="result-display" style="font-size: 0.88rem;"></div>
   </div>
 
   <div class="divider divider-center"></div>
@@ -368,6 +414,55 @@ window.MathJax = {
     <div class="answer-content" id="a8">Ya, terhubung (setiap kota bisa dicapai dari kota lain). Ya, ada cycle: A-B-C-A dan B-C-D-B.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Tabel Kebenaran</div>
+    <p>Lengkapi tabel kebenaran untuk $(p \Rightarrow q) \land (q \Rightarrow p)$ dan bandingkan dengan $p \Leftrightarrow q$. Apakah keduanya ekuivalen?</p>
+    <button class="hint-btn" onclick="toggleHint('h60')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a60')">Lihat Jawaban</button>
+    <div class="hint-content" id="h60">Ingat: $p \Rightarrow q$ salah hanya jika $p$ benar dan $q$ salah. Evaluasi setiap baris untuk kedua implikasi, lalu AND-kan.</div>
+    <div class="answer-content" id="a60">
+      Tabel kebenaran:<br>
+      (B,B): $(B \Rightarrow B) \land (B \Rightarrow B) = B \land B = B$. $p \Leftrightarrow q = B$.<br>
+      (B,S): $(B \Rightarrow S) \land (S \Rightarrow B) = S \land B = S$. $p \Leftrightarrow q = S$.<br>
+      (S,B): $(S \Rightarrow B) \land (B \Rightarrow S) = B \land S = S$. $p \Leftrightarrow q = S$.<br>
+      (S,S): $(S \Rightarrow S) \land (S \Rightarrow S) = B \land B = B$. $p \Leftrightarrow q = B$.<br>
+      <strong>Ya, ekuivalen!</strong> Biconditional ($\Leftrightarrow$) sama dengan dua implikasi yang saling berlawanan di-AND-kan.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Himpunan Bilangan (Recall Bab 3)</div>
+    <p>Misalkan $A = \{x \in \mathbb{R} \mid x^2 - 5x + 6 = 0\}$ dan $B = \mathbb{Q}$ (bilangan rasional). Tentukan: (a) Anggota $A$. (b) Apakah $A \subset B$? (c) Tentukan $A \cap \mathbb{I}$ di mana $\mathbb{I}$ = bilangan irasional. (d) Jika $C = \{x \in \mathbb{R} \mid x^2 = 2\}$, tentukan $C \cap \mathbb{Q}$ dan $C \cap \mathbb{I}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h61')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a61')">Lihat Jawaban</button>
+    <div class="hint-content" id="h61">Faktorkan $x^2 - 5x + 6 = (x-2)(x-3)$. Ingat dari Bab 3: $\sqrt{2}$ irasional.</div>
+    <div class="answer-content" id="a61">(a) $A = \{2, 3\}$. (b) Ya, $A \subset B$ karena 2 dan 3 keduanya rasional. (c) $A \cap \mathbb{I} = \varnothing$ (tidak ada anggota A yang irasional). (d) $C = \{-\sqrt{2}, \sqrt{2}\}$. $C \cap \mathbb{Q} = \varnothing$ (keduanya irasional). $C \cap \mathbb{I} = C = \{-\sqrt{2}, \sqrt{2}\}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Graf Bipartit</div>
+    <p>Diberikan graf dengan vertex $\{1,2,3,4,5,6\}$ dan edge: $\{1\text{-}2, 2\text{-}3, 3\text{-}4, 4\text{-}5, 5\text{-}6, 6\text{-}1\}$ (sebuah $C_6$). (a) Apakah graf ini bipartit? Jika ya, tunjukkan pembagian dua grupnya. (b) Tambahkan edge $1\text{-}3$. Apakah masih bipartit? Jelaskan.</p>
+    <button class="hint-btn" onclick="toggleHint('h62')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a62')">Lihat Jawaban</button>
+    <div class="hint-content" id="h62">Graf bipartit = vertex bisa dibagi dua grup sehingga setiap edge menghubungkan vertex dari grup berbeda. Graf bipartit <em>tidak punya cycle ganjil</em>.</div>
+    <div class="answer-content" id="a62">(a) Ya, bipartit. Grup I: $\{1,3,5\}$, Grup II: $\{2,4,6\}$. Setiap edge menghubungkan vertex dari grup berbeda. (b) Tidak! Menambahkan edge $1\text{-}3$ membuat cycle $1\text{-}2\text{-}3\text{-}1$ (panjang 3, ganjil). Graf dengan cycle ganjil <strong>tidak bisa bipartit</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Gerbang Logika (Aplikasi Teknik Elektro)</div>
+    <p>Dalam rangkaian digital, gerbang AND, OR, dan NOT bekerja persis seperti operator logika. Sebuah rangkaian alarm kebakaran memiliki dua sensor: sensor asap ($S$) dan sensor suhu ($T$). Alarm ($A$) berbunyi jika: "ada asap DAN suhu tinggi, ATAU sensor asap menyala dan tombol manual ($M$) ditekan." (a) Tuliskan ekspresi logika untuk $A$. (b) Buat tabel kebenaran lengkap (8 baris). (c) Sederhanakan ekspresi menggunakan hukum distributif.</p>
+    <button class="hint-btn" onclick="toggleHint('h63')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a63')">Lihat Jawaban</button>
+    <div class="hint-content" id="h63">Terjemahkan: "A DAN B, ATAU A DAN C" = $A \land (B \lor C)$ setelah difaktorkan.</div>
+    <div class="answer-content" id="a63">
+      (a) $A = (S \land T) \lor (S \land M)$.<br>
+      (b) Tabel kebenaran (8 baris untuk S, T, M):<br>
+      S=0,T=0,M=0 → 0; &nbsp; S=0,T=0,M=1 → 0; &nbsp; S=0,T=1,M=0 → 0; &nbsp; S=0,T=1,M=1 → 0;<br>
+      S=1,T=0,M=0 → 0; &nbsp; S=1,T=0,M=1 → 1; &nbsp; S=1,T=1,M=0 → 1; &nbsp; S=1,T=1,M=1 → 1.<br>
+      (c) Faktorkan $S$: $A = S \land (T \lor M)$. Alarm berbunyi jika ada asap <strong>dan</strong> (suhu tinggi <strong>atau</strong> tombol manual ditekan). Lebih sederhana dan butuh lebih sedikit gerbang dalam rangkaian!
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog</h2>
@@ -515,9 +610,191 @@ function drawGraph() {
   document.getElementById('graph-result').textContent = info;
 }
 
+// ═══════ Interactive 4: Clickable Venn Diagram ═══════
+var vennRegions = {onlyA: false, both: false, onlyB: false, neither: false};
+function drawVennClick() {
+  var svg = document.getElementById('venn-click-svg');
+  if (!svg) return;
+  var cx1=120, cx2=200, cy=120, r=75;
+  var s = '';
+  // Background (neither)
+  var nCol = vennRegions.neither ? 'rgba(155,89,182,0.25)' : 'var(--bg)';
+  s += '<rect x="0" y="0" width="320" height="240" fill="'+nCol+'" rx="8" class="venn-region" data-region="neither" style="cursor:pointer;"/>';
+  // Only A (A minus intersection)
+  var aCol = vennRegions.onlyA ? 'rgba(36,113,163,0.35)' : 'rgba(36,113,163,0.08)';
+  s += '<defs><clipPath id="vc-clipNotB"><rect x="0" y="0" width="320" height="240"/><circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'"/></clipPath></defs>';
+  s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="'+aCol+'" clip-path="url(#vc-clipNotB)" class="venn-region" data-region="onlyA" style="cursor:pointer;"/>';
+  // Only B (B minus intersection)
+  var bCol = vennRegions.onlyB ? 'rgba(192,57,43,0.3)' : 'rgba(192,57,43,0.08)';
+  s += '<defs><clipPath id="vc-clipNotA"><rect x="0" y="0" width="320" height="240"/><circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'"/></clipPath></defs>';
+  s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="'+bCol+'" clip-path="url(#vc-clipNotA)" class="venn-region" data-region="onlyB" style="cursor:pointer;"/>';
+  // Intersection
+  var iCol = vennRegions.both ? 'rgba(39,174,96,0.35)' : 'rgba(39,174,96,0.08)';
+  s += '<defs><clipPath id="vc-clipA"><circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'"/></clipPath></defs>';
+  s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="'+iCol+'" clip-path="url(#vc-clipA)" class="venn-region" data-region="both" style="cursor:pointer;"/>';
+  // Outlines
+  s += '<circle cx="'+cx1+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#2471a3" stroke-width="2"/>';
+  s += '<circle cx="'+cx2+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#c0392b" stroke-width="2"/>';
+  // Labels
+  s += '<text x="'+cx1+'" y="'+(cy-r-10)+'" text-anchor="middle" font-family="Inter" font-size="14" font-weight="600" fill="currentColor">A</text>';
+  s += '<text x="'+cx2+'" y="'+(cy-r-10)+'" text-anchor="middle" font-family="Inter" font-size="14" font-weight="600" fill="currentColor">B</text>';
+  s += '<text x="15" y="232" font-family="Inter" font-size="11" fill="currentColor" opacity="0.5">U (semesta)</text>';
+  svg.innerHTML = s;
+
+  // Identify matching operations
+  var matches = [];
+  var oA=vennRegions.onlyA, oB=vennRegions.onlyB, bo=vennRegions.both, ne=vennRegions.neither;
+  if (oA && bo && !oB && !ne) matches.push('A');
+  if (!oA && !bo && oB && !ne) matches.push('B \\ A');
+  if (!oA && bo && oB && !ne) matches.push('B');
+  if (oA && !bo && !oB && !ne) matches.push('A \\ B');
+  if (oA && bo && oB && !ne) matches.push('A ∪ B');
+  if (!oA && bo && !oB && !ne) matches.push('A ∩ B');
+  if (oA && !bo && oB && !ne) matches.push('A △ B (beda simetris)');
+  if (!oA && !bo && !oB && ne) matches.push('(A ∪ B)ᶜ = komplemen gabungan');
+  if (oA && !bo && !oB && ne) matches.push('Bᶜ (komplemen B)');
+  if (!oA && !bo && oB && ne) matches.push('Aᶜ (komplemen A)');
+  if (!oA && !bo && !oB && !ne) matches.push('(belum ada daerah yang dipilih)');
+
+  var txt = matches.length > 0 ? 'Cocok dengan: ' + matches.join(', ') : 'Kombinasi ini tidak sesuai operasi himpunan standar.';
+  document.getElementById('venn-click-result').textContent = txt;
+}
+function resetVennClick() {
+  vennRegions = {onlyA: false, both: false, onlyB: false, neither: false};
+  drawVennClick();
+}
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('.venn-region');
+  if (!el) return;
+  var r = el.getAttribute('data-region');
+  if (r && vennRegions.hasOwnProperty(r)) {
+    vennRegions[r] = !vennRegions[r];
+    drawVennClick();
+  }
+});
+
+// ═══════ Interactive 5: Graph Builder ═══════
+var gbVerts = [], gbEdges = [], gbSelected = -1;
+function drawGraphBuild() {
+  var svg = document.getElementById('graph-build-svg');
+  if (!svg) return;
+  var s = '';
+  // Draw edges
+  gbEdges.forEach(function(e) {
+    s += '<line x1="'+gbVerts[e[0]].x+'" y1="'+gbVerts[e[0]].y+'" x2="'+gbVerts[e[1]].x+'" y2="'+gbVerts[e[1]].y+'" stroke="#2471a3" stroke-width="2"/>';
+  });
+  // Compute degrees
+  var deg = [];
+  gbVerts.forEach(function() { deg.push(0); });
+  gbEdges.forEach(function(e) { deg[e[0]]++; deg[e[1]]++; });
+  // Draw vertices
+  gbVerts.forEach(function(v, i) {
+    var isSelected = (i === gbSelected);
+    var fill = isSelected ? '#f39c12' : 'white';
+    var stroke = isSelected ? '#e67e22' : '#c0392b';
+    s += '<circle cx="'+v.x+'" cy="'+v.y+'" r="16" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.5" class="gb-vertex" data-idx="'+i+'" style="cursor:pointer;"/>';
+    s += '<text x="'+v.x+'" y="'+(v.y+4)+'" text-anchor="middle" font-family="Inter" font-size="10" font-weight="600" fill="'+stroke+'" class="gb-vertex" data-idx="'+i+'" style="cursor:pointer;">'+i+'</text>';
+  });
+  svg.innerHTML = s;
+  // Info
+  var info = 'Vertex: '+gbVerts.length+', Edge: '+gbEdges.length;
+  if (gbVerts.length > 0) {
+    info += '\nDerajat: ' + deg.map(function(d,i){return 'v'+i+'='+d;}).join(', ');
+    var sumDeg = deg.reduce(function(a,b){return a+b;},0);
+    info += '\n∑ derajat = '+sumDeg+' = 2 × '+gbEdges.length+' (Handshaking Lemma)';
+  }
+  if (gbSelected >= 0) info += '\nVertex '+gbSelected+' dipilih — klik vertex lain untuk menambah edge';
+  document.getElementById('graph-build-result').textContent = info;
+}
+function resetGraphBuild() {
+  gbVerts = []; gbEdges = []; gbSelected = -1;
+  drawGraphBuild();
+}
+function removeLastEdgeGB() {
+  if (gbEdges.length > 0) { gbEdges.pop(); gbSelected = -1; drawGraphBuild(); }
+}
+(function() {
+  document.addEventListener('click', function(e) {
+    var svg = document.getElementById('graph-build-svg');
+    if (!svg) return;
+    var vertEl = e.target.closest('.gb-vertex');
+    if (vertEl) {
+      var idx = parseInt(vertEl.getAttribute('data-idx'));
+      if (gbSelected < 0) {
+        gbSelected = idx;
+      } else if (gbSelected === idx) {
+        gbSelected = -1;
+      } else {
+        // Check no duplicate edge
+        var exists = gbEdges.some(function(edge) {
+          return (edge[0]===gbSelected && edge[1]===idx) || (edge[0]===idx && edge[1]===gbSelected);
+        });
+        if (!exists) gbEdges.push([gbSelected, idx]);
+        gbSelected = -1;
+      }
+      drawGraphBuild();
+      return;
+    }
+    // Click on empty SVG area = add vertex
+    if (e.target === svg || e.target.tagName === 'svg') {
+      var rect = svg.getBoundingClientRect();
+      var scaleX = 320 / rect.width;
+      var scaleY = 280 / rect.height;
+      var x = (e.clientX - rect.left) * scaleX;
+      var y = (e.clientY - rect.top) * scaleY;
+      // Check not too close to existing
+      var tooClose = gbVerts.some(function(v) {
+        return Math.hypot(v.x - x, v.y - y) < 30;
+      });
+      if (!tooClose && gbVerts.length < 12) {
+        gbVerts.push({x: x, y: y});
+        gbSelected = -1;
+        drawGraphBuild();
+      }
+    }
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
-  drawTruth(); drawVenn(); drawGraph();
+  drawTruth(); drawVenn(); drawGraph(); drawVennClick(); drawGraphBuild();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_18_Transformasi_Dunia.html">Bab 18</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_20_Peluang_dan_Ketidakpastian.html">Bab 20</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

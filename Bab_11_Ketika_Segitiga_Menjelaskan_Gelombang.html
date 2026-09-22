@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 11 · Volume III</div>
@@ -470,6 +471,144 @@ window.MathJax = {
     <div class="answer-content" id="a8">Tinggi $h = b\sin C$. Luas = $\frac{1}{2} \times a \times b\sin C = \frac{1}{2}ab\sin C$.<br>Segitiga sama sisi sisi 6: $a = b = 6$, $C = 60°$.<br>$L = \frac{1}{2}(6)(6)\sin 60° = 18 \times \frac{\sqrt{3}}{2} = 9\sqrt{3} \approx 15{,}59$.<br>Bilangan $\sqrt{3}$ dari Bab 3 muncul lagi — ia muncul di mana pun sudut $60°$ terlibat.</div>
   </div>
 
+  <!-- ═══════════════════════ INTERAKTIF TAMBAHAN ═══════════════════════ -->
+
+  <!-- INTERACTIVE 4: Unit Circle ↔ Sine/Cosine Wave Connection -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Lingkaran Satuan → Gelombang Sinus & Kosinus</div>
+    <div class="interactive-desc">Perhatikan hubungan langsung: saat sudut $\theta$ bergerak mengelilingi lingkaran satuan, koordinat $y$ melukis gelombang sinus dan koordinat $x$ melukis gelombang kosinus di grafik sebelah kanan. Tekan "Putar" atau geser sudut secara manual.</div>
+
+    <div class="slider-container">
+      <label>θ: <strong id="ucw-angle-val">0</strong>° &nbsp; <button class="btn btn-accent" id="ucw-play-btn" onclick="toggleUCWPlay()" style="font-size:0.8rem; padding:4px 12px;">&#9654; Putar</button></label>
+      <input type="range" id="ucw-angle" min="0" max="720" value="0" oninput="updateUCWave(false)">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; overflow-x: auto;">
+      <svg id="ucw-svg" width="640" height="260" viewBox="0 0 640 260" style="max-width:100%;"></svg>
+    </div>
+
+    <div id="ucw-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 5: Superposisi Dua Gelombang Sinus -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Superposisi Dua Gelombang — Interferensi Konstruktif & Destruktif</div>
+    <div class="interactive-desc">Dalam teknik elektro, sinyal listrik sering merupakan penjumlahan beberapa gelombang sinus. Atur amplitudo $A$, frekuensi $f$, dan fase $\phi$ masing-masing gelombang, lalu lihat hasil penjumlahannya. Cobalah membuat dua gelombang saling menguatkan (interferensi konstruktif) atau saling menghilangkan (interferensi destruktif).</div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem;">
+      <div style="flex: 1; min-width: 200px;">
+        <strong style="color: #2471a3;">Gelombang 1</strong>
+        <div class="slider-container">
+          <label>A₁: <strong id="sp-a1-val">1</strong></label>
+          <input type="range" id="sp-a1" min="0" max="3" value="1" step="0.25" oninput="updateSuperpos()">
+        </div>
+        <div class="slider-container">
+          <label>f₁: <strong id="sp-f1-val">1</strong></label>
+          <input type="range" id="sp-f1" min="0.5" max="5" value="1" step="0.5" oninput="updateSuperpos()">
+        </div>
+        <div class="slider-container">
+          <label>φ₁: <strong id="sp-p1-val">0</strong>°</label>
+          <input type="range" id="sp-p1" min="0" max="360" value="0" step="15" oninput="updateSuperpos()">
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <strong style="color: #c0392b;">Gelombang 2</strong>
+        <div class="slider-container">
+          <label>A₂: <strong id="sp-a2-val">1</strong></label>
+          <input type="range" id="sp-a2" min="0" max="3" value="1" step="0.25" oninput="updateSuperpos()">
+        </div>
+        <div class="slider-container">
+          <label>f₂: <strong id="sp-f2-val">1</strong></label>
+          <input type="range" id="sp-f2" min="0.5" max="5" value="1" step="0.5" oninput="updateSuperpos()">
+        </div>
+        <div class="slider-container">
+          <label>φ₂: <strong id="sp-p2-val">180</strong>°</label>
+          <input type="range" id="sp-p2" min="0" max="360" value="180" step="15" oninput="updateSuperpos()">
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; overflow-x: auto;">
+      <svg id="sp-svg" width="540" height="280" viewBox="0 0 540 280" style="max-width:100%;"></svg>
+    </div>
+
+    <div id="sp-result" class="result-display" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ LATIHAN TAMBAHAN ═══════════════════════ -->
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall (Koneksi Bab 7)</div>
+    <p>Dari Teorema Pythagoras di Bab 7, kita tahu bahwa pada segitiga siku-siku dengan sisi $a$, $b$, dan hipotenusa $c$ berlaku $a^2 + b^2 = c^2$. Gunakan fakta ini beserta definisi $\sin\theta = \frac{a}{c}$ dan $\cos\theta = \frac{b}{c}$ untuk menurunkan identitas $\sin^2\theta + \cos^2\theta = 1$. Jelaskan setiap langkahnya.</p>
+    <button class="hint-btn" onclick="toggleHint('h120')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a120')">Lihat Jawaban</button>
+    <div class="hint-content" id="h120">Kuadratkan kedua definisi: $\sin^2\theta = \frac{a^2}{c^2}$ dan $\cos^2\theta = \frac{b^2}{c^2}$, lalu jumlahkan.</div>
+    <div class="answer-content" id="a120">
+      <strong>Langkah 1:</strong> Dari definisi, $\sin^2\theta + \cos^2\theta = \frac{a^2}{c^2} + \frac{b^2}{c^2} = \frac{a^2 + b^2}{c^2}$.<br>
+      <strong>Langkah 2:</strong> Dari Teorema Pythagoras (Bab 7): $a^2 + b^2 = c^2$.<br>
+      <strong>Langkah 3:</strong> Substitusi: $\frac{a^2 + b^2}{c^2} = \frac{c^2}{c^2} = 1$.<br><br>
+      Jadi $\sin^2\theta + \cos^2\theta = 1$. Identitas trigonometri paling fundamental ini sebenarnya <em>hanyalah</em> Teorema Pythagoras yang ditulis ulang dalam bahasa rasio!
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Konseptual: Radian vs Derajat</div>
+    <p>(a) Jelaskan dengan kata-katamu sendiri: apa itu satu radian? Mengapa radian disebut ukuran sudut yang "alami"?<br>
+    (b) Konversikan $\frac{5\pi}{6}$ radian ke derajat.<br>
+    (c) Konversikan $225°$ ke radian. Nyatakan dalam kelipatan $\pi$.</p>
+    <button class="hint-btn" onclick="toggleHint('h121')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a121')">Lihat Jawaban</button>
+    <div class="hint-content" id="h121">Satu radian adalah sudut yang busurnya sama panjang dengan jari-jari lingkaran. Hubungan konversi: $\pi$ rad $= 180°$.</div>
+    <div class="answer-content" id="a121">
+      <strong>(a)</strong> Satu radian adalah sudut pusat yang menghasilkan busur sepanjang jari-jari lingkaran. Radian disebut "alami" karena tidak bergantung pada pilihan sewenang-wenang (kenapa 360? Karena Babilonia menggunakan basis-60) — ia langsung menghubungkan sudut dengan panjang busur: $s = r\theta$. Dalam kalkulus nanti, turunan $\sin\theta$ menjadi $\cos\theta$ hanya jika $\theta$ dalam radian.<br><br>
+      <strong>(b)</strong> $\frac{5\pi}{6} \times \frac{180°}{\pi} = \frac{5 \times 180°}{6} = 150°$.<br><br>
+      <strong>(c)</strong> $225° \times \frac{\pi}{180°} = \frac{225\pi}{180} = \frac{5\pi}{4}$ rad.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Aplikasi: Trigonometri dalam Rangkaian AC</div>
+    <p>Dalam teknik elektro, tegangan arus bolak-balik (AC) dimodelkan sebagai $V(t) = V_0 \sin(2\pi f\, t + \phi)$, di mana $V_0$ = tegangan puncak, $f$ = frekuensi, dan $\phi$ = fase awal.<br><br>
+    Sebuah stopkontak rumah di Indonesia memberikan tegangan AC dengan $V_0 = 311$ V dan $f = 50$ Hz (artinya gelombang berulang 50 kali per detik).<br>
+    (a) Tuliskan rumus $V(t)$ dengan $\phi = 0$.<br>
+    (b) Berapa periode gelombang (waktu satu siklus penuh)?<br>
+    (c) Pada waktu $t = \frac{1}{200}$ detik, berapa tegangan sesaat $V(t)$?<br>
+    (d) Mengapa tegangan yang tertulis di stopkontak bukan 311 V, melainkan 220 V? (Petunjuk: "tegangan efektif" atau RMS = $\frac{V_0}{\sqrt{2}}$).</p>
+    <button class="hint-btn" onclick="toggleHint('h122')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a122')">Lihat Jawaban</button>
+    <div class="hint-content" id="h122">Periode $T = \frac{1}{f}$. Untuk (c), substitusi langsung ke rumus. Untuk (d), hitung $\frac{311}{\sqrt{2}}$.</div>
+    <div class="answer-content" id="a122">
+      <strong>(a)</strong> $V(t) = 311\sin(2\pi \cdot 50 \cdot t) = 311\sin(100\pi\, t)$ volt.<br><br>
+      <strong>(b)</strong> $T = \frac{1}{f} = \frac{1}{50} = 0{,}02$ detik = 20 milidetik. Gelombang berulang setiap 20 ms — sangat cepat!<br><br>
+      <strong>(c)</strong> $V\!\left(\frac{1}{200}\right) = 311\sin\!\left(100\pi \cdot \frac{1}{200}\right) = 311\sin\!\left(\frac{\pi}{2}\right) = 311 \times 1 = 311$ V. Pada $t = \frac{1}{200}$ s, tegangan tepat di puncaknya.<br><br>
+      <strong>(d)</strong> $V_{\text{RMS}} = \frac{V_0}{\sqrt{2}} = \frac{311}{\sqrt{2}} \approx 220$ V. Tegangan yang kita sebut "220 V" adalah tegangan efektif (root mean square), bukan puncak. Nilai RMS menunjukkan daya setara yang dihasilkan arus DC. Bilangan $\sqrt{2}$ dari Bab 3 ternyata muncul lagi — kali ini di dunia teknik elektro!
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Komputasi: Identitas Trigonometri</div>
+    <p>Dengan menggunakan identitas penjumlahan sudut $\sin(A + B) = \sin A\cos B + \cos A\sin B$:<br>
+    (a) Turunkan rumus sudut ganda: $\sin(2\theta) = 2\sin\theta\cos\theta$.<br>
+    (b) Hitung nilai eksak $\sin 75°$ dengan menulis $75° = 45° + 30°$.<br>
+    (c) Sederhanakan: $\sin^2\theta - \cos^2\theta$. (Petunjuk: hubungkan dengan $\cos(2\theta)$.)</p>
+    <button class="hint-btn" onclick="toggleHint('h123')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a123')">Lihat Jawaban</button>
+    <div class="hint-content" id="h123">Untuk (a), substitusi $A = B = \theta$ ke identitas penjumlahan. Untuk (c), ingat $\cos(2\theta) = \cos^2\theta - \sin^2\theta$.</div>
+    <div class="answer-content" id="a123">
+      <strong>(a)</strong> $\sin(2\theta) = \sin(\theta + \theta) = \sin\theta\cos\theta + \cos\theta\sin\theta = 2\sin\theta\cos\theta$. Selesai!<br><br>
+      <strong>(b)</strong> $\sin 75° = \sin(45° + 30°) = \sin 45°\cos 30° + \cos 45°\sin 30°$<br>
+      $= \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \cdot \frac{1}{2} = \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4} = \frac{\sqrt{6} + \sqrt{2}}{4} \approx 0{,}9659$.<br><br>
+      <strong>(c)</strong> Dari identitas Pythagoras: $\sin^2\theta + \cos^2\theta = 1$, dan identitas sudut ganda kosinus: $\cos(2\theta) = \cos^2\theta - \sin^2\theta$.<br>
+      Jadi $\sin^2\theta - \cos^2\theta = -(\cos^2\theta - \sin^2\theta) = -\cos(2\theta)$.
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -607,12 +746,218 @@ function updateWave() {
     'y = '+A+'sin('+w+'x)\nAmplitudo: '+A+' | Periode: '+(period).toFixed(3)+' ≈ '+((360/w)).toFixed(0)+'°';
 }
 
+// ═══════ Interactive 4: Unit Circle ↔ Wave Connection ═══════
+var ucwAnimId = null;
+function toggleUCWPlay() {
+  if (ucwAnimId) {
+    cancelAnimationFrame(ucwAnimId);
+    ucwAnimId = null;
+    document.getElementById('ucw-play-btn').innerHTML = '&#9654; Putar';
+  } else {
+    document.getElementById('ucw-play-btn').innerHTML = '&#9632; Berhenti';
+    ucwAnimate();
+  }
+}
+function ucwAnimate() {
+  var slider = document.getElementById('ucw-angle');
+  var v = (parseInt(slider.value) + 1) % 721;
+  slider.value = v;
+  updateUCWave(false);
+  ucwAnimId = requestAnimationFrame(ucwAnimate);
+}
+function updateUCWave(skipLabel) {
+  var deg = parseInt(document.getElementById('ucw-angle').value);
+  document.getElementById('ucw-angle-val').textContent = deg;
+  var rad = deg * Math.PI / 180;
+  var svg = document.getElementById('ucw-svg');
+
+  // Circle part (left)
+  var cx = 130, cy = 130, cr = 100;
+  var px = cx + cr * Math.cos(-rad), py = cy + cr * Math.sin(-rad);
+  var sinV = Math.sin(rad), cosV = Math.cos(rad);
+
+  var s = '';
+  // circle
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+cr+'" fill="none" stroke="#ccc" stroke-width="1.5"/>';
+  // axes
+  s += '<line x1="'+(cx-cr-10)+'" y1="'+cy+'" x2="'+(cx+cr+10)+'" y2="'+cy+'" stroke="#999" stroke-width="0.8"/>';
+  s += '<line x1="'+cx+'" y1="'+(cy-cr-10)+'" x2="'+cx+'" y2="'+(cy+cr+10)+'" stroke="#999" stroke-width="0.8"/>';
+  // radius line
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+px+'" y2="'+py+'" stroke="#2471a3" stroke-width="2"/>';
+  // point on circle
+  s += '<circle cx="'+px+'" cy="'+py+'" r="5" fill="#e74c3c"/>';
+  // sin projection (vertical)
+  s += '<line x1="'+px+'" y1="'+cy+'" x2="'+px+'" y2="'+py+'" stroke="#1e8449" stroke-width="2.5"/>';
+  // cos projection (horizontal)
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+px+'" y2="'+cy+'" stroke="#2471a3" stroke-width="2.5"/>';
+  // labels on circle
+  s += '<text x="'+cx+'" y="'+(cy+cr+22)+'" text-anchor="middle" font-family="Inter" font-size="10" fill="#888">Lingkaran Satuan</text>';
+
+  // Wave graph (right side)
+  var gx = 270, gy = 130, gw = 350, gh = 100;
+  // graph frame
+  s += '<line x1="'+gx+'" y1="'+(gy-gh)+'" x2="'+gx+'" y2="'+(gy+gh)+'" stroke="#999" stroke-width="0.8"/>';
+  s += '<line x1="'+gx+'" y1="'+gy+'" x2="'+(gx+gw)+'" y2="'+gy+'" stroke="#999" stroke-width="0.8"/>';
+  // labels
+  s += '<text x="'+(gx+gw/2)+'" y="'+(gy+gh+22)+'" text-anchor="middle" font-family="Inter" font-size="10" fill="#888">θ (derajat)</text>';
+  s += '<text x="'+(gx-6)+'" y="'+(gy-gh+4)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">1</text>';
+  s += '<text x="'+(gx-6)+'" y="'+(gy+gh+4)+'" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#888">-1</text>';
+  // 360 tick
+  var t360x = gx + gw * (360/720);
+  s += '<line x1="'+t360x+'" y1="'+(gy-3)+'" x2="'+t360x+'" y2="'+(gy+3)+'" stroke="#999" stroke-width="1"/>';
+  s += '<text x="'+t360x+'" y="'+(gy+14)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">360°</text>';
+
+  // Draw sin wave (green)
+  var sinPts = [], cosPts = [];
+  for (var d = 0; d <= 720; d += 2) {
+    var r2 = d * Math.PI / 180;
+    var wx = gx + (d / 720) * gw;
+    sinPts.push(wx + ',' + (gy - Math.sin(r2) * gh));
+    cosPts.push(wx + ',' + (gy - Math.cos(r2) * gh));
+  }
+  s += '<polyline points="'+sinPts.join(' ')+'" fill="none" stroke="#1e8449" stroke-width="2" opacity="0.7"/>';
+  s += '<polyline points="'+cosPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2" opacity="0.7"/>';
+
+  // Current position marker on wave
+  var markerX = gx + (deg / 720) * gw;
+  var markerSinY = gy - sinV * gh;
+  var markerCosY = gy - cosV * gh;
+  s += '<circle cx="'+markerX+'" cy="'+markerSinY+'" r="5" fill="#1e8449"/>';
+  s += '<circle cx="'+markerX+'" cy="'+markerCosY+'" r="5" fill="#2471a3"/>';
+
+  // Connecting lines from circle to graph
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+markerX+'" y2="'+markerSinY+'" stroke="#1e8449" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>';
+
+  // Legend
+  s += '<text x="'+(gx+gw-60)+'" y="'+(gy-gh+10)+'" font-family="Inter" font-size="10" fill="#1e8449">sin θ</text>';
+  s += '<text x="'+(gx+gw-60)+'" y="'+(gy-gh+24)+'" font-family="Inter" font-size="10" fill="#2471a3">cos θ</text>';
+
+  svg.innerHTML = s;
+
+  document.getElementById('ucw-result').textContent =
+    'θ = '+deg+'°\nsin '+deg+'° = '+sinV.toFixed(4)+'   (garis hijau)\ncos '+deg+'° = '+cosV.toFixed(4)+'   (garis biru)';
+}
+
+// ═══════ Interactive 5: Superposisi Dua Gelombang ═══════
+function updateSuperpos() {
+  var a1 = parseFloat(document.getElementById('sp-a1').value);
+  var f1 = parseFloat(document.getElementById('sp-f1').value);
+  var p1 = parseInt(document.getElementById('sp-p1').value);
+  var a2 = parseFloat(document.getElementById('sp-a2').value);
+  var f2 = parseFloat(document.getElementById('sp-f2').value);
+  var p2 = parseInt(document.getElementById('sp-p2').value);
+  document.getElementById('sp-a1-val').textContent = a1;
+  document.getElementById('sp-f1-val').textContent = f1;
+  document.getElementById('sp-p1-val').textContent = p1;
+  document.getElementById('sp-a2-val').textContent = a2;
+  document.getElementById('sp-f2-val').textContent = f2;
+  document.getElementById('sp-p2-val').textContent = p2;
+
+  var p1r = p1 * Math.PI / 180, p2r = p2 * Math.PI / 180;
+  var svg = document.getElementById('sp-svg');
+  var ox = 40, oy = 140, xLen = 480, yScale = 35;
+  var maxA = Math.max(a1 + a2, 1);
+  var yTop = maxA * yScale;
+
+  var s = '';
+  // axes
+  s += '<line x1="'+ox+'" y1="'+(oy-yTop-10)+'" x2="'+ox+'" y2="'+(oy+yTop+10)+'" stroke="#999" stroke-width="0.8"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="'+(ox+xLen)+'" y2="'+oy+'" stroke="#999" stroke-width="0.8"/>';
+  // y grid
+  s += '<line x1="'+ox+'" y1="'+(oy-yTop)+'" x2="'+(ox+xLen)+'" y2="'+(oy-yTop)+'" stroke="#eee" stroke-width="0.5"/>';
+  s += '<line x1="'+ox+'" y1="'+(oy+yTop)+'" x2="'+(ox+xLen)+'" y2="'+(oy+yTop)+'" stroke="#eee" stroke-width="0.5"/>';
+
+  var pts1 = [], pts2 = [], ptsSum = [];
+  var steps = 500;
+  var tMax = 4 * Math.PI;
+  for (var i = 0; i <= steps; i++) {
+    var t = (i / steps) * tMax;
+    var v1 = a1 * Math.sin(f1 * t + p1r);
+    var v2 = a2 * Math.sin(f2 * t + p2r);
+    var vSum = v1 + v2;
+    var px = ox + (i / steps) * xLen;
+    pts1.push(px + ',' + (oy - v1 * yScale));
+    pts2.push(px + ',' + (oy - v2 * yScale));
+    ptsSum.push(px + ',' + (oy - vSum * yScale));
+  }
+
+  // Wave 1
+  s += '<polyline points="'+pts1.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="1.5" opacity="0.6"/>';
+  // Wave 2
+  s += '<polyline points="'+pts2.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>';
+  // Sum
+  s += '<polyline points="'+ptsSum.join(' ')+'" fill="none" stroke="#8e44ad" stroke-width="2.5"/>';
+
+  // Legend
+  s += '<text x="'+(ox+xLen-120)+'" y="18" font-family="Inter" font-size="10" fill="#2471a3">Gelombang 1</text>';
+  s += '<text x="'+(ox+xLen-120)+'" y="32" font-family="Inter" font-size="10" fill="#c0392b">Gelombang 2</text>';
+  s += '<text x="'+(ox+xLen-120)+'" y="46" font-family="Inter" font-size="10" fill="#8e44ad">Jumlah</text>';
+
+  svg.innerHTML = s;
+
+  // Determine interference type
+  var diffPhase = Math.abs(p1 - p2) % 360;
+  var interference = '';
+  if (f1 === f2) {
+    if (diffPhase < 15 || diffPhase > 345) interference = 'Interferensi konstruktif sempurna! Amplitudo jumlah = '+(a1+a2).toFixed(2);
+    else if (Math.abs(diffPhase - 180) < 15) {
+      if (Math.abs(a1 - a2) < 0.01) interference = 'Interferensi destruktif sempurna! Gelombang saling menghilangkan.';
+      else interference = 'Interferensi destruktif. Amplitudo jumlah = '+Math.abs(a1-a2).toFixed(2);
+    } else interference = 'Interferensi parsial (beda fase '+diffPhase+'°).';
+  } else {
+    interference = 'Frekuensi berbeda — pola beat/pemukulan terbentuk.';
+  }
+
+  document.getElementById('sp-result').textContent =
+    'y₁ = '+a1+'sin('+f1+'t + '+p1+'°)   y₂ = '+a2+'sin('+f2+'t + '+p2+'°)\n' +
+    'y_total = y₁ + y₂\n' + interference;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   updateTrigRatio();
   updateUnitCircle();
   updateWave();
+  updateUCWave(false);
+  updateSuperpos();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_10_Mesin_Pengubah_Bilangan.html">Bab 10</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_12_Pangkat_Akar_dan_Bilangan_yang_Tumbuh.html">Bab 12</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

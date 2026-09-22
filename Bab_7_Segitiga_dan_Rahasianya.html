@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 7 · Volume II</div>
@@ -659,6 +660,33 @@ window.MathJax = {
     <div class="answer-content" id="a8">$c^2 = s^2 + s^2 = 2s^2$, jadi $c = \sqrt{2s^2} = s\sqrt{2}$. Ini mengkonfirmasi bahwa diagonal persegi satuan ($s = 1$) adalah $\sqrt{2}$, seperti di Bab 3.<br><br>Penyederhanaan: $\frac{s\sqrt{2}}{s} = \sqrt{2} \approx 1{,}4142...$  Rasio hipotenusa terhadap kaki selalu $\sqrt{2}$, tidak peduli besar $s$. Inilah esensi kesebangungan — semua segitiga siku-siku sama kaki "sama bentuk".</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Application</div>
+    <p>Sebuah tangga sepanjang $5$ meter disandarkan pada dinding vertikal. Kaki tangga berada $3$ meter dari dasar dinding di lantai datar. Berapa tinggi ujung tangga menyentuh dinding? Lalu, jika tangga digeser sehingga kakinya $4$ meter dari dinding, berapa tinggi barunya? Apa yang terjadi pada ketinggian saat kaki tangga semakin menjauh?</p>
+    <button class="hint-btn" onclick="toggleHint('h140')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a140')">Lihat Jawaban</button>
+    <div class="hint-content" id="h140">Dinding, lantai, dan tangga membentuk segitiga siku-siku. Tangga adalah hipotenusa ($c = 5$), jarak kaki tangga ke dinding adalah salah satu kaki, dan tinggi di dinding adalah kaki lainnya. Gunakan $b = \sqrt{c^2 - a^2}$.</div>
+    <div class="answer-content" id="a140">Kasus 1: $h = \sqrt{5^2 - 3^2} = \sqrt{25 - 9} = \sqrt{16} = 4$ meter.<br><br>Kasus 2: $h = \sqrt{5^2 - 4^2} = \sqrt{25 - 16} = \sqrt{9} = 3$ meter.<br><br>Semakin jauh kaki tangga dari dinding, semakin rendah ujung tangga menyentuh dinding. Ini masuk akal — hipotenusa (tangga) tetap konstan, jadi jika satu kaki membesar, kaki lainnya harus mengecil. Dalam konteks keselamatan: tangga yang terlalu miring (kaki terlalu jauh) berbahaya karena ketinggian efektifnya berkurang drastis.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Derivation</div>
+    <p>Buktikan bahwa jumlah sudut dalam segitiga adalah $180°$ dengan langkah-langkah berikut: Gambar segitiga $ABC$. Tarik garis $\ell$ yang melalui titik $C$ dan sejajar dengan sisi $AB$. Gunakan sifat sudut-sudut yang terbentuk oleh garis sejajar dan garis potong (transversal) untuk menunjukkan bahwa $\angle A + \angle B + \angle C = 180°$.</p>
+    <button class="hint-btn" onclick="toggleHint('h141')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a141')">Lihat Jawaban</button>
+    <div class="hint-content" id="h141">Ketika garis sejajar dipotong oleh transversal, sudut dalam berseberangan (alternate interior angles) sama besar. Sisi $AC$ dan $BC$ masing-masing adalah transversal terhadap garis $\ell$ dan $AB$. Perhatikan tiga sudut yang berjejer di sepanjang garis $\ell$ di titik $C$.</div>
+    <div class="answer-content" id="a141">Misalkan garis $\ell$ melalui $C$ sejajar $AB$. Perpanjang sisi $AC$ memotong $\ell$ dan $AB$, membentuk sudut dalam berseberangan: sudut antara $\ell$ dan $CA$ di titik $C$ sama dengan $\angle A$. Demikian pula, perpanjang sisi $BC$: sudut antara $\ell$ dan $CB$ di titik $C$ sama dengan $\angle B$.<br><br>Di titik $C$, tiga sudut berjejer membentuk sudut lurus (garis $\ell$): $$\angle A + \angle C + \angle B = 180°$$Ini berlaku untuk <em>semua</em> segitiga karena kita tidak pernah mengasumsikan bentuk khusus — hanya bahwa garis sejajar ada (postulat Euclid ke-5). Bukti ini indah karena menghubungkan sifat segitiga dengan sifat garis sejajar.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Conceptual</div>
+    <p>Kita mengenal kriteria kongruensi SAS (sisi-sudut-sisi), ASA (sudut-sisi-sudut), dan SSS (sisi-sisi-sisi). Mengapa SSA (sisi-sisi-sudut) <em>bukan</em> kriteria kongruensi yang sah? Pertimbangkan: sebuah segitiga memiliki sisi $a = 4$, sisi $b = 6$, dan sudut $\angle A = 30°$ (sudut berhadapan dengan sisi $a$). Coba konstruksi segitiga ini — berapa banyak segitiga berbeda yang mungkin?</p>
+    <button class="hint-btn" onclick="toggleHint('h142')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a142')">Lihat Jawaban</button>
+    <div class="hint-content" id="h142">Gambar sisi $b = 6$ dan sudut $\angle A = 30°$. Dari ujung sisi $b$, buat busur lingkaran berjari-jari $a = 4$. Berapa kali busur ini memotong sisi lainnya? Ingat bahwa $b \sin A$ adalah tinggi segitiga — jika $a > b \sin A$ tapi $a < b$, ada dua kemungkinan.</div>
+    <div class="answer-content" id="a142">Dengan $b = 6$, $\angle A = 30°$, maka tinggi $= b \sin 30° = 6 \times 0{,}5 = 3$. Karena $a = 4$ lebih besar dari tinggi ($3$) tapi lebih kecil dari $b$ ($6$), busur berjari-jari $4$ memotong garis di <strong>dua titik</strong>.<br><br>Ini berarti ada <strong>dua segitiga berbeda</strong> yang memenuhi data SSA tersebut — satu segitiga lancip dan satu segitiga tumpul. Ini disebut <em>kasus ambigu</em> (ambiguous case).<br><br>SSA gagal sebagai kriteria kongruensi karena mengetahui dua sisi dan sudut yang bukan di antara kedua sisi tidak cukup untuk menentukan segitiga secara unik. Bandingkan dengan SAS, di mana sudut terletak <em>di antara</em> dua sisi yang diketahui — ini selalu menghasilkan tepat satu segitiga.</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -879,5 +907,42 @@ document.addEventListener('DOMContentLoaded', function() {
   updateSimilarity();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_6_Bentuk_Jarak_dan_Luas.html">Bab 6</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_8_Lingkaran_dan_Pi.html">Bab 8</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

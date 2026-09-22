@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 14 · Volume IV</div>
@@ -97,6 +98,10 @@ window.MathJax = {
 
   <div class="recall-box">
     Ingat <span class="xref"><span class="xref-text">latihan 8 di Bab 13</span><span class="xref-tag">Bab 13</span><span class="xref-popup"><span class="xref-popup-header">Bab 13 — Limit sebagai Fondasi</span><span class="xref-popup-body">$\displaystyle\lim_{h \to 0} \frac{(3+h)^2 - 9}{h}$: substitusi langsung memberi $\frac{0}{0}$, tapi setelah disederhanakan menjadi $\lim_{h \to 0}(6+h) = 6$. Waktu itu "hanya latihan limit" — ternyata itu sudah menghitung <strong>turunan</strong>!</span></span></span>: $\displaystyle\lim_{h \to 0} \frac{(3+h)^2 - 9}{h} = 6$. Itu adalah $f'(3)$ untuk $f(x) = x^2$!
+  </div>
+
+  <div class="recall-box">
+    Ingat <span class="xref"><span class="xref-text">gradien garis lurus dari Bab 9</span><span class="xref-tag">Bab 9</span><span class="xref-popup"><span class="xref-popup-header">Bab 9 — Ketika Aljabar Bertemu Geometri</span><span class="xref-popup-body">Gradien $m = \frac{y_2 - y_1}{x_2 - x_1}$ mengukur kemiringan garis: positif = naik, negatif = turun, nol = datar. Untuk garis lurus, gradien sama di mana-mana.</span></span></span>: gradien garis lurus selalu <strong>konstan</strong>. Turunan $f'(x)$ adalah <em>generalisasi</em> gradien — ia memberikan "gradien lokal" di setiap titik pada kurva. Untuk garis $y = mx + c$, turunannya adalah $f'(x) = m$ (konstan, seperti seharusnya!). Untuk kurva, gradien berubah dari titik ke titik — dan turunan melacak perubahan itu. Ini menjembatani aljabar linier (Bab 9) dengan dunia kurva yang melengkung.
   </div>
 
   <!-- INTERACTIVE 1: Secant to Tangent -->
@@ -392,6 +397,121 @@ window.MathJax = {
     <div class="answer-content" id="a8">$A'(r) = 2\pi r$ — ini tepat rumus <strong>keliling</strong> lingkaran! Artinya: jika jari-jari bertambah sedikit ($dr$), pertambahan luas $\approx$ keliling $\times$ $dr$ — cincin tipis di tepi lingkaran. Kalkulus menghubungkan luas dan keliling secara elegan.</div>
   </div>
 
+  <!-- ═══════════════════ INTERACTIVE 4: Chain Rule Visualizer ═══════════════════ -->
+
+  <h2>Aturan Rantai: Membongkar Fungsi Berlapis</h2>
+
+  <p>
+    Aturan rantai adalah teknik paling penting untuk menurunkan fungsi komposisi. Jika $y = f(g(x))$, maka $\frac{dy}{dx} = f'(g(x)) \cdot g'(x)$. Bayangkan "mengupas lapisan": turunkan yang luar dulu (anggap dalamnya utuh), lalu kalikan dengan turunan yang dalam.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Visualisasi Aturan Rantai</div>
+    <div class="interactive-desc">Pilih fungsi komposisi untuk melihat bagaimana aturan rantai membongkar turunannya menjadi "turunan luar $\times$ turunan dalam".</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setChainFn('sin_x2')" id="cr-sin_x2" style="background: var(--accent-blue); color: white;">sin(x&sup2;)</button>
+        <button class="btn" onclick="setChainFn('exp_3x')" id="cr-exp_3x">e&sup3;ˣ</button>
+        <button class="btn" onclick="setChainFn('pow_2x1')" id="cr-pow_2x1">(2x+1)&sup4;</button>
+        <button class="btn" onclick="setChainFn('cos_sinx')" id="cr-cos_sinx">cos(sin x)</button>
+      </div>
+    </div>
+
+    <div id="chain-decomp" style="background: var(--bg-box, #f8f6f0); border: 1px solid var(--border, #d5cec0); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 0.92rem; line-height: 2;"></div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="chain-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="chain-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════ INTERACTIVE 5: f(x) and f'(x) with movable point ═══════════════════ -->
+
+  <h2>Optimisasi: Mencari Titik Kritis secara Visual</h2>
+
+  <p>
+    Geser titik sepanjang grafik $f(x)$ dan amati nilai $f'(x)$ secara bersamaan. Di mana $f'(x) = 0$, fungsi mencapai puncak atau lembah — itulah <strong>titik kritis</strong>.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Menjelajahi $f(x)$ dan $f'(x)$ Secara Bersamaan</div>
+    <div class="interactive-desc">Geser slider untuk memindahkan titik di kurva $f(x) = x^3 - 3x$. Grafik bawah menunjukkan $f'(x) = 3x^2 - 3$. Perhatikan: saat $f'(x)$ memotong sumbu-$x$, fungsi $f$ mencapai maks/min lokal.</div>
+
+    <div class="slider-container">
+      <label>x: <strong id="explore-x-val">0.0</strong></label>
+      <input type="range" id="explore-x" min="-2.5" max="2.5" value="0" step="0.05" oninput="updateExplore()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="explore-svg" width="320" height="340" viewBox="0 0 320 340"></svg>
+    </div>
+
+    <div id="explore-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════ LATIHAN TAMBAHAN ═══════════════════ -->
+
+  <h2>Latihan Lanjutan</h2>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall Trigonometri (Bab 11)</div>
+    <p>Dari <span class="xref"><span class="xref-text">Bab 11 (Trigonometri)</span><span class="xref-tag">Bab 11</span><span class="xref-popup"><span class="xref-popup-header">Bab 11 — Ketika Segitiga Menjelaskan Gelombang</span><span class="xref-popup-body">Fungsi $\sin x$ dan $\cos x$ mendeskripsikan gelombang dan gerak melingkar. Hubungan: $\sin^2 x + \cos^2 x = 1$, dan $\cos x$ "mendahului" $\sin x$ sebesar $\frac{\pi}{2}$.</span></span></span>, kita tahu bahwa $\sin x$ dan $\cos x$ adalah fungsi gelombang yang saling terkait. Sekarang gunakan aturan turunan:</p>
+    <p>(a) Hitung turunan $f(x) = 3\sin x + 2\cos x$.</p>
+    <p>(b) Tentukan semua titik di interval $[0, 2\pi]$ di mana $f'(x) = 0$.</p>
+    <p>(c) Tentukan nilai maksimum dan minimum $f(x)$ di interval tersebut.</p>
+    <button class="hint-btn" onclick="toggleHint('h110')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a110')">Lihat Jawaban</button>
+    <div class="hint-content" id="h110">$(\sin x)' = \cos x$ dan $(\cos x)' = -\sin x$. Untuk (b), selesaikan $3\cos x - 2\sin x = 0$, yaitu $\tan x = \frac{3}{2}$.</div>
+    <div class="answer-content" id="a110">(a) $f'(x) = 3\cos x - 2\sin x$.<br>(b) $f'(x) = 0$ saat $\tan x = \frac{3}{2}$, yaitu $x \approx 0{,}983$ rad dan $x \approx 0{,}983 + \pi \approx 4{,}124$ rad.<br>(c) Nilai maks $= \sqrt{3^2 + 2^2} = \sqrt{13} \approx 3{,}606$ (di $x \approx 0{,}983$). Nilai min $= -\sqrt{13} \approx -3{,}606$ (di $x \approx 4{,}124$). Fakta umum: amplitudo $a\sin x + b\cos x$ selalu $\sqrt{a^2 + b^2}$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Konseptual: Kapan Turunan Tidak Ada</div>
+    <p>Turunan tidak selalu ada! Jelaskan mengapa $f'(x)$ <strong>tidak terdefinisi</strong> di titik yang ditunjukkan untuk masing-masing kasus berikut:</p>
+    <p>(a) <strong>Sudut lancip (corner):</strong> $f(x) = |x|$ di $x = 0$.</p>
+    <p>(b) <strong>Titik runcing (cusp):</strong> $f(x) = x^{2/3}$ di $x = 0$.</p>
+    <p>(c) <strong>Garis singgung vertikal:</strong> $f(x) = \sqrt[3]{x}$ di $x = 0$.</p>
+    <p>Untuk setiap kasus, coba hitung $\displaystyle\lim_{h \to 0} \frac{f(0+h) - f(0)}{h}$ dan jelaskan apa yang terjadi.</p>
+    <button class="hint-btn" onclick="toggleHint('h111')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a111')">Lihat Jawaban</button>
+    <div class="hint-content" id="h111">Turunan memerlukan limit <em>dari kiri</em> dan <em>dari kanan</em> yang bernilai sama. Coba hitung masing-masing secara terpisah.</div>
+    <div class="answer-content" id="a111">(a) $\frac{|h|}{h} = +1$ dari kanan, $-1$ dari kiri. Limit kiri $\neq$ limit kanan, jadi turunan tidak ada. Grafiknya membentuk "V" — tidak ada satu garis singgung yang unik.<br>(b) $\frac{h^{2/3}}{h} = h^{-1/3} = \frac{1}{h^{1/3}}$. Saat $h \to 0^+$, ini $\to +\infty$; saat $h \to 0^-$, ini $\to -\infty$. Grafiknya membentuk titik runcing.<br>(c) $\frac{h^{1/3}}{h} = h^{-2/3} = \frac{1}{h^{2/3}} \to +\infty$ dari kedua sisi. Garis singgung ada tapi <em>vertikal</em> — gradiennya tak hingga, jadi turunan (sebagai bilangan riil) tidak ada.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Aplikasi: Optimisasi Dunia Nyata</div>
+    <p>Seorang petani memiliki pagar sepanjang $60$ meter untuk membuat kandang berbentuk persegi panjang, dengan satu sisi menempel pada dinding gudang (sehingga hanya perlu pagar untuk 3 sisi). Jika lebar kandang $= x$ meter, maka:</p>
+    <p>(a) Tunjukkan bahwa panjang kandang $= 60 - 2x$ dan luas $A(x) = x(60 - 2x) = 60x - 2x^2$.</p>
+    <p>(b) Hitung $A'(x)$ dan temukan nilai $x$ yang memaksimalkan luas.</p>
+    <p>(c) Berapa luas maksimum kandang tersebut?</p>
+    <p>(d) Verifikasi bahwa ini memang maksimum (bukan minimum) menggunakan turunan kedua.</p>
+    <button class="hint-btn" onclick="toggleHint('h112')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a112')">Lihat Jawaban</button>
+    <div class="hint-content" id="h112">Keliling 3 sisi: $x + (60 - 2x) + x = 60$. Lalu turunkan $A(x)$ dan set $= 0$.</div>
+    <div class="answer-content" id="a112">(a) Tiga sisi: lebar $+ $ panjang $+ $ lebar $= x + p + x = 60$, jadi $p = 60 - 2x$. Luas $A(x) = x \cdot (60-2x) = 60x - 2x^2$.<br>(b) $A'(x) = 60 - 4x = 0 \Rightarrow x = 15$ m, sehingga panjang $= 60 - 30 = 30$ m.<br>(c) $A(15) = 15 \times 30 = 450$ m&sup2;.<br>(d) $A''(x) = -4 < 0$ untuk semua $x$, artinya parabola terbuka ke bawah, jadi $x = 15$ memang titik <strong>maksimum</strong>.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Analisis Kesalahan</div>
+    <p>Identifikasi dan perbaiki kesalahan dalam setiap perhitungan turunan berikut:</p>
+    <p>(a) Siswa menulis: "Turunan $(x^2 + 1)^3$ adalah $3(x^2 + 1)^2$."</p>
+    <p>(b) Siswa menulis: "Turunan $\frac{x^2}{x+1}$ adalah $\frac{2x}{1} = 2x$."</p>
+    <p>(c) Siswa menulis: "Turunan $\sin(5x)$ adalah $\cos(5x)$."</p>
+    <p>(d) Siswa menulis: "Turunan $e^{x^2}$ adalah $e^{x^2}$ karena turunan $e^x$ adalah $e^x$."</p>
+    <button class="hint-btn" onclick="toggleHint('h113')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a113')">Lihat Jawaban</button>
+    <div class="hint-content" id="h113">Semua kesalahan melibatkan lupa menerapkan suatu aturan: aturan rantai (a, c, d) atau aturan pembagian (b).</div>
+    <div class="answer-content" id="a113">(a) <strong>Lupa aturan rantai!</strong> Harus dikalikan turunan dalam: $3(x^2+1)^2 \cdot 2x = 6x(x^2+1)^2$.<br>(b) <strong>Lupa aturan pembagian!</strong> $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$. Jawaban benar: $\frac{2x(x+1) - x^2 \cdot 1}{(x+1)^2} = \frac{x^2 + 2x}{(x+1)^2}$.<br>(c) <strong>Lupa aturan rantai!</strong> Harus dikalikan turunan $5x$: jawaban benar $= 5\cos(5x)$.<br>(d) <strong>Lupa aturan rantai!</strong> "Turunan $e^x$ adalah $e^x$" hanya berlaku jika pangkatnya tepat $x$. Di sini pangkatnya $x^2$, jadi: $e^{x^2} \cdot 2x = 2xe^{x^2}$.</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog: Dari Mengukur Perubahan ke Mengumpulkan Perubahan</h2>
@@ -526,11 +646,206 @@ function updateOptim() {
     '\nMaksimum: f('+vx.toFixed(1)+') = '+vy.toFixed(2);
 }
 
+// ═══════ Interactive 4: Chain Rule Visualizer ═══════
+var chainFnType = 'sin_x2';
+function setChainFn(t) {
+  chainFnType = t;
+  ['sin_x2','exp_3x','pow_2x1','cos_sinx'].forEach(function(k) {
+    var b = document.getElementById('cr-'+k);
+    b.style.background = k === t ? 'var(--accent-blue)' : '';
+    b.style.color = k === t ? 'white' : '';
+  });
+  drawChain();
+}
+function drawChain() {
+  var decomp = document.getElementById('chain-decomp');
+  var svg = document.getElementById('chain-svg');
+  var s = dGrid(svg, 320, 280);
+  var fPts = [], dPts = [];
+  var info = '', html = '';
+
+  for (var x = -3.5; x <= 3.5; x += 0.06) {
+    var y, dy, sc = 30;
+    if (chainFnType === 'sin_x2') {
+      y = Math.sin(x*x); dy = 2*x*Math.cos(x*x);
+      sc = 40;
+    } else if (chainFnType === 'exp_3x') {
+      y = Math.exp(3*x); dy = 3*Math.exp(3*x);
+      sc = 8;
+    } else if (chainFnType === 'pow_2x1') {
+      var u = 2*x+1; y = Math.pow(u,4)/500; dy = 4*Math.pow(u,3)*2/500;
+      sc = 30;
+    } else {
+      y = Math.cos(Math.sin(x)); dy = -Math.sin(Math.sin(x))*Math.cos(x);
+      sc = 40;
+    }
+    var fy = goy - y*sc, fdy = goy - dy*sc;
+    if (fy > -20 && fy < 300) fPts.push((gox+x*gu)+','+fy);
+    if (fdy > -20 && fdy < 300) dPts.push((gox+x*gu)+','+fdy);
+  }
+
+  if (chainFnType === 'sin_x2') {
+    info = "f(x) = sin(x²), f'(x) = 2x·cos(x²)";
+    html = '<strong>Komposisi:</strong> $f(x) = \\sin(\\underbrace{x^2}_{\\text{dalam}})$<br>' +
+      '<strong>Fungsi luar:</strong> $\\sin(u)$ → turunan: $\\cos(u)$<br>' +
+      '<strong>Fungsi dalam:</strong> $u = x^2$ → turunan: $2x$<br>' +
+      '<strong>Aturan rantai:</strong> $f\'(x) = \\cos(x^2) \\cdot 2x = 2x\\cos(x^2)$';
+  } else if (chainFnType === 'exp_3x') {
+    info = "f(x) = e^(3x), f'(x) = 3e^(3x)";
+    html = '<strong>Komposisi:</strong> $f(x) = e^{\\underbrace{3x}_{\\text{dalam}}}$<br>' +
+      '<strong>Fungsi luar:</strong> $e^u$ → turunan: $e^u$<br>' +
+      '<strong>Fungsi dalam:</strong> $u = 3x$ → turunan: $3$<br>' +
+      '<strong>Aturan rantai:</strong> $f\'(x) = e^{3x} \\cdot 3 = 3e^{3x}$';
+  } else if (chainFnType === 'pow_2x1') {
+    info = "f(x) = (2x+1)⁴, f'(x) = 8(2x+1)³";
+    html = '<strong>Komposisi:</strong> $f(x) = (\\underbrace{2x+1}_{\\text{dalam}})^4$<br>' +
+      '<strong>Fungsi luar:</strong> $u^4$ → turunan: $4u^3$<br>' +
+      '<strong>Fungsi dalam:</strong> $u = 2x+1$ → turunan: $2$<br>' +
+      '<strong>Aturan rantai:</strong> $f\'(x) = 4(2x+1)^3 \\cdot 2 = 8(2x+1)^3$';
+  } else {
+    info = "f(x) = cos(sin x), f'(x) = -sin(sin x)·cos x";
+    html = '<strong>Komposisi:</strong> $f(x) = \\cos(\\underbrace{\\sin x}_{\\text{dalam}})$<br>' +
+      '<strong>Fungsi luar:</strong> $\\cos(u)$ → turunan: $-\\sin(u)$<br>' +
+      '<strong>Fungsi dalam:</strong> $u = \\sin x$ → turunan: $\\cos x$<br>' +
+      '<strong>Aturan rantai:</strong> $f\'(x) = -\\sin(\\sin x) \\cdot \\cos x$';
+  }
+
+  s += '<polyline points="'+fPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<polyline points="'+dPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>';
+  s += '<text x="280" y="20" font-family="Inter" font-size="10" fill="#2471a3">f(x)</text>';
+  s += '<text x="280" y="34" font-family="Inter" font-size="10" fill="#c0392b">f\'(x)</text>';
+  svg.innerHTML = s;
+  decomp.innerHTML = html;
+  document.getElementById('chain-result').textContent = info;
+  if (window.MathJax && MathJax.typeset) MathJax.typeset([decomp]);
+}
+
+// ═══════ Interactive 5: Explore f(x) and f'(x) ═══════
+function updateExplore() {
+  var xv = parseFloat(document.getElementById('explore-x').value);
+  document.getElementById('explore-x-val').textContent = xv.toFixed(2);
+
+  var svg = document.getElementById('explore-svg');
+  var eoy1 = 100, eoy2 = 270, esc1 = 25, esc2 = 15;
+  var eox = 160;
+  var s = '';
+
+  // Grid for top graph (f)
+  for (var i = -5; i <= 5; i++) {
+    var px = eox+i*gu;
+    s += '<line x1="'+px+'" y1="0" x2="'+px+'" y2="155" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  for (var j = -4; j <= 4; j++) {
+    var py = eoy1 - j*esc1;
+    if (py >= 0 && py <= 155) s += '<line x1="0" y1="'+py+'" x2="320" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  s += '<line x1="0" y1="'+eoy1+'" x2="320" y2="'+eoy1+'" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<line x1="'+eox+'" y1="0" x2="'+eox+'" y2="155" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<text x="5" y="15" font-family="Inter" font-size="10" fill="#2471a3" font-weight="600">f(x) = x³ − 3x</text>';
+
+  // Separator
+  s += '<line x1="10" y1="165" x2="310" y2="165" stroke="#d5cec0" stroke-width="1" stroke-dasharray="4,3"/>';
+
+  // Grid for bottom graph (f')
+  for (var i = -5; i <= 5; i++) {
+    var px = eox+i*gu;
+    s += '<line x1="'+px+'" y1="175" x2="'+px+'" y2="340" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  for (var j = -4; j <= 4; j++) {
+    var py = eoy2 - j*esc2;
+    if (py >= 175 && py <= 340) s += '<line x1="0" y1="'+py+'" x2="320" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  s += '<line x1="0" y1="'+eoy2+'" x2="320" y2="'+eoy2+'" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<line x1="'+eox+'" y1="175" x2="'+eox+'" y2="340" stroke="#2c2c2c" stroke-width="1"/>';
+  s += '<text x="5" y="185" font-family="Inter" font-size="10" fill="#c0392b" font-weight="600">f\'(x) = 3x² − 3</text>';
+
+  // Curves
+  var fPts = [], dPts = [];
+  for (var x = -2.8; x <= 2.8; x += 0.06) {
+    var y = x*x*x - 3*x;
+    var dy = 3*x*x - 3;
+    var fy = eoy1 - y*esc1;
+    var fdy = eoy2 - dy*esc2;
+    if (fy >= -5 && fy <= 160) fPts.push((eox+x*gu)+','+fy);
+    if (fdy >= 170 && fdy <= 345) dPts.push((eox+x*gu)+','+fdy);
+  }
+  s += '<polyline points="'+fPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  s += '<polyline points="'+dPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // Moving point on f
+  var yv = xv*xv*xv - 3*xv;
+  var dyv = 3*xv*xv - 3;
+  var px1 = eox + xv*gu, py1 = eoy1 - yv*esc1;
+  var px2 = eox + xv*gu, py2 = eoy2 - dyv*esc2;
+  s += '<circle cx="'+px1+'" cy="'+py1+'" r="6" fill="#2471a3" stroke="white" stroke-width="2"/>';
+  s += '<circle cx="'+px2+'" cy="'+py2+'" r="6" fill="#c0392b" stroke="white" stroke-width="2"/>';
+
+  // Vertical guide line
+  s += '<line x1="'+px1+'" y1="0" x2="'+px1+'" y2="340" stroke="#888" stroke-width="0.8" stroke-dasharray="3,3"/>';
+
+  // Zero line highlight on f' graph
+  if (Math.abs(dyv) < 0.3) {
+    s += '<circle cx="'+px2+'" cy="'+py2+'" r="10" fill="none" stroke="#1e8449" stroke-width="2"/>';
+    s += '<text x="'+(px2+14)+'" y="'+(py2+4)+'" font-family="Inter" font-size="9" fill="#1e8449" font-weight="600">f\'≈0!</text>';
+  }
+
+  svg.innerHTML = s;
+
+  var status = '';
+  if (dyv > 0.3) status = 'f\'(x) > 0 → fungsi NAIK';
+  else if (dyv < -0.3) status = 'f\'(x) < 0 → fungsi TURUN';
+  else status = 'f\'(x) ≈ 0 → TITIK KRITIS!';
+
+  document.getElementById('explore-result').textContent =
+    'x = '+xv.toFixed(2)+': f(x) = '+yv.toFixed(2)+', f\'(x) = '+dyv.toFixed(2)+
+    '\n'+status+
+    '\nTitik kritis: x = -1 (maks lokal), x = 1 (min lokal)';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   updateSecant();
   drawDerivFn();
   updateOptim();
+  drawChain();
+  updateExplore();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_13_Mendekati_Tanpa_Pernah_Sampai.html">Bab 13</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_15_Mengumpulkan_Serpihan_Kecil.html">Bab 15</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

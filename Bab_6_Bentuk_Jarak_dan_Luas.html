@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 6 · Volume II</div>
@@ -372,6 +373,113 @@ window.MathJax = {
     <div class="answer-content" id="a6">Total = $6 \times 180° = 1080°$. Per sudut = $1080° \div 8 = 135°$.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Computation</div>
+    <p>Sebuah ruangan berbentuk L terdiri dari dua persegi panjang: bagian pertama berukuran 6 m × 4 m, bagian kedua berukuran 3 m × 5 m. Hitung keliling total ruangan dan luas lantai yang perlu dipasangi ubin.</p>
+    <button class="hint-btn" onclick="toggleHint('h80')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a80')">Lihat Jawaban</button>
+    <div class="hint-content" id="h80">Luas total = jumlah luas kedua persegi panjang. Untuk keliling, gambar bentuk L-nya dan hitung panjang semua sisi luar — hati-hati, ada sisi yang "tersembunyi" di bagian dalam L.</div>
+    <div class="answer-content" id="a80">
+      $L = (6 \times 4) + (3 \times 5) = 24 + 15 = 39$ m².<br>
+      Untuk keliling, kita perlu menggambar bentuk L. Misalkan bagian besar di bawah (6×4) dan bagian kecil menempel di kanan atas (3×5). Sisi-sisi luarnya: $6 + 4 + 3 + 5 + (6-3) + (5-4) = 6 + 4 + 3 + 5 + 3 + 1 = 22$ m. (Keliling bergantung pada cara kedua persegi panjang disambung — gambar dulu!)
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Conceptual</div>
+    <p>Rumus luas trapesium adalah $L = \frac{1}{2}(a + b) \times t$, di mana $a$ dan $b$ adalah sisi-sisi sejajar dan $t$ adalah tinggi. Jelaskan <em>mengapa</em> rumus ini bekerja. (Petunjuk: gabungkan dua trapesium identik.)</p>
+    <button class="hint-btn" onclick="toggleHint('h81')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a81')">Lihat Jawaban</button>
+    <div class="hint-content" id="h81">Ambil dua salinan trapesium yang sama. Balik satu dan tempelkan di samping yang lain. Bentuk apa yang kamu dapat?</div>
+    <div class="answer-content" id="a81">
+      Dua trapesium identik, satu dibalik dan ditempel di samping yang lain, membentuk <strong>jajar genjang</strong> dengan alas $(a + b)$ dan tinggi $t$.<br>
+      Luas jajar genjang = $(a + b) \times t$.<br>
+      Karena jajar genjang ini terdiri dari 2 trapesium, luas satu trapesium = $\frac{(a+b) \times t}{2}$. ∎
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Derivation</div>
+    <p>Segi-enam beraturan (hexagon) dengan panjang sisi $s$ bisa dipecah menjadi 6 segitiga sama sisi. Gunakan fakta ini untuk menurunkan rumus luas segi-enam beraturan. (Ingat: tinggi segitiga sama sisi dengan sisi $s$ adalah $\frac{s\sqrt{3}}{2}$.)</p>
+    <button class="hint-btn" onclick="toggleHint('h82')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a82')">Lihat Jawaban</button>
+    <div class="hint-content" id="h82">Setiap segitiga sama sisi punya alas $= s$ dan tinggi $= \frac{s\sqrt{3}}{2}$. Hitung luas satu segitiga, lalu kalikan 6.</div>
+    <div class="answer-content" id="a82">
+      Luas satu segitiga sama sisi: $L_{\triangle} = \frac{1}{2} \times s \times \frac{s\sqrt{3}}{2} = \frac{s^2\sqrt{3}}{4}$.<br><br>
+      Luas segi-enam = $6 \times \frac{s^2\sqrt{3}}{4} = \frac{3s^2\sqrt{3}}{2}$.<br><br>
+      Contoh: jika $s = 4$, maka $L = \frac{3 \times 16 \times \sqrt{3}}{2} = 24\sqrt{3} \approx 41{,}57$ satuan².
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Real-World</div>
+    <p>Sebuah taman kota berbentuk trapesium dengan sisi sejajar 20 m dan 14 m, serta tinggi 10 m. Di tengah taman ada kolam bundar dengan diameter 6 m. Berapa luas taman yang ditanami rumput (di luar kolam)?</p>
+    <button class="hint-btn" onclick="toggleHint('h83')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a83')">Lihat Jawaban</button>
+    <div class="hint-content" id="h83">Hitung luas trapesium, lalu kurangi luas lingkaran (kolam). Ingat: diameter 6 berarti jari-jari 3.</div>
+    <div class="answer-content" id="a83">
+      Luas trapesium: $L_{\text{trap}} = \frac{1}{2}(20 + 14) \times 10 = \frac{1}{2} \times 34 \times 10 = 170$ m².<br>
+      Luas kolam: $L_{\text{kolam}} = \pi \times 3^2 = 9\pi \approx 28{,}27$ m².<br>
+      Luas rumput: $170 - 9\pi \approx 170 - 28{,}27 = 141{,}73$ m².
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Error Analysis</div>
+    <p>Seorang siswa menghitung luas daerah yang diarsir berikut: jajar genjang dengan alas 10 cm, sisi miring 8 cm, dan tinggi 6 cm. Ia menulis: "$L = 10 \times 8 = 80$ cm²." Apa kesalahannya? Berapa jawaban yang benar?</p>
+    <button class="hint-btn" onclick="toggleHint('h84')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a84')">Lihat Jawaban</button>
+    <div class="hint-content" id="h84">Rumus luas jajar genjang menggunakan <em>tinggi</em> (jarak tegak lurus antara dua sisi sejajar), bukan sisi miring.</div>
+    <div class="answer-content" id="a84">
+      <strong>Kesalahan:</strong> Siswa mengalikan alas dengan <em>sisi miring</em> (8 cm) padahal seharusnya mengalikan alas dengan <em>tinggi tegak lurus</em> (6 cm). Ini adalah Jebakan 2 yang sudah kita bahas!<br><br>
+      <strong>Jawaban benar:</strong> $L = \text{alas} \times \text{tinggi} = 10 \times 6 = 60$ cm².
+    </div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 4: Parallelogram to Rectangle transformation -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Jajar Genjang → Persegi Panjang</div>
+    <div class="interactive-desc">Geser slider untuk "mendorong" jajar genjang menjadi persegi panjang. Perhatikan: segitiga yang dipotong di satu sisi pas menempel di sisi lainnya — luasnya tetap sama!</div>
+
+    <div class="slider-container">
+      <label>Geser transformasi: <strong id="para-shift-val">50</strong>%</label>
+      <input type="range" id="para-shift" min="0" max="100" value="50" oninput="updateParaTransform()">
+    </div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="para-svg" width="440" height="220" viewBox="0 0 440 220" style="max-width:100%;"></svg>
+    </div>
+    <div id="para-result" class="result-display"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- INTERACTIVE 5: Polygon triangulation -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Triangulasi Poligon</div>
+    <div class="interactive-desc">Pilih poligon dan klik tombol untuk melihat bagaimana ia bisa dipecah menjadi segitiga-segitiga. Setiap poligon bersisi $n$ bisa dipecah menjadi $(n-2)$ segitiga — inilah mengapa segitiga adalah "atom" geometri.</div>
+
+    <div style="margin-bottom:1rem;">
+      <select id="poly-select" onchange="updateTriangulation()" style="font-family:'Inter'; padding:6px; border:1px solid var(--border); border-radius:6px;">
+        <option value="4">Segiempat (4 sisi)</option>
+        <option value="5">Pentagon (5 sisi)</option>
+        <option value="6" selected>Heksagon (6 sisi)</option>
+        <option value="7">Heptagon (7 sisi)</option>
+        <option value="8">Oktagon (8 sisi)</option>
+      </select>
+      <button class="btn btn-accent" onclick="toggleTriangulationLines()" style="margin-left:0.5rem;" id="tri-toggle-btn">Tampilkan Triangulasi</button>
+    </div>
+
+    <div style="text-align:center; margin:1rem 0;">
+      <svg id="tri-svg" width="340" height="340" viewBox="0 0 340 340" style="max-width:100%;"></svg>
+    </div>
+    <div id="tri-result" class="result-display"></div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog: Dari Bidang ke Segitiga</h2>
@@ -476,11 +584,167 @@ function updateCircle() {
   document.getElementById('circle-result').textContent = 'Keliling = 2πr = 2π(' + r + ') = ' + K.toFixed(2) + '\nLuas = πr² = π(' + r + ')² = ' + r*r + 'π ≈ ' + L.toFixed(2);
 }
 
+// ═══════ Interactive 4: Parallelogram → Rectangle ═══════
+function updateParaTransform() {
+  var pct = parseInt(document.getElementById('para-shift').value);
+  document.getElementById('para-shift-val').textContent = pct;
+  var svg = document.getElementById('para-svg');
+  var alas = 200, tinggi = 120, shearMax = 60;
+  var ox = 40, oy = 30;
+  var shear = shearMax * (1 - pct / 100);
+  var s = '';
+  // Grid background
+  for (var r = 0; r <= 4; r++) {
+    for (var c = 0; c <= 7; c++) {
+      if (r < 4 && c < 7) {
+        s += '<rect x="' + (ox + c*30) + '" y="' + (oy + r*30) + '" width="30" height="30" fill="none" stroke="#ddd" stroke-width="0.5"/>';
+      }
+    }
+  }
+  // Main parallelogram body (center part that doesn't move)
+  var bodyLeft = ox + shear;
+  var bodyRight = ox + alas;
+  // Left triangle (the piece that gets cut and moved)
+  var triOpacity = pct > 0 ? 0.35 : 0.25;
+  var cutTriX = ox + alas + shearMax * (pct / 100);
+  // Draw the parallelogram shape
+  var p1x = ox + shear, p1y = oy;           // top-left
+  var p2x = ox + alas + shear, p2y = oy;    // top-right
+  var p3x = ox + alas, p3y = oy + tinggi;   // bottom-right
+  var p4x = ox, p4y = oy + tinggi;          // bottom-left
+  s += '<polygon points="' + p1x+','+p1y + ' ' + p2x+','+p2y + ' ' + p3x+','+p3y + ' ' + p4x+','+p4y + '" fill="rgba(36,113,163,0.2)" stroke="#2471a3" stroke-width="2"/>';
+  // The cut triangle on the left (moving to the right)
+  if (pct > 0 && pct <= 100) {
+    var moveX = alas * (pct / 100);
+    // Left triangle being moved
+    s += '<polygon points="' +
+      (ox + shear + moveX) + ',' + oy + ' ' +
+      (ox + moveX) + ',' + (oy + tinggi) + ' ' +
+      (ox + shear + moveX) + ',' + (oy + tinggi) +
+      '" fill="rgba(192,57,43,0.25)" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>';
+    // Arrow showing movement
+    if (pct < 100 && pct > 10) {
+      var arrowY = oy + tinggi + 20;
+      s += '<line x1="' + (ox + shear/2) + '" y1="' + arrowY + '" x2="' + (ox + shear/2 + moveX) + '" y2="' + arrowY + '" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrowhead6)"/>';
+      s += '<defs><marker id="arrowhead6" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c0392b"/></marker></defs>';
+    }
+  }
+  // Dimension labels
+  s += '<text x="' + (ox + alas/2 + shear/2) + '" y="' + (oy - 8) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#2471a3">alas</text>';
+  s += '<text x="' + (ox - 15) + '" y="' + (oy + tinggi/2 + 4) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#666">tinggi</text>';
+  // Height indicator line
+  s += '<line x1="' + (ox - 5) + '" y1="' + oy + '" x2="' + (ox - 5) + '" y2="' + (oy + tinggi) + '" stroke="#999" stroke-width="1" stroke-dasharray="3,2"/>';
+  svg.innerHTML = s;
+  var luas = Math.round(alas/30 * tinggi/30);
+  var label = pct === 0 ? 'Jajar genjang: L = alas × tinggi (segitiga belum dipindahkan)' :
+              pct === 100 ? 'Persegi panjang sempurna! L = alas × tinggi = sama persis!' :
+              'Transformasi ' + pct + '% — luas tetap = alas × tinggi';
+  document.getElementById('para-result').textContent = label;
+}
+
+// ═══════ Interactive 5: Polygon triangulation ═══════
+var triShowLines = false;
+function getPolygonVertices(n, cx, cy, r) {
+  var verts = [];
+  for (var i = 0; i < n; i++) {
+    var angle = -Math.PI/2 + (2 * Math.PI * i / n);
+    verts.push([cx + r * Math.cos(angle), cy + r * Math.sin(angle)]);
+  }
+  return verts;
+}
+
+function updateTriangulation() {
+  triShowLines = false;
+  document.getElementById('tri-toggle-btn').textContent = 'Tampilkan Triangulasi';
+  drawTriangulation();
+}
+
+function toggleTriangulationLines() {
+  triShowLines = !triShowLines;
+  document.getElementById('tri-toggle-btn').textContent = triShowLines ? 'Sembunyikan Triangulasi' : 'Tampilkan Triangulasi';
+  drawTriangulation();
+}
+
+function drawTriangulation() {
+  var n = parseInt(document.getElementById('poly-select').value);
+  var svg = document.getElementById('tri-svg');
+  var cx = 170, cy = 170, r = 130;
+  var verts = getPolygonVertices(n, cx, cy, r);
+  var s = '';
+  // Color palette for triangles
+  var colors = ['rgba(36,113,163,0.18)','rgba(192,57,43,0.15)','rgba(39,174,96,0.18)','rgba(142,68,173,0.15)','rgba(243,156,18,0.15)','rgba(22,160,133,0.18)'];
+  if (triShowLines) {
+    // Draw each triangle from vertex 0 to consecutive pairs
+    for (var i = 1; i < n - 1; i++) {
+      var tri = [verts[0], verts[i], verts[i+1]];
+      s += '<polygon points="' + tri.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ') + '" fill="' + colors[(i-1) % colors.length] + '" stroke="#2471a3" stroke-width="1"/>';
+    }
+    // Draw diagonal lines from vertex 0
+    for (var i = 2; i < n - 1; i++) {
+      s += '<line x1="' + verts[0][0].toFixed(1) + '" y1="' + verts[0][1].toFixed(1) + '" x2="' + verts[i][0].toFixed(1) + '" y2="' + verts[i][1].toFixed(1) + '" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>';
+    }
+  }
+  // Draw polygon outline
+  var polyStr = verts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  s += '<polygon points="' + polyStr + '" fill="' + (triShowLines ? 'none' : 'rgba(36,113,163,0.12)') + '" stroke="#2471a3" stroke-width="2.5"/>';
+  // Draw vertices with labels
+  for (var i = 0; i < n; i++) {
+    var fillColor = (i === 0 && triShowLines) ? '#c0392b' : '#2c2c2c';
+    var radius = (i === 0 && triShowLines) ? 5 : 3.5;
+    s += '<circle cx="' + verts[i][0].toFixed(1) + '" cy="' + verts[i][1].toFixed(1) + '" r="' + radius + '" fill="' + fillColor + '"/>';
+  }
+  svg.innerHTML = s;
+  var numTri = n - 2;
+  var label = triShowLines ?
+    'Segi-' + n + ' dipecah menjadi ' + numTri + ' segitiga (dari satu titik sudut). Rumus: n − 2 = ' + n + ' − 2 = ' + numTri :
+    'Segi-' + n + ' — klik tombol untuk melihat triangulasi menjadi (n−2) = ' + numTri + ' segitiga';
+  document.getElementById('tri-result').textContent = label;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   updateAngle();
   updateAreaViz();
   updateCircle();
+  updateParaTransform();
+  drawTriangulation();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_5_Mencari_yang_Belum_Diketahui.html">Bab 5</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_7_Segitiga_dan_Rahasianya.html">Bab 7</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

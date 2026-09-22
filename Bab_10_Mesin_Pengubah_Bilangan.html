@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 10 · Volume III</div>
@@ -231,6 +232,10 @@ window.MathJax = {
     Ingat dari Bab 1: pembagian dengan nol tidak terdefinisi. Dari Bab 3: akar kuadrat bilangan negatif bukan bilangan real. Batasan-batasan ini menentukan domain fungsi.
   </div>
 
+  <div class="recall-box">
+    Ingat dari <strong>Bab 4</strong> (Bahasa Singkat untuk Pola): ekspresi aljabar seperti $2x + 1$, $x^2 - 3x$, atau $\frac{x+1}{x-2}$ adalah "resep" yang menunggu nilai $x$. Sekarang kita melihatnya dengan mata baru — setiap ekspresi aljabar mendefinisikan sebuah <em>fungsi</em>. Ekspresi $2x + 1$ menjadi $f(x) = 2x + 1$; ekspresi $x^2 - 3x$ menjadi $g(x) = x^2 - 3x$. Perbedaannya: fungsi juga menentukan <strong>domain</strong> (masukan mana yang valid) dan menjamin <strong>tepat satu keluaran</strong> untuk setiap masukan.
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ KOMPOSISI ═══════════════════════ -->
@@ -285,6 +290,48 @@ window.MathJax = {
     <div id="comp-result" class="result-display"></div>
   </div>
 
+  <!-- INTERACTIVE 4: Composition Machine Visual -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Mesin Komposisi Visual — Rantai Dua Fungsi</div>
+    <div class="interactive-desc">Masukkan nilai $x$, lalu lihat bagaimana ia mengalir melewati dua mesin fungsi berturut-turut. Mesin pertama ($g$) mengolah $x$, lalu keluarannya masuk ke mesin kedua ($f$).</div>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.5rem;">
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">g(x) =</label>
+        <select id="chain-g" style="font-family: 'JetBrains Mono'; padding: 6px; border: 1px solid var(--border); border-radius: 4px;">
+          <option value="p3">x + 3</option>
+          <option value="dbl">2x</option>
+          <option value="sq">x²</option>
+          <option value="m1">x − 1</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">f(x) =</label>
+        <select id="chain-f" style="font-family: 'JetBrains Mono'; padding: 6px; border: 1px solid var(--border); border-radius: 4px;">
+          <option value="sq">x²</option>
+          <option value="dbl">2x</option>
+          <option value="p3">x + 3</option>
+          <option value="m1">x − 1</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div>
+        <label style="font-family: 'Inter'; font-size: 0.78rem; color: var(--text-secondary);">x =</label>
+        <input type="number" id="chain-x" value="4" step="1" style="width: 70px; font-family: 'JetBrains Mono'; padding: 6px; font-size: 1rem; border: 1px solid var(--border); border-radius: 4px;">
+      </div>
+      <button onclick="runChain()" style="font-family: 'Inter'; font-size: 0.85rem; padding: 8px 16px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer;">Jalankan Mesin!</button>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="chain-svg" width="520" height="120" viewBox="0 0 520 120" style="max-width: 100%;"></svg>
+    </div>
+
+    <div id="chain-result" class="result-display"></div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ INVERS ═══════════════════════ -->
@@ -317,6 +364,27 @@ window.MathJax = {
   <p>
     Secara grafis: grafik $f^{-1}$ adalah <em>refleksi</em> grafik $f$ terhadap garis $y = x$.
   </p>
+
+  <!-- INTERACTIVE 5: Inverse Function Explorer -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Penjelajah Fungsi Invers — Refleksi terhadap $y = x$</div>
+    <div class="interactive-desc">Pilih fungsi, lalu lihat grafiknya (biru) bersama inversnya (oranye), dicerminkan terhadap garis $y = x$ (abu-abu putus-putus).</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="showInverse('lin')" id="inv-lin" style="background: var(--accent-blue); color: white;">f(x) = 2x + 1</button>
+        <button class="btn" onclick="showInverse('cub')" id="inv-cub">f(x) = x³</button>
+        <button class="btn" onclick="showInverse('sqrt')" id="inv-sqrt">f(x) = x² (x≥0)</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="inverse-svg" width="340" height="340" viewBox="0 0 340 340"></svg>
+    </div>
+
+    <div id="inverse-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
 
   <div class="divider divider-center"></div>
 
@@ -495,6 +563,69 @@ window.MathJax = {
     <div class="answer-content" id="a8">(a) Ya, satu-satu untuk $r > 0$ karena jari-jari yang lebih besar selalu menghasilkan luas yang lebih besar.<br>(b) $A = \pi r^2$ → $r^2 = \frac{A}{\pi}$ → $r = \sqrt{\frac{A}{\pi}}$. Jadi $A^{-1}(x) = \sqrt{\frac{x}{\pi}}$.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Domain & Range (Fungsi Piecewise)</div>
+    <p>Diberikan fungsi:
+    $$f(x) = \begin{cases} x + 2, & x < 0 \\ x^2, & 0 \leq x \leq 3 \\ 9, & x > 3 \end{cases}$$
+    Tentukan (a) domain $f$, (b) range $f$, dan (c) hitung $f(-3)$, $f(0)$, $f(2)$, $f(5)$.</p>
+    <button class="hint-btn" onclick="toggleHint('h90')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a90')">Lihat Jawaban</button>
+    <div class="hint-content" id="h90">Setiap "potongan" berlaku di interval yang berbeda. Gabungkan semua interval untuk domain. Untuk range, perhatikan semua kemungkinan keluaran dari masing-masing potongan.</div>
+    <div class="answer-content" id="a90">
+      (a) Domain: semua bilangan real $(-\infty, \infty)$ — setiap potongan mencakup bagiannya masing-masing tanpa celah.<br>
+      (b) Range: Untuk $x < 0$: $f(x) = x + 2 < 2$, jadi hasilnya $(-\infty, 2)$. Untuk $0 \leq x \leq 3$: $f(x) = x^2 \in [0, 9]$. Untuk $x > 3$: $f(x) = 9$. Gabungan: $(-\infty, 9]$.<br>
+      (c) $f(-3) = -3 + 2 = -1$. $f(0) = 0^2 = 0$. $f(2) = 2^2 = 4$. $f(5) = 9$.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Conceptual: Apakah Setiap Persamaan Adalah Fungsi?</div>
+    <p>Tentukan mana yang merupakan fungsi $y$ terhadap $x$, dan mana yang bukan. Gunakan uji garis vertikal sebagai alasan.<br>
+    (a) $y = 3x - 7$ &emsp; (b) $x^2 + y^2 = 25$ &emsp; (c) $y = \pm\sqrt{x}$ &emsp; (d) $y = x^3 - x$</p>
+    <button class="hint-btn" onclick="toggleHint('h91')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a91')">Lihat Jawaban</button>
+    <div class="hint-content" id="h91">Untuk setiap persamaan, tanyakan: adakah satu nilai $x$ yang menghasilkan <em>lebih dari satu</em> nilai $y$? Jika ya, bukan fungsi.</div>
+    <div class="answer-content" id="a91">
+      (a) <strong>Fungsi.</strong> Garis lurus — setiap garis vertikal memotong tepat satu titik.<br>
+      (b) <strong>Bukan fungsi.</strong> Ini lingkaran berjari-jari 5. Misalnya $x = 3$ menghasilkan $y = 4$ dan $y = -4$. Garis vertikal memotong dua titik.<br>
+      (c) <strong>Bukan fungsi.</strong> Tanda "$\pm$" berarti untuk $x = 4$, $y = 2$ dan $y = -2$ — dua keluaran.<br>
+      (d) <strong>Fungsi.</strong> Setiap $x$ menghasilkan tepat satu $y = x^3 - x$, meskipun grafiknya berkelok-kelok.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Application: Memodelkan Data Nyata</div>
+    <p>Suhu di sebuah kota pada jam ke-$t$ (mulai tengah malam) dimodelkan oleh:<br>
+    $$T(t) = -\frac{1}{12}(t - 14)^2 + 35$$
+    (a) Berapa suhu pada tengah malam ($t = 0$) dan siang hari ($t = 12$)?<br>
+    (b) Kapan suhu mencapai maksimum, dan berapa nilainya?<br>
+    (c) Apakah domain $T$ yang <em>masuk akal</em> secara fisika? (Petunjuk: jam dalam sehari.)</p>
+    <button class="hint-btn" onclick="toggleHint('h92')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a92')">Lihat Jawaban</button>
+    <div class="hint-content" id="h92">Ini fungsi kuadrat terbalik (parabola terbuka ke bawah) dengan puncak di $t = 14$. Untuk domain, pikirkan: apakah $t = -5$ atau $t = 30$ masuk akal untuk "jam dalam sehari"?</div>
+    <div class="answer-content" id="a92">
+      (a) $T(0) = -\frac{1}{12}(0 - 14)^2 + 35 = -\frac{196}{12} + 35 \approx 18.7°$. $T(12) = -\frac{1}{12}(12 - 14)^2 + 35 = -\frac{4}{12} + 35 \approx 34.7°$.<br>
+      (b) Puncak parabola di $t = 14$ (jam 2 siang). $T(14) = -\frac{1}{12}(0)^2 + 35 = 35°$. Suhu maksimum 35°.<br>
+      (c) Domain yang masuk akal: $0 \leq t \leq 24$ (satu hari penuh). Secara matematis fungsinya terdefinisi untuk semua $t$, tapi secara fisika hanya 24 jam yang relevan.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Composition: Menghitung $(f \circ g)(x)$</div>
+    <p>Diberikan $f(x) = x^2 + 1$ dan $g(x) = 3x - 2$.<br>
+    (a) Tentukan rumus $(f \circ g)(x)$.<br>
+    (b) Tentukan rumus $(g \circ f)(x)$.<br>
+    (c) Hitung $(f \circ g)(1)$ dan $(g \circ f)(1)$. Apakah hasilnya sama?</p>
+    <button class="hint-btn" onclick="toggleHint('h93')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a93')">Lihat Jawaban</button>
+    <div class="hint-content" id="h93">$(f \circ g)(x) = f(g(x))$: ganti setiap $x$ di rumus $f$ dengan seluruh ekspresi $g(x) = 3x - 2$. Ingat dari Bab 4: $(3x - 2)^2 \neq 9x^2 - 4$.</div>
+    <div class="answer-content" id="a93">
+      (a) $(f \circ g)(x) = f(3x - 2) = (3x - 2)^2 + 1 = 9x^2 - 12x + 4 + 1 = 9x^2 - 12x + 5$.<br>
+      (b) $(g \circ f)(x) = g(x^2 + 1) = 3(x^2 + 1) - 2 = 3x^2 + 3 - 2 = 3x^2 + 1$.<br>
+      (c) $(f \circ g)(1) = 9 - 12 + 5 = 2$. $(g \circ f)(1) = 3 + 1 = 4$. <strong>Tidak sama!</strong> Ini menegaskan bahwa $f \circ g \neq g \circ f$ pada umumnya.
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -633,10 +764,200 @@ function calcComp() {
   document.getElementById('comp-result').textContent = res;
 }
 
+// ═══════ Interactive 4: Chain Machine Visual ═══════
+function chainEval(type, x) {
+  if (type === 'sq') return x * x;
+  if (type === 'dbl') return 2 * x;
+  if (type === 'p3') return x + 3;
+  if (type === 'm1') return x - 1;
+  return x;
+}
+function chainName(type) {
+  if (type === 'sq') return 'x²';
+  if (type === 'dbl') return '2x';
+  if (type === 'p3') return 'x + 3';
+  if (type === 'm1') return 'x − 1';
+  return 'x';
+}
+
+function runChain() {
+  var gType = document.getElementById('chain-g').value;
+  var fType = document.getElementById('chain-f').value;
+  var x = parseFloat(document.getElementById('chain-x').value);
+  if (isNaN(x)) return;
+
+  var gx = chainEval(gType, x);
+  var fgx = chainEval(fType, gx);
+
+  var svg = document.getElementById('chain-svg');
+  var s = '';
+  // Arrow
+  s += '<defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2471a3"/></marker></defs>';
+  // Input
+  s += '<text x="30" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="var(--text-primary)">' + x + '</text>';
+  // Arrow 1
+  s += '<line x1="55" y1="60" x2="115" y2="60" stroke="#2471a3" stroke-width="2" marker-end="url(#ah)"/>';
+  // Box g
+  s += '<rect x="120" y="35" width="110" height="50" rx="8" fill="#e8f4f8" stroke="#2471a3" stroke-width="2"/>';
+  s += '<text x="175" y="55" text-anchor="middle" font-family="Inter" font-size="11" fill="#555">g(x) = ' + chainName(gType) + '</text>';
+  s += '<text x="175" y="73" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#888">Mesin 1</text>';
+  // Arrow 2 with intermediate value
+  s += '<line x1="230" y1="60" x2="295" y2="60" stroke="#2471a3" stroke-width="2" marker-end="url(#ah)"/>';
+  s += '<text x="262" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#e67e22">' + gx + '</text>';
+  // Box f
+  s += '<rect x="300" y="35" width="110" height="50" rx="8" fill="#fdf2e9" stroke="#e67e22" stroke-width="2"/>';
+  s += '<text x="355" y="55" text-anchor="middle" font-family="Inter" font-size="11" fill="#555">f(x) = ' + chainName(fType) + '</text>';
+  s += '<text x="355" y="73" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#888">Mesin 2</text>';
+  // Arrow 3
+  s += '<line x1="410" y1="60" x2="470" y2="60" stroke="#e67e22" stroke-width="2" marker-end="url(#ah)"/>';
+  // Output
+  s += '<text x="490" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="18" font-weight="bold" fill="#27ae60">' + fgx + '</text>';
+
+  svg.innerHTML = s;
+
+  var res = 'Langkah 1: g(' + x + ') = ' + gx;
+  res += '\nLangkah 2: f(' + gx + ') = ' + fgx;
+  res += '\n\nJadi (f ∘ g)(' + x + ') = ' + fgx;
+  document.getElementById('chain-result').textContent = res;
+}
+
+// ═══════ Interactive 5: Inverse Function Explorer ═══════
+var invGridUnit = 28, invOX = 170, invOY = 170;
+
+function drawInvGrid(w, h) {
+  var s = '';
+  for (var x = invOX % invGridUnit; x <= w; x += invGridUnit) s += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="'+h+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  for (var y = invOY % invGridUnit; y <= h; y += invGridUnit) s += '<line x1="0" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  s += '<line x1="0" y1="'+invOY+'" x2="'+w+'" y2="'+invOY+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+invOX+'" y1="0" x2="'+invOX+'" y2="'+h+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  for (var i = -5; i <= 5; i++) {
+    if (i === 0) continue;
+    var px = invOX + i * invGridUnit, py = invOY - i * invGridUnit;
+    if (px > 5 && px < w-5) s += '<text x="'+px+'" y="'+(invOY+13)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">'+i+'</text>';
+    if (py > 5 && py < h-5) s += '<text x="'+(invOX-8)+'" y="'+(py+3)+'" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#888">'+i+'</text>';
+  }
+  return s;
+}
+
+var currentInv = 'lin';
+function showInverse(type) {
+  currentInv = type;
+  ['lin','cub','sqrt'].forEach(function(t) {
+    var btn = document.getElementById('inv-' + t);
+    btn.style.background = t === type ? 'var(--accent-blue)' : '';
+    btn.style.color = t === type ? 'white' : '';
+  });
+  drawInverse();
+}
+
+function drawInverse() {
+  var svg = document.getElementById('inverse-svg');
+  var s = drawInvGrid(340, 340);
+  // y = x line (dashed)
+  s += '<line x1="0" y1="340" x2="340" y2="0" stroke="#aaa" stroke-width="1" stroke-dasharray="5,4"/>';
+  s += '<text x="305" y="25" font-family="Inter" font-size="10" fill="#aaa">y = x</text>';
+
+  var fPts = [], invPts = [];
+  var info = '';
+
+  for (var xi = -6; xi <= 6; xi += 0.08) {
+    var yf, yi;
+    if (currentInv === 'lin') {
+      yf = 2 * xi + 1;
+      yi = (xi - 1) / 2;
+      info = 'f(x) = 2x + 1  (biru)\nf⁻¹(x) = (x − 1)/2  (oranye)\n\nPerhatikan: kedua grafik simetris terhadap garis y = x.';
+    } else if (currentInv === 'cub') {
+      yf = xi * xi * xi;
+      yi = Math.cbrt(xi);
+      info = 'f(x) = x³  (biru)\nf⁻¹(x) = ³√x  (oranye)\n\nFungsi kubik selalu injektif, jadi inversnya ada di seluruh domain.';
+    } else {
+      if (xi < 0) continue;
+      yf = xi * xi;
+      yi = Math.sqrt(xi);
+      info = 'f(x) = x²  untuk x ≥ 0  (biru)\nf⁻¹(x) = √x  (oranye)\n\nDomain dibatasi ke x ≥ 0 agar fungsi injektif dan inversnya ada.';
+    }
+    var fpx = invOX + xi * invGridUnit, fpy = invOY - yf * invGridUnit;
+    var ipx = invOX + xi * invGridUnit, ipy = invOY - yi * invGridUnit;
+    if (fpy > -20 && fpy < 360) fPts.push(fpx + ',' + fpy);
+    if (ipy > -20 && ipy < 360) invPts.push(ipx + ',' + ipy);
+  }
+
+  if (currentInv === 'cub') {
+    var neg = [], pos = [], ineg = [], ipos = [];
+    for (var xi = -6; xi <= -0.05; xi += 0.08) {
+      var yf = xi*xi*xi, yi = Math.cbrt(xi);
+      var fpx = invOX+xi*invGridUnit, fpy = invOY-yf*invGridUnit;
+      var ipx = invOX+xi*invGridUnit, ipy = invOY-yi*invGridUnit;
+      if (fpy > -20 && fpy < 360) neg.push(fpx+','+fpy);
+      if (ipy > -20 && ipy < 360) ineg.push(ipx+','+ipy);
+    }
+    for (var xi = 0.05; xi <= 6; xi += 0.08) {
+      var yf = xi*xi*xi, yi = Math.cbrt(xi);
+      var fpx = invOX+xi*invGridUnit, fpy = invOY-yf*invGridUnit;
+      var ipx = invOX+xi*invGridUnit, ipy = invOY-yi*invGridUnit;
+      if (fpy > -20 && fpy < 360) pos.push(fpx+','+fpy);
+      if (ipy > -20 && ipy < 360) ipos.push(ipx+','+ipy);
+    }
+    s += '<polyline points="'+neg.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    s += '<polyline points="'+pos.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    s += '<polyline points="'+ineg.join(' ')+'" fill="none" stroke="#e67e22" stroke-width="2.5"/>';
+    s += '<polyline points="'+ipos.join(' ')+'" fill="none" stroke="#e67e22" stroke-width="2.5"/>';
+  } else {
+    s += '<polyline points="'+fPts.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+    s += '<polyline points="'+invPts.join(' ')+'" fill="none" stroke="#e67e22" stroke-width="2.5"/>';
+  }
+
+  // Labels
+  s += '<text x="310" y="335" font-family="Inter" font-size="10" font-weight="600" fill="#2471a3">f</text>';
+  s += '<text x="310" y="320" font-family="Inter" font-size="10" font-weight="600" fill="#e67e22">f⁻¹</text>';
+
+  svg.innerHTML = s;
+  document.getElementById('inverse-result').textContent = info;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   drawCurrentGraph();
+  drawInverse();
+  runChain();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_9_Ketika_Aljabar_Bertemu_Geometri.html">Bab 9</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_11_Ketika_Segitiga_Menjelaskan_Gelombang.html">Bab 11</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 8 · Volume II</div>
@@ -541,6 +542,64 @@ window.MathJax = {
     <div class="answer-content" id="a8">Luas juring = $\frac{\theta}{2\pi} \times \pi r^2 = \frac{\theta \cdot \pi r^2}{2\pi} = \frac{1}{2}r^2\theta$. $\square$<br><br>Keindahan radian: rumus ini jauh lebih bersih daripada versi derajat ($\frac{\theta°}{360°} \times \pi r^2$), karena $2\pi$ habis dibagi.</div>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall (Koneksi Bab 3)</div>
+    <p>Di Bab 3, kita mempelajari bilangan irasional — bilangan yang tidak bisa ditulis sebagai pecahan $\frac{a}{b}$ dengan $a, b$ bulat. Jelaskan mengapa pendekatan $\pi \approx \frac{22}{7}$ bukan nilai $\pi$ yang <em>tepat</em>. Berikan satu argumen mengapa $\pi$ pasti irasional berdasarkan sifat desimalnya.</p>
+    <button class="hint-btn" onclick="toggleHint('h150')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a150')">Lihat Jawaban</button>
+    <div class="hint-content" id="h150">Ingat: bilangan rasional memiliki desimal yang <em>berakhir</em> atau <em>berulang</em>. Bagaimana dengan desimal $\pi$?</div>
+    <div class="answer-content" id="a150">$\frac{22}{7} = 3{,}142857142857...$ — desimalnya <strong>berulang</strong> (periodik), jadi $\frac{22}{7}$ adalah bilangan rasional. Sementara $\pi = 3{,}14159265358979...$ — desimalnya tidak pernah berakhir <em>dan</em> tidak pernah berulang. Ini adalah ciri bilangan irasional (Bab 3). Karena $\pi$ irasional, tidak ada pecahan yang bisa mewakilinya secara tepat. $\frac{22}{7}$ hanya pendekatan — benar sampai 2 desimal, tetapi mulai berbeda di desimal ketiga: $\frac{22}{7} \approx 3{,}1428...$ vs $\pi \approx 3{,}1415...$</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Application (Roda Gigi dan Putaran)</div>
+    <p>Sebuah roda gigi A berjari-jari 6 cm terhubung dengan roda gigi B berjari-jari 18 cm (gigi-gigi mereka saling terkait sehingga tepi keduanya bergerak dengan kecepatan yang sama). Jika roda gigi A berputar 15 kali, berapa kali roda gigi B berputar?</p>
+    <button class="hint-btn" onclick="toggleHint('h151')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a151')">Lihat Jawaban</button>
+    <div class="hint-content" id="h151">Kecepatan tepi sama: jarak yang ditempuh tepi A = jarak yang ditempuh tepi B. Jarak tepi = jumlah putaran $\times$ keliling. Gunakan $K = 2\pi r$.</div>
+    <div class="answer-content" id="a151">Keliling A = $2\pi(6) = 12\pi$ cm. Keliling B = $2\pi(18) = 36\pi$ cm.<br>Jarak tepi A = $15 \times 12\pi = 180\pi$ cm.<br>Karena tepi keduanya bergerak bersama: $180\pi = n_B \times 36\pi$.<br>$n_B = \frac{180\pi}{36\pi} = 5$ putaran.<br><br><strong>Rasio gigi</strong>: $\frac{r_A}{r_B} = \frac{6}{18} = \frac{1}{3}$, dan $\frac{n_B}{n_A} = \frac{5}{15} = \frac{1}{3}$. Rasio putaran berbanding terbalik dengan rasio jari-jari. Roda besar berputar lebih lambat — inilah prinsip di balik sepeda, jam, dan mesin!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Derivation (Luas Juring)</div>
+    <p>Turunkan rumus luas juring $L_j = \frac{\theta}{2\pi} \cdot \pi r^2$ (dengan $\theta$ dalam radian) dari prinsip dasar. Kemudian sederhanakan dan jelaskan mengapa hasilnya menjadi $\frac{1}{2}r^2\theta$. Gunakan analogi: "juring adalah <em>fraksi</em> dari lingkaran penuh."</p>
+    <button class="hint-btn" onclick="toggleHint('h152')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a152')">Lihat Jawaban</button>
+    <div class="hint-content" id="h152">Satu putaran penuh = $2\pi$ radian. Juring dengan sudut $\theta$ menempati $\frac{\theta}{2\pi}$ dari lingkaran penuh.</div>
+    <div class="answer-content" id="a152"><strong>Langkah 1 — Fraksi lingkaran:</strong> Sudut penuh = $2\pi$ rad. Juring dengan sudut $\theta$ rad menempati fraksi $\frac{\theta}{2\pi}$ dari lingkaran.<br><br><strong>Langkah 2 — Luas juring:</strong> Luas juring = fraksi $\times$ luas lingkaran:<br>$$L_j = \frac{\theta}{2\pi} \times \pi r^2$$<br><br><strong>Langkah 3 — Penyederhanaan:</strong><br>$$L_j = \frac{\theta \cdot \pi r^2}{2\pi} = \frac{\theta \cdot r^2}{2} = \frac{1}{2}r^2\theta$$<br>$\pi$ di atas dan bawah saling menghilangkan!<br><br><strong>Mengapa ini elegan:</strong> Dalam radian, luas juring $= \frac{1}{2}r^2\theta$ memiliki bentuk yang mirip dengan luas segitiga $= \frac{1}{2} \times \text{alas} \times \text{tinggi}$, di mana "alas" = busur = $r\theta$ dan "tinggi" = $r$. Ini bukan kebetulan — juring yang sangat tipis memang mendekati segitiga! $\square$</div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════ INTERACTIVE 5: Inscribed Angle Theorem ═══════════════════ -->
+
+  <h2>Sudut Keliling dalam Aksi</h2>
+
+  <p>
+    Kita sudah menyebutkan bahwa sudut keliling selalu setengah dari sudut pusat yang mengapit busur yang sama. Tapi apakah kamu <em>percaya</em>? Mari kita lihat sendiri.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Teorema Sudut Keliling — Selalu Setengah!</div>
+    <div class="interactive-desc">Geser titik P di sepanjang lingkaran (busur besar). Perhatikan: sudut keliling $\angle APB$ selalu tepat setengah dari sudut pusat $\angle AOB$, di mana pun P berada!</div>
+
+    <div class="slider-container">
+      <label>Posisi titik P: <strong id="inscribed-p-val">135</strong>°</label>
+      <input type="range" id="inscribed-p" min="10" max="350" value="135" oninput="updateInscribedAngle()">
+    </div>
+    <div class="slider-container">
+      <label>Sudut busur AB: <strong id="inscribed-ab-val">80</strong>°</label>
+      <input type="range" id="inscribed-ab" min="20" max="180" value="80" oninput="updateInscribedAngle()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="inscribed-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="inscribed-result" class="result-display" style="font-size: 0.92rem;"></div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -728,13 +787,154 @@ function updateRadian() {
     '\n(Busur merah = ' + rad.toFixed(2) + ' jari-jari)';
 }
 
+// ═══════ Interactive 5: Inscribed Angle Theorem ═══════
+function updateInscribedAngle() {
+  var pDeg = parseInt(document.getElementById('inscribed-p').value);
+  var abDeg = parseInt(document.getElementById('inscribed-ab').value);
+  document.getElementById('inscribed-p-val').textContent = pDeg;
+  document.getElementById('inscribed-ab-val').textContent = abDeg;
+
+  var svg = document.getElementById('inscribed-svg');
+  var cx = 160, cy = 160, R = 120;
+
+  // A and B placed symmetrically around the top
+  var halfAB = abDeg / 2;
+  var aAngle = (90 + halfAB) * Math.PI / 180; // angle from positive x-axis (going clockwise in SVG)
+  var bAngle = (90 - halfAB) * Math.PI / 180;
+
+  // P must be on the major arc (opposite side from center angle)
+  // Place P based on slider, but constrain to the major arc
+  var pAngle = (90 + halfAB + (pDeg / 360) * (360 - abDeg)) * Math.PI / 180;
+
+  var ax = cx + R * Math.cos(-aAngle), ay = cy + R * Math.sin(-aAngle);
+  var bx = cx + R * Math.cos(-bAngle), by = cy + R * Math.sin(-bAngle);
+  var px = cx + R * Math.cos(-pAngle), py = cy + R * Math.sin(-pAngle);
+
+  // Central angle = abDeg
+  var centralAngle = abDeg;
+  // Inscribed angle = half of central angle
+  var inscribedAngle = centralAngle / 2;
+
+  // Calculate actual inscribed angle using vectors PA and PB
+  var vPAx = ax - px, vPAy = ay - py;
+  var vPBx = bx - px, vPBy = by - py;
+  var dot = vPAx * vPBx + vPAy * vPBy;
+  var magPA = Math.sqrt(vPAx * vPAx + vPAy * vPAy);
+  var magPB = Math.sqrt(vPBx * vPBx + vPBy * vPBy);
+  var cosAngle = dot / (magPA * magPB);
+  cosAngle = Math.max(-1, Math.min(1, cosAngle));
+  var measuredAngle = Math.acos(cosAngle) * 180 / Math.PI;
+
+  var s = '';
+  // Circle
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="none" stroke="#aaa" stroke-width="1.5"/>';
+
+  // Minor arc (AB) highlight
+  var largeArc = abDeg > 180 ? 1 : 0;
+  s += '<path d="M'+bx+','+by+' A'+R+','+R+' 0 '+largeArc+',0 '+ax+','+ay+'" fill="none" stroke="#e67e22" stroke-width="3"/>';
+
+  // Central angle lines O->A and O->B
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+ax+'" y2="'+ay+'" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="6,3"/>';
+  s += '<line x1="'+cx+'" y1="'+cy+'" x2="'+bx+'" y2="'+by+'" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="6,3"/>';
+
+  // Central angle arc
+  var caR = 28;
+  var caX1 = cx + caR * Math.cos(-bAngle), caY1 = cy + caR * Math.sin(-bAngle);
+  var caX2 = cx + caR * Math.cos(-aAngle), caY2 = cy + caR * Math.sin(-aAngle);
+  var caLarge = abDeg > 180 ? 1 : 0;
+  s += '<path d="M'+caX1+','+caY1+' A'+caR+','+caR+' 0 '+caLarge+',0 '+caX2+','+caY2+'" fill="none" stroke="#c0392b" stroke-width="2"/>';
+  // Central angle label
+  var caMid = (aAngle + bAngle) / 2;
+  var caLabelR = caR + 14;
+  s += '<text x="'+(cx + caLabelR * Math.cos(-caMid))+'" y="'+(cy + caLabelR * Math.sin(-caMid) + 4)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c0392b" font-weight="bold">'+centralAngle+'°</text>';
+
+  // Inscribed angle lines P->A and P->B
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+ax+'" y2="'+ay+'" stroke="#2471a3" stroke-width="2"/>';
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+bx+'" y2="'+by+'" stroke="#2471a3" stroke-width="2"/>';
+
+  // Inscribed angle arc at P
+  var iaR = 24;
+  var angPA = Math.atan2(-(ay - py), ax - px);
+  var angPB = Math.atan2(-(by - py), bx - px);
+  var iaX1 = px + iaR * Math.cos(angPA), iaY1 = py - iaR * Math.sin(angPA);
+  var iaX2 = px + iaR * Math.cos(angPB), iaY2 = py - iaR * Math.sin(angPB);
+  // Determine sweep direction
+  var cross = Math.cos(angPA) * Math.sin(angPB) - Math.sin(angPA) * Math.cos(angPB);
+  var sweep = cross > 0 ? 0 : 1;
+  s += '<path d="M'+iaX1+','+iaY1+' A'+iaR+','+iaR+' 0 0,'+sweep+' '+iaX2+','+iaY2+'" fill="none" stroke="#2471a3" stroke-width="2"/>';
+  // Inscribed angle label
+  var iaMid = (angPA + angPB) / 2;
+  // Fix wrap-around
+  if (Math.abs(angPA - angPB) > Math.PI) {
+    iaMid += Math.PI;
+  }
+  var iaLabelR = iaR + 14;
+  s += '<text x="'+(px + iaLabelR * Math.cos(iaMid))+'" y="'+(py - iaLabelR * Math.sin(iaMid) + 4)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#2471a3" font-weight="bold">'+measuredAngle.toFixed(1)+'°</text>';
+
+  // Points
+  s += '<circle cx="'+ax+'" cy="'+ay+'" r="5" fill="#e67e22"/>';
+  s += '<text x="'+(ax + 10 * Math.cos(-aAngle))+'" y="'+(ay + 10 * Math.sin(-aAngle) - 4)+'" text-anchor="middle" font-family="Inter" font-size="13" fill="#e67e22" font-weight="600">A</text>';
+  s += '<circle cx="'+bx+'" cy="'+by+'" r="5" fill="#e67e22"/>';
+  s += '<text x="'+(bx + 10 * Math.cos(-bAngle))+'" y="'+(by + 10 * Math.sin(-bAngle) - 4)+'" text-anchor="middle" font-family="Inter" font-size="13" fill="#e67e22" font-weight="600">B</text>';
+  s += '<circle cx="'+px+'" cy="'+py+'" r="6" fill="#2471a3" stroke="#fff" stroke-width="2"/>';
+  s += '<text x="'+(px + 14 * Math.cos(-pAngle))+'" y="'+(py + 14 * Math.sin(-pAngle) + 4)+'" text-anchor="middle" font-family="Inter" font-size="13" fill="#2471a3" font-weight="600">P</text>';
+  s += '<circle cx="'+cx+'" cy="'+cy+'" r="4" fill="#c0392b"/>';
+  s += '<text x="'+(cx)+'" y="'+(cy + 16)+'" text-anchor="middle" font-family="Inter" font-size="12" fill="#c0392b" font-weight="600">O</text>';
+
+  svg.innerHTML = s;
+
+  document.getElementById('inscribed-result').textContent =
+    'Sudut pusat ∠AOB = ' + centralAngle + '°' +
+    '\nSudut keliling ∠APB = ' + measuredAngle.toFixed(1) + '°' +
+    '\nRasio: ∠APB / ∠AOB = ' + (measuredAngle / centralAngle).toFixed(4) +
+    '\nSelalu ½! Geser P ke mana pun — hasilnya tetap sama.';
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   updatePiMeasure();
   updatePizzaProof();
   updateSector();
   updateRadian();
+  updateInscribedAngle();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_7_Segitiga_dan_Rahasianya.html">Bab 7</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_9_Ketika_Aljabar_Bertemu_Geometri.html">Bab 9</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

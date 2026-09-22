@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 16 · Volume IV</div>
@@ -39,6 +40,14 @@ window.MathJax = {
   <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
     "Mengapa turunan dan integral<br>adalah operasi yang berlawanan?"
   </p>
+
+  <div class="recall-box" data-bab="14">
+    <strong>Ingat Bab 14 — Turunan.</strong> Di Bab 14 kamu belajar bahwa turunan $f'(x)$ mengukur laju perubahan sesaat: seberapa cepat $f(x)$ berubah di titik $x$. FTC menyatakan bahwa proses ini bisa dibalik: jika kamu <em>mengakumulasi</em> $f$ lewat integral, lalu mengambil turunannya, kamu kembali ke $f$ semula. Dengan kata lain, <strong>turunan adalah kebalikan dari integrasi</strong> — seperti penjumlahan dan pengurangan, atau perkalian dan pembagian. Hubungan ini bukan kebetulan: ia adalah inti dari seluruh kalkulus.
+  </div>
+
+  <div class="recall-box" data-bab="13">
+    <strong>Ingat Bab 13 — Limit.</strong> FTC tidak bisa berdiri tanpa konsep limit. Ingat bahwa di Bab 13 kita mendefinisikan limit sebagai "nilai yang didekati tanpa pernah sampai." Dalam pembuktian FTC Bagian 1, kita menghitung $\frac{A(x+h)-A(x)}{h}$ lalu mengambil limit saat $h \to 0$. Tanpa limit, kita hanya punya "kira-kira" — dengan limit, kita mendapat kesamaan eksak $A'(x) = f(x)$. Limit juga mendasari definisi integral Riemann itu sendiri: $\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{i=1}^n f(x_i^*)\,\Delta x$.
+  </div>
 
   <div class="divider divider-center"></div>
 
@@ -371,6 +380,124 @@ window.MathJax = {
     <div class="answer-content" id="a8">Geometris: lebar daerah = 0, jadi luasnya 0. FTC: $F(a) - F(a) = 0$. Keduanya konsisten.</div>
   </div>
 
+  <!-- ═══════════════════════ INTERACTIVE 4: Area Accumulator ═══════════════════════ -->
+
+  <h2>Melihat Akumulasi Secara Detail</h2>
+
+  <p>
+    FTC Bagian 1 mengatakan bahwa $F(x) = \int_a^x f(t)\,dt$ adalah fungsi yang turunannya $F'(x) = f(x)$. Interaktif berikut memungkinkanmu memilih berbagai fungsi $f$ dan melihat bagaimana grafik $F(x)$ terbentuk secara bertahap saat $x$ bergerak ke kanan — perhatikan bahwa kemiringan $F$ di setiap titik selalu sama dengan nilai $f$ di titik itu.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Akumulasi Luas: $F(x) = \int_0^x f(t)\,dt$ untuk Berbagai $f$</div>
+    <div class="interactive-desc">Pilih fungsi, geser $x$, dan amati grafik $F(x)$ (biru) terbentuk. Perhatikan: kemiringan $F$ di titik $x$ selalu = $f(x)$.</div>
+
+    <div style="margin-bottom: 0.8rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setAccum('linear')" id="accum-linear" style="background: var(--accent-blue); color: white;">f(t) = t</button>
+        <button class="btn" onclick="setAccum('quad')" id="accum-quad">f(t) = t²</button>
+        <button class="btn" onclick="setAccum('sine')" id="accum-sine">f(t) = sin(t)</button>
+        <button class="btn" onclick="setAccum('const')" id="accum-const">f(t) = 3</button>
+      </div>
+    </div>
+
+    <div class="slider-container">
+      <label>x = <strong id="accum-x-val">2.0</strong></label>
+      <input type="range" id="accum-x" min="0" max="5" value="2" step="0.1" oninput="updateAccum()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="accum-svg" width="400" height="280" viewBox="0 0 400 280"></svg>
+    </div>
+
+    <div id="accum-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INTERACTIVE 5: FTC Part 2 Step-by-Step ═══════════════════════ -->
+
+  <h2>Menghitung Integral Tentu: Langkah demi Langkah</h2>
+
+  <p>
+    FTC Bagian 2 memberi kita resep praktis: untuk menghitung $\int_a^b f(x)\,dx$, cukup temukan antiturunan $F$, lalu hitung $F(b) - F(a)$. Interaktif berikut menunjukkan seluruh proses ini secara visual — dari fungsi, ke antiturunan, ke evaluasi di batas.
+  </p>
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">FTC Bagian 2 — Langkah demi Langkah</div>
+    <div class="interactive-desc">Pilih fungsi dan batas. Lihat: (1) luas di bawah kurva, (2) grafik antiturunan $F(x)$, dan (3) perhitungan $F(b) - F(a)$.</div>
+
+    <div style="margin-bottom: 0.8rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setStep('3x2')" id="step-3x2" style="background: var(--accent-blue); color: white;">f = 3x²</button>
+        <button class="btn" onclick="setStep('cosx')" id="step-cosx">f = cos(x)</button>
+        <button class="btn" onclick="setStep('ex')" id="step-ex">f = eˣ</button>
+      </div>
+    </div>
+
+    <div class="slider-container">
+      <label>a = <strong id="step-a-val">0</strong></label>
+      <input type="range" id="step-a" min="0" max="3" value="0" step="0.5" oninput="updateStep()">
+    </div>
+    <div class="slider-container">
+      <label>b = <strong id="step-b-val">2</strong></label>
+      <input type="range" id="step-b" min="0.5" max="4" value="2" step="0.5" oninput="updateStep()">
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1rem 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 0.8rem; margin-bottom: 4px; color: var(--accent-blue); font-weight: 600;">f(x) dan luas</div>
+        <svg id="step-svg1" width="240" height="200" viewBox="0 0 240 200"></svg>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 0.8rem; margin-bottom: 4px; color: #27ae60; font-weight: 600;">Antiturunan F(x)</div>
+        <svg id="step-svg2" width="240" height="200" viewBox="0 0 240 200"></svg>
+      </div>
+    </div>
+
+    <div id="step-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall Trigonometri (Bab 11)</div>
+    <p>Gunakan FTC untuk menghitung $\displaystyle\int_0^{\pi/3} \sec^2 x\,dx$. Ingat dari Bab 11 bahwa $\frac{d}{dx}[\tan x] = \sec^2 x$.</p>
+    <button class="hint-btn" onclick="toggleHint('h30')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a30')">Lihat Jawaban</button>
+    <div class="hint-content" id="h30">Karena $(\tan x)' = \sec^2 x$, maka antiturunan dari $\sec^2 x$ adalah $\tan x$. Gunakan FTC Bagian 2: evaluasi $\tan x$ di kedua batas.</div>
+    <div class="answer-content" id="a30">$\int_0^{\pi/3} \sec^2 x\,dx = [\tan x]_0^{\pi/3} = \tan(\pi/3) - \tan(0) = \sqrt{3} - 0 = \sqrt{3}$.<br>Dari Bab 11: $\tan(60°) = \sqrt{3}$ karena di segitiga siku-siku 30-60-90, sisi di depan 60° berbanding sisi di depan 30° = $\sqrt{3} : 1$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Makna Konseptual FTC</div>
+    <p>Jelaskan dengan kata-katamu sendiri: mengapa menemukan antiturunan memungkinkan kita menghitung luas di bawah kurva <em>tanpa</em> menjumlahkan tak hingga banyak persegi panjang? Apa peran masing-masing bagian FTC dalam penjelasanmu?</p>
+    <button class="hint-btn" onclick="toggleHint('h31')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a31')">Lihat Jawaban</button>
+    <div class="hint-content" id="h31">Pikirkan FTC Bagian 1: ia mengatakan fungsi akumulasi $A(x) = \int_a^x f(t)\,dt$ memenuhi $A'(x) = f(x)$. Apa artinya ini bagi $A$?</div>
+    <div class="answer-content" id="a31">FTC Bagian 1 menjamin bahwa fungsi akumulasi luas $A(x) = \int_a^x f(t)\,dt$ adalah <em>suatu</em> antiturunan dari $f$. Karena semua antiturunan berbeda hanya oleh konstanta, jika $F$ adalah antiturunan mana pun dari $f$, maka $A(x) = F(x) + C$. FTC Bagian 2 menghitung $A(b) - A(a) = [F(b)+C] - [F(a)+C] = F(b) - F(a)$. Jadi, alih-alih limit jumlah Riemann yang rumit, cukup evaluasi $F$ di dua titik. Itulah kekuatan "jembatan besar" ini: menghubungkan proses lokal (turunan) dengan hasil global (luas total).</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Aplikasi: Jarak dari Kecepatan</div>
+    <p>Sebuah drone terbang dengan kecepatan $v(t) = 4\sin(t)$ m/s selama $t \in [0, \pi]$ detik. Gunakan FTC untuk menghitung total jarak yang ditempuh drone.</p>
+    <button class="hint-btn" onclick="toggleHint('h32')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a32')">Lihat Jawaban</button>
+    <div class="hint-content" id="h32">Karena $\sin(t) \geq 0$ untuk $t \in [0, \pi]$, kecepatan selalu non-negatif. Jadi jarak = $\int_0^{\pi} 4\sin(t)\,dt$. Antiturunan $\sin(t)$ adalah $-\cos(t)$.</div>
+    <div class="answer-content" id="a32">$\text{Jarak} = \int_0^{\pi} 4\sin(t)\,dt = 4[-\cos(t)]_0^{\pi} = 4[-\cos(\pi) + \cos(0)] = 4[-(-1) + 1] = 4 \times 2 = 8$ m.<br>Interpretasi: drone bergerak maju, mempercepat lalu memperlambat, dan menempuh total 8 meter.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Analisis Kesalahan</div>
+    <p>Seorang siswa menulis: "$\displaystyle\frac{d}{dx}\int_0^{x^3} e^t\,dt = e^{x^3}$." Identifikasi kesalahannya dan berikan jawaban yang benar.</p>
+    <button class="hint-btn" onclick="toggleHint('h33')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a33')">Lihat Jawaban</button>
+    <div class="hint-content" id="h33">Batas atas integral bukan $x$ melainkan $x^3$. Apa yang terjadi jika batas atas adalah fungsi $g(x)$? Ingat aturan rantai dari Bab 14.</div>
+    <div class="answer-content" id="a33">Kesalahan: siswa lupa menerapkan <strong>aturan rantai</strong>. Ketika batas atas adalah $g(x) = x^3$ (bukan sekadar $x$), rumus FTC menjadi:<br>$$\frac{d}{dx}\int_0^{g(x)} f(t)\,dt = f(g(x)) \cdot g'(x)$$<br>Jadi jawaban yang benar: $e^{x^3} \cdot 3x^2 = 3x^2 e^{x^3}$.<br>Faktor $3x^2$ muncul dari turunan batas atas $\frac{d}{dx}[x^3] = 3x^2$.</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog: Melampaui Kalkulus</h2>
@@ -511,11 +638,198 @@ function updateVel() {
     'Jarak = ∫₀^'+t+' '+v+' dt = '+v+' × '+t+' = '+(v*t)+' m\nLuas persegi panjang = jarak tempuh';
 }
 
+// ═══════ Interactive 4: Area Accumulator ═══════
+var accumType = 'linear';
+function setAccum(t) {
+  accumType = t;
+  ['linear','quad','sine','const'].forEach(function(k) {
+    var b = document.getElementById('accum-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  updateAccum();
+}
+function accumFuncs(type) {
+  if (type === 'linear') return { f: function(t){return t;}, F: function(t){return t*t/2;}, fname: 't', Fname: 't²/2' };
+  if (type === 'quad') return { f: function(t){return t*t;}, F: function(t){return t*t*t/3;}, fname: 't²', Fname: 't³/3' };
+  if (type === 'sine') return { f: function(t){return Math.sin(t);}, F: function(t){return 1-Math.cos(t);}, fname: 'sin(t)', Fname: '1−cos(t)' };
+  return { f: function(t){return 3;}, F: function(t){return 3*t;}, fname: '3', Fname: '3t' };
+}
+function updateAccum() {
+  var xVal = parseFloat(document.getElementById('accum-x').value);
+  document.getElementById('accum-x-val').textContent = xVal.toFixed(1);
+  var fns = accumFuncs(accumType);
+  var svg = document.getElementById('accum-svg');
+  var ox = 50, oy = 230, xSc = 60, ySc = 20;
+  if (accumType === 'sine') ySc = 60;
+  if (accumType === 'const') ySc = 12;
+  var s = '';
+  // axes
+  s += '<line x1="'+ox+'" y1="15" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="380" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  // shaded area under f
+  var areaPts = ox+','+oy+' ';
+  for (var t = 0; t <= xVal; t += 0.04) {
+    var py = oy - fns.f(t)*ySc;
+    if (py > 10 && py < oy+5) areaPts += (ox+t*xSc)+','+py+' ';
+  }
+  areaPts += (ox+xVal*xSc)+','+oy;
+  s += '<polygon points="'+areaPts+'" fill="rgba(36,113,163,0.15)"/>';
+  // f(t) curve (red)
+  var pts = [];
+  for (var t = 0; t <= 5.2; t += 0.04) {
+    var py = oy - fns.f(t)*ySc;
+    if (py > 5 && py < oy+5) pts.push((ox+t*xSc)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+  // F(x) curve (blue)
+  var pts2 = [];
+  for (var t = 0; t <= 5.2; t += 0.04) {
+    var py = oy - fns.F(t)*ySc;
+    if (py > 5 && py < oy+5) pts2.push((ox+t*xSc)+','+py);
+  }
+  s += '<polyline points="'+pts2.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  // marker on F
+  var Fval = fns.F(xVal);
+  var fval = fns.f(xVal);
+  var markerY = oy - Fval*ySc;
+  if (markerY > 5 && markerY < oy+5) {
+    s += '<circle cx="'+(ox+xVal*xSc)+'" cy="'+markerY+'" r="5" fill="#2471a3"/>';
+  }
+  // marker on f
+  var markerYf = oy - fval*ySc;
+  if (markerYf > 5 && markerYf < oy+5) {
+    s += '<circle cx="'+(ox+xVal*xSc)+'" cy="'+markerYf+'" r="4" fill="#c0392b"/>';
+  }
+  // labels
+  s += '<text x="350" y="25" font-family="Inter" font-size="10" fill="#c0392b">f(t) = '+fns.fname+'</text>';
+  s += '<text x="350" y="42" font-family="Inter" font-size="10" fill="#2471a3">F(x) = '+fns.Fname+'</text>';
+  svg.innerHTML = s;
+  document.getElementById('accum-result').textContent =
+    'F('+xVal.toFixed(1)+') = '+Fval.toFixed(4)+
+    '\nf('+xVal.toFixed(1)+') = '+fval.toFixed(4)+' = kemiringan F di x = '+xVal.toFixed(1)+
+    '\nF\'(x) = f(x)  (FTC Bagian 1)';
+}
+
+// ═══════ Interactive 5: FTC Part 2 Step by Step ═══════
+var stepType = '3x2';
+function setStep(t) {
+  stepType = t;
+  ['3x2','cosx','ex'].forEach(function(k) {
+    var b = document.getElementById('step-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  updateStep();
+}
+function stepFuncs(type) {
+  if (type === '3x2') return { f: function(x){return 3*x*x;}, F: function(x){return x*x*x;}, fname: '3x²', Fname: 'x³' };
+  if (type === 'cosx') return { f: function(x){return Math.cos(x);}, F: function(x){return Math.sin(x);}, fname: 'cos(x)', Fname: 'sin(x)' };
+  return { f: function(x){return Math.exp(x);}, F: function(x){return Math.exp(x);}, fname: 'eˣ', Fname: 'eˣ' };
+}
+function drawStepSVG(svgId, func, color, a, b, shade, maxY) {
+  var svg = document.getElementById(svgId);
+  var ox = 35, oy = 165, xSc = 42, ySc = maxY > 10 ? 140/maxY : 14;
+  var s = '';
+  s += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  s += '<line x1="'+ox+'" y1="'+oy+'" x2="225" y2="'+oy+'" stroke="currentColor" stroke-width="1"/>';
+  // shading
+  if (shade) {
+    var areaPts = (ox+a*xSc)+','+oy+' ';
+    for (var x = a; x <= b; x += 0.03) {
+      var py = oy - func(x)*ySc;
+      if (py > 5 && py < oy+5) areaPts += (ox+x*xSc)+','+py+' ';
+    }
+    areaPts += (ox+b*xSc)+','+oy;
+    s += '<polygon points="'+areaPts+'" fill="rgba(36,113,163,0.18)"/>';
+  }
+  // curve
+  var pts = [];
+  for (var x = -0.2; x <= 4.5; x += 0.03) {
+    var py = oy - func(x)*ySc;
+    if (py > 3 && py < oy+5) pts.push((ox+x*xSc)+','+py);
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5"/>';
+  // markers at a and b
+  var ya = oy - func(a)*ySc;
+  var yb = oy - func(b)*ySc;
+  if (ya > 3 && ya < oy+5) {
+    s += '<circle cx="'+(ox+a*xSc)+'" cy="'+ya+'" r="4" fill="'+color+'"/>';
+    s += '<line x1="'+(ox+a*xSc)+'" y1="'+ya+'" x2="'+(ox+a*xSc)+'" y2="'+oy+'" stroke="'+color+'" stroke-width="1" stroke-dasharray="3,3"/>';
+  }
+  if (yb > 3 && yb < oy+5) {
+    s += '<circle cx="'+(ox+b*xSc)+'" cy="'+yb+'" r="4" fill="'+color+'"/>';
+    s += '<line x1="'+(ox+b*xSc)+'" y1="'+yb+'" x2="'+(ox+b*xSc)+'" y2="'+oy+'" stroke="'+color+'" stroke-width="1" stroke-dasharray="3,3"/>';
+  }
+  svg.innerHTML = s;
+}
+function updateStep() {
+  var a = parseFloat(document.getElementById('step-a').value);
+  var b = parseFloat(document.getElementById('step-b').value);
+  document.getElementById('step-a-val').textContent = a;
+  document.getElementById('step-b-val').textContent = b;
+  if (b <= a) { document.getElementById('step-result').textContent = 'b harus > a'; return; }
+  var fns = stepFuncs(stepType);
+  var maxF = 0, maxAF = 0;
+  for (var x = 0; x <= 4.5; x += 0.1) {
+    var v = Math.abs(fns.f(x)); if (v > maxF) maxF = v;
+    var w = Math.abs(fns.F(x)); if (w > maxAF) maxAF = w;
+  }
+  drawStepSVG('step-svg1', fns.f, '#c0392b', a, b, true, maxF*1.15);
+  drawStepSVG('step-svg2', fns.F, '#27ae60', a, b, false, maxAF*1.15);
+  var Fa = fns.F(a), Fb = fns.F(b);
+  var val = Fb - Fa;
+  document.getElementById('step-result').textContent =
+    'Langkah 1: Antiturunan f(x) = '+fns.fname+' adalah F(x) = '+fns.Fname+
+    '\nLangkah 2: F('+b+') = '+Fb.toFixed(4)+', F('+a+') = '+Fa.toFixed(4)+
+    '\nLangkah 3: F('+b+') - F('+a+') = '+Fb.toFixed(4)+' - '+Fa.toFixed(4)+' = '+val.toFixed(4)+
+    '\n\nJadi: integral '+fns.fname+' dari '+a+' ke '+b+' = '+val.toFixed(4);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   updateFTC1();
   updateFTC2();
   updateVel();
+  updateAccum();
+  updateStep();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_15_Mengumpulkan_Serpihan_Kecil.html">Bab 15</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_17_Arah_dan_Besaran.html">Bab 17</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

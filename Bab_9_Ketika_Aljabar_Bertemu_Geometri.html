@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 9 · Volume II</div>
@@ -542,6 +543,98 @@ window.MathJax = {
     <div class="answer-content" id="a8">$\sqrt{x^2 + (\frac{3}{4}x)^2} = 10$. $x^2 + \frac{9}{16}x^2 = 100$. $\frac{16x^2 + 9x^2}{16} = 100$. $\frac{25x^2}{16} = 100$. $x^2 = 64$, $x = 8$ (kuadran I).<br>$y = \frac{3}{4}(8) = 6$. Jadi $P = (8, 6)$. Cek: $\sqrt{64 + 36} = \sqrt{100} = 10$ ✓. Tripel $(6, 8, 10)$!</div>
   </div>
 
+  <!-- ═══════════════ INTERACTIVE 5: Dua Garis ═══════════════ -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Dua Garis — Bagaimana $m$ dan $c$ Mengubah Segalanya</div>
+    <div class="interactive-desc">Atur gradien dan intercept untuk dua garis sekaligus. Amati: kapan mereka sejajar? Berpotongan? Tegak lurus?</div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 400px; margin: 0 auto;">
+      <div>
+        <div style="font-weight: 600; color: #2471a3; margin-bottom: 0.3rem; font-size: 0.9rem;">Garis 1 (biru)</div>
+        <div class="slider-container">
+          <label>$m_1$: <strong id="tl-m1-val">1</strong></label>
+          <input type="range" id="tl-m1" min="-5" max="5" value="1" step="0.5" oninput="updateTwoLines()">
+        </div>
+        <div class="slider-container">
+          <label>$c_1$: <strong id="tl-c1-val">0</strong></label>
+          <input type="range" id="tl-c1" min="-6" max="6" value="0" step="0.5" oninput="updateTwoLines()">
+        </div>
+      </div>
+      <div>
+        <div style="font-weight: 600; color: #c0392b; margin-bottom: 0.3rem; font-size: 0.9rem;">Garis 2 (merah)</div>
+        <div class="slider-container">
+          <label>$m_2$: <strong id="tl-m2-val">-1</strong></label>
+          <input type="range" id="tl-m2" min="-5" max="5" value="-1" step="0.5" oninput="updateTwoLines()">
+        </div>
+        <div class="slider-container">
+          <label>$c_2$: <strong id="tl-c2-val">2</strong></label>
+          <input type="range" id="tl-c2" min="-6" max="6" value="2" step="0.5" oninput="updateTwoLines()">
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="twolines-svg" width="320" height="320" viewBox="0 0 320 320"></svg>
+    </div>
+
+    <div id="twolines-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════ LATIHAN TAMBAHAN ═══════════════ -->
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Recall (Bab 7: Pythagoras)</div>
+    <p>Dua titik $P = (x_1, y_1)$ dan $Q = (x_2, y_2)$ dihubungkan oleh segmen garis. Dengan menarik garis horizontal dari $P$ dan garis vertikal dari $Q$, terbentuk segitiga siku-siku. Jelaskan mengapa panjang kedua kaki segitiga itu adalah $|x_2 - x_1|$ dan $|y_2 - y_1|$, lalu gunakan Teorema Pythagoras dari Bab 7 untuk menurunkan rumus jarak $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h160')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a160')">Lihat Jawaban</button>
+    <div class="hint-content" id="h160">Titik pertemuan garis horizontal dari $P$ dan garis vertikal dari $Q$ adalah titik $R = (x_2, y_1)$. Kaki horizontal $PR$ dan kaki vertikal $QR$ membentuk siku-siku di $R$.</div>
+    <div class="answer-content" id="a160">
+      Titik bantu $R = (x_2, y_1)$ membentuk segitiga siku-siku $PQR$ dengan siku-siku di $R$.<br><br>
+      <strong>Kaki horizontal:</strong> $PR$ terletak pada garis $y = y_1$ (konstan), dari $x_1$ ke $x_2$, panjangnya $|x_2 - x_1|$.<br>
+      <strong>Kaki vertikal:</strong> $QR$ terletak pada garis $x = x_2$ (konstan), dari $y_1$ ke $y_2$, panjangnya $|y_2 - y_1|$.<br><br>
+      <strong>Pythagoras</strong> (Bab 7): hipotenusa² = kaki² + kaki²<br>
+      $$d^2 = |x_2 - x_1|^2 + |y_2 - y_1|^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2$$
+      (karena mengkuadratkan menghilangkan tanda mutlak).<br>
+      Maka $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. Rumus jarak <em>adalah</em> Pythagoras di bidang koordinat.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Application (Bab 5: Sistem Persamaan)</div>
+    <p>Dua garis memiliki persamaan $y = 2x + 1$ dan $y = -x + 7$. Tentukan titik perpotongannya. <em>(Petunjuk: di titik potong, kedua persamaan memberikan nilai $y$ yang sama untuk $x$ yang sama — ini adalah sistem persamaan linear dari Bab 5!)</em></p>
+    <button class="hint-btn" onclick="toggleHint('h161')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a161')">Lihat Jawaban</button>
+    <div class="hint-content" id="h161">Di titik potong, $y$ dari kedua persamaan sama: $2x + 1 = -x + 7$. Selesaikan untuk $x$, lalu substitusi ke salah satu persamaan.</div>
+    <div class="answer-content" id="a161">
+      Samakan kedua persamaan (metode substitusi dari Bab 5):<br>
+      $$2x + 1 = -x + 7$$
+      $$3x = 6$$
+      $$x = 2$$
+      Substitusi ke persamaan pertama: $y = 2(2) + 1 = 5$.<br><br>
+      Titik potong: $(2, 5)$.<br><br>
+      <strong>Verifikasi:</strong> ke persamaan kedua: $y = -(2) + 7 = 5$ ✓.<br><br>
+      <em>Koneksi:</em> Mencari titik potong dua garis = menyelesaikan sistem persamaan linear. Geometri analitik mengubah masalah geometri (di mana dua garis bertemu?) menjadi masalah aljabar (selesaikan sistem persamaan) — persis tema bab ini.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Conceptual</div>
+    <p>Perhatikan garis vertikal yang melewati titik $(3, 0)$. (a) Tuliskan persamaan garis ini. (b) Apakah persamaan ini bisa ditulis dalam bentuk $y = mx + c$? Mengapa? (c) Jelaskan mengapa gradien garis vertikal <em>tidak terdefinisi</em> — gunakan definisi $m = \frac{\Delta y}{\Delta x}$.</p>
+    <button class="hint-btn" onclick="toggleHint('h162')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a162')">Lihat Jawaban</button>
+    <div class="hint-content" id="h162">Semua titik pada garis vertikal yang melewati $(3, 0)$ memiliki sifat yang sama: koordinat $x$-nya selalu berapa? Untuk gradien, ambil dua titik pada garis itu dan hitung $\frac{\Delta y}{\Delta x}$.</div>
+    <div class="answer-content" id="a162">
+      <strong>(a)</strong> Semua titik pada garis ini memiliki $x = 3$, tidak peduli berapa $y$-nya. Contoh: $(3, -2)$, $(3, 0)$, $(3, 5)$, $(3, 100)$. Jadi persamaannya: $x = 3$.<br><br>
+      <strong>(b)</strong> Tidak bisa. Bentuk $y = mx + c$ mensyaratkan bahwa untuk setiap $x$, ada <em>tepat satu</em> $y$. Tapi pada garis $x = 3$, satu nilai $x$ (yaitu 3) memiliki <em>tak berhingga banyak</em> nilai $y$. Garis vertikal bukan fungsi dari $x$.<br><br>
+      <strong>(c)</strong> Ambil dua titik pada garis, misalnya $(3, 1)$ dan $(3, 4)$:
+      $$m = \frac{4 - 1}{3 - 3} = \frac{3}{0}$$
+      Pembagian dengan nol tidak terdefinisi! Secara intuitif: garis vertikal "naik tak hingga" tanpa bergerak horizontal sama sekali — kemiringannya tidak bisa diukur dengan bilangan. Inilah satu-satunya jenis garis lurus yang tidak memiliki gradien.
+    </div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -749,13 +842,111 @@ function updateParabola() {
   document.getElementById('parabola-result').textContent = info;
 }
 
+// ═══════ Interactive 5: Two Lines ═══════
+function updateTwoLines() {
+  var m1 = parseFloat(document.getElementById('tl-m1').value);
+  var c1 = parseFloat(document.getElementById('tl-c1').value);
+  var m2 = parseFloat(document.getElementById('tl-m2').value);
+  var c2 = parseFloat(document.getElementById('tl-c2').value);
+  document.getElementById('tl-m1-val').textContent = m1;
+  document.getElementById('tl-c1-val').textContent = c1;
+  document.getElementById('tl-m2-val').textContent = m2;
+  document.getElementById('tl-c2-val').textContent = c2;
+
+  var svg = document.getElementById('twolines-svg');
+  var s = drawGrid(svg, 320, 320);
+
+  // draw line 1 (blue)
+  var lx1 = -8, ly1 = m1 * lx1 + c1;
+  var lx2 = 8, ly2 = m1 * lx2 + c1;
+  s += '<line x1="'+(gridOX+lx1*gridUnit)+'" y1="'+(gridOY-ly1*gridUnit)+'" x2="'+(gridOX+lx2*gridUnit)+'" y2="'+(gridOY-ly2*gridUnit)+'" stroke="#2471a3" stroke-width="2.5"/>';
+
+  // draw line 2 (red)
+  var rx1 = -8, ry1 = m2 * rx1 + c2;
+  var rx2 = 8, ry2 = m2 * rx2 + c2;
+  s += '<line x1="'+(gridOX+rx1*gridUnit)+'" y1="'+(gridOY-ry1*gridUnit)+'" x2="'+(gridOX+rx2*gridUnit)+'" y2="'+(gridOY-ry2*gridUnit)+'" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // intersection point
+  var info = '';
+  var eq1 = 'y = ' + m1 + 'x' + (c1 >= 0 ? ' + ' + c1 : ' − ' + Math.abs(c1));
+  var eq2 = 'y = ' + m2 + 'x' + (c2 >= 0 ? ' + ' + c2 : ' − ' + Math.abs(c2));
+  if (c1 === 0) eq1 = 'y = ' + m1 + 'x';
+  if (c2 === 0) eq2 = 'y = ' + m2 + 'x';
+
+  if (m1 === m2) {
+    if (c1 === c2) {
+      info = eq1 + '  dan  ' + eq2 + '\nKedua garis BERHIMPIT (identik) — gradien dan intercept sama.';
+    } else {
+      info = eq1 + '  dan  ' + eq2 + '\nKedua garis SEJAJAR — gradien sama (m₁ = m₂ = ' + m1 + '), tidak pernah berpotongan.';
+    }
+  } else {
+    var ix = (c2 - c1) / (m1 - m2);
+    var iy = m1 * ix + c1;
+    var ipx = gridOX + ix * gridUnit;
+    var ipy = gridOY - iy * gridUnit;
+    if (ipx > 0 && ipx < 320 && ipy > 0 && ipy < 320) {
+      s += '<circle cx="'+ipx+'" cy="'+ipy+'" r="5" fill="#1e8449"/>';
+      s += '<text x="'+(ipx+8)+'" y="'+(ipy-8)+'" font-family="JetBrains Mono" font-size="10" fill="#1e8449">(' + (Math.round(ix*100)/100) + ', ' + (Math.round(iy*100)/100) + ')</text>';
+    }
+    info = eq1 + '  dan  ' + eq2;
+    info += '\nTitik potong: (' + (Math.round(ix*100)/100) + ', ' + (Math.round(iy*100)/100) + ')';
+    var prod = m1 * m2;
+    if (Math.abs(prod + 1) < 0.01) {
+      info += '\nm₁ · m₂ = ' + m1 + ' × ' + m2 + ' = −1 → TEGAK LURUS ⊥';
+    } else {
+      info += '\nm₁ · m₂ = ' + (Math.round(prod*100)/100) + ' (bukan −1 → tidak tegak lurus)';
+    }
+  }
+
+  svg.innerHTML = s;
+  document.getElementById('twolines-result').textContent = info;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   initCoordPlane();
   updateLine();
   updateCircleEq();
   updateParabola();
+  updateTwoLines();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_8_Lingkaran_dan_Pi.html">Bab 8</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_10_Mesin_Pengubah_Bilangan.html">Bab 10</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

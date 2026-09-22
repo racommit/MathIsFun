@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 13 · Volume IV</div>
@@ -449,6 +450,116 @@ window.MathJax = {
     <div class="answer-content" id="a8">$\frac{9 + 6h + h^2 - 9}{h} = \frac{6h + h^2}{h} = 6 + h$. Limit saat $h \to 0$: $6$.<br>(Spoiler: ini adalah turunan $f(x) = x^2$ di $x = 3$.)</div>
   </div>
 
+  <!-- ═══════════════════════ RECALL: IRASIONAL ═══════════════════════ -->
+
+  <div class="recall-box">
+    Ingat dari <span class="xref"><span class="xref-text">Bab 2: bilangan rasional sebagai pecahan $\frac{p}{q}$</span><span class="xref-tag">Bab 2</span><span class="xref-popup"><span class="xref-popup-header">Bab 2 — Pecahan dan Bilangan Rasional</span><span class="xref-popup-body">Setiap bilangan rasional bisa ditulis sebagai $\frac{p}{q}$ dengan $p, q$ bulat. Pecahan-pecahan ini rapat di garis bilangan — di antara dua pecahan selalu ada pecahan lain.</span></span></span> dan <span class="xref"><span class="xref-text">Bab 3: bilangan irasional seperti $\sqrt{2}$</span><span class="xref-tag">Bab 3</span><span class="xref-popup"><span class="xref-popup-header">Bab 3 — Bilangan Irasional</span><span class="xref-popup-body">$\sqrt{2}$ tidak bisa ditulis sebagai pecahan — desimalnya tak pernah berulang: $1{,}41421356...$  Tapi kita bisa mendekatinya dengan pecahan: $\frac{1}{1}, \frac{3}{2}, \frac{7}{5}, \frac{17}{12}, \frac{41}{29}, \ldots$</span></span></span> — limit sudah bekerja di sana! Barisan pecahan $\frac{1}{1}, \frac{3}{2}, \frac{7}{5}, \frac{17}{12}, \frac{41}{29}, \ldots$ mendekati $\sqrt{2}$ tanpa pernah sampai (karena $\sqrt{2}$ bukan pecahan!). Secara formal:
+    $$\lim_{n \to \infty} \frac{p_n}{q_n} = \sqrt{2}$$
+    Setiap suku adalah pecahan (bilangan rasional), tapi limitnya adalah bilangan <em>irasional</em>. Ini menunjukkan kekuatan limit: proses rasional bisa "mendekati" bilangan yang bukan rasional — sebuah jembatan antara dua dunia bilangan.
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INTERACTIVE: EPSILON-DELTA ═══════════════════════ -->
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Visualisasi Epsilon-Delta</div>
+    <div class="interactive-desc">Definisi formal limit: $\lim_{x \to a} f(x) = L$ berarti untuk setiap $\varepsilon > 0$, ada $\delta > 0$ sehingga jika $0 < |x - a| < \delta$, maka $|f(x) - L| < \varepsilon$. Atur epsilon dan lihat delta yang diperlukan!</div>
+
+    <div style="margin-bottom: 0.5rem;">
+      <strong>Fungsi:</strong> $f(x) = 2x + 1$, &nbsp; $a = 3$, &nbsp; $L = 7$
+    </div>
+
+    <div class="slider-container">
+      <label>Epsilon ($\varepsilon$): <strong id="ed-eps-val">1.0</strong></label>
+      <input type="range" id="ed-eps" min="0.1" max="2.0" value="1.0" step="0.1" oninput="updateEpsDelta()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="ed-svg" width="320" height="300" viewBox="0 0 320 300"></svg>
+    </div>
+
+    <div id="ed-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ INTERACTIVE: SQUEEZE THEOREM ═══════════════════════ -->
+
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Teorema Apit (Squeeze Theorem)</div>
+    <div class="interactive-desc">Jika $g(x) \leq f(x) \leq h(x)$ dan $\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L$, maka $\lim_{x \to a} f(x) = L$ juga. Fungsi $f$ "diapit" dan dipaksa menuju $L$!</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setSqueezeEx('sinc')" id="sq-sinc" style="background: var(--accent-blue); color: white;">x² sin(1/x)</button>
+        <button class="btn" onclick="setSqueezeEx('cos')" id="sq-cos">x² cos(1/x)</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="sq-svg" width="320" height="280" viewBox="0 0 320 280"></svg>
+    </div>
+
+    <div id="sq-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════ LATIHAN TAMBAHAN ═══════════ -->
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Piecewise Limit</div>
+    <p>Diberikan fungsi:</p>
+    <p style="text-align: center;">
+      $f(x) = \begin{cases} x^2 + 1, & x < 2 \\ 3x - 1, & x \geq 2 \end{cases}$
+    </p>
+    <p>Hitung $\displaystyle\lim_{x \to 2} f(x)$, atau jelaskan mengapa limitnya tidak ada.</p>
+    <button class="hint-btn" onclick="toggleHint('h100')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a100')">Lihat Jawaban</button>
+    <div class="hint-content" id="h100">Hitung limit kiri ($x \to 2^-$) menggunakan $x^2 + 1$ dan limit kanan ($x \to 2^+$) menggunakan $3x - 1$. Apakah keduanya sama?</div>
+    <div class="answer-content" id="a100">Limit kiri: $\lim_{x \to 2^-} (x^2+1) = 4+1 = 5$.<br>Limit kanan: $\lim_{x \to 2^+} (3x-1) = 6-1 = 5$.<br>Keduanya sama, jadi $\lim_{x \to 2} f(x) = 5$. Menariknya, $f(2) = 3(2)-1 = 5$ juga — fungsi ini kontinu di $x = 2$!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Continuity vs Limit</div>
+    <p>Diberikan:</p>
+    <p style="text-align: center;">
+      $g(x) = \begin{cases} \frac{x^2 - 1}{x - 1}, & x \neq 1 \\ 5, & x = 1 \end{cases}$
+    </p>
+    <p>Apakah $\lim_{x \to 1} g(x)$ ada? Apakah $g$ kontinu di $x = 1$? Jelaskan perbedaannya.</p>
+    <button class="hint-btn" onclick="toggleHint('h101')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a101')">Lihat Jawaban</button>
+    <div class="hint-content" id="h101">Faktorkan $x^2 - 1$ untuk mencari limitnya. Lalu bandingkan limit dengan $g(1) = 5$.</div>
+    <div class="answer-content" id="a101">$\frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1$ (untuk $x \neq 1$). Jadi $\lim_{x \to 1} g(x) = 2$.<br>Limitnya <strong>ada</strong> (= 2), tapi $g(1) = 5 \neq 2$. Jadi $g$ <strong>tidak kontinu</strong> di $x = 1$.<br><em>Pesan penting:</em> limit ada bukan berarti fungsi kontinu — kontinuitas memerlukan limit = nilai fungsi.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Application: Populasi</div>
+    <p>Populasi bakteri dalam cawan petri mengikuti model logistik:
+    $$P(t) = \frac{10000}{1 + 49 \cdot e^{-0{,}3t}}$$
+    di mana $t$ adalah waktu dalam jam. Hitung $\displaystyle\lim_{t \to \infty} P(t)$. Apa arti biologisnya?</p>
+    <button class="hint-btn" onclick="toggleHint('h102')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a102')">Lihat Jawaban</button>
+    <div class="hint-content" id="h102">Saat $t \to \infty$, apa yang terjadi pada $e^{-0{,}3t}$? Ingat dari Bab 12: $e^{-x} \to 0$ saat $x \to \infty$.</div>
+    <div class="answer-content" id="a102">Saat $t \to \infty$: $e^{-0{,}3t} \to 0$, jadi $49 \cdot e^{-0{,}3t} \to 0$, maka $P(t) \to \frac{10000}{1+0} = 10000$.<br><strong>Arti biologis:</strong> Populasi mendekati <em>daya dukung</em> (carrying capacity) lingkungan = 10.000 bakteri. Sumber daya terbatas mencegah pertumbuhan tanpa batas — populasi "mendekati tanpa pernah (tepat) sampai" di 10.000. Limit menjelaskan batas alami pertumbuhan!</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 12 — Connection: Deret Geometri</div>
+    <p>Dari rumus deret geometri, kita tahu $\frac{1}{1-r} = 1 + r + r^2 + r^3 + \cdots$ untuk $|r| < 1$.</p>
+    <p>Gunakan ini untuk membuktikan bahwa: $\displaystyle\sum_{n=0}^{\infty} \left(\frac{1}{4}\right)^n = \frac{4}{3}$.</p>
+    <p>Lalu gambarkan artinya secara geometris: mulai dengan persegi satuan, bagi menjadi 4, arsir 1 bagian, ulangi di bagian yang tidak diarsir.</p>
+    <button class="hint-btn" onclick="toggleHint('h103')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a103')">Lihat Jawaban</button>
+    <div class="hint-content" id="h103">Identifikasi $a = 1$ dan $r = \frac{1}{4}$, lalu terapkan rumus $\frac{a}{1-r}$. Untuk bagian geometris, pikirkan: setiap langkah mengarsir $\frac{1}{4}$ dari sisa luas.</div>
+    <div class="answer-content" id="a103">$a = 1$, $r = \frac{1}{4}$. Karena $|r| = \frac{1}{4} < 1$, deret konvergen:<br>
+    $$\sum_{n=0}^{\infty} \left(\frac{1}{4}\right)^n = \frac{1}{1 - \frac{1}{4}} = \frac{1}{\frac{3}{4}} = \frac{4}{3}$$
+    <strong>Interpretasi geometris:</strong> Bayangkan persegi $1 \times 1$. Arsir luasnya = 1. Tambahkan $\frac{1}{4}$ persegi di sebelahnya. Tambahkan $\frac{1}{16}$ lagi. Dan seterusnya — total luas yang diarsir mendekati $\frac{4}{3}$. Setiap suku menambahkan area yang semakin kecil, tapi jumlah totalnya terbatas — ini inti dari konvergensi!</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <!-- ═══════════════════════ EPILOG ═══════════════════════ -->
@@ -570,12 +681,201 @@ function updateSeries() {
   document.getElementById('series-result').textContent = lines.join('\n');
 }
 
+// ═══════ Interactive 4: Epsilon-Delta ═══════
+function updateEpsDelta() {
+  var eps = parseFloat(document.getElementById('ed-eps').value);
+  document.getElementById('ed-eps-val').textContent = eps.toFixed(1);
+
+  // f(x) = 2x+1, a=3, L=7. |f(x)-L| < eps => |2x+1-7| < eps => |2x-6| < eps => |x-3| < eps/2
+  var delta = eps / 2;
+
+  var svg = document.getElementById('ed-svg');
+  var ox = 160, oy = 200, ux = 40, uy = 25;
+  var s = '';
+
+  // grid
+  for (var i = -3; i <= 5; i++) {
+    var px = ox + i * ux;
+    if (px >= 0 && px <= 320 && i !== 0) s += '<line x1="'+px+'" y1="0" x2="'+px+'" y2="300" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  for (var j = -3; j <= 10; j++) {
+    var py = oy - j * uy;
+    if (py >= 0 && py <= 300 && j !== 0) s += '<line x1="0" y1="'+py+'" x2="320" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+  }
+  s += '<line x1="0" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+ox+'" y1="0" x2="'+ox+'" y2="300" stroke="#2c2c2c" stroke-width="1.2"/>';
+
+  // epsilon band (horizontal, around L=7)
+  var yL = oy - 7 * uy;
+  var yTop = oy - (7 + eps) * uy;
+  var yBot = oy - (7 - eps) * uy;
+  s += '<rect x="0" y="'+yTop+'" width="320" height="'+(yBot-yTop)+'" fill="rgba(46,204,113,0.15)"/>';
+  s += '<line x1="0" y1="'+yL+'" x2="320" y2="'+yL+'" stroke="#2ecc71" stroke-width="1" stroke-dasharray="4,3"/>';
+  s += '<line x1="0" y1="'+yTop+'" x2="320" y2="'+yTop+'" stroke="#2ecc71" stroke-width="0.8" stroke-dasharray="3,3"/>';
+  s += '<line x1="0" y1="'+yBot+'" x2="320" y2="'+yBot+'" stroke="#2ecc71" stroke-width="0.8" stroke-dasharray="3,3"/>';
+
+  // delta band (vertical, around a=3)
+  var xA = ox + 3 * ux;
+  var xL = ox + (3 - delta) * ux;
+  var xR = ox + (3 + delta) * ux;
+  s += '<rect x="'+xL+'" y="0" width="'+(xR-xL)+'" height="300" fill="rgba(52,152,219,0.12)"/>';
+  s += '<line x1="'+xA+'" y1="0" x2="'+xA+'" y2="300" stroke="#3498db" stroke-width="1" stroke-dasharray="4,3"/>';
+  s += '<line x1="'+xL+'" y1="0" x2="'+xL+'" y2="300" stroke="#3498db" stroke-width="0.8" stroke-dasharray="3,3"/>';
+  s += '<line x1="'+xR+'" y1="0" x2="'+xR+'" y2="300" stroke="#3498db" stroke-width="0.8" stroke-dasharray="3,3"/>';
+
+  // function line f(x) = 2x+1
+  var pts = [];
+  for (var x = -2; x <= 5; x += 0.1) {
+    var y = 2 * x + 1;
+    var px2 = ox + x * ux, py2 = oy - y * uy;
+    if (py2 >= -10 && py2 <= 310) pts.push(px2.toFixed(1) + ',' + py2.toFixed(1));
+  }
+  s += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+
+  // point at (3,7)
+  s += '<circle cx="'+xA+'" cy="'+yL+'" r="4" fill="#c0392b"/>';
+
+  // labels
+  s += '<text x="'+(xA+4)+'" y="'+(oy+14)+'" font-size="11" fill="#3498db" font-weight="600">a=3</text>';
+  s += '<text x="4" y="'+(yL-4)+'" font-size="11" fill="#2ecc71" font-weight="600">L=7</text>';
+  s += '<text x="'+(xR+2)+'" y="18" font-size="10" fill="#3498db">δ</text>';
+  s += '<text x="4" y="'+(yTop-3)+'" font-size="10" fill="#2ecc71">ε</text>';
+
+  svg.innerHTML = s;
+
+  var info = 'ε = ' + eps.toFixed(1) + '  →  δ = ε/2 = ' + delta.toFixed(2) + '\n';
+  info += 'Jika |x − 3| < ' + delta.toFixed(2) + ', maka |f(x) − 7| < ' + eps.toFixed(1) + '\n';
+  info += 'Pita hijau = rentang ε di sumbu-y\n';
+  info += 'Pita biru  = rentang δ di sumbu-x\n';
+  info += 'Grafik (merah) di dalam pita biru selalu berada di dalam pita hijau!';
+  document.getElementById('ed-result').textContent = info;
+}
+
+// ═══════ Interactive 5: Squeeze Theorem ═══════
+var squeezeType = 'sinc';
+function setSqueezeEx(type) {
+  squeezeType = type;
+  ['sinc','cos'].forEach(function(t) {
+    var b = document.getElementById('sq-' + t);
+    b.style.background = t === type ? 'var(--accent-blue)' : '';
+    b.style.color = t === type ? 'white' : '';
+  });
+  drawSqueeze();
+}
+
+function drawSqueeze() {
+  var svg = document.getElementById('sq-svg');
+  var ox = 160, oy = 140, u = 70;
+  var s = '';
+
+  // grid
+  for (var i = -2; i <= 2; i++) {
+    var px = ox + i * u;
+    if (i !== 0) {
+      s += '<line x1="'+px+'" y1="0" x2="'+px+'" y2="280" stroke="#e8e4dc" stroke-width="0.5"/>';
+    }
+  }
+  for (var j = -2; j <= 2; j++) {
+    var py = oy - j * u;
+    if (j !== 0 && py >= 0 && py <= 280) {
+      s += '<line x1="0" y1="'+py+'" x2="320" y2="'+py+'" stroke="#e8e4dc" stroke-width="0.5"/>';
+    }
+  }
+  s += '<line x1="0" y1="'+oy+'" x2="320" y2="'+oy+'" stroke="#2c2c2c" stroke-width="1.2"/>';
+  s += '<line x1="'+ox+'" y1="0" x2="'+ox+'" y2="280" stroke="#2c2c2c" stroke-width="1.2"/>';
+
+  var upper = [], lower = [], mid = [];
+  var info = '';
+
+  for (var x = -2.2; x <= 2.2; x += 0.02) {
+    var px2 = ox + x * u;
+    if (px2 < 0 || px2 > 320) continue;
+    var yu = x * x;
+    var yl = -(x * x);
+    var ym;
+    if (squeezeType === 'sinc') {
+      ym = Math.abs(x) < 0.001 ? 0 : x * x * Math.sin(1/x);
+    } else {
+      ym = Math.abs(x) < 0.001 ? 0 : x * x * Math.cos(1/x);
+    }
+    upper.push(px2.toFixed(1)+','+(oy - yu * u).toFixed(1));
+    lower.push(px2.toFixed(1)+','+(oy - yl * u).toFixed(1));
+    mid.push(px2.toFixed(1)+','+(oy - ym * u).toFixed(1));
+  }
+
+  s += '<polyline points="'+upper.join(' ')+'" fill="none" stroke="#2ecc71" stroke-width="1.8" stroke-dasharray="5,3"/>';
+  s += '<polyline points="'+lower.join(' ')+'" fill="none" stroke="#e67e22" stroke-width="1.8" stroke-dasharray="5,3"/>';
+  s += '<polyline points="'+mid.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.2"/>';
+  s += '<circle cx="'+ox+'" cy="'+oy+'" r="4" fill="#c0392b"/>';
+
+  // legend
+  s += '<rect x="10" y="8" width="12" height="3" fill="#2ecc71"/>';
+  s += '<text x="26" y="13" font-size="10" fill="#2c2c2c">h(x) = x²</text>';
+  s += '<rect x="10" y="20" width="12" height="3" fill="#e67e22"/>';
+  s += '<text x="26" y="25" font-size="10" fill="#2c2c2c">g(x) = −x²</text>';
+  s += '<rect x="10" y="32" width="12" height="3" fill="#2471a3"/>';
+  if (squeezeType === 'sinc') {
+    s += '<text x="26" y="37" font-size="10" fill="#2c2c2c">f(x) = x²sin(1/x)</text>';
+    info = 'f(x) = x² sin(1/x)\n';
+    info += '−x² ≤ x² sin(1/x) ≤ x²\n';
+  } else {
+    s += '<text x="26" y="37" font-size="10" fill="#2c2c2c">f(x) = x²cos(1/x)</text>';
+    info = 'f(x) = x² cos(1/x)\n';
+    info += '−x² ≤ x² cos(1/x) ≤ x²\n';
+  }
+  info += '\nKedua pengapit mendekati 0 saat x → 0.\n';
+  info += 'Maka f(x) juga mendekati 0 — diapit!\n';
+  info += 'lim(x→0) f(x) = 0';
+
+  svg.innerHTML = s;
+  document.getElementById('sq-result').textContent = info;
+}
+
 // ═══════ Init ═══════
 document.addEventListener('DOMContentLoaded', function() {
   buildLimitTable();
   drawLimitGraph();
   updateSeries();
+  updateEpsDelta();
+  drawSqueeze();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_12_Pangkat_Akar_dan_Bilangan_yang_Tumbuh.html">Bab 12</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_14_Mengukur_Perubahan_Sesaat.html">Bab 14</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>

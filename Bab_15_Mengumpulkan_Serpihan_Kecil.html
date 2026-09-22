@@ -15,6 +15,7 @@ window.MathJax = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Ganti tema" aria-label="Ganti tema terang/gelap">&#9790;</button>
 <div class="book-container">
 
   <div class="chapter-label">Bab 15 · Volume IV</div>
@@ -39,6 +40,20 @@ window.MathJax = {
   <p style="text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin: 1.5rem 0;">
     "Bagaimana kita menghitung luas daerah<br>yang dibatasi oleh kurva melengkung?"
   </p>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ RECALL BOXES ═══════════════════════ -->
+
+  <div class="recall-box">
+    <strong>Recall — Bab 6: Luas Bangun Datar</strong><br>
+    Di Bab 6, kamu sudah menghitung luas persegi panjang ($p \times l$), segitiga ($\tfrac{1}{2} a \times t$), dan trapesium ($\tfrac{1}{2}(a+b) \times t$). Semua rumus itu bekerja untuk bentuk bersisi lurus. Tapi bagaimana jika tepinya melengkung? Integral adalah jawaban: ia memotong daerah melengkung menjadi pita-pita yang <em>hampir</em> persegi panjang, lalu menjumlahkan semuanya. Rumus luas dari Bab 6 sebenarnya adalah kasus khusus integral — ketika fungsi tepinya berupa garis lurus, integral menghasilkan rumus yang sudah kamu kenal.
+  </div>
+
+  <div class="recall-box">
+    <strong>Recall — Bab 13: Limit dan Pendekatan Tak Hingga</strong><br>
+    Di Bab 13, kita belajar bahwa limit adalah proses mendekati tanpa pernah berhenti: $\lim_{n \to \infty} a_n$ bertanya "ke mana barisan ini menuju?" Konsep ini menjadi jantung integral Riemann. Ketika kita membagi interval menjadi $n$ persegi panjang dan mengambil $n \to \infty$, kita sedang menggunakan limit persis seperti di Bab 13. Jumlah Riemann $S_n$ adalah barisan bilangan, dan integralnya adalah limit barisan itu. Tanpa limit, integral hanyalah perkiraan — dengan limit, ia menjadi tepat.
+  </div>
 
   <div class="divider divider-center"></div>
 
@@ -308,6 +323,160 @@ window.MathJax = {
     <div class="answer-content" id="a6">$\int 2\pi r\,dr = \pi r^2 + C$. Ini mengembalikan rumus luas lingkaran! Artinya: luas lingkaran = jumlah tak hingga banyak "cincin" tipis berkeliling $2\pi r$.</div>
   </div>
 
+  <!-- ═══════════════════════ TEKNIK: SUBSTITUSI ═══════════════════════ -->
+
+  <h2>Teknik Substitusi (Metode-$u$)</h2>
+
+  <p>
+    Tidak semua integral bisa langsung dihitung dengan aturan dasar. Kadang kita perlu mengenali bahwa integran mengandung "fungsi dalam fungsi" — mirip aturan rantai dari turunan, tapi dibalik. Idenya: ganti bagian yang rumit dengan variabel baru $u$.
+  </p>
+
+  <div class="definition-box">
+    <strong>Metode substitusi:</strong> Jika $\int f(g(x)) \cdot g'(x)\,dx$, maka misalkan $u = g(x)$, sehingga $du = g'(x)\,dx$:
+    $$\int f(g(x)) \cdot g'(x)\,dx = \int f(u)\,du$$
+  </div>
+
+  <p>
+    Contoh: $\displaystyle\int 2x \cdot \cos(x^2)\,dx$. Misalkan $u = x^2$, maka $du = 2x\,dx$.
+    Integral menjadi $\int \cos(u)\,du = \sin(u) + C = \sin(x^2) + C$.
+  </p>
+
+  <!-- INTERACTIVE 4: Substitusi -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Substitusi — Melihat Transformasi Variabel</div>
+    <div class="interactive-desc">Pilih integral dan lihat bagaimana substitusi $u$ menyederhanakan integran. Panel kiri menunjukkan fungsi asli, panel kanan menunjukkan fungsi setelah substitusi.</div>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setSubst('A')" id="subst-A" style="background: var(--accent-blue); color: white;">2x·cos(x²)</button>
+        <button class="btn" onclick="setSubst('B')" id="subst-B">3x²·eˣ³</button>
+        <button class="btn" onclick="setSubst('C')" id="subst-C">(2x+1)³</button>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 1rem 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 0.78rem; margin-bottom: 4px; color: var(--text-muted);">Integran asli $f(x)$</div>
+        <svg id="subst-svg-left" width="240" height="200" viewBox="0 0 240 200"></svg>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 0.78rem; margin-bottom: 4px; color: var(--text-muted);">Setelah substitusi $f(u)$</div>
+        <svg id="subst-svg-right" width="240" height="200" viewBox="0 0 240 200"></svg>
+      </div>
+    </div>
+
+    <div id="subst-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════════════ VOLUME PUTAR ═══════════════════════ -->
+
+  <h2>Volume Benda Putar</h2>
+
+  <p>
+    Integral bisa menghitung lebih dari sekadar luas. Jika kita memutar kurva $y = f(x)$ mengelilingi sumbu-$x$, kita mendapat benda tiga dimensi. Bayangkan: setiap irisan tegak lurus sumbu-$x$ berbentuk lingkaran dengan jari-jari $f(x)$, sehingga luas irisannya $\pi [f(x)]^2$.
+  </p>
+
+  <div class="definition-box">
+    <strong>Volume benda putar (metode cakram):</strong>
+    $$V = \int_a^b \pi\,[f(x)]^2\,dx$$
+    Kita menjumlahkan volume "cakram" tipis setebal $dx$, masing-masing berluas $\pi r^2$ dengan $r = f(x)$.
+  </div>
+
+  <p>
+    Contoh: putar $y = x$ dari $x = 0$ ke $x = 3$. Hasilnya kerucut!<br>
+    $V = \int_0^3 \pi x^2\,dx = \pi \left[\frac{x^3}{3}\right]_0^3 = \pi \cdot 9 = 9\pi \approx 28{,}27$.
+  </p>
+
+  <!-- INTERACTIVE 5: Volume of Revolution -->
+  <div class="interactive-section">
+    <div class="interactive-label">Eksperimen Interaktif</div>
+    <div class="interactive-title">Volume Benda Putar — Memutar Kurva</div>
+    <div class="interactive-desc">Pilih fungsi dan lihat benda putar yang terbentuk. Geser slider untuk mengubah batas atas dan melihat volume berubah.</div>
+
+    <div style="margin-bottom: 0.8rem;">
+      <div class="btn-group">
+        <button class="btn" onclick="setRevol('linear')" id="revol-linear" style="background: var(--accent-blue); color: white;">y = x (kerucut)</button>
+        <button class="btn" onclick="setRevol('sqrt')" id="revol-sqrt">y = √x (paraboloid)</button>
+        <button class="btn" onclick="setRevol('const')" id="revol-const">y = 2 (silinder)</button>
+      </div>
+    </div>
+
+    <div class="slider-container">
+      <label>Batas atas b: <strong id="revol-b-val">3</strong></label>
+      <input type="range" id="revol-b" min="1" max="5" value="3" step="0.5" oninput="updateRevol()">
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0;">
+      <svg id="revol-svg" width="360" height="280" viewBox="0 0 360 280"></svg>
+    </div>
+
+    <div id="revol-result" class="result-display" style="font-size: 0.88rem;"></div>
+  </div>
+
+  <div class="divider divider-center"></div>
+
+  <!-- ═══════════════ LATIHAN TAMBAHAN ═══════════════ -->
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 7 — Recall Aljabar (Bab 4)</div>
+    <p>Sebelum mengintegralkan, seringkali kita perlu menyederhanakan ekspresi aljabar terlebih dahulu.<br>
+    Sederhanakan lalu hitung: $\displaystyle\int_0^2 (x+1)^2\,dx$.</p>
+    <button class="hint-btn" onclick="toggleHint('h20')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a20')">Lihat Jawaban</button>
+    <div class="hint-content" id="h20">Dari Bab 4, ingat: $(x+1)^2 = x^2 + 2x + 1$. Sekarang integralkan suku per suku.</div>
+    <div class="answer-content" id="a20">$(x+1)^2 = x^2 + 2x + 1$.<br>
+    $\int_0^2 (x^2+2x+1)\,dx = \left[\frac{x^3}{3}+x^2+x\right]_0^2 = \frac{8}{3}+4+2 = \frac{26}{3} \approx 8{,}667$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 8 — Computation (Substitusi)</div>
+    <p>Gunakan metode substitusi untuk menghitung: $\displaystyle\int 6x^2(x^3 + 5)^4\,dx$.</p>
+    <button class="hint-btn" onclick="toggleHint('h21')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a21')">Lihat Jawaban</button>
+    <div class="hint-content" id="h21">Misalkan $u = x^3 + 5$. Maka $du = 3x^2\,dx$, sehingga $6x^2\,dx = 2\,du$.</div>
+    <div class="answer-content" id="a21">$u = x^3+5$, $du = 3x^2\,dx$.<br>
+    $\int 6x^2(x^3+5)^4\,dx = 2\int u^4\,du = 2 \cdot \frac{u^5}{5} + C = \frac{2(x^3+5)^5}{5} + C$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 9 — Conceptual: Luas Negatif</div>
+    <p>Hitung $\displaystyle\int_0^{2\pi} \sin x\,dx$. Apakah ini berarti luas daerah antara kurva $\sin x$ dan sumbu-$x$ dari $0$ ke $2\pi$ adalah nol? Jelaskan, dan hitung luas <em>sesungguhnya</em>.</p>
+    <button class="hint-btn" onclick="toggleHint('h22')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a22')">Lihat Jawaban</button>
+    <div class="hint-content" id="h22">Integral menghitung <em>luas bertanda</em> (net area): daerah di bawah sumbu-$x$ dihitung negatif. Untuk luas sesungguhnya, integralkan $|\sin x|$ atau pisahkan interval di mana $\sin x \ge 0$ dan $\sin x < 0$.</div>
+    <div class="answer-content" id="a22">$\int_0^{2\pi}\sin x\,dx = [-\cos x]_0^{2\pi} = (-1) - (-1) = 0$.<br>
+    Ini bukan berarti luasnya nol! Luas di atas sumbu-$x$ (dari $0$ ke $\pi$) saling meniadakan luas di bawah (dari $\pi$ ke $2\pi$).<br>
+    Luas sesungguhnya $= \int_0^{\pi}\sin x\,dx + \int_{\pi}^{2\pi}(-\sin x)\,dx = 2 + 2 = 4$.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 10 — Connection: Jarak dari Kecepatan</div>
+    <p>Sebuah partikel bergerak dengan kecepatan $v(t) = 4 - 2t$ m/s. <br>
+    (a) Hitung $\int_0^4 v(t)\,dt$. Apa artinya secara fisik?<br>
+    (b) Hitung total jarak yang <em>ditempuh</em> dari $t = 0$ ke $t = 4$.</p>
+    <button class="hint-btn" onclick="toggleHint('h23')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a23')">Lihat Jawaban</button>
+    <div class="hint-content" id="h23">(a) Integral kecepatan = perpindahan (bisa negatif jika berbalik arah). (b) Total jarak = $\int_0^4 |v(t)|\,dt$. Cari kapan $v(t) = 0$ untuk memisahkan interval.</div>
+    <div class="answer-content" id="a23">(a) $\int_0^4(4-2t)\,dt = [4t-t^2]_0^4 = (16-16)-0 = 0$. Perpindahan = 0 m (partikel kembali ke titik awal).<br>
+    (b) $v(t) = 0$ saat $t = 2$. Jarak $= \int_0^2(4-2t)\,dt + \int_2^4|4-2t|\,dt = \int_0^2(4-2t)\,dt + \int_2^4(2t-4)\,dt = 4 + 4 = 8$ m.</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-label">Latihan 11 — Error Analysis</div>
+    <p>Seorang siswa menghitung: $\displaystyle\int x(x+1)\,dx = \frac{x^2}{2} \cdot \frac{(x+1)^2}{2} + C$.<br>
+    Identifikasi kesalahannya, lalu hitung jawaban yang benar.</p>
+    <button class="hint-btn" onclick="toggleHint('h24')">Lihat Petunjuk</button>
+    <button class="answer-btn" onclick="toggleAnswer('a24')">Lihat Jawaban</button>
+    <div class="hint-content" id="h24">Siswa mengintegralkan setiap faktor secara terpisah, lalu mengalikannya. Integral <em>bukan</em> operasi yang bisa didistribusikan terhadap perkalian! $\int f \cdot g \neq (\int f)(\int g)$. Jabarkan dulu: $x(x+1) = x^2 + x$.</div>
+    <div class="answer-content" id="a24"><strong>Kesalahan:</strong> Siswa mengira $\int f(x) \cdot g(x)\,dx = \left(\int f(x)\,dx\right) \cdot \left(\int g(x)\,dx\right)$. Ini salah — integral tidak bisa "didistribusikan" terhadap perkalian.<br>
+    <strong>Cara benar:</strong> Jabarkan dulu, lalu integralkan suku per suku:<br>
+    $\int x(x+1)\,dx = \int (x^2+x)\,dx = \frac{x^3}{3} + \frac{x^2}{2} + C$.<br>
+    <strong>Verifikasi:</strong> $\frac{d}{dx}\left(\frac{x^3}{3}+\frac{x^2}{2}\right) = x^2 + x = x(x+1)$. ✓</div>
+  </div>
+
   <div class="divider divider-center"></div>
 
   <h2>Epilog: Jembatan Besar</h2>
@@ -448,11 +617,192 @@ function updateDefIntegral() {
     '\n= '+b+'³/3 − '+a+'³/3 = '+(b*b*b/3).toFixed(3)+' − '+(a*a*a/3).toFixed(3)+' = '+val.toFixed(4);
 }
 
+// ═══════ Interactive 4: Substitution ═══════
+var substType = 'A';
+function setSubst(t) {
+  substType = t;
+  ['A','B','C'].forEach(function(k) {
+    var b = document.getElementById('subst-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  drawSubst();
+}
+function drawSubst() {
+  var svgL = document.getElementById('subst-svg-left');
+  var svgR = document.getElementById('subst-svg-right');
+  var ox = 30, oy = 160, ux = 20, uy = 40;
+  var sL = '', sR = '';
+  // axes
+  sL += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+  sL += '<line x1="'+ox+'" y1="'+oy+'" x2="230" y2="'+oy+'" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+  sL += '<text x="220" y="'+(oy+14)+'" font-family="Inter" font-size="9" fill="currentColor" opacity="0.5">x</text>';
+  sR += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+  sR += '<line x1="'+ox+'" y1="'+oy+'" x2="230" y2="'+oy+'" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+  sR += '<text x="220" y="'+(oy+14)+'" font-family="Inter" font-size="9" fill="currentColor" opacity="0.5">u</text>';
+  var ptsL = [], ptsR = [], info = '';
+  if (substType === 'A') {
+    info = 'u = x²,  du = 2x dx\n∫ 2x·cos(x²) dx → ∫ cos(u) du = sin(u) + C = sin(x²) + C';
+    for (var x = -3; x <= 3; x += 0.06) {
+      var y = 2*x*Math.cos(x*x);
+      ptsL.push((ox+x*ux*1.5)+','+(oy-y*uy*0.6));
+    }
+    for (var u = -6; u <= 6; u += 0.1) {
+      var y = Math.cos(u);
+      ptsR.push((ox+u*ux*0.7+80)+','+(oy-y*uy));
+    }
+  } else if (substType === 'B') {
+    info = 'u = x³,  du = 3x² dx\n∫ 3x²·eˣ³ dx → ∫ eᵘ du = eᵘ + C = eˣ³ + C';
+    for (var x = -1.5; x <= 1.5; x += 0.04) {
+      var y = 3*x*x*Math.exp(x*x*x);
+      if (Math.abs(y) < 4) ptsL.push((ox+x*ux*3)+','+(oy-y*uy*0.8));
+    }
+    for (var u = -3; u <= 2; u += 0.08) {
+      var y = Math.exp(u);
+      if (y < 4) ptsR.push((ox+u*ux*1.5+70)+','+(oy-y*uy*0.8));
+    }
+  } else {
+    info = 'u = 2x+1,  du = 2 dx\n∫ (2x+1)³ dx → ½∫ u³ du = u⁴/8 + C = (2x+1)⁴/8 + C';
+    for (var x = -1.5; x <= 1; x += 0.03) {
+      var v = 2*x+1;
+      var y = v*v*v;
+      if (Math.abs(y) < 5) ptsL.push((ox+x*ux*3+50)+','+(oy-y*uy*0.5));
+    }
+    for (var u = -2; u <= 3; u += 0.05) {
+      var y = u*u*u;
+      if (Math.abs(y) < 5) ptsR.push((ox+u*ux*1.5+70)+','+(oy-y*uy*0.5));
+    }
+  }
+  if (ptsL.length > 1) sL += '<polyline points="'+ptsL.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>';
+  if (ptsR.length > 1) sR += '<polyline points="'+ptsR.join(' ')+'" fill="none" stroke="#2471a3" stroke-width="2.5"/>';
+  sL += '<text x="'+(ox+5)+'" y="18" font-family="Inter" font-size="10" fill="#c0392b">f(x) — rumit</text>';
+  sR += '<text x="'+(ox+5)+'" y="18" font-family="Inter" font-size="10" fill="#2471a3">f(u) — sederhana!</text>';
+  svgL.innerHTML = sL;
+  svgR.innerHTML = sR;
+  document.getElementById('subst-result').textContent = info;
+}
+
+// ═══════ Interactive 5: Volume of Revolution ═══════
+var revolType = 'linear';
+function setRevol(t) {
+  revolType = t;
+  ['linear','sqrt','const'].forEach(function(k) {
+    var b = document.getElementById('revol-'+k);
+    b.style.background = k===t?'var(--accent-blue)':'';
+    b.style.color = k===t?'white':'';
+  });
+  updateRevol();
+}
+function updateRevol() {
+  var bVal = parseFloat(document.getElementById('revol-b').value);
+  document.getElementById('revol-b-val').textContent = bVal;
+  var svg = document.getElementById('revol-svg');
+  var ox = 60, oy = 140, xSc = 50, ySc = 40;
+  var f, fName, volExact;
+  if (revolType === 'linear') {
+    f = function(x){return x;};
+    fName = 'y = x';
+    volExact = Math.PI * bVal*bVal*bVal / 3;
+  } else if (revolType === 'sqrt') {
+    f = function(x){return Math.sqrt(x);};
+    fName = 'y = √x';
+    volExact = Math.PI * bVal*bVal / 2;
+  } else {
+    f = function(x){return 2;};
+    fName = 'y = 2';
+    volExact = Math.PI * 4 * bVal;
+  }
+  var s = '';
+  // axes
+  s += '<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="270" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+  s += '<line x1="'+(ox-10)+'" y1="'+oy+'" x2="340" y2="'+oy+'" stroke="currentColor" opacity="0.3" stroke-width="1"/>';
+
+  // Draw ellipses (cross-sections) to suggest 3D shape
+  var nSlices = 8;
+  for (var i = 0; i <= nSlices; i++) {
+    var xi = bVal * i / nSlices;
+    var r = f(xi);
+    var cx = ox + xi * xSc;
+    var ry = r * ySc;
+    if (ry > 0.5) {
+      var opacity = i === nSlices ? 0.5 : 0.12;
+      s += '<ellipse cx="'+cx+'" cy="'+oy+'" rx="8" ry="'+ry+'" fill="rgba(36,113,163,0.07)" stroke="#2471a3" stroke-width="0.8" opacity="'+opacity+'"/>';
+    }
+  }
+
+  // Shade the solid surface (top and bottom profiles)
+  var topPts = [], botPts = [];
+  for (var x = 0; x <= bVal; x += 0.05) {
+    var r = f(x);
+    topPts.push((ox+x*xSc)+','+(oy-r*ySc));
+    botPts.push((ox+x*xSc)+','+(oy+r*ySc));
+  }
+  var polyPts = topPts.join(' ') + ' ' + botPts.reverse().join(' ');
+  s += '<polygon points="'+polyPts+'" fill="rgba(36,113,163,0.15)" stroke="none"/>';
+
+  // Draw curves (top profile and bottom mirror)
+  s += '<polyline points="'+topPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.2"/>';
+  botPts.reverse();
+  s += '<polyline points="'+botPts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-dasharray="4,3"/>';
+
+  // End ellipse (solid)
+  var rEnd = f(bVal);
+  s += '<ellipse cx="'+(ox+bVal*xSc)+'" cy="'+oy+'" rx="8" ry="'+(rEnd*ySc)+'" fill="rgba(36,113,163,0.2)" stroke="#2471a3" stroke-width="1.5"/>';
+
+  // Labels
+  s += '<text x="'+(ox+bVal*xSc)+'" y="'+(oy+rEnd*ySc+16)+'" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2471a3">'+bVal+'</text>';
+  s += '<text x="300" y="25" font-family="Inter" font-size="11" fill="#c0392b">'+fName+'</text>';
+
+  svg.innerHTML = s;
+  document.getElementById('revol-result').textContent =
+    'V = π ∫₀' + bVal + ' [' + fName.replace('y = ','') + ']² dx = ' + volExact.toFixed(3) +
+    '\n≈ ' + volExact.toFixed(2) + ' satuan kubik';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   updateRiemann();
   drawAnti();
   updateDefIntegral();
+  drawSubst();
+  updateRevol();
 });
 </script>
+
+<nav class="chapter-nav">
+  <a class="nav-prev" href="Bab_14_Mengukur_Perubahan_Sesaat.html">Bab 14</a>
+  <a class="nav-home" href="index.html" title="Daftar Isi">&#9776;</a>
+  <a class="nav-next" href="Bab_16_Jembatan_Besar.html">Bab 16</a>
+</nav>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('math-book-theme', next); } catch(e) {}
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '\u2600' : '\u263E';
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('math-book-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var theme = document.documentElement.getAttribute('data-theme');
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  try { localStorage.setItem('math-read-' + location.pathname.split('/').pop(), Date.now()); } catch(e) {}
+});
+</script>
+
 </body>
 </html>
